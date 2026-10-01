@@ -30,6 +30,7 @@ Phase 0A acceptance criteria:
 - No language implies that the unfinished platform is already handling real problems.
 - Every call to contribute maps to a maintained task, owner, review process, and expected outcome.
 - The site meets the initial accessibility, privacy, security, analytics, localization, performance, and non-tracking requirements.
+- The call to contribute says every profession is welcome (D-60). Engineers, designers and other technical people are the most urgent today; lawyers, activists, policy and rights experts are needed now to draft rules and policy packs in `can_policy`.
 - Founding contributors can reach the repository and setup instructions without needing a paid AI tool.
 
 ### Phase 0B: Discovery and decisions

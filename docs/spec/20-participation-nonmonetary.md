@@ -7,7 +7,7 @@ The build phases are in `18-phases-gates.md`. This section covers how participat
 The platform should grow through a deliberate sequence:
 
 1. **Explain:** Publish the public concept and founding contributor page.
-2. **Assemble:** Recruit and organize the founding engineering, product, design, safety, privacy, legal, documentation, localization, and governance contributors.
+2. **Assemble:** Every profession is welcome (D-60). Engineers, designers and other technical people are the most urgent need today, and lawyers, activists, policy and rights experts are needed now to draft rules and policy packs in `can_policy`. Recruit and organize the founding engineering, product, design, safety, privacy, legal, documentation, localization, and governance contributors.
 3. **Build:** Implement the centralized reference platform and the first protected vertical slice while the decentralization working group develops bounded protocols and experiments.
 4. **Prove:** Validate the workflow with fictional data and a controlled pilot.
 5. **Open roles:** At Gate X, publish role-specific pages and invite bounded multidisciplinary participation.

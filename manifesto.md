@@ -20,6 +20,10 @@ That is how an open platform can reach any scale without an army of moderators: 
 
 **Everything on CAN is structured, so every poster sees the whole situation before posting.** There is no blank box. Each kind of post is a short, guided form that the community designed in advance: what is happening, why, who is affected, how far it reaches, which lawful options exist, what is still uncertain, and what you are assuming. If a post rests on a wrong assumption, it is held with a note beside the field, so you can fix it before anyone else reads it. AI can help you fill the form in, and you always confirm it.
 
+**The law of every place, all the way down.** CAN follows the law at every level that applies to a problem: universal human rights first, then the rules that bind a whole region such as the European Union, then the national constitution and national law, then the region and the city. Every post and every proposed fix has to satisfy all of them at once. So CAN never asks anyone to do something illegal, and it stays lawful everywhere it goes. If a fix is not lawful yet, the problem is not hidden. It is marked stuck, the blocking law is named, and the lawful route to change it stays in view.
+
+**Every rule change looks back.** When the rules or the law change, CAN re-examines every past resolution under the new rule. If the conclusion would be different and it is practical to reopen, the problem reopens with a plain notice, the whole history stays, and you can appeal. Nothing changes quietly, and every improvement helps every past problem, not just the next one.
+
 **We prove it before people join.** CAN is being tried first by AI participants working through real problems, starting with two real ones in Amsterdam, with clearly synthetic evidence and no real people named. They submit, argue, propose, appeal and try to break the rules, so we find the flaws before anyone is let down by them. Public participation opens only when agreed criteria are met. Then the first people arrive to a platform that has already been tested hard.
 
 Today this is a design and a first build. The rulebook for the first version is approved by the founder, openly, until a community panel can take over, and the AI runs on test data. Nothing handles real problems yet.
@@ -158,7 +162,7 @@ The code, the specification and the constitution are open. The project is built 
 - Pick a small, bounded unit of work from [`plans/`](plans/).
 - Read the specification index: [`docs/spec/00-index.md`](docs/spec/00-index.md).
 
-Developers, designers, accessibility reviewers, translators, privacy and security specialists, researchers, legal and policy experts: there is a real task waiting for you.
+Every profession is welcome. Engineers, designers and other technical people are the most urgent need today, because the platform is being built. Lawyers, activists, policy and rights experts are needed now as well, to draft the rules and policy packs the AI will apply. There is a real task waiting for you.
 
 ## Why this is different
 

@@ -1,6 +1,6 @@
 # Lifecycle states and transition table
 
-This file is the **single owner** of the problem lifecycle: state classes, the transition table (T00 to T22), and the rules that apply to the table. It was split out of `01-slice-1-brief.md` section 4 to keep both files under 25KB. Link here for the table; never copy it elsewhere. The slice-1 brief still owns the defaults, the moderation decision fields (its section 5), the contribution-type enum and the entity list. The structured fields each transition requires are defined by the content schemas in the policy pack (`05-lifecycle-participation.md`, D-58); the "required fields" column below is the minimum the server enforces.
+This file is the **single owner** of the problem lifecycle: state classes, the transition table (T00 to T23), and the rules that apply to the table. It was split out of `01-slice-1-brief.md` section 4 to keep both files under 25KB. Link here for the table; never copy it elsewhere. The slice-1 brief still owns the defaults, the moderation decision fields (its section 5), the contribution-type enum and the entity list. The structured fields each transition requires are defined by the content schemas in the policy pack (`05-lifecycle-participation.md`, D-58); the "required fields" column below is the minimum the server enforces.
 
 ## 4.1 State classes
 
@@ -16,11 +16,11 @@ Notes on the model:
 - `appealed` is not a state. An appeal attaches to a moderation decision (section 5).
 - `investigation_needed` is not a state or a tier. It is a **derived flag**, true when the strongest evidence tier on a published problem is below the investigation threshold. Evidence tiers are defined in the constitution (Constitution III.4, `EVIDENCE-TIERS`).
 - `paused` is not terminal: it requires a reason and a resume condition. `stuck` means documented effort has hit a blocker; it is the public "accountable unresolved record".
-- Reopening terminal states is deferred. Pre-publication states are visible only to the initiator and the emergency/legal lane.
+- A terminal or resting state reopens only through T23 (re-resolution, D-59). `withdrawn` and `rejected` never reopen by T23. Pre-publication states are visible only to the initiator and the emergency/legal lane.
 - Invalid transitions fail atomically. Every transition writes a `problem_event` (actor, time, from, to, reason, evidence ids) in the same transaction.
 - `W` below means any working state: `eligible`, `solution_development`, `solution_selection`, `implementation`, `verification`.
 - "Proposes / decides": the initiator (provisional steward) records a pending transition; the moderation run applies the policy and confirms or declines it, citing rule ids. No human confirms an ordinary transition. `escalate_human` (emergency, crisis, law enforcement) goes to the logged emergency/legal lane.
-- Decision points are the `DP-*` ids in the table (fourteen in slice 1, including `DP-ASSUMPTIONS` and `DP-COMPLETENESS`; catalog: `docs/design/ai/decision-points.md`). Outcomes: `publish`, `needs_revision`, `reject`, `route_external`, `hold` (fail closed), `escalate_human`.
+- Decision points are the `DP-*` ids in the table (fifteen in slice 1, including `DP-ASSUMPTIONS`, `DP-COMPLETENESS` and `DP-RERESOLUTION`; catalog: `docs/design/ai/decision-points.md`). Outcomes: `publish`, `needs_revision`, `reject`, `route_external`, `hold` (fail closed), `escalate_human`.
 
 ## 4.2 Transition table
 
@@ -49,11 +49,14 @@ Notes on the model:
 | T20 | W, paused or stuck | redirected | initiator proposes, moderation run decides (`DP-ELIGIBILITY`, `DP-CRISIS`; emergency channel via the emergency/legal lane) | destination (institution, partner project or emergency channel) and route text, reason | Resolution record (redirected); policy version shown | Redirected | "This is better handled by [destination]. Their route is shown." | Use the route shown. |
 | T21 | W | withdrawn | initiator, only if no other account has an accepted contribution | none (reason optional) | problem kept visible as withdrawn; initiator text tombstoned (`OWN-1`) | Withdrawn | "The person who raised this withdrew it before anyone else took part." | Start a new problem if you wish. |
 | T22 | draft | (deleted) | initiator | none | draft removed immediately; no event | n/a | A never-submitted draft is just discarded. | n/a |
+| T23 | solved, closed, redirected or stuck | a working state (default `solution_development`; the earliest state the changed conclusion affects, `eligible` if eligibility or legality of the problem itself changed) | re-resolution review: moderation run (`DP-RERESOLUTION`) under the new policy or legal-corpus version; initiator or steward notified | old policy and corpus version, new version, the changed conclusion and the rule ids that changed it, feasibility check result (`OQ-reresolution-feasibility`: problem still exists, jurisdiction still enabled, initiator or a steward can be notified, reopening does not undo a lawful completed implementation without a new proposal) | event; full history and the old Resolution record kept (never deleted); notice on the page and in the email; the reopened problem continues from the chosen state; appealable (section 5 of the brief, `APPEAL-1`) | Reopened under policy vX | "New rules or law changed the conclusion of this earlier result, and reopening is feasible. The old record is kept." Decided under policy vX. | Add proposals or evidence under the new rule, or appeal if you disagree. |
 
 Rules that apply to the table:
 
 - **Withdrawal after publication** (T21) only while nobody else has an accepted contribution. After that the initiator can only tombstone their own text (`tombstoned_at`) or ask for closure with reason "initiator request" (T19). The initiator owns nothing (`OWN-1`).
 - **Pause review:** when the review date passes, the system queues a re-check by the moderation run and notifies the initiator. It never changes state by itself.
 - **Appeals** change state only through the effects in section 5.
+- **Re-resolution (T23, `RERESOLVE-1`):** a policy-pack or legal-corpus change queues a review of past solved, closed, redirected and stuck problems and their decision records under the new version. It reopens only when the conclusion changes and the feasibility check passes; otherwise it writes a record and changes no state. It is never silent and never deletes history. A reopened problem that again reaches a terminal state gets a new Resolution record and keeps the old one.
+- **Legal layers:** `DP-LEGALITY` and every legal check apply the cumulative layer stack L0 to L6 (Constitution I.2, `LEGAL-STACK-1`). Where local law forbids discussing a topic at all, T05 rejects with the legal basis logged (`TOPIC-FORBIDDEN-1`) and nothing is published in that jurisdiction. Where only the solution is illegal, T15 applies: `stuck` (legally blocked), citing the layer and source.
 - **Re-moderation after a policy change** can flip an outcome on a published problem. It never removes silently: the page shows "re-reviewed under policy vX", the reason and an appeal path (`REMOD-NOTICE-1`).
 - Public labels are the exact chip text; explanations appear on the problem page and in the email. Labels never use red.

@@ -130,6 +130,10 @@ The repository introduction should quickly explain:
 
 Local setup should be tested, reproducible, and progressively reduced in complexity. Contributor documentation is part of the product and must be maintained accordingly.
 
+### Who is welcome now (D-60)
+
+Every profession can contribute. The most urgent need today is engineers, designers and other technical people, because the platform is being built. Lawyers, activists, policy and rights experts are needed now as well: they draft the platform rules and policy packs in `can_policy` and the legal-layer corpora (`docs/open-questions/OQ-legal-corpus-sourcing.md`).
+
 ### Contribution ladder
 
 Use a visible contribution ladder rather than treating everyone as either an outsider or a maintainer. These are roles in the open-source project, not platform roles (`04-roles-stewardship.md`); the names are chosen so they do not collide with the platform roles "Observer" and "Steward":

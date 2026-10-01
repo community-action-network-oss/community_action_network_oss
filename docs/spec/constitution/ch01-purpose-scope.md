@@ -53,9 +53,23 @@ Rules: RANK-1
 
 A lower tier never overrides a higher one. Within a tier, the stricter protection applies. If the conflict cannot be settled mechanically, the item fails closed (V.4) and goes to a human, and the decision record cites both rule IDs.
 
+**Legal layer stack (D-61).** Beneath the precedence order, every moderation run applies the layers of law as cumulative constraints. Content and solutions must satisfy all of them, so CAN never asks for anything illegal anywhere.
+
+| Layer | Content |
+|---|---|
+| L0 | CAN platform rules (this constitution and the policy pack) |
+| L1 | UN human rights: UDHR, ICCPR, ICESCR |
+| L2 | Supranational law, where binding (default). For the Netherlands: the EU Charter of Fundamental Rights, EU law and the ECHR |
+| L3 | National constitution |
+| L4 | National law |
+| L5 | Regional law and rules |
+| L6 | City rules |
+
+The layers are constraints, not a ladder of overrides: a lower layer cannot relax a higher one, and a higher layer's silence does not excuse a lower layer's rule. The corpora live in `can_policy` as versioned, source-verified texts (IV.6). Where L1 and a national layer conflict, the cumulative restriction applies and the platform assists no illegal action; the refusal is logged (`OQ-legal-layer-conflicts`).
+
 **Change protection.** The protected core cannot be removed or weakened by the ordinary amendment procedure (VIII.2). No extraordinary procedure exists yet, so until one is ratified the core is frozen.
 
-Rules: PREC-1
+Rules: PREC-1, LEGAL-STACK-1
 
 ### I.3 SCOPE-PUBLIC-ONLY: Public problems only
 *Status: Drafted · Old: Art 57, 71 · First phase: S1*

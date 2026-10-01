@@ -13,7 +13,7 @@ Design rules that apply to every lifecycle:
 - `appealed` is not a problem state. Appeals attach to moderation decisions.
 - `investigation_needed` is a flag derived from the evidence tier, not a state.
 - Timeouts flag a problem for people. They never change a state silently.
-- Reopening terminal states is deferred and needs its own rules.
+- Terminal and stuck problems reopen only through re-resolution (`01a-lifecycle.md`, T23, `RERESOLVE-1`): never silently, history kept, appealable.
 - Invalid transitions fail atomically.
 
 ### Structured content (D-58)

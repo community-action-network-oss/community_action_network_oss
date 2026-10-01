@@ -5,7 +5,7 @@ The **slice-1 entity set** (15 entities) is in `01-slice-1-brief.md`, section 10
 Produce an entity-relationship model before implementation. At minimum evaluate these entities:
 
 - User, profile, consent, authentication factor, role, scoped permission
-- Geography, boundary, jurisdiction, location claim, verification
+- Geography, boundary, jurisdiction, legal layer (L0 to L6), legal corpus version and source, location claim, verification
 - Problem, systemic parent, incident child, stakeholder, lifecycle transition, follow, duplicate link, causal link, dependency link, recurrence link
 - Claim, claim status, contradiction, contribution, revision, evidence, evidence provenance, restricted evidence reference, attachment, citation, verification, correction
 - Timeline event, institutional notice, acknowledgment, procedural action, deadline, commitment, commitment revision, missed commitment

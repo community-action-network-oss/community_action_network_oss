@@ -83,5 +83,9 @@ Copy any existing file. Keep the same headings. Night or agent runs add question
 | [OQ-steward-entity-grants](OQ-steward-entity-grants.md) | May a steward entity receive grants without breaking the non-monetary rule? |
 | [OQ-mera-disclosure](OQ-mera-disclosure.md) | Must hosting or links from Mera be disclosed? |
 | [OQ-limits](OQ-limits.md) | What per-account limits apply to posting and appeals? |
+| [OQ-legal-corpus-sourcing](OQ-legal-corpus-sourcing.md) | Who curates and verifies the legal corpus for each layer, and how often does it update? |
+| [OQ-legal-layer-conflicts](OQ-legal-layer-conflicts.md) | What happens when human rights (L1) conflict with national law (L3 or L4)? |
+| [OQ-supranational-default](OQ-supranational-default.md) | Is the binding supranational layer (L2) the right default, and for which jurisdictions? |
+| [OQ-reresolution-feasibility](OQ-reresolution-feasibility.md) | When is reopening a past resolution feasible? |
 
 Related: [spec index](../spec/00-index.md), [constitution](../spec/constitution/README.md), [decision log](../../DECISIONS.md), [design](../design/), [ADRs](../adr/).
