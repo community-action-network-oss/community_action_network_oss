@@ -14,7 +14,7 @@ spec: ["docs/design/ai/simulation.md#5-modes","docs/design/ai/safety-and-privacy
 needs: ["docker","db"]
 verify: ["npm run lint","npm run build","npm test","npm run verify"]
 founder_gate: false
-defaults: "Built and tested with FakeModel only. Live calls need the founder gate (API key, spend cap, DPIA gate, units 11-u38 and 11-u39). Without both an API key and a cap the live mode refuses to start. Persona model differs from the DP model where the register allows."
+defaults: "Built and tested with FakeModel only (D-65: live runs are not founder-gated). Live mode needs OPEN_ROUTER_KEY and an explicit --cap-usd, uses free or cheap registered models only and synthetic data only, and refuses to start without them. Persona model differs from the DP model where the register allows."
 status: todo
 attempts: 0
 commits: []
@@ -25,7 +25,7 @@ Code for live mode: each persona turn is produced by a model through the same ga
 
 ## Steps
 1. `live/persona-model.ts`: builds the turn prompt from `persona.yaml`, `prompt.md`, the current schema and the last decision; calls the gateway persona route (plan 09 router, a dedicated `persona` purpose with its own budget line); validates the model output against the script step shape (a structured submission for the schema), retries once, then marks the persona stuck.
-2. Spend guard: `--cap-usd` required; the runner reads spend from the gateway/budget records and stops at 95% of the cap writing `report.incomplete: true`; live mode refuses to start without `--cap-usd` and without the gateway reporting a live provider as enabled; no secret is read from the environment by harness code.
+2. Spend guard: `--cap-usd` required (a run budget under the monthly cap); persona turns route only to free or cheap registered models and only synthetic content is ever sent; the runner reads spend from the gateway/budget records and stops at 95% of the cap writing `report.incomplete: true`; live mode refuses to start without `--cap-usd` and without the gateway reporting a live provider as enabled; no secret is read from the environment by harness code.
 3. Transcripts: every persona turn (prompt hash, model id, redacted output) is written to `transcripts/` so a finding can be replayed (11-u36); canary strings never appear in prompts.
 4. Tests with FakeModel persona responses (scripted JSON): turn production, invalid output retry then stuck, guard refusal without cap, stop at cap writes an incomplete report, transcripts present and canary-free.
 
@@ -37,4 +37,4 @@ Code for live mode: each persona turn is produced by a model through the same ga
 
 ## Out of scope
 - Running live (11-u38, 11-u39).
-- Adding the Anthropic adapter (plan 09, founder-gated).
+- The provider adapter and model register (09-u13, 09-u68).

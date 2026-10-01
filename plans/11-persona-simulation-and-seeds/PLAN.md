@@ -63,8 +63,8 @@ Without network or paid calls, `npm run sim:ci` in can_server starts the test st
 | [11-u35](u35-live-persona-driver.md) | Live persona mode: model-driven personas via the gateway, transcripts, spend cap guard | can_server | 1.5 | 135 | 11-u17, 09-u09, 09-u15, 09-u14, 11-u25 | - |
 | [11-u36](u36-recorded-replay-mode.md) | Recorded replay mode: rerun a live finding from its transcript | can_server | 1.2 | 136 | 11-u35 | - |
 | [11-u37](u37-sim-report-view.md) | Simulation run report and graduation progress view for maintainers (WF-SIM-1) | can_app | 1.5 | 137 | 11-u34, 10-u39 | - |
-| [11-u38](u38-live-run-seeds.md) | Live seed runs: seeds 1 and 2, three consecutive runs, API key and spend cap (founder action) | can_server | 1 | 138 | 11-u35, 11-u28, 11-u36 | yes |
-| [11-u39](u39-live-adversarial-campaign.md) | Live adversarial campaign: 200+ runs for G2 to G5 (founder action) | can_server | 1 | 139 | 11-u38, 11-u25 | yes |
+| [11-u38](u38-live-run-seeds.md) | Live seed runs: seeds 1 and 2, three consecutive runs, free or cheap models, capped | can_server | 1 | 138 | 11-u35, 11-u28, 11-u36, 09-u68 | - |
+| [11-u39](u39-live-adversarial-campaign.md) | Live adversarial campaign: 200+ runs for G2 to G5, free or cheap models, capped | can_server | 1 | 139 | 11-u38, 11-u25 | - |
 | [11-u40](u40-graduation-review.md) | Founder graduation review and stewardship record for the run set (G13, founder action) | can_policy | 0.5 | 140 | 11-u38, 11-u39, 10-u28 | yes |
 | [11-u41](u41-seed-3-ai-risk.md) | Seed 3 files: continuous AI capability risk, needs the problem graph (founder gate until then) | can_policy | 1.5 | 141 | 11-u07 | yes |
 | [11-u42](u42-seed-4-climate.md) | Seed 4 files: climate change decomposition, needs the problem graph (founder gate until then) | can_policy | 1.5 | 142 | 11-u41 | yes |

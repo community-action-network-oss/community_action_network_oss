@@ -35,10 +35,10 @@ Generated from the corpus (snapshot; recompute with the tool). Lanes are repos; 
 | 06 | Gallery, Phase 0A completion | true | 22 | 21 | 0 | 1 | 28.0 | can_gallery | 08 | 06-u11, 06-u12, 06-u14 |
 | 07 | Hardening | true | 22 | 22 | 0 | 0 | 26.7 | root, can_app, can_gallery, can_server | 02, 03, 04, 05, 06, 09, 10, 11 | 07-u11 |
 | 08 | Contributor experience and operations | true | 15 | 15 | 0 | 0 | 15.7 | root, can_app, can_gallery, can_policy, can_server | 10 | 08-u14 |
-| 09 | AI moderation pipeline | true | 67 | 67 | 0 | 0 | 93.8 | can_app, can_server | 02, 03, 04, 05, 10 | 09-u13, 09-u46, 09-u47 |
+| 09 | AI moderation pipeline | true | 68 | 68 | 0 | 0 | 95.0 | can_app, can_server | 02, 03, 04, 05, 10 | 09-u46 |
 | 10 | can_policy and structured content | true | 59 | 59 | 0 | 0 | 77.4 | root, can_app, can_policy, can_server | 02, 03 | 8 units |
-| 11 | Persona simulation harness and seed problems | true | 44 | 44 | 0 | 0 | 59.8 | can_app, can_policy, can_server | 09, 10 | 11-u38, 11-u39, 11-u40, 11-u41, 11-u42 |
-| | **Total** | | 299 | 287 | 11 | 1 | 378.8 | | | 24 |
+| 11 | Persona simulation harness and seed problems | true | 44 | 44 | 0 | 0 | 59.8 | can_app, can_policy, can_server | 09, 10 | 11-u40, 11-u41, 11-u42 |
+| | **Total** | | 300 | 288 | 11 | 1 | 380.0 | | | 20 |
 
 ## Plan dependencies
 

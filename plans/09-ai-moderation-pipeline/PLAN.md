@@ -9,7 +9,7 @@ spec: ["docs/design/ai/README.md", "docs/design/ai/runtime.md", "docs/design/ai/
 # Plan 09: AI moderation pipeline
 
 ## Goal
-Build CAN's core: community-legislated, AI-executed moderation (D-51). An AI moderation run applies the policy pack before anything becomes public, on every update, and after publication when policy or context changes or a sample is drawn. Appeals flow through an independent re-run and a community label task into a policy proposal and an AI re-decision. Auditors sample decisions. A small logged emergency and legal lane is the only place a person acts on a single case. Everything is verified deterministically with FakeModel first; the Anthropic adapter and any live run are founder-gated (D-53).
+Build CAN's core: community-legislated, AI-executed moderation (D-51). An AI moderation run applies the policy pack before anything becomes public, on every update, and after publication when policy or context changes or a sample is drawn. Appeals flow through an independent re-run and a community label task into a policy proposal and an AI re-decision. Auditors sample decisions. A small logged emergency and legal lane is the only place a person acts on a single case. Everything is verified deterministically with FakeModel first; the OpenRouter adapter and live runs follow D-65: free and cheap models chosen by eval, synthetic data only, budget-capped, not founder-gated within the caps; real member data to a live provider stays founder-gated.
 
 ## Spec refs
 - docs/design/ai/runtime.md, decision-points.md, triggers.md, appeals.md, safety-and-privacy.md, evaluation.md, structured-content.md, policy-pack.md
@@ -57,9 +57,10 @@ Units 09-u44, 09-u45, 09-u66 and 09-u67 (the e2e files) prove this in CI; the ap
 | [09-u10](u10-output-gate-re-screen-explanations-and.md) | Output gate: re-screen explanations and hints | can_server | 1 | 239 | 09-u09 | - |
 | [09-u11](u11-dp-crisis-and-dp-legal-deterministic.md) | DP-CRISIS and DP-LEGAL deterministic layer that needs no model | can_server | 1.5 | 240 | 09-u08, 03-u02, 03-u03 | - |
 | [09-u12](u12-fakemodel-provider-with-scripted-failures-and.md) | FakeModel provider with scripted failures and record/replay fixtures | can_server | 1.5 | 241 | 09-u08 | - |
-| [09-u13](u13-anthropicprovider-behind-config-founder-gated.md) | AnthropicProvider behind config (founder-gated) | can_server | 1.2 | 242 | 09-u12, 09-u08 | yes |
+| [09-u13](u13-openrouterprovider-behind-config.md) | OpenRouterProvider behind config (OpenAI-compatible endpoint) | can_server | 1.2 | 242 | 09-u12, 09-u08 | - |
 | [09-u14](u14-budgets-and-spend-caps-ledger-guard.md) | Budgets and spend caps: ledger, guard and alerts | can_server | 1.5 | 243 | 09-u08 | - |
-| [09-u15](u15-multi-model-router-small-first-escalation.md) | Multi-model router: small first, escalation, independent verifier | can_server | 1.5 | 244 | 09-u12, 09-u14 | - |
+| [09-u68](u68-model-register-and-eval-driven-selection.md) | Model register and eval-driven per-DP model selection | can_server | 1.5 | 243 | 09-u13, 09-u12, 09-u06 | - |
+| [09-u15](u15-multi-model-router-small-first-escalation.md) | Multi-model router: small first, escalation, independent verifier | can_server | 1.5 | 244 | 09-u12, 09-u14, 09-u68 | - |
 | [09-u16](u16-bounded-agent-dag-executor-classify-rule.md) | Bounded agent DAG executor: classify, rule checks, explain | can_server | 1.5 | 245 | 09-u15, 09-u10, 09-u06, 09-u04 | - |
 | [09-u17](u17-prompt-injection-defenses-canary-checks-and.md) | Prompt-injection defenses, canary checks and deterministic vetoes | can_server | 1.5 | 246 | 09-u16, 09-u11 | - |
 | [09-u18](u18-deterministic-aggregation-prec-1-precedence-and.md) | Deterministic aggregation: PREC-1 precedence and confidence floors | can_server | 1.2 | 247 | 09-u06 | - |
@@ -91,7 +92,7 @@ Units 09-u44, 09-u45, 09-u66 and 09-u67 (the e2e files) prove this in CI; the ap
 | [09-u44](u44-e2e-with-fakemodel-part-1-seeded.md) | E2E with FakeModel part 1: seeded problem, pre-publication, update re-check | can_server | 1.5 | 273 | 09-u25, 09-u26, 09-u43, 02-u12 | - |
 | [09-u45](u45-e2e-with-fakemodel-part-2-policy.md) | E2E with FakeModel part 2: policy change with notice, appeal, label task, re-decision | can_server | 1.5 | 274 | 09-u44, 09-u29, 09-u37, 09-u38 | - |
 | [09-u46](u46-github-adapter-for-policyproposalport-founder-gated.md) | GitHub adapter for PolicyProposalPort (founder-gated) | can_server | 1.2 | 275 | 09-u36 | yes |
-| [09-u47](u47-live-record-mode-run-of-the.md) | Live record-mode run of the pipeline with Claude (founder-gated) | can_server | 1 | 276 | 09-u13, 09-u44 | yes |
+| [09-u47](u47-live-record-mode-run-of-the.md) | Live record-mode run of the pipeline (OpenRouter, free models, synthetic data) | can_server | 1 | 276 | 09-u13, 09-u68, 09-u44 | - |
 | [09-u48](u48-awaiting-review-and-held-screens-fail.md) | Awaiting review and held screens (fail closed) | can_app | 1.5 | 277 | 09-u25, 02-u25, 02-u24, 02-u16 | - |
 | [09-u49](u49-decision-screens-hints-beside-fields-rules.md) | Decision screens: hints beside fields, rules, policy version | can_app | 1.5 | 278 | 09-u48, 09-u24, 10-u05, 02-u25 | - |
 | [09-u50](u50-re-reviewed-under-a-new-policy.md) | Re-reviewed under a new policy version: notice, list and public short form | can_app | 1.5 | 279 | 09-u29, 09-u48, 02-u25 | - |
@@ -118,5 +119,5 @@ Units 09-u44, 09-u45, 09-u66 and 09-u67 (the e2e files) prove this in CI; the ap
 - Unit overlap with plan 10 on the cache and fixture pack: the cache unit must read 10-u04 first and reuse its store if one exists; only the fixtures unit adds DP sections to the fixture pack.
 - Superseded human-moderation units in plans 03 to 05 stay selectable until reworked; the supersession guards make order irrelevant but the rework planner should retire them.
 - 03-u14 owns src/platform/jobs/** (cron lock table); this plan adds a payload queue under src/platform/queue/**. A single runner is intended later: 03-u14 should rebase onto the queue port.
-- Prompts, thresholds and real rules live in can_policy; units use only fixtures. FakeModel can hide prompt quality problems: live record runs (founder-gated) and plan 11 personas cover that.
+- Prompts, thresholds and real rules live in can_policy; units use only fixtures. FakeModel can hide prompt quality problems: live record runs (budget-capped, D-65) and plan 11 personas cover that.
 - A large unit list: 67 units, about 94 agent-hours. Run order is by priority and dependencies only.
