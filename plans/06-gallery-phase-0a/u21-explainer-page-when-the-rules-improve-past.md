@@ -27,6 +27,7 @@ actual_hours: null
 3. One fictional example ("Fictional example") of a solved problem reopening and one of an infeasible case that is annotated instead.
 4. Add claims to docs/claims.md; route in nav, layout and scripts/check-out.mjs.
 5. Copy rules: no em dashes or en dashes in any user-facing text; github.com is the only external host; no forms, cookies, analytics or third-party requests; label unbuilt things `Planned`; nothing implies the platform is live or handling real problems; no emergency, legal, medical or government service claims; calm, warm, no hype.
+6. Lifecycle v2 and archive (W13): say that what is re-examined is the Archive record of each ended problem and the resolved stages of active problems; a reopen returns the problem to active and only the affected stages return to work, their later stages wait again, and the old Archive record is kept (a new one is added when the problem ends again). Where this page says resolution or resolution record, say stage result or Archive record.
 
 ## Acceptance
 - The page states never silent, history kept, appealable, with the feasibility open question linked.

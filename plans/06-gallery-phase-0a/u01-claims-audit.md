@@ -30,6 +30,7 @@ Make the site honest by construction. Create the factual-claims register named i
 3. Write scripts/check-copy.mjs: fail on U+2014 or U+2013 in src, on phrases that imply liveness (for example "sign up", "join now", "launching", "our users", "report your problem", "get help"), and on any http(s) URL that is not the placeholder repository config or an allowed documented host. Keep the banned list in the script, one line each.
 4. Write docs/phase-0a-audit.md: one row per acceptance criterion and per bullet in the Phase 0A list (docs/spec/18-phases-gates.md), with status (met, partly, missing), evidence (page and claim ids) and follow-up unit ids from this plan. Fix small copy defects directly; record larger gaps instead of building them here.
 5. Add `check:claims` and `check:copy` to package.json and call them from `verify`.
+6. Lifecycle v2, archive and location (W13): extend the factual-claims register with the claims the new pages make and their sources: the stage plan and volunteer review flow (docs/spec/01a-lifecycle.md, 01b-stages.md), the Archive and reuse (docs/spec/24-archive-reuse.md: public, personal data stripped, never automatic, credit always, default license CC BY 4.0 as an open question), and the private location check (docs/design/location/attestation.md: coordinates never leave the device; the first version is self-asserted on web and says so; the zero-knowledge proof is Planned and gated on a spike). A claim the register cannot source is deleted, not softened.
 
 ## Acceptance
 

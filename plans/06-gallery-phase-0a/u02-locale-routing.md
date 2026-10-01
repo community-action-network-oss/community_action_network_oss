@@ -30,6 +30,7 @@ Make adding a language later a content task, not a refactor, while shipping Engl
 3. Create src/content/site.ts as the single place for external links and site constants: `REPO_URL = null` (since set to the GitHub superproject URL by 06-u12) and the other documented repository paths.
 4. Write docs/i18n.md: how a locale is added (move pages under src/app/[locale], add generateStaticParams from LOCALES, copy src/content/en to src/content/<locale>, translator rules from OQ-unsupported-language, RTL check, hreflang), and what is deliberately not done yet.
 5. Write scripts/check-locale.mjs: fail if any source file under src contains an internal `href="/` literal outside paths.ts, or if the layout hard-codes lang. Add `check:locale` to package.json and `verify`.
+6. Path map (W13): the locale-ready path helpers also cover the routes added by 06-u23 to 06-u25 (`/archive-and-reuse`, `/private-location`, `/archive`, `/archive/[id]`); the locale check lists them.
 
 ## Acceptance
 

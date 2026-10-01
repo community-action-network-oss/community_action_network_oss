@@ -27,6 +27,7 @@ Remove every statement that people make and answer for every decision, or that m
 3. `scripts/check-copy.mjs`: a banned-phrase list failing the build in `src/` and rendered `out/` ("people make and answer for every decision", "Nothing is published until a person has said yes", "AI assistance is planned", "rules-based checks and human review", and the case-insensitive variants); wire into verify as `check:copy`.
 4. Update the README line about the synced files and the can-gallery single-owner list in the README (not the skill file).
 5. Copy rules: no em dashes or en dashes in any user-facing text; github.com is the only external host; no forms, cookies, analytics or third-party requests; label unbuilt things `Planned`; nothing implies the platform is live or handling real problems; no emergency, legal, medical or government service claims; calm, warm, no hype.
+6. Lifecycle v2 (W13): the old fixed sequence copy (gathering facts, developing solutions, choosing a solution, in progress, checking the result) is also replaced wherever it appears outside src/content/stages.ts: it is now "the optional default stage template, classic-5"; the lifecycle states in copy follow docs/spec/01a-lifecycle.md (draft, in volunteer review, active with a stage plan, solved and the rest). Add the retired phrases "Resolution records" and "Awaiting review" to the banned-phrase list of check-copy (the archive is called the Archive).
 
 ## Acceptance
 - `rg` for the banned phrases in src and out finds nothing; check:copy passes.

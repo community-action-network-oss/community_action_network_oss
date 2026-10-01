@@ -28,6 +28,7 @@ actual_hours: null
 4. Amsterdam may be named only as the first real jurisdiction overlay for seeds 1 and 2 (D-56). The can-gallery skill invariant "no real jurisdiction named" predates D-56; leave a note in the commit message for the orchestrator to update the skill (this unit cannot edit .claude).
 5. Claims and route registration as the other explainers.
 6. Copy rules: no em dashes or en dashes in any user-facing text; github.com is the only external host; no forms, cookies, analytics or third-party requests; label unbuilt things `Planned`; nothing implies the platform is live or handling real problems; no emergency, legal, medical or government service claims; calm, warm, no hype.
+7. Lifecycle v2 and archive (W13): the seed cards say each seed runs a stage plan (seed 1: two parallel stages feeding the design stage, then pilot and measurement; seed 2: baseline, two parallel stages, pilot, result) and that every finished run leaves a labelled simulation record in the Archive that new problems can learn from (cold start; shown with "Seed problem, synthetic evidence" and never mixed into outcome statistics). Graduation criterion 1 is worded as completing the stage plan or ending honestly stuck or redirected with the record complete. Mention the archive reuse persona and the attacker that plants instructions in a draft, in one plain sentence each.
 
 ## Acceptance
 - The four framings are verbatim and labelled "Seed problem, synthetic evidence" (check:seeds).

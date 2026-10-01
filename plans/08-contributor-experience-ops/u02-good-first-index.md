@@ -29,6 +29,7 @@ A newcomer should see ten or fewer units they can finish in about an hour withou
 2. Add `--check`: exit 1 with a diff hint when the committed file is stale.
 3. Write docs/contributing/README.md: how units are chosen for this list, how to claim one (open an issue citing the unit id, one person per unit at a time), what review to expect, that status is maintained by maintainers only, and the AI disclosure rule (docs/spec/22).
 4. Regenerate and commit the index. If fewer than three units qualify, say so on the page and link open questions as the other way in.
+5. Heuristic additions (W13): never list units whose `repo` is `.` and whose id is in the zk spike set (they need toolchains and devices) unless they are not founder-gated; the data-only units that contribute synthetic archive eval records or queries (13-u18) and the second synthetic jurisdiction (10-u67) are good first for domain experts and non-programmers who can read law: tag them in the overrides file.
 
 ## Acceptance
 
