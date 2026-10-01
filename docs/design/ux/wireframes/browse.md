@@ -1,21 +1,23 @@
 # Wireframes: browse, detail, resolution records
 
-Public reads need no account. Status badges use the neutral palette in `../tokens.json` (no red). Lists use "Load more", never infinite scroll.
+Public reads need no account. Seed problems (D-56, real framings with synthetic evidence, no named people, Amsterdam NL first) carry the label `list.card.seed` in lists and `detail.seed.explain` on the page. Status badges use the neutral palette in `../tokens.json` (no red). Lists use "Load more", never infinite scroll.
 
 ## WF-LIST-1  Problem list
 Route `/`. Tab "Discover".
 ```
 +--------------------------------------+
 | CAN            [Sign in] / [Handle]  |
-| Fictional data only (banner)         |
+| {common.seedBanner} (banner)         |
 |--------------------------------------|
-| Problems in [Northfield (fictional)v]|
+| Problems in [ Amsterdam (NL)       v]|
 | Show [All stages v]  [ Search... ]   |
 |                                      |
 | +----------------------------------+ |
-| | Bus stop shelter missing on...   | |
+| | Amsterdam residents face recurring| |
+| | explosions and violent incidents..| |
+| | (Seed problem, synthetic evidence)| |
 | | (Needs evidence) (Open: gathering facts)|
-| | Northfield, 12 contributions     | |
+| | Amsterdam, 12 contributions      | |
 | | Next: share a source             | |
 | +----------------------------------+ |
 | +----------------------------------+ |
@@ -25,7 +27,7 @@ Route `/`. Tab "Discover".
 | [ Report a public problem ]          |
 +--------------------------------------+
 ```
-Card parts: title (condition), stage badge, flag badge when `investigation_needed`, place, count, one "Next" line from the brief's next action. No like counts, no trending. Sort is newest activity, stated in text ("Sorted by recent activity").
+Card parts: title (condition), seed label when it applies, stage badge, flag badge when `investigation_needed`, place, count, one "Next" line from the brief's next action. No like counts, no trending. Sort is newest activity, stated in text ("Sorted by recent activity").
 
 ## WF-LIST-2  Empty and filtered-empty list
 ```
@@ -45,8 +47,10 @@ Route `/problems/{id}`. Sections are tabs on mobile, a two column layout on desk
 ```
 +--------------------------------------+
 | < Problems                           |
-| Bus stop shelter missing on Route 9  |
-| Northfield (fictional)  by QuietHeron|
+| Amsterdam city centre remains dirty  |
+| despite substantial cleaning activity|
+| Amsterdam  {detail.bylineSeed}       |
+| (Seed problem, synthetic evidence)   |
 | (Open: gathering facts)              |
 | (Needs evidence)                     |
 |--------------------------------------|
@@ -54,26 +58,28 @@ Route `/problems/{id}`. Sections are tabs on mobile, a two column layout on desk
 | Stage: Open: gathering facts         |
 | {detail.stage.explain} plain words   |
 | Known: 3 contributions               |
-| Uncertain: how many riders affected  |
+| Uncertain: how much is spent, and on |
+|   what                               |
+| Assumptions made (marked)            |
 | Needed next: a source for ridership  |
 | [ Add to this problem ]              |
 |--------------------------------------|
 | Overview | Contributions | Proposals |
 | Decision | Tasks | History           |
 |--------------------------------------|
-| What is the condition                |
-| text ...                             |
+| Facts and causes (from the schema)   |
 | Who is affected / Where              |
-| Observed          | Not yet known    |
-| text              | text             |
+| Known             | Not yet known    |
+| Assumptions made, each marked        |
+| (Assisted) on fields filled with help|
 | Sources (links, open in new tab)     |
 |  - https://example.org/report        |
 +--------------------------------------+
 ```
-`History` is the public problem_event timeline with plain labels. Interim decisions display the badge "Interim decision, will be re-reviewed" (WF-DECREC-1).
+`History` is the public problem_event timeline with plain labels. Decisions display the badge "Decided under policy {version}", or "Policy {version}, transitional stewardship" while only founder stewardship approves the pack (WF-DECREC-1). A re-reviewed item shows the WF-REMOD-1 public notice at the top. A published item with an edit under review shows `detail.editUnderReview` and the last approved version.
 
 ## WF-DETAIL-2  Tombstone (never a 404)
-Shown for withdrawn contributions and for public items a volunteer removed. Problems that were never published (draft, submitted, needs_revision, rejected, withdrawn) are private and never show a public tombstone.
+Shown for withdrawn contributions and for public items taken out of view by a moderation run. Problems that were never published (draft, submitted, needs_revision, rejected, withdrawn) are private and never show a public tombstone.
 ```
 +--------------------------------------+
 | {tombstone.title}                    |
@@ -84,7 +90,7 @@ Shown for withdrawn contributions and for public items a volunteer removed. Prob
 | it are kept. [ Back to the problem ] |
 +--------------------------------------+
 ```
-Variants: `tombstone.removed` (removed by a volunteer under a rule id, linking the rule text), `tombstone.notFound` only for ids that never existed.
+Variants: `tombstone.removed` (taken out of view under a rule id and policy version, linking the rule text and the appeal route; never silent, see WF-REMOD-1), `tombstone.notFound` only for ids that never existed.
 
 ## WF-DETAIL-3  Status panel variants: paused, stuck, withdrawn, closed, redirected
 Neutral wording from the copy deck. Same panel position as WF-DETAIL-1.
@@ -93,7 +99,7 @@ Neutral wording from the copy deck. Same panel position as WF-DETAIL-1.
 | (Paused)                             |
 | {status.paused.title}  Paused        |
 | Reason: waiting for the council      |
-|   meeting calendar (fictional)       |
+|   meeting calendar (synthetic)       |
 | Resumes when: the meeting is held    |
 | [ I can help with this ]             |
 +--------------------------------------+
@@ -113,10 +119,10 @@ Neutral wording from the copy deck. Same panel position as WF-DETAIL-1.
 | (Redirected)                         |
 | {status.redirected.title}  Redirected|
 | {status.redirected.body}             |
-| Routes that can help (fictional)     |
+| Routes that can help                    |
 +--------------------------------------+
 ```
-Closed shows the reason code and plain explanation, and `duplicate_of` as a link when it applies. Redirected lists the destination and route text. Panel text for every state comes from the brief's table. Solved, closed and redirected carry the "Interim decision, will be re-reviewed" badge while it applies. Closed and redirected also show "Appeal this decision" to the initiator until `appealable_until`.
+Closed shows the reason code and plain explanation, and `duplicate_of` as a link when it applies. Redirected lists the destination and route text. Panel text for every state comes from the brief's table. Solved, closed and redirected carry the policy badge (decided under policy {version}, or transitional stewardship). Closed and redirected also show "Appeal this decision" to the initiator until `appealable_until`.
 
 ## WF-RESOLUTION-1  Resolution records
 Route `/resolutions`. A plain archive of solved or closed problems. No ranking, no counts, sorted by date resolved, newest first, with a date filter.
@@ -127,9 +133,9 @@ Route `/resolutions`. A plain archive of solved or closed problems. No ranking, 
 | A plain archive. Not a leaderboard.  |
 | Resolved in [ Any year v ]           |
 |                                      |
-| Bus shelter installed (fictional)    |
-|  Solved 14 Sep 2026, Northfield      |
-|  Outcome: shelter built, verified    |
+| Seed example, synthetic evidence     |
+|  Solved 14 Sep 2026, Amsterdam       |
+|  Outcome: result verified           |
 | ...                                  |
 | [ Load more ]                        |
 +--------------------------------------+

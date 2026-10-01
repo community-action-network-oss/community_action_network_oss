@@ -1,85 +1,42 @@
-# Wireframes: staged intake, pending review, decision, appeal
+# Wireframes: problem form, pending, hold, decision, notices, appeal
 
-Staged intake order (fixed): condition, affected, where, observed vs uncertain, evidence URLs, privacy review, mandatory preview. One question per screen, a progress line "Step n of 7" (text, not just a bar), Back always available, autosave to local storage on every change (`submit.autosaved`). Signed-out visitors can start; sign-in is requested only at WF-SUBMIT-7 submit, and the draft survives it (invite redeemed at sign-up, not at submit, so a visitor without an account sees WF-SIGNUP-1 first).
+The problem form is an instance of the schema-driven pattern in forms.md (WF-FORM-1 to WF-FORM-5). Sections, fields, guidance and examples come from the problem schema version in the policy pack. The sections below show what the current schema renders; they are not hard-coded. Order of sections follows the schema: facts, causes, affected people, scope, lawful options, uncertainty, assumptions, then sources, privacy check and preview.
 
-Inline privacy flags: every free-text field runs the deterministic checks (names, addresses, phone, email, plates, identifiers, "I" narrative about a named person). A flag appears under the field in a neutral note with the offending text marked, never blocking typing: `submit.flag.name`, `.address`, `.contact`, `.individual`. Each flag offers [ Generalise it for me ] (manual edit hint, no AI) and [ Keep as is ] (kept flags go to the reviewer).
+Signed-out visitors can start. Sign-in is requested only at submit, and the draft survives it (invite redeemed at sign-up, so a visitor without an account sees WF-SIGNUP-1 first). Autosave on every change (`form.saved`, `form.savedLocal`).
 
-## WF-SUBMIT-1  Condition
-```
-+--------------------------------------+
-| Step 1 of 7                          |
-| {submit.condition.title}             |
-| What public condition needs to change|
-| {submit.condition.hint}              |
-| Describe a shared situation, not a   |
-| person. Example (fictional): "The    |
-| bus shelter on Route 9 is missing."  |
-| [                                  ] |
-| [                                  ] |
-| 0 / 300 characters                   |
-| (!) Flag: this looks like a name.    |
-|     [ Generalise ] [ Keep as is ]    |
-| [ Back ]              [ Next ]       |
-+--------------------------------------+
-```
-Individual crisis language triggers WF-EXTERNAL-1 offered inline, never forced.
+Inline privacy flags: every text field runs the deterministic checks (names, addresses, phone, email, plates, identifiers, "I" narrative about a named person). A flag appears under the field in a neutral note with the offending text marked, never blocking typing: `submit.flag.name`, `.address`, `.contact`, `.individual`. Each flag offers [ Generalise it ] (manual edit hint) and [ Keep as is ] (kept flags go to the automated review, which may still ask for a change). Assumption and completeness hints (WF-FORM-3) appear in the same place.
 
-## WF-SUBMIT-2  Who is affected
+## WF-SUBMIT-1  Problem form sections
+Route `/report/{section}`. Renders WF-FORM-1 per section of the schema.
 ```
 +--------------------------------------+
-| Step 2 of 7                          |
-| {submit.affected.title}              |
-| Who or what is affected?             |
-| ( ) Residents  ( ) Workers           |
-| ( ) Students   ( ) Other group       |
-| Describe the group, not individuals  |
-| [                                  ] |
-| How many, if you know?  [ about 100 ]|
-| ( ) I do not know                    |
-| [ Back ]              [ Next ]       |
+| {submit.start.title}                 |
+| Report a public problem              |
+| {submit.start.body}                  |
+|--------------------------------------|
+| Section 1 of 7: Facts                |
+|  What is the public condition?       |
+|  [ structured answer               ] |
+|  How do you know? ( ) seen ( ) source|
+|  [ Suggest an answer ]               |
+| Section 2: Causes                    |
+| Section 3: Affected people           |
+|   (group, not individuals; how many, |
+|    or "I do not know")               |
+| Section 4: Scope                     |
+|   (place picker from jurisdictions,  |
+|    period, boundaries)               |
+| Section 5: Lawful options            |
+| Section 6: What is uncertain         |
+| Section 7: Assumptions (WF-FORM-4)   |
+| [ Back ]  [ Save draft ]  [ Next ]   |
 +--------------------------------------+
 ```
+Seed note: seed problems written by the project use the same schema and are labelled `list.card.seed`. Individual crisis language triggers WF-EXTERNAL-1 inline, never forced. The place picker is a plain native select from `GET /v1/jurisdictions`; Amsterdam (NL) is the first real overlay.
 
-## WF-SUBMIT-3  Where (fictional jurisdiction picker)
+## WF-SUBMIT-2  Sources section (URL list field)
 ```
 +--------------------------------------+
-| Step 3 of 7                          |
-| {submit.where.title}                 |
-| Where does this happen?              |
-| {submit.where.fictional}             |
-| This preview has one made up place.  |
-| Place   [ Northfield (fictional)  v ]|
-| Area    [ Optional: ward or district ]|
-| {submit.where.privacy}               |
-| Pick the widest area that is useful. |
-| Never enter a street address.        |
-| [ Back ]              [ Next ]       |
-+--------------------------------------+
-```
-Picker is a plain native select (accessible); list from `GET /v1/jurisdictions`.
-
-## WF-SUBMIT-4  Observed versus uncertain
-```
-+--------------------------------------+
-| Step 4 of 7                          |
-| {submit.observed.title}              |
-| What have you seen, and what is not  |
-| yet known?                           |
-| What has been observed               |
-| [ Shelter removed in March. Photos ] |
-| What is uncertain or still unknown   |
-| [ Why it was removed.              ] |
-| {submit.observed.hint}               |
-| Mark guesses as guesses. That helps. |
-| [ Back ]              [ Next ]       |
-+--------------------------------------+
-```
-Both fields have separate flags; "uncertain" may be empty only after confirming `submit.observed.nothingUncertain`.
-
-## WF-SUBMIT-5  Evidence links (URLs only)
-```
-+--------------------------------------+
-| Step 5 of 7                          |
 | {submit.evidence.title}              |
 | Where can others check this?         |
 | {submit.evidence.body}               |
@@ -90,195 +47,228 @@ Both fields have separate flags; "uncertain" may be empty only after confirming 
 | [ + Add another link ]  (max 5)      |
 | ( ) I do not have a source yet       |
 |   {submit.evidence.none}             |
-|   That is fine. It will be marked    |
-|   "needs evidence".                  |
 | [ Back ]              [ Next ]       |
 +--------------------------------------+
 ```
-Validation: https only; no link to a social profile or private document host warning `submit.evidence.private`; flagged names in URLs allowed to be kept after confirm.
+Validation: https only; a link to a social profile or private document host warns with `submit.evidence.private`.
 
-## WF-SUBMIT-6  Privacy review
+## WF-SUBMIT-3  Privacy check
 ```
 +--------------------------------------+
-| Step 6 of 7                          |
 | {submit.privacy.title}               |
-| Check for private details            |
 | {submit.privacy.body}                |
 | We found 2 things to look at.        |
-| 1 Condition: "Mr. Rao" (a name)      |
+| 1 Facts: a name                      |
 |   [ Edit ] [ Keep as is ]            |
-| 2 Observed: a street address         |
+| 2 Scope: a street address            |
 |   [ Edit ] [ Keep as is ]            |
-|                                      |
 | [x] {submit.privacy.confirm}         |
-| I removed names, identifiers and     |
-| private case details.                |
 | [ Back ]              [ Next ]       |
 +--------------------------------------+
 ```
-Zero flags: shows `submit.privacy.none` ("Nothing flagged. A volunteer still checks everything") and the confirmation. Next stays disabled until confirmed.
+Zero flags shows `submit.privacy.none` and the confirmation. Next stays disabled until confirmed.
 
-## WF-SUBMIT-7  Preview and what publishing means (mandatory)
+## WF-SUBMIT-4  Review and preview (mandatory)
 ```
 +--------------------------------------+
-| Step 7 of 7                          |
+| {form.review}                        |
 | {submit.preview.title}               |
-| This is exactly what people would see|
 | ---- PREVIEW (read only) -------     |
-| Bus stop shelter missing on Route 9  |
-| Northfield (fictional) by QuietHeron |
-| Observed: ...  Uncertain: ...        |
-| Sources: example.org/report          |
-| Evidence tier: Needs evidence        |
+| Title and condition                  |
+| Known | Not yet known                |
+| Assumptions made (marked)            |
+| (Assisted) on fields you confirmed   |
+| Sources, evidence tier               |
 | --------------------------------     |
 | {submit.preview.explain}             |
-| What happens next                    |
-|  * A volunteer reviews it first.     |
+|  * An automated review checks it.    |
 |  * Only then is it public.           |
 |  * You can edit or withdraw before.  |
 |  * If it is not published, the draft |
 |    is deleted 30 days later.         |
 |  * Your email is never shown.        |
-| Possible duplicates: none found      |
-| [ Back to edit ]  [ Submit for review]|
+| {submit.preview.duplicates}          |
+| [ Back to edit ] [ Submit for review]|
 +--------------------------------------+
 ```
-The Submit button is the only way to leave the flow forward; the preview cannot be skipped by deep link (route guard redirects to step 7 until all earlier steps validate). If duplicates are found, they list with links and the choice "This is different" or "Add to that problem instead".
+The Submit button is the only way to leave forward; the route guard sends deep links back to the first section with a missing field. If duplicates are found they list with links and the choice "This is different" or "Add to that problem instead".
 
-## WF-PENDING-1  Submitted, awaiting volunteer review
-Route `/me/problems/{id}`.
+## WF-PENDING-1  Awaiting review
+Route `/me/problems/{id}`. An AI moderation run is in progress. Nothing is public.
 ```
 +--------------------------------------+
-| (Awaiting volunteer review) {pending.title}            |
-| Submitted, awaiting volunteer review |
+| (Awaiting review) {pending.title}    |
+| {pending.checking}                   |
+| Checking against policy 1.0.0        |
 | {pending.wait}                       |
-| Volunteers review in the order they  |
-| arrive. Right now that can take a few|
-| days. We do not know exactly when.   |
+| Usually seconds to a few minutes.    |
 | Submitted 1 Oct, 14:05               |
-| Place in line: about 6th (estimate)  |
 | {pending.email}                      |
-| We will email you when there is a    |
-| decision.                            |
 | [ Edit draft ] [ Withdraw ]          |
 | What you submitted (collapsed) v     |
 +--------------------------------------+
 ```
-Withdraw opens a confirm (`pending.withdraw.confirm`) that states the deletion date. Edit sends it back to the draft and keeps the queue position only if the reviewer has not started (copy states which). No fake progress bars.
+Withdraw confirms with the deletion date (`pending.withdraw.confirm`). Editing while checking cancels the run and starts a new one on submit. No fake progress bars; the elapsed time is shown only if the run becomes a hold.
 
-## WF-DECISION-1  Moderation decision with hints beside fields
-Route `/me/problems/{id}/decision`. Outcome "needs changes" or "not published".
+## WF-HOLD-1  Held: taking longer than usual (fail closed)
+Same route. Shown when the run times out, fails validation, the language is unsupported, or spend or capacity limits apply. The chip stays "Awaiting review".
 ```
 +--------------------------------------+
-| (Changes requested) {decision.title}     |
-| A volunteer asked for changes        |
-| {decision.interim}                   |
-| Interim decision, will be re-reviewed|
-| (shown only when interim)            |
-| Reviewed under: RULE-PRIV-NAME (v1)  |
-|                                      |
-| Condition                            |
+| (Awaiting review)                    |
+| {hold.title} Taking longer than usual|
+| {hold.body}                          |
+| {hold.age}  Waiting for 12 minutes.  |
+| {hold.retrying}                      |
+| {hold.rule}                          |
+| (language case) {hold.language}      |
+| {hold.crisis} If someone is in       |
+|   danger, call your local number.    |
+| [ Edit draft ] [ Withdraw ]          |
++--------------------------------------+
+```
+Hold never becomes publish by timeout. The wait shown is the real age.
+
+## WF-DECISION-1  Decision with hints beside fields
+Route `/me/problems/{id}/decision`. Outcome `needs_revision`.
+```
++--------------------------------------+
+| (Changes requested)                  |
+| {decision.title.needsRevision}       |
+| Changes are needed before this can   |
+| be shared                            |
+| {decision.explain} plain explanation |
+| {decision.rules} Decided under       |
+|   RULE-PRIV-NAME, RULE-ASSUMP-1      |
+| {status.decidedUnder} (badge)        |
+|   or {status.transitional}           |
+| {decision.noPerson}                  |
+|--------------------------------------|
+| Facts                                |
 | [ Mr. Rao refused to fix the shelter]|
-|   Hint: remove the name; describe the|
-|   role or office instead. (RULE-..)  |
-| Observed                             |
+|   {decision.hintHere}: remove the    |
+|   name; describe the office instead. |
+| Causes                               |
 | [ ...                              ] |
-|   (no hint)                          |
-|                                      |
-| Your draft is kept. {decision.keep}  |
-| It will be deleted on 31 Oct 2026 if |
-| you do nothing. {decision.deleteDate}|
+|   {form.hint.assumption} hint        |
+| Scope (no hint)                      |
+|--------------------------------------|
+| {decision.keep} {decision.deleteDate}|
 | [ Revise and resubmit ]              |
 | [ Appeal this decision ] until 8 Oct |
 | [ Withdraw ]                         |
 +--------------------------------------+
 ```
-Hints are anchored to the fields and use the span reference to mark the text. Fields without hints are shown plain. "Revise and resubmit" returns to the staged form at the first field with a hint, keeping all content.
+Hints use the WF-FORM-3 layout and the span reference. "Revise and resubmit" returns to the first hinted field with all answers kept. Policy and run id show as `decision.policy`.
 
-## WF-DECISION-2  Decision: not accepted (rejected)
-Route `/me/problems/{id}/decision`. Shows everything WF-DECISION-1 shows: rules, trigger field or span, hint, appeal date, interim banner, deletion date.
+## WF-DECISION-2  Decision: not accepted
+Outcome `reject`. Shows everything WF-DECISION-1 shows.
 ```
 +--------------------------------------+
-| (Not accepted) {decision.notPublished.title} |
+| (Not accepted) {decision.title.notAccepted} |
 | {decision.notPublished.body}         |
-| This was not accepted because of     |
-| RULE-SCOPE-INDIV. Hint: describe the |
-| shared condition, not one person.    |
-| {decision.interim}                   |
-| Interim decision, will be re-reviewed|
-| (shown only when interim)            |
-| {decision.rules}                     |
-| Reviewed under: RULE-SCOPE-INDIV (v1)|
-|                                      |
-| Condition  <- field the rule applies |
-| [ My landlord refused to fix MY flat]|
-|   Hint: describe the shared          |
-|   condition. (RULE-SCOPE-INDIV)      |
-|   (slot is empty only for a          |
-|    safety-sensitive decision)        |
-| Observed                             |
-| [ ...                              ] |
-|   (no hint)                          |
-|                                      |
-| Places that can help (fictional):    |
+| Not accepted because of RULE-SCOPE-1.|
+| Describe the shared condition.       |
+| {decision.rules} {status.decidedUnder}|
+| {decision.noPerson}                  |
+| Facts  <- field the rule applies to  |
+|   {decision.hintHere}                |
+|   (empty only for a safety-sensitive |
+|    decision)                         |
+| Places that can help (route text from|
+| the jurisdiction pack):              |
 |  * Legal aid line  * Ward office     |
 | {decision.deleteDate}                |
-| Deleted on 31 Oct 2026               |
 | {decision.appealUntil}               |
-| You can appeal until 15 Oct 2026.    |
 | [ Revise as a shared condition ]     |
 | [ Appeal this decision ]             |
 | [ Delete now ]                       |
 +--------------------------------------+
 ```
-Revise keeps the draft and opens the staged form at the first hinted field. Appeal opens WF-APPEAL-1.
 
-## WF-APPEAL-1  Appeal
+## WF-REMOD-1  Re-reviewed under a new policy version
+Shown to the initiator and, in short form, on the public page. Never a silent removal (REMOD-NOTICE-1).
+```
++--------------------------------------+
+| {remod.title}                        |
+| Re-reviewed under policy 1.1.0       |
+| {remod.body}                         |
+| {remod.what} What changed: ...       |
+| {remod.rules} Rules now applied: ... |
+| {remod.visible} Visible until 8 Oct. |
+|   (privacy or crisis: {remod.immediate})|
+| {remod.nothingSilent}                |
+| [ {remod.revise} Revise it ]         |
+| [ Appeal this decision ]             |
+|--------------------------------------|
+| more permissive result:              |
+| {remod.permissive}                   |
+| [ {remod.resubmit} Resubmit now ]    |
+|--------------------------------------|
+| public short form:                   |
+| {remod.public}                       |
++--------------------------------------+
+```
+
+## WF-APPEAL-1  File an appeal
 ```
 +--------------------------------------+
 | {appeal.title}  Appeal this decision |
 | {appeal.body}                        |
-| A different volunteer will review    |
-| this when more than one is available.|
-| {appeal.sameReviewer}                |
-| Disclosure: only one volunteer is    |
-| active, so the same person may review|
-| (shown only then).                   |
-| Which rule do you think was misapplied?|
-| [ RULE-PRIV-NAME  v ]  (optional)    |
-| Why? [                             ] |
+| Which rule do you think was          |
+| misapplied?  [ RULE-PRIV-NAME v ]    |
+| Why? (structured: what the rule says,|
+|  what your text says, what is        |
+|  different)  [                     ] |
 | [ Send appeal ]  Closes 8 Oct        |
 +--------------------------------------+
 ```
-After sending: status line "Appeal received" with the same honest wait statement and an email promise. Outcome screen reuses WF-DECISION-1 layout with `appeal.outcome.upheld` or `.overturned`.
+The grounds use the appeal schema (WF-FORM pattern): rule, the passage, the reason. After sending: "Appeal received" and the timeline (WF-APPEAL-2).
+
+## WF-APPEAL-2  Appeal status timeline
+```
++--------------------------------------+
+| (done) {appeal.step.filed}           |
+| (done) {appeal.step.rerun}           |
+|   Different model, prompt variant B  |
+| (now)  {appeal.step.label}           |
+|   {appeal.step.label.count}          |
+|   3 of 5 labels in                   |
+| (next) {appeal.step.policy}          |
+| (next) {appeal.step.redecide}        |
+| {appeal.step.waiting} real wait: 2 d |
+| Outcome: {appeal.outcome.upheld} or  |
+|  {appeal.outcome.overturned} or      |
+|  {appeal.outcome.unclear}            |
+| {decision.noPerson}                  |
++--------------------------------------+
+```
+Steps are shown only as far as they happen; the appeal never closes silently by timeout. The result screen reuses WF-DECISION-1.
 
 ## WF-MYACT-1  My problems and drafts
-Route `/me`. Lists drafts, submitted, decisions, with purge dates.
+Route `/me`.
 ```
 +--------------------------------------+
 | {me.title}  My activity (@handle)    |
 | Drafts                               |
 |  Bus shelter...  Draft  [Continue]   |
 | Submitted                            |
-|  Water fountain...  (Awaiting review) [Open] |
+|  Water fountain... (Awaiting review) [Open] |
 | Needs your attention                 |
-|  Library hours...  (Changes requested)|
+|  Library hours... (Changes requested)|
 |    Deleted on 31 Oct 2026  [Open]    |
 | [ Sign out ]                         |
 +--------------------------------------+
 ```
 
 ## WF-EXTERNAL-1  Routes for an individual or urgent situation
-Offered inline (never blocking). Static, jurisdiction-appropriate, fictional in slice 1.
+Offered inline (never blocking). Static, jurisdiction-appropriate.
 ```
 +--------------------------------------+
 | {external.title}  If this is urgent  |
 | {external.body}                      |
-| This place is for shared public      |
-| problems, not individual help.       |
 | Emergency: call your local number    |
-| Legal aid (fictional): 000 0000      |
-| Counselling (fictional): 000 0001    |
+| Legal aid, counselling (route text   |
+| from the jurisdiction pack)          |
 | [ Continue my draft ] [ Delete it ]  |
 +--------------------------------------+
 ```

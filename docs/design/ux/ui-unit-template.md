@@ -22,6 +22,8 @@ Unit: ______  Wireframe IDs: ______  Branch: ______
 - [ ] Any example is labelled fictional; anything unbuilt is labelled "planned".
 - [ ] Email is never rendered; handles only.
 - [ ] Lifecycle labels, explanations and next actions come from the brief's table data, not hardcoded.
+- [ ] Decisions show outcome, rule ids, policy version and a plain explanation; a re-review shows `remod.title` and an appeal path; a hold shows `hold.title` and never implies publication.
+- [ ] Seed problems show `list.card.seed` and name no person.
 
 ## 3. Accessibility
 - [ ] Text scales to 200 percent (OS text size and browser zoom) with no clipped or overlapping text and no horizontal scroll at 360 px width.
@@ -35,6 +37,17 @@ Unit: ______  Wireframe IDs: ______  Branch: ______
 - [ ] Reduced motion respected: no motion, or only a fade under 200 ms.
 - [ ] Forms: labels always visible (not placeholder only), `autocomplete` and input modes set (`one-time-code`, `email`).
 - [ ] axe-core scan on Expo web shows no serious or critical issues.
+
+## 3b. Schema-driven forms (any unit that renders a content form)
+- [ ] The form is rendered from the content schema version, with no hard-coded fields; a fixture schema with a different field set renders without code changes.
+- [ ] Renders any schema version: a draft stays on the version it started on, moving versions keeps answers and lists what is new.
+- [ ] Unknown field types fail safe: a read-only placeholder with the label and `form.field.unsupported`, never a blank gap or crash; submit is disabled if a required field cannot be shown.
+- [ ] Per-field guidance (why we ask) and a synthetic example are visible, labels always visible.
+- [ ] Basis choice and "I do not know yet" are available where the schema asks; assumptions use the assumption list.
+- [ ] AI fill-assist never fills a field alone: per-field confirm, no accept-all, the "Assisted" marker stays and shows in preview and on the public page; the form works when assist is unavailable.
+- [ ] Hints from DP-ASSUMPTIONS and DP-COMPLETENESS appear beside their fields as text plus icon, not red, with rule id and policy version; focus moves to the first hinted field.
+- [ ] Progress is text, save draft works offline (device first), server re-validates against the stamped schema version.
+- [ ] No unstructured free text box: every long answer sits in a schema field.
 
 ## 4. Layout and RTL
 - [ ] Logical properties only: `start`/`end`, `marginStart`, `paddingEnd`, `textAlign: start`. No `left`, `right`, `marginLeft`, `marginRight` (lint grep `npm run lint:logical`).

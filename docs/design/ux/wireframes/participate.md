@@ -1,6 +1,6 @@
 # Wireframes: contributions, proposals, decision record, tasks
 
-Available to signed-in members on published problems. Contributions are grouped by declared type (never one comment stream). Signed-out visitors see these read-only with a sign-in prompt in place of the action buttons.
+Available to signed-in members on published problems. Every form here is rendered from its content schema (forms.md). Contributions are grouped by declared type (never one comment stream). Signed-out visitors see these read-only with a sign-in prompt in place of the action buttons.
 
 ## WF-CONTRIB-1  Contributions grouped by type
 Tab "Contributions" of WF-DETAIL-1.
@@ -22,25 +22,31 @@ Tab "Contributions" of WF-DETAIL-1.
 ```
 Each item: type label, body, author handle, date, a "Report a concern" action (opens moderation feedback type). No reaction counts.
 
-## WF-CONTRIB-2  Add a contribution
+## WF-CONTRIB-2  Add a contribution (schema form)
+Renders WF-FORM-1 from the contribution schema for the chosen type. The type list comes from the brief; each type has its own fields (for example a `root_cause` asks for the cause, the evidence that supports it, and what is assumed).
 ```
 +--------------------------------------+
 | {contrib.add.title}                  |
-| What kind of contribution is this?   |
-| ( ) Question  ( ) Answer  ( ) Source |
-| ( ) Root cause ( ) Constraint        |
-| ( ) Perspective ( ) Risk ( ) Update  |
-| (list comes from the brief)          |
-| {contrib.add.hint} per type hint     |
-| [                                  ] |
-| Links (https only) [ + Add link ]    |
-| (!) inline privacy flags as intake   |
-| {contrib.add.review} A volunteer may |
-| review before it appears.            |
-| [ Cancel ]            [ Post ]       |
+| {contrib.add.type} What kind?        |
+| ( ) Question  ( ) Observation        |
+| ( ) Evidence  ( ) Root cause ...     |
+| (types from the brief; allowed types |
+|  depend on the problem's state)      |
+|--------------------------------------|
+| Fields for the chosen type (schema)  |
+|  Field label, why we ask, example    |
+|  [ structured answer               ] |
+|  How do you know? ( ) seen ( ) source|
+|  [ Suggest an answer ] (Assisted)    |
+|  Links (https only) [ + Add link ]   |
+| (!) privacy flags and hints beside   |
+|     the field (WF-FORM-3)            |
+| {contrib.add.review}                 |
+| {contrib.add.reflect}                |
+| [ Cancel ] [ Save draft ] [ Post ]   |
 +--------------------------------------+
 ```
-A reflection pause is a text prompt, not a timer: "Read it once more before posting." (`contrib.add.reflect`).
+Post runs the moderation run (`pending.checking`); the contribution shows to others only on `publish`. A held contribution uses the WF-HOLD-1 copy.
 
 ## WF-PROPOSAL-1  Proposals and comparison
 Tab "Proposals".
@@ -61,37 +67,65 @@ Tab "Proposals".
 ```
 No vote counts and no ranking. Mobile shows one proposal at a time with a "Next proposal" control and a text summary of differences.
 
-## WF-PROPOSAL-2  Create or edit a proposal
+## WF-PROPOSAL-2  Create or edit a proposal (schema form)
 ```
 +--------------------------------------+
 | {proposal.new.title} Propose a fix   |
-| Summary        [                   ] |
-| How would it work (mechanism) [    ] |
-| How will we know it worked?    [    ]|
-| Who would need to act? [            ]|
-| Risks or side effects  [            ]|
-| Is it lawful and safe? {proposal.new.lawful} |
+| Section 1 of 4: What it does         |
+|  Summary  [ structured             ] |
+|  Mechanism (how it would work)       |
+| Section 2: Evidence it would work    |
+|  Outcome measure (how will we know)  |
+| Section 3: Lawful options            |
+|  {proposal.new.lawful}               |
+|  Law or rule that allows it [      ] |
+|  ( ) I do not know yet               |
+| Section 4: Risks and assumptions     |
+|  Who must act, side effects, what is |
+|  assumed (WF-FORM-4)                 |
+| [ Suggest an answer ] per field      |
 | [ Save draft ]       [ Publish ]     |
 +--------------------------------------+
 ```
+Publish runs DP-LEGALITY, DP-COMPLETENESS and DP-ASSUMPTIONS. A blocked proposal returns hints beside fields; a legality block shows the constraint, its source and version, and what could be done instead.
 
 ## WF-DECREC-1  Decision record
-Tab "Decision". Empty until a decision is recorded: `decrec.empty` ("No decision yet. Proposals are still open for feedback.").
+Tab "Decision". Empty until a decision is recorded: `decrec.empty`.
 ```
 +--------------------------------------+
 | Decision record                      |
 | Chosen: Proposal A                   |
 | Decided by: QuietHeron42 (initiator, |
 |   provisional steward)               |
-| Confirmed by: a volunteer moderator  |
-| Under: transitional stewardship rule |
-| (Interim decision, will be re-       |
-|  reviewed)  <- badge when interim    |
+| Method and authority                 |
 | Why: lowest cost, lawful, ...        |
+| {decrec.dissent} Dissent kept        |
+| {decrec.checked} Checked for         |
+|   completeness under policy 1.0.0    |
+| {status.decidedUnder} or             |
+|   {status.transitional} (badge)      |
 | Decided 20 Oct 2026                  |
 | [ See tasks ]                        |
 +--------------------------------------+
 ```
+
+## WF-DECREC-2  Record a decision (schema form)
+```
++--------------------------------------+
+| {decrec.new.title} Record the decision|
+| Chosen proposal [ Proposal A v ]     |
+| Method used (select + describe)      |
+| Why this one (reasons, one per line) |
+| Who decided and on what authority    |
+| Dissent and concerns raised          |
+|   ( ) none were raised               |
+| Legal check: law and version cited   |
+| Assumptions made (WF-FORM-4)         |
+| [ Suggest an answer ] per field      |
+| [ Save draft ]    [ Record ]         |
++--------------------------------------+
+```
+Record runs DP-DECISION-RECORD and DP-LEGALITY (gate T11). The check is for completeness and consistency, never whether the decision is good.
 
 ## WF-TASK-1  Tasks
 Tab "Tasks".
@@ -106,19 +140,21 @@ Tab "Tasks".
 +--------------------------------------+
 ```
 
-## WF-TASK-2  Task detail and verification
+## WF-TASK-2  Task detail and verification (schema form)
 ```
 +--------------------------------------+
 | Ask the ward office for budget       |
 | Status [ In progress v ]             |
-| Update [                           ] |
-| Verification: how can others check?  |
-| Link  [ https://example.org/minutes ]|
-| Note  [                            ] |
-| {task.verify.hint} Verification is   |
-| checked by someone other than the    |
-| person who did the task.             |
-| [ Save ]                             |
+| Update (schema: what was done, what  |
+|  is next, what blocks it)  [       ] |
+| Verification (schema)                |
+|  {task.verify.evidence} What shows   |
+|  the task is done?                   |
+|  Link  [ https://example.org/minutes ]|
+|  What the source shows [           ] |
+|  Assumptions (WF-FORM-4)             |
+| {task.verify.hint}                   |
+| [ Save draft ]  [ Submit update ]    |
 +--------------------------------------+
 ```
-When all tasks are verified the status panel offers the transition to solved (confirmed by a moderator, per the brief). The final screen is WF-DETAIL-3 variants or the entry in WF-RESOLUTION-1.
+Update and verification run DP-STAGE and DP-VERIFICATION. When all tasks are verified, the initiator may propose solved with the outcome statement (schema form); the moderation run decides (T14) and the page shows the policy version. A completed task alone is not solved. Final screens are WF-DETAIL-3 variants or the entry in WF-RESOLUTION-1.
