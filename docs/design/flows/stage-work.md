@@ -35,7 +35,7 @@ sequenceDiagram
 ```
 
 Rules:
-- Decision method is stage metadata (`poster`, `community_vote_advisory`, `named_authority`); default is the poster choosing after community input. The method and authority are recorded in `stage_choice` and shown.
+- Decision method is stage metadata (`poster`, `community_vote`, `steward`); default is the poster choosing after community input. The method and authority are recorded in `stage_choice` and shown.
 - Evidence and verifier differ from the implementer for task work, as in [task-and-verification.md](task-and-verification.md).
 - STAGE-RESOLVE-1: a stage resolves only through DP-STAGE-RESOLUTION with evidence. No person marks it done.
 - Appeal: the poster or any follower can appeal a not-met or met decision ([appeal.md](appeal.md)); an independent re-run, then a label task if disputed. An appealed `resolved` stage that is overturned goes back to `active` and its successors that have not started return to `planned`.

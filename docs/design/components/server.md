@@ -103,7 +103,7 @@ erDiagram
     uuid problem_id FK
     text name
     text state "planned|ready|active|resolving|resolved|blocked|skipped"
-    text decision_method "poster|community_vote_advisory|named_authority"
+    text decision_method "poster_after_input|community_vote|steward|other_named"
     bool required
     int plan_version
   }
