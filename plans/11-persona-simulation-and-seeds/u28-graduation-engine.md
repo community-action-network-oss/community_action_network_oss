@@ -7,7 +7,7 @@ area: can-server
 model: sonnet
 est_hours: 1.5
 priority: 128
-depends_on: ["11-u09","11-u23","11-u24","11-u25","11-u27"]
+depends_on: ["11-u09","11-u23","11-u24","11-u25","11-u27","11-u43","11-u44"]
 writes: ["test/simulation/graduation/**","docs/graduation-report.md"]
 reads: []
 spec: ["docs/design/ai/simulation.md#8-graduation-criteria-defaults-to-be-ratified","docs/open-questions/OQ-graduation-criteria.md","docs/spec/constitution/rules.md#SIM-GATE-1","docs/design/flows/persona-simulation-run.md#graduation-check"]

@@ -10,6 +10,7 @@ Every screen has a wireframe ID. "State" refers to lifecycle state keys in [`doc
 | WF-DETAIL-1 | `/problems/{id}` | anyone | Problem workspace, policy badge | loading, error, offline, tombstone |
 | WF-DETAIL-2 | same | anyone | Tombstone for withdrawn or removed items | n/a |
 | WF-DETAIL-3 | same | anyone | Status variants (paused, stuck, withdrawn, closed, redirected) | n/a |
+| WF-DETAIL-4 | same | anyone | Reopened under policy vX (T23, T24): old conclusion, what changed, next step, appeal | n/a |
 | WF-RESOLUTION-1 | `/resolutions` | anyone | Resolution records | loading, empty, error |
 | WF-SIGNUP-1 | `/sign-up` | anyone | Redeem invite | validation, offline, error |
 | WF-SIGNIN-1, WF-SIGNIN-2 | `/sign-in`, `/sign-in/code` | anyone | Email code sign-in | validation, rate limited, offline |
@@ -64,7 +65,7 @@ Every screen has a wireframe ID. "State" refers to lifecycle state keys in [`doc
 | implementation, verification | WF-TASK-1, WF-TASK-2 | same |
 | paused | WF-DETAIL-3 (reason and resume condition) | WF-DETAIL-3 |
 | stuck | WF-DETAIL-3 (blocker, next route, review date) | WF-DETAIL-3 |
-| solved | WF-DETAIL-1, WF-RESOLUTION-1 | WF-RESOLUTION-1 |
+| solved | WF-DETAIL-1, WF-RESOLUTION-1 | WF-RESOLUTION-1; reopened by T23 or T24: WF-DETAIL-4 |
 | closed | WF-DETAIL-3 variant, WF-RESOLUTION-1 | same |
 | redirected | WF-DETAIL-3 variant with routes, WF-RESOLUTION-1 | same |
 | any published state after a policy change flips the result | WF-REMOD-1 with explanation and appeal | WF-REMOD-1 public short form on the item |

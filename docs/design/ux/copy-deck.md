@@ -119,6 +119,15 @@ Form field labels, guidance, examples and hints-by-field come from the content s
 | status.redirected.title | Redirected |
 | status.redirected.body | This is better handled by another group. Routes that can help are listed below. |
 | status.solved.title | Solved |
+| reopen.title | Reopened under policy {version} |
+| reopen.old | Earlier result: {outcome}, decided under policy {oldVersion}. The old record is kept. |
+| reopen.changed | What changed: rule {ruleId}, policy or law {oldVersion} to {newVersion}. |
+| reopen.body.t23 | New rules or law changed the conclusion of this earlier result, and reopening is feasible. |
+| reopen.body.t24 | The rules for evidence changed and the earlier result no longer meets them. |
+| reopen.next.t23 | Add proposals or evidence under the new rule. The problem continues from {state}. |
+| reopen.next.t24 | Add verification evidence that meets the new rule. |
+| reopen.appeal | Disagree? Appeal this decision until {date, date, medium}. |
+| reopen.oldrecord | Read the old record |
 | tombstone.title | This item is no longer shown |
 | tombstone.withdrawn | The author withdrew it on {date, date, medium}. Replies and decisions that refer to it are kept. |
 | tombstone.removed | It was taken out of public view on {date, date, medium} under {ruleId}, policy {version}. You can read the reason and the appeal route. |
