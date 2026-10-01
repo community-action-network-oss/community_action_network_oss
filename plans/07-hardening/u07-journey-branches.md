@@ -1,16 +1,16 @@
 ---
 id: "07-u07"
 plan: "07"
-title: "Playwright journeys: rejection, appeal and stuck"
+title: "Playwright journeys: revise with hints, rejection, appeal-to-example loop and fail-closed hold"
 repo: "can_app"
 area: can-app
 model: sonnet
 est_hours: 1.5
 priority: 121
-depends_on: ["07-u06"]
-writes: ["e2e/journeys/branches.spec.ts","e2e/helpers/**"]
+depends_on: ["07-u06", "09-u45", "09-u50", "09-u51", "09-u54", "09-u37", "10-u36", "09-u52"]
+writes: ["e2e/journeys/branches.spec.ts", "e2e/helpers/**"]
 reads: ["e2e/**","src/**","app/**"]
-spec: ["docs/design/ux/journeys.md","docs/spec/01-slice-1-brief.md#5-moderation-decisions-and-appeals","docs/spec/01-slice-1-brief.md#4-lifecycle","docs/design/ux/copy-deck.md","docs/design/ux/wireframes/submit.md#WF-DECISION-1","docs/design/ux/wireframes/submit.md#WF-DECISION-2","docs/design/ux/wireframes/submit.md#WF-APPEAL-1","docs/design/ux/wireframes/moderation.md#WF-MOD-APPEAL-1","docs/design/ux/wireframes/browse.md#WF-DETAIL-3","docs/design/ux/ui-unit-template.md"]
+spec: ["docs/design/ux/journeys.md", "docs/spec/01-slice-1-brief.md#5-moderation-decisions-and-appeals", "docs/spec/01a-lifecycle.md", "docs/design/ux/copy-deck.md", "docs/design/ux/wireframes/submit.md#WF-DECISION-1", "docs/design/ux/wireframes/submit.md#WF-DECISION-2", "docs/design/ux/wireframes/submit.md#WF-HOLD-1", "docs/design/ux/wireframes/submit.md#WF-APPEAL-1", "docs/design/ux/wireframes/submit.md#WF-APPEAL-2", "docs/design/ux/wireframes/forms.md#WF-FORM-3", "docs/design/ux/wireframes/forms.md#WF-FORM-4", "docs/design/ux/wireframes/moderation.md#WF-LABEL-1", "docs/design/ux/ui-unit-template.md"]
 needs: ["docker","db","mail"]
 verify: ["npm run verify","npm run e2e -- e2e/journeys/branches.spec.ts"]
 founder_gate: false
@@ -21,21 +21,22 @@ commits: []
 actual_hours: null
 ---
 ## Objective
-The other three required paths: a changes-requested then revise-and-resubmit then published flow, a rejection appealed and overturned by a different moderator, and a problem that ends stuck with a documented blocker.
+The branch paths of the AI-executed model, all with the FakeModel: a needs_revision run with hints beside fields and an assumption prompt, then revise and resubmit to publication; a rejection with the cited rule and an appeal that runs the appeal-to-example loop (independent re-run, community label task, example candidate, re-decision under the new version); and a provider outage that holds fail-closed.
 
 ## Steps
-1. Revise and resubmit: moderator requests changes with a hint on the condition field (WF-DECISION-1); the member sees the hint beside the field, edits, resubmits (T03) with no retyping (assert the field is pre-filled), moderator publishes.
-2. Rejection and appeal: moderator rejects with rule ids (WF-DECISION-2: deletion date text equals the decision date plus 30 days, appeal available); member files an appeal (WF-APPEAL-1); the seeded second moderator opens WF-MOD-APPEAL-1, sees no same-moderator disclosure, overturns; the problem is back in review and the draft is restored. Also assert the original decider cannot resolve the appeal (the API returns not permitted shown by the UI).
-3. Stuck path: on a seeded problem in implementation, the initiator proposes stuck with blocker statement, source and version, blocked actions, recheck date, next route and an attempt; WF-DETAIL-3 shows the stuck variant with all of them and no red styling (assert via text labels and that the chip uses the neutral class or token name used in the app).
-4. Single-moderator disclosure variant: not run in e2e (pool size is fixed by the seed); covered by server tests. State this in a comment.
-5. Both viewports; axe on decision, appeal and stuck screens.
+1. Revise and resubmit: the FakeModel script returns needs_revision from DP-COMPLETENESS and DP-ASSUMPTIONS; the member sees the revision hints beside the right fields (WF-DECISION-1, WF-FORM-3) and an assumption prompt (WF-FORM-4) citing the rule and policy version; edits, resubmits (T03) with no retyping (assert the fields are pre-filled and the schema version pin is unchanged); the second run publishes.
+2. Rejection and appeal-to-example: a scripted reject (WF-DECISION-2: rule id and policy version shown, deletion date text equals the decision date plus 30 days, appeal available); the member files a structured appeal (WF-APPEAL-1: rule, passage, reason); WF-APPEAL-2 timeline shows the independent re-run with a different model or prompt variant still disputed; a seeded labeler opens WF-LABEL-1 (context masked, randomized) and answers within a quorum fixed up front; the label becomes an example candidate through the fake policy proposal adapter (09-u36); the pack in the fixture moves to the next version through the test ratification hook; the instance is re-decided by the AI under the new version (09-u37) and the timeline shows each step. Assert that no person overturns the single instance by hand and that the original decision stays visible.
+3. Fail-closed hold: a scripted provider outage (09-u12) leaves a submission in "Awaiting review" and then in WF-HOLD-1 ("taking longer than usual", no promised time, withdraw still available); recovery runs the item to its real outcome; at no time is the item public while held.
+4. Both viewports; axe on decision, appeal, label and hold screens.
 
 ## Acceptance
 - Acceptance: meets docs/design/ux/ui-unit-template.md (sections 1 to 6; mark items not applicable with a reason in the commit message).
-- All three paths pass at both viewports.
-- Hints appear beside the right fields and nothing is retyped.
-- The stuck screen shows every field the brief requires.
+- All three paths pass at both viewports with no model provider call.
+- Hints appear beside the right fields, assumptions are surfaced, and nothing is retyped.
+- The appeal loop ends in a re-decision under a new policy version, shown on the timeline.
+- A held item is never public.
 - `npm run verify` is green (tsc, lint, prettier, logical-properties check, jest, web export).
 
 ## Out of scope
-- Appeal of closed or redirected (covered by server tests).
+- Policy-change re-moderation and re-resolution (07-u21); the legal stack paths (07-u22).
+- Appeal of closed or redirected (covered by server E2E 09-u45).

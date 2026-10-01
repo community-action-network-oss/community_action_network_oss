@@ -7,7 +7,7 @@ area: can-server
 model: sonnet
 est_hours: 1.5
 priority: 112
-depends_on: ["07-u02","05-u04"]
+depends_on: ["07-u02", "05-u04", "09-u02", "09-u38", "09-u43"]
 writes: ["test/authz-matrix.e2e-spec.ts","test/support/authz-matrix.ts","test/rule-scans.spec.ts"]
 reads: ["src/**","openapi/openapi.json"]
 spec: ["docs/spec/01-slice-1-brief.md","docs/spec/constitution/rules.md#ACCT-REQ-1","docs/spec/constitution/rules.md#IDENT-1","docs/spec/constitution/rules.md#OWN-1","docs/spec/constitution/rules.md#MONEY-0","docs/spec/constitution/rules.md#DEVICE-0","docs/spec/constitution/rules.md#EVID-URL-1","docs/design/system-design.md#6-api-surface-v1"]
@@ -24,8 +24,8 @@ actual_hours: null
 A test-only unit that proves who can do what. The matrix is data (route by actor to expected status), generated from the OpenAPI document so a new route without a matrix entry fails the test, plus cheap registry scans for the static rules.
 
 ## Steps
-1. test/support/authz-matrix.ts: actors anon, member (no relation), initiator (owner of the target problem), other member, moderator, admin, expired session; for each operationId in openapi/openapi.json an expected status per actor (data table written by hand, reviewed against the system-design API table: Actor column). Use seed helpers to create targets in each relevant state.
-2. test/authz-matrix.e2e-spec.ts: iterate every operationId x actor; assert the status matches (401 session_expired for expired, 403 not_permitted, 404 for private-existence cases, 2xx or 4xx validation for permitted actors with a minimal valid or deliberately invalid body so authorization is distinguished from validation). Fail with a clear list if OpenAPI has an operationId missing from the matrix or the matrix has a removed one.
+1. test/support/authz-matrix.ts: actors anon, member (no relation), initiator (owner of the target problem), other member, steward (role moderator: invites only), auditor, labeler, lane_member, maintainer, admin, expired session (there is no per-item moderator actor: no route lets any person change a single moderation outcome, NO-INSTANCE-OVERRIDE-1); for each operationId in openapi/openapi.json an expected status per actor (data table written by hand, reviewed against the system-design API table: Actor column). Use seed helpers to create targets in each relevant state.
+2. test/authz-matrix.e2e-spec.ts: iterate every operationId x actor; assert the status matches (401 session_expired for expired, 403 not_permitted, 404 for private-existence cases, 2xx or 4xx validation for permitted actors with a minimal valid or deliberately invalid body so authorization is distinguished from validation). assert that no route outside the emergency/legal lane (09-u38) lets a role set or overturn a moderation outcome, then fail with a clear list if OpenAPI has an operationId missing from the matrix or the matrix has a removed one.
 3. test/rule-scans.spec.ts (pure, no db): MONEY-0 greps package.json files of both repos (read ../can_app/package.json guarded: skip with a note if absent) and src/db/schema.ts for payment packages (stripe, paypal, braintree, razorpay, adyen) and column names amount, balance, currency; DEVICE-0 scans schema for imei, serial, biometric, face_template; IDENT-1 walks the OpenAPI response schemas and fails on any property named email, emailCiphertext, token or password; OWN-1 fails if any schema has a property named owner; EVID-URL-1 fails if any path has a multipart request body or a property of format binary.
 4. Cross-check ACCT-REQ-1: every non-GET route returns 401 without a session except the three auth exchange routes (already tested in plan 02; this test covers all routes added later).
 
