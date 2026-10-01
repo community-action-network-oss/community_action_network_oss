@@ -256,3 +256,34 @@ Every default, deviation and judgment call made while building CAN. Each one can
 - **D-54 · W3 · The repo is the single source of truth for CAN's design (founder).** Notion pages (the CAN hub, V1 Specification, V1 System Design, Open Problem-Solving Platform, Autonomous Build Specification) were written at different times and may conflict. They count as input only.
   - Anything decided in this repo (DECISIONS.md, `docs/`, `plans/`) supersedes all of them.
   - Useful Notion ideas are adopted only through a new decision here.
+- **D-55 · W3 · The slice-1 proof is an AI persona simulation (founder).**
+  - Persona agents act as submitters, contributors, proposers and appellants, and drive full lifecycles against the real moderation pipeline.
+  - Their runs red-team the policy pack and feed the amendment loop.
+  - Public participation opens only after the seed problems resolve well, against agreed graduation criteria.
+  - Personas run on FakeModel in CI. Live persona runs are founder-gated, like moderation.
+- **D-56 · W3 · Seed problems use the four real framings, with synthetic evidence (founder).** Partly supersedes D-12, which used fictional data in a fictional jurisdiction.
+  - The four framings:
+    - Amsterdam explosions and violence
+    - Amsterdam city-centre cleanliness
+    - continuous AI capability risk
+    - climate change
+  - All evidence is clearly synthetic, and no individuals are named.
+  - Amsterdam (Netherlands) is the first real jurisdiction overlay.
+  - Problems 1 and 2 come first. Problems 3 and 4 follow once the parent and child problem graph exists.
+  - Promo default 15 ("no real jurisdiction named") is relaxed for seed problems, which are labelled "Seed problem, synthetic evidence".
+- **D-57 · W3 · Hosting stays undecided, but every service must be portable (founder).** Each service ships a production Docker image with an environment-variable contract, health checks, and a backup and restore path. GCP was the Notion lean but is not decided. Provisioning stays a founder-gated plan unit.
+- **D-58 · W3 · All content is structured (founder).** CAN has no free-form posting. Every content type is submitted as a structured response, using a schema the community decides in advance:
+  - problem
+  - contribution
+  - proposal
+  - decision record
+  - task and verification
+  - appeal
+  - policy proposal
+
+  More on how it works:
+  - The schemas live in `can_policy`, are versioned, and are part of the policy pack.
+  - They make the poster confront every aspect of the situation: facts, causes, the affected people, scope, lawful options, uncertainty and assumptions.
+  - A decision point holds back any post built on an incorrect assumption (factual, causal, legal or scope) and returns it as `needs_revision` with hints.
+  - AI may help fill the fields, and the poster confirms the result.
+  - This replaces the Notion "conflict-resolution questionnaire" idea with a broader rule: everything is structured.
