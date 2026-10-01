@@ -7,7 +7,7 @@ area: can-app
 model: sonnet
 est_hours: 1.5
 priority: 43
-depends_on: ["12-u05", "12-u06", "04-u08", "04-u09", "04-u10", "10-u05", "10-u29", "02-u24", "02-u25"]
+depends_on: ["12-u05","12-u06","04-u08","04-u09","04-u10","05-u05","10-u05","10-u29","02-u24","02-u25"]
 writes: ["app/problems/**", "src/stages/workspace/**", "src/i18n/en.json", "__tests__/stage-workspace-*.test.tsx", "src/api/schema.d.ts"]
 reads: ["src/**"]
 spec: ["docs/design/ux/wireframes/stages.md#WF-STAGE-1", "docs/design/ux/wireframes/participate.md#WF-TASK-2", "docs/spec/01b-stages.md", "docs/design/flows/stage-work.md", "docs/spec/constitution/rules.md#VERIFY-1", "docs/design/ux/copy-deck-lifecycle.md", "docs/design/ux/ui-unit-template.md"]
