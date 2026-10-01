@@ -15,10 +15,11 @@ needs: ["docker","db","mail"]
 verify: ["npm run verify","npm run e2e -- e2e/journeys/main.spec.ts"]
 founder_gate: false
 defaults: "If Chromium or docker is unavailable the unit is skipped by preflight; do not weaken assertions to make it pass."
-status: todo
+status: skipped
 attempts: 0
 commits: []
 actual_hours: null
+blocked_reason: "superseded by 12-u25, 12-u26"
 ---
 ## Objective
 The headline acceptance of slice 1: one Amsterdam-framed seed problem (D-56, synthetic evidence) walked from draft to solved by real UI against the real server, Mailpit and the FakeModel. Every publication and every consequential transition is decided by a recorded moderation run under the ratified fixture policy, never by a person.

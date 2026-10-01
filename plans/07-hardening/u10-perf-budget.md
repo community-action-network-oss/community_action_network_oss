@@ -7,7 +7,7 @@ area: can-app
 model: sonnet
 est_hours: 1
 priority: 124
-depends_on: ["05-u08"]
+depends_on: ["05-u08", "12-u24"]
 writes: ["scripts/bundle-budget.mjs","scripts/check-native-bundle.mjs","perf-budget.json","package.json","__tests__/bundle-budget*.test.ts"]
 reads: ["dist/**"]
 spec: ["docs/spec/16-security-a11y-ops-testing.md","docs/design/system-design.md#10-web-first-verification","docs/spec/01-slice-1-brief.md#1-what-slice-1-is","docs/design/ux/wireframes/browse.md#WF-LIST-1","docs/design/ux/ui-unit-template.md"]
