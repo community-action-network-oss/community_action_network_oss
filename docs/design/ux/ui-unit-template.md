@@ -57,6 +57,13 @@ Unit: ______  Wireframe IDs: ______  Branch: ______
 - [ ] Graph reflows or scrolls inside its own region at 360 px and 200 percent text without page level horizontal scroll.
 - [ ] Cycles and unreachable stages are explained in text beside the stage, with an icon.
 
+## 3d. Impacted and guest (any unit with a content list or a contribution form)
+- [ ] Every list of contributions, options, choice comments, evidence or recommendations supports "Show impacted only (n of total)" (WF-FILTER-1), off by default, remembered per viewer, with an exact hidden count and a "Show everything" action.
+- [ ] Every item that is guest shows the "Guest" badge (WF-GUEST-1) with text, an icon and an explanation that opens on tap or focus, not hover only. Impacted items show no badge.
+- [ ] Pending, failed, offline and unavailable attestation states are handled and display as Guest, with no raw error codes and no accusatory words.
+- [ ] Location permission is explained before the system dialog (WF-LOCPERM-1); denial never blocks contributing.
+- [ ] No exact location, coordinates or place name derived from them is shown, stored, logged or sent by the screen.
+
 ## 4. Layout and RTL
 - [ ] Logical properties only: `start`/`end`, `marginStart`, `paddingEnd`, `textAlign: start`. No `left`, `right`, `marginLeft`, `marginRight` (lint grep `npm run lint:logical`).
 - [ ] Icons that imply direction are mirrored in RTL; the layout was viewed with `dir=rtl` once (pseudo-locale is enough in slice 1).

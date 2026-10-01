@@ -39,6 +39,9 @@ Every screen has a wireframe ID. "State" refers to lifecycle state keys in [`doc
 | WF-STAGE-1 | `/problems/{id}/stages/{stageId}` | anyone read, member write | Stage workspace: options, choice, steps, evidence, criteria | loading, empty, error, validation, not-permitted |
 | WF-STAGE-2 | `.../stages/{stageId}/result` | anyone | Stage resolution, per criterion, appeal | loading, error |
 | WF-STAGE-3 | `.../stages/{stageId}` | anyone read, member write | Contribute ahead to a planned stage | empty, validation |
+| WF-GUEST-1 | sheet on any content item | anyone | Guest badge and explanation; attestation pending, failed and offline states | pending, failed, offline, unavailable |
+| WF-FILTER-1 | control on every content list | anyone | "Impacted only" filter with counts, remembered per viewer | empty (none impacted), offline |
+| WF-LOCPERM-1 | sheet before a contribution | member | Location permission explanation | denied, unavailable, offline |
 | WF-AUDIT-1 | `/review` | auditor, labeler | Review work list | loading, empty, error, not-permitted |
 | WF-AUDIT-2 | `/review/audit/{id}` | auditor | Masked sampled decision review | validation, not-permitted, conflict declared |
 | WF-LABEL-1 | `/review/label/{id}` | labeler | Masked label task | validation, not-permitted |
@@ -90,6 +93,10 @@ Problem states and the labels in `copy-deck-lifecycle.md`. The old fixed-sequenc
 | resolved (Done) | WF-STAGEMAP-1, WF-STAGE-2 |
 | blocked (Blocked) | WF-STAGEMAP-1 with the cited constraint, WF-STAGE-1 |
 | skipped (Skipped) | WF-STAGEMAP-1 with the reason |
+
+## Impacted and guest (D-73)
+
+Every contribution, option, choice comment, evidence item and recommendation carries an impacted or guest label (WF-GUEST-1) and every content list has the filter (WF-FILTER-1). Lists affected: WF-DETAIL-1, WF-CONTRIB-1, WF-STAGE-1, WF-STAGE-3, WF-VREVIEW-2, WF-VREVIEW-3. WF-LOCPERM-1 precedes the first contribution to a problem with an affected area. Attestation design: [`docs/design/location/attestation.md`](../location/attestation.md).
 
 ## Retired and redirected wireframes
 

@@ -159,3 +159,43 @@ Problem chips: Draft, In volunteer review, Active: stage {name}, Active: {n} sta
 | stage.ahead.waiting | Waiting for: {names} |
 | stage.ahead.add | Add for this stage |
 | stage.ahead.kept | Kept for when this stage starts. |
+
+## Impacted and guest (D-73; WF-GUEST-1, WF-FILTER-1, WF-LOCPERM-1)
+| id | English |
+|---|---|
+| guest.badge | Guest |
+| guest.badge.help | Sent from outside the affected area. Guests help. People affected by the problem decide what matters to them most. |
+| guest.badge.helpShort | Sent from outside the affected area |
+| guest.badge.why | Why is this labelled Guest? |
+| guest.reason.outside | The app was used outside the affected area when this was sent. |
+| guest.reason.noPermission | Location sharing was off when this was sent, so we could not check. |
+| guest.reason.failed | We could not confirm the location check, so this is labelled Guest. This is not a judgement about you. |
+| guest.reason.unavailable | The location check is not available on this device or browser. |
+| guest.mine.title | Your contribution is labelled Guest |
+| guest.mine.body | The label depends on where you were when you sent it, not on who you are. If you send from inside the area, it will not be labelled Guest. |
+| guest.pending | Checking location |
+| guest.pending.help | Your location is checked on this device. It is labelled Guest until the check is confirmed. |
+| guest.offline | Waiting for a connection |
+| guest.offline.help | The location check is saved on this device and sent when you are back online. Until then it shows as Guest. |
+| guest.failed | Location check not confirmed |
+| guest.failed.retry | Check again |
+| guest.area | Affected area: {area} |
+| guest.area.version | Area version {version} |
+| filter.impacted.label | Show impacted only ({shown, number} of {total, number}) |
+| filter.impacted.on | Showing impacted only. {hidden, plural, =0 {Nothing is hidden.} one {# guest item is hidden.} other {# guest items are hidden.}} |
+| filter.impacted.showAll | Show everything |
+| filter.impacted.empty | No impacted contributions here yet. {hidden, plural, =0 {} one {# guest item is hidden.} other {# guest items are hidden.}} |
+| filter.impacted.remembered | We remember this choice on this device. |
+| filter.impacted.counts | {impacted, number} impacted, {guest, number} guest |
+| locperm.title | Check whether you are in the affected area |
+| locperm.body | Your exact location never leaves this device. We only share one fact: whether you are inside the area or not. |
+| locperm.detail1 | The check runs on your device. |
+| locperm.detail2 | Only "inside the area" or "outside the area", the time and the area version are stored. |
+| locperm.detail3 | No coordinates are stored or logged. |
+| locperm.detail4 | You can still contribute without this. It will be labelled Guest. |
+| locperm.allow | Allow location check |
+| locperm.allowOnce | Allow this time only |
+| locperm.deny | Not now |
+| locperm.denied | Location is off. Your contribution will be labelled Guest. |
+| locperm.denied.settings | Turn it on in your device settings |
+| locperm.learn | How the check works |

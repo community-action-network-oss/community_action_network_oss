@@ -99,3 +99,17 @@ Persona: "Noor", a member who wants better problems published. Volunteers are si
 | 4 | WF-VREVIEW-3 (read side) | Later sees whether her recommendation was accepted or declined, and the poster's reason. She never sees who the poster is. |
 
 Success: problems reach the publication check clearer and more checkable, and every declined recommendation has a stated reason.
+
+## J8 Impacted resident and guest expert (D-73)
+
+Two people contribute to the same problem. The label depends on where the app is used for each message, not on a profile.
+
+| Step | Screen | Impacted resident, "Maple" | Guest expert, "Dr. Rao", elsewhere |
+|---|---|---|---|
+| 1 | WF-LOCPERM-1 | Reads that exact location never leaves the device and only "inside the area or not" is shared. Allows the check. | Reads the same and allows it, or taps "Not now". |
+| 2 | WF-STAGE-1, WF-CONTRIB-2 | Suggests an option. The check says inside the area, so it shows no badge. | Suggests an option. It is labelled Guest, with a neutral explanation. |
+| 3 | WF-GUEST-1 | Sees "Checking location" for a moment, then nothing. If offline, "Waiting for a connection" and Guest until sent. | Opens the explanation: "Guests help. People affected by the problem decide what matters to them most." Sees it is not a judgement. |
+| 4 | WF-FILTER-1 | Turns on "Show impacted only (12 of 30)" to see what neighbours suggest. It is remembered. | Reads everything, with guest items labelled. Can still add evidence and be heard. |
+| 5 | WF-STAGE-2 | Sees the resolution per criterion; guest evidence still counts toward the criteria. | Same. |
+
+If the check fails, the contribution shows as Guest with a retry; it is never an accusation (D-73).
