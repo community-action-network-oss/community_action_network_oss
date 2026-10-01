@@ -418,3 +418,20 @@ Every default, deviation and judgment call made while building CAN. Each one can
     - The stage plan can change after publication through a proposal, checked by the AI.
     - The old fixed sequence (gathering facts, developing solutions, choosing, in progress, checking) becomes an optional default stage template.
   - **Reverse:** restore the fixed lifecycle.
+- **D-73 · W11 · Each contribution is labelled impacted or guest, using a private location attestation (founder).**
+  - **The rule:**
+    - Each problem has an affected geography.
+    - A contribution is **impacted** if it is sent from inside that geography at the time of sending, and **guest** otherwise. Being impacted depends on where the app is used for that message, not on a profile.
+    - Guest content is always clearly labelled.
+    - Every content view has an "Impacted only" filter that hides guest content.
+    - Geography is the main test of impact. Other material-connection claims may come later (Constitution IV.2).
+  - **Tech (orchestrator default, pending a research spike):**
+    - Exact coordinates never leave the device. The client checks the area locally and sends an attestation that proves only "inside area X at time T".
+    - The attestation must not reveal or allow anyone to work out the actual location.
+    - Candidate (a): a zero-knowledge proof that a hidden point lies inside the area polygon.
+    - Candidate (b): a coarse-cell blinded membership proof, where the cell itself is never revealed.
+    - Default: try (a), and fall back to (b).
+    - Only the impacted/guest label, the verification result and the area version are stored. No raw location is ever stored or logged.
+  - **Spoofing:** spoofing cannot be fully prevented. Device integrity checks (App Attest or Play Integrity on native, weaker on web), plausibility signals and rate limits raise the cost.
+  - **Signals, not identity:** a suspect attestation downgrades the contribution to guest. It never leads to an accusation.
+  - **Reverse:** go back to a self-declared coarse area.
