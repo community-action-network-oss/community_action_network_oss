@@ -13,7 +13,7 @@ Re-moderation covers published content. A problem resolved last year (`solved`, 
 
 ## Consequences
 - Resolutions stay current with the law, at the cost of reopen volume; rollouts are batched and estimated in the replay diff.
-- Needs a spec change (reopen transition, state rules) routed by the orchestrator. Proposed rule id: RERESOLVE-1; open question OQ-reopen-feasibility.
+- Needs a spec change (reopen transition, state rules) routed by the orchestrator. Proposed rule id: RERESOLVE-1; open question OQ-reresolution-feasibility.
 - Risk: churn and notice fatigue; mitigated by `annotate` over `reopen` where infeasible and batching.
 
 ## How to reverse

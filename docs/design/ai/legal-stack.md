@@ -2,7 +2,7 @@
 
 CAN must never request or publish anything illegal in any jurisdiction it operates in. Legality is therefore not one check against one law pack. It is a **cumulative stack**: every moderation run, and every DP that judges legality, applies all layers that exist for the item's jurisdiction. Content and solutions must satisfy every layer. This keeps CAN defensible against blocking and gives the AI a concrete, checkable starting point.
 
-Proposed rule ids (the spec owner adds them): `LEGAL-STACK-1` (all layers apply cumulatively), `LEGAL-CITE-1` (every legality decision cites layer, article and corpus version), `LEGAL-TOPIC-1` (topic forbidden locally is not published there and the refusal is logged with its basis), `LEGAL-CORPUS-1` (a corpus change is lawyer-reviewed and ratified), `LEGAL-SRC-1` (legal-source integrity, constitution IV.6).
+Proposed rule ids (the spec owner adds them): `LEGAL-STACK-1` (all layers apply cumulatively), `LEGAL-CITE-1` (every legality decision cites layer, article and corpus version), `TOPIC-FORBIDDEN-1` (topic forbidden locally is not published there and the refusal is logged with its basis), `LEGAL-CORPUS-1` (a corpus change is lawyer-reviewed and ratified), `LEGAL-SOURCE-1` (legal-source integrity, constitution IV.6).
 
 ## 1. The layers
 
@@ -33,7 +33,7 @@ can_policy/packs/legal/
   each corpus: corpus.yaml  articles/  topic-index.json  review/
 ```
 
-`corpus.yaml` per corpus carries the provenance (LEGAL-SRC-1):
+`corpus.yaml` per corpus carries the provenance (LEGAL-SOURCE-1):
 
 | Field | Meaning |
 |---|---|

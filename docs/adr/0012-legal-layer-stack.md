@@ -16,7 +16,7 @@ One jurisdiction law pack per place does not say how human rights, supranational
 ## Consequences
 - Lawyers, rights and policy experts are needed as `can_policy` contributors now.
 - Corpus curation is ongoing work; retrieval quality becomes a safety property and is evaluated.
-- Proposed rule ids: LEGAL-STACK-1, LEGAL-CITE-1, LEGAL-TOPIC-1, LEGAL-CORPUS-1, LEGAL-SRC-1. Risk: false topic bans; mitigated by requiring a reviewed forbidding article and `hold` when unsure.
+- Proposed rule ids: LEGAL-STACK-1, LEGAL-CITE-1, TOPIC-FORBIDDEN-1, LEGAL-CORPUS-1, LEGAL-SOURCE-1. Risk: false topic bans; mitigated by requiring a reviewed forbidding article and `hold` when unsure.
 
 ## How to reverse
 Collapse layers into one jurisdiction pack per place by a major pack version; citations already stored keep resolving because old corpus versions stay loadable.
