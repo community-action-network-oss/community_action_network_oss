@@ -6,7 +6,7 @@ repo: can_policy
 area: can-policy
 model: sonnet
 est_hours: 1.5
-priority: 69
+priority: 9
 depends_on: ["10-u08","10-u07"]
 writes: ["content-schemas/problem/**","content-schemas/_shared/**","limits.yaml","test/schema-problem-v2.test.mjs"]
 reads: ["schemas/**","tools/**"]
