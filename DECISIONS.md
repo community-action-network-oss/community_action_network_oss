@@ -495,3 +495,14 @@ Every default, deviation and judgment call made while building CAN. Each one can
   - **Status screen:** 12-u17 doubles as the "In volunteer review" status screen.
   - **Rewritten units:** they keep their old file slugs, so some file names no longer match their content.
   - **Retired unit:** 07-u06 is the only one, replaced by the 12-u25 and 12-u26 journeys.
+- **D-78 · W13 · Planner Y added plans 13 (archive and reuse, 28 units) and 14 (location attestation, 28 units), and reworked plans 06 and 08 to 11.** Defaults chosen along the way:
+  - **Problem schema:** `affected_area` is a field volunteers can review. The problem schema is split across 10-u08 (core) and 10-u69 (parts).
+  - **Second jurisdiction:** fiktiva-north is a second synthetic jurisdiction (10-u67).
+  - **Run triggers:** the moderation-run trigger enum gains `submit_gate`, `publish`, `plan_change`, `stage_evidence`, `review`, `archive` and `reuse`.
+  - **Embeddings:** docker-compose moves to the `pgvector/pgvector:pg16` image (13-u06). The model register gains an `embedding` kind.
+  - **Plan links:** plan-level `depends_on_plans` leaves out some edges to avoid cycles. Unit-level edges are the source of truth.
+  - **ZK spike:**
+    - Spike code lives in `spikes/zk-cell/**` and the circuit package in `can_app/zk/**`.
+    - Founder-gated: the external privacy review (14-u28), native round trips (14-u29), real-device measurements (14-u30) and the adoption decision (14-u32).
+    - The `zk_cell_v1` units (14-u40 to 14-u45) wait on 14-u32.
+  - **No skips:** no units were skipped. Old-sequence units were rewritten under their existing ids.
