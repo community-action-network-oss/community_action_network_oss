@@ -366,3 +366,12 @@ Every default, deviation and judgment call made while building CAN. Each one can
   - **Output:** static pages with a "view source on GitHub" link on each. Visitors never make third-party requests, so the Phase 0A rule holds and no visitor IP goes to GitHub.
   - **Mermaid:** diagrams render from a lazily loaded, bundled chunk, only on pages that have diagrams.
   - Reverse: switch to client-side fetching of raw.githubusercontent.com.
+- **D-67 · W9 · Gallery documents are fetched live in the browser (founder).** This supersedes the build-time-only part of D-66.
+  - **How a page loads:**
+    - Each document page paints the copy bundled at build time instantly.
+    - The browser then fetches the current file from `raw.githubusercontent.com` (`community-action-network-oss`, `main`), which GitHub caches for about 5 minutes.
+    - The page swaps in the live text if it is newer, and shows "Live from GitHub" or "Showing the copy from build <commit>, GitHub unreachable".
+  - **New files:** files added after the build are discovered through the GitHub tree API, and served by a client route that only renders whitelisted paths. Plans and `.claude` are never rendered.
+  - **Safety:** all fetched content passes through the same sanitizer as the build.
+  - **Privacy trade-off, accepted by the founder:** every visitor's IP reaches GitHub. A visible privacy note says so. This relaxes the Phase 0A "no third-party requests" rule for exactly `raw.githubusercontent.com` and `api.github.com`.
+  - **Reverse:** go back to build-time only plus a rebuild on every push.
