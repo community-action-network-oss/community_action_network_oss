@@ -1,0 +1,111 @@
+# Policy pack and the `can_policy` repo
+
+A **policy pack** is the unit the community legislates. It is a versioned, content-addressed bundle in the `can_policy` repo (the fifth submodule; creating its GitHub repo is a founder-gated plan unit, ADR 0009). The server never reads loose files: it loads a pack by `version` and `hash`.
+
+## Repo layout
+
+```
+can_policy/
+  packs/
+    base/                      layer 1: platform rules (RULE-IDs, no jurisdiction)
+      rules.yaml               RULE-ID, text, tier (PREC-1), applies_to DP ids
+      pack.yaml                name, semver, layer, parent, effective_from
+    constitution/              layer 2: machine form of the constitution (V.3)
+    jurisdictions/<id>/        layer 3: law overlays, e.g. fiktiva-city
+      rules.yaml  pack.yaml    plus source, effective dates, reviewer record
+    local/<id>/                layer 4: local rules (optional)
+  decision-points/<DP-id>/
+    prompt.md                  one prompt template per DP
+    schema.json                output JSON schema
+    examples/                  labeled examples (positive, negative, boundary)
+    eval/                      held-out eval set and thresholds.yaml
+  ratifications/               one signed-off record per version
+  CHANGELOG.md
+  manifest.json                generated: every file hash, pack hash
+  ci/                          schema lint, eval, replay diff (against fixtures)
+```
+
+RULE-IDs in `docs/spec/constitution/rules.md` move into `packs/base` and `packs/constitution` over time. Until the repo exists, the superproject file is the source and slice-1 fixtures live beside the server tests.
+
+## Layers and precedence
+
+```mermaid
+flowchart LR
+  B[1 base platform] --> C[2 constitution] --> J[3 jurisdiction law] --> L[4 local rules]
+  L --> R[resolved rule set for one item]
+```
+
+Resolution for an item selects the effective layers for its jurisdiction and date, merges rules by id, and applies the tier order of constitution I.2 (PREC-1): rights > crisis and safety > privacy > legal gate > procedure > ranking. A lower layer may add or narrow rules and thresholds toward stricter protection. It may not weaken a higher layer's rule or touch the protected core; the pack loader refuses such a pack (FOUNDER-TRANS-1 test: a pack touching protected-core rules is refused). An unresolved conflict yields `hold`, not a guess.
+
+## Per decision point contents
+
+| Item | Rule |
+|---|---|
+| `prompt.md` | Template with fixed sections: role, the applicable rules (only the resolved slice, with ids and authoritative text), the output schema, then the quoted data block. User content only ever appears inside the data block (see `runtime.md`). |
+| `schema.json` | Output contract: `outcome`, `rule_ids[]`, `field_ref` (field and optional span), `revision_hint`, `confidence` (0 to 1), `reasons[]`. The server adds `policy_version`, `prompt_hash`, `model_id`. Unknown keys fail validation. |
+| `examples/` | Labeled cases, each `{input, expected_outcome, rule_ids, note, provenance, jurisdiction}`. Included in the prompt as few-shot only if tagged `shot`; all are used in eval. |
+| `eval/` | Held-out set (never in prompts) plus `thresholds.yaml`: minimum recall for harmful classes, maximum false-reject rate, calibration bound, and per-jurisdiction parity bound. Thresholds are ratification gates (`evaluation.md`). |
+| thresholds | Also holds the runtime confidence floors per outcome (below the floor, escalate to a stronger model, then `hold`). |
+
+## Version and hash
+
+- Pack version is semver. Patch: wording or examples with no replay flips. Minor: new or changed rules, examples or thresholds with replay flips under the approved limit. Major: new DP, schema change, or any change touching the protected-core adjacency.
+- `pack_hash` is SHA-256 over the canonical manifest (sorted paths, file hashes, parent pack hashes). `prompt_hash` is the hash of the rendered template before data insertion, per DP.
+- A decision record stores `policy_version` as `<pack-name>@<semver>+<first 12 of pack_hash>` plus `prompt_hash`. Both are public in the explanation.
+- Tags in git are the release channel: `v1.2.0`. A ratification record file must exist for the tag or the loader refuses it.
+
+## How the server loads packs
+
+1. Config names an `active` version per jurisdiction and a `shadow` and `canary` version when a rollout is in progress.
+2. At boot and on a config change, `PolicyStore` fetches the tag, verifies `pack_hash` against the pinned hash in server config (never trusting the fetch alone), checks `approved_by` and `expires_at` (FOUNDER-TRANS-1), compiles the resolved rule sets per jurisdiction and DP, and validates every `schema.json`.
+3. Compiled packs are immutable in memory and cached by `pack_hash`. Old versions stay loadable so replays and appeals can re-run historic decisions.
+4. A pack that fails any check is not activated; the previous version stays active. If no valid pack exists for a DP, that DP returns `hold` (fail closed).
+5. Signing (later): ratification records carry detached signatures from panel members and maintainers; the loader verifies them against a key list in `can_policy`. Slice 1 uses a recorded founder approval only, stated in the record.
+
+## Example DP section (fictional data)
+
+`decision-points/DP-NAMING/` for jurisdiction `fiktiva-city`, pack `base@1.0.0`:
+
+```yaml
+# decision-points/DP-NAMING/pack-section.yaml
+dp: DP-NAMING
+enforces: [NAME-1]
+mode: blocking
+inputs: [field_text, field_ref, entity_spans]   # after privacy gateway
+outcomes: [publish, needs_revision, reject, hold]
+thresholds:
+  confidence_floor: {publish: 0.90, needs_revision: 0.75, reject: 0.92}
+  escalate_model_below: 0.85
+fiktiva-city:
+  officeholder_alias: "{office} of Fiktiva City, officeholder as of {YYYY-MM}"
+  election_enabled: false
+```
+
+Rendered prompt outline (the template hash covers everything above the data block):
+
+```
+ROLE: You check one field of a public civic problem against rule NAME-1.
+RULES: NAME-1: A named private or public person must not appear. Suggest the
+  office alias. Institutions and offices are allowed.
+OUTPUT: JSON matching schema.json. No other text.
+EXAMPLES (shot): 3 labeled cases
+DATA (quoted, untrusted): <<<DATA field=structural_statement
+{field text after redaction}
+DATA>>>
+```
+
+Labeled example:
+
+```json
+{"id":"ex-name-014","input":"The Road Works Office ignores reports; Mr. [PERSON_1] signs them off.",
+ "expected_outcome":"needs_revision","rule_ids":["NAME-1"],
+ "field_ref":{"field":"structural_statement","span":[44,56]},
+ "revision_hint":"Name the office, not the person: 'Head of Road Works, officeholder as of 2026-10'.",
+ "provenance":"fixture","jurisdiction":"fiktiva-city"}
+```
+
+Expected output for that input: `{"outcome":"needs_revision","rule_ids":["NAME-1"],"field_ref":{...},"revision_hint":"...","confidence":0.97}`; the server stamps `policy_version: base@1.0.0+a1b2c3d4e5f6`, `prompt_hash`, `model_id`.
+
+## CI in `can_policy`
+
+Schema lint (every DP has prompt, schema, examples, eval, thresholds), rule-id parity with the registry, example and eval disjointness, eval run against `FakeModel` recordings and (when allowed) a live model, replay diff against fixture decisions, banned-wording check, size limits. See `evaluation.md` and `amendment-loop.md`.
