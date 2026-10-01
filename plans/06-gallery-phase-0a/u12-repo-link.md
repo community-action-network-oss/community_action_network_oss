@@ -13,10 +13,10 @@ spec: ["docs/spec/18-phases-gates.md","docs/adr/0003-nextjs-static-gallery-site.
 verify: ["npm run sync:catalog","npm run sync:decisions","npm run check:copy","npm run verify"]
 founder_gate: true
 defaults: "If the remote is private or not yet public, leave REPO_URL null."
-status: "todo"
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["can_gallery:e19af36"]
+actual_hours: 0.5
 ---
 
 ## Objective

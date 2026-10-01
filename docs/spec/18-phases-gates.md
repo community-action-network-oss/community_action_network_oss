@@ -18,7 +18,7 @@ This is the first public build. Create a fast, accessible public site before the
 - A call for founding engineers, designers, security and privacy specialists, researchers, legal and policy experts, accessibility reviewers, translators, documentation contributors, and infrastructure partners
 - Concrete bounded contribution tasks rather than a generic request to `build everything`
 - How decisions are made, how AI-assisted contributions are handled, and how contributor work is reviewed
-- Links to the charter, specification, roadmap, governance, code of conduct, security policy, the repository (placeholder until the remote exists), and `docs/open-questions/`
+- Links to the charter, specification, roadmap, governance, code of conduct, security policy, the repository (https://github.com/community-action-network-oss/community_action_network_oss), and `docs/open-questions/`
 - A way to get involved that needs no personal data: the repository and its open questions. Any interest form or mailing list is an open question (`docs/open-questions/OQ-promo-interest-channel.md`); until it is answered there is no form and no public roster
 - A transparent statement that the platform is not yet an emergency, legal, medical, government, or individual service
 
