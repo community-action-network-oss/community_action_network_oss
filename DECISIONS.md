@@ -388,3 +388,8 @@ Every default, deviation and judgment call made while building CAN. Each one can
   - the documents move to another provider, or
   - the gallery gets hosting (D-57). A small server-side proxy, or an edge function on the same domain, then fetches GitHub on the visitor's behalf with a short cache. The pages stay the same and only the fetch origin changes.
   - The privacy note stays until one of these happens.
+- **D-71 · W9 · Gallery public docs are live** (can_gallery `b06375a`).
+  - **Pages:** 162 document pages plus `/docs/` and `/docs/view/`. The build ships no document text.
+  - **Live behaviour:** each page fetches from GitHub `main`. If that fails it shows "GitHub is unreachable" with Retry. Both repos are pinned. The fetch origin is a single config value (D-70).
+  - **Known issue:** home-page base JS is 172 KB gzipped, over the 130 KB budget. The overrun predates this work. Fix it through the gluestack units 06-u15/16 or a budget revisit in 06-u09.
+  - **Mermaid:** about 650 KB, loaded only on pages that contain diagrams.
