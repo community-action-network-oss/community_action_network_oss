@@ -14,10 +14,10 @@ spec: ["docs/adr/0009-can-policy-repo.md","docs/design/components/can-policy.md"
 verify: ["git ls-remote https://github.com/community-action-network-oss/can_policy.git"]
 founder_gate: true
 defaults: "If the org name or visibility is in doubt, create the repo under community-action-network-oss as public and note it in the morning review; renaming later is cheap before 10-u02 runs."
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["github: community-action-network-oss/can_policy created by founder"]
+actual_hours: 0
 ---
 ## Objective
 The fifth repository exists on GitHub so 10-u02 can wire it as a submodule. This unit is a founder action: creating a GitHub repository needs the founder account, so no agent runs it (ADR 0009).

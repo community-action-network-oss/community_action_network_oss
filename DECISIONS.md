@@ -29,7 +29,7 @@ Every default, deviation and judgment call made while building CAN. Each one can
 8. **Enable private vulnerability reporting on all four repos** (Settings → Code security).
 
 - **Before night 1 (W7):**
-  - Create the empty GitHub repo `community-action-network-oss/can_policy` (unit 10-u01).
+  - Done: the `can_policy` GitHub repo exists (10-u01).
   - Start Docker Desktop. Its daemon was down at close-out, so server checks that need Postgres could not run.
   - Optional: provide an Anthropic API key and spend cap to unlock the live provider and live persona runs (09-u13, 11-u38, 11-u39).
 
@@ -381,3 +381,6 @@ Every default, deviation and judgment call made while building CAN. Each one can
   - Without JavaScript, the page explains that documents load live and links to GitHub.
   - The build ships the document manifest and navigation only, not document text.
   - Reverse: restore the build copy as a fallback.
+- **D-69 · W9 · The `can_policy` GitHub repo exists (founder). Unit 10-u01 is done.**
+  - The repo is `community-action-network-oss/can_policy`. It is public and empty.
+  - 10-u02 (scaffold, MIT license, 5th submodule) can now run on the next night. Night runs never push, so after that night the founder pushes `can_policy` main.
