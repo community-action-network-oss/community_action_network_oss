@@ -351,3 +351,18 @@ Every default, deviation and judgment call made while building CAN. Each one can
   - **Still gated:** the graduation review (11-u40) and anything that sends real member data.
   - **Anthropic:** its adapter becomes optional.
   - Reverse: re-gate the units, or switch the provider.
+- **D-66 · W9 · The gallery renders CAN's documents publicly (founder).**
+  - **Rendered:**
+    - manifesto
+    - constitution and rules
+    - DECISIONS
+    - open questions
+    - spec
+    - design (ai, flows, components, ux)
+    - ADRs
+    - `can_policy` content, once that repo exists
+  - **Excluded:** plans/, .claude/, code.
+  - **Build-time, not runtime:** the founder suggested serving raw GitHub files. The gallery uses the same files, but reads them at build time: from the superproject checkout, or from raw.githubusercontent.com when built standalone.
+  - **Output:** static pages with a "view source on GitHub" link on each. Visitors never make third-party requests, so the Phase 0A rule holds and no visitor IP goes to GitHub.
+  - **Mermaid:** diagrams render from a lazily loaded, bundled chunk, only on pages that have diagrams.
+  - Reverse: switch to client-side fetching of raw.githubusercontent.com.
