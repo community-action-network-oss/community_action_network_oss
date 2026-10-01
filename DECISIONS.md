@@ -452,3 +452,36 @@ Every default, deviation and judgment call made while building CAN. Each one can
   - **Target:** `zk_cell_v1`, a blinded H3 cell-membership proof. It is adopted only after a spike meets: proof at or under 3 s median on a mid-range Android browser, proof at or under 20 KB, verification at or under 50 ms, and a clean privacy review.
   - **Privacy:** proofs are verified and then discarded. Attestation never enters moderation inputs.
   - **Labelling:** default label wording on web while the check is self-asserted is "Reported impacted". The founder may override this.
+- **D-76 · W12 · Archive and reuse is CAN's second main goal (founder).** It supersedes the "Resolution records" naming in D-20.
+  - **What the archive holds:** every problem that ends (solved, and also closed, redirected or stuck, with their full history) goes into the Archive:
+    - facts and sources
+    - the stage plan as executed
+    - the options considered, the choices and why
+    - evidence
+    - failed paths and challenges, with reasons
+    - blockers
+    - costs and resources
+    - the outcome
+
+    Personal data is stripped.
+  - **Matching while posting:** while a new problem is being prepared, the AI keeps retrieving similar archived problems by context:
+    - problem type
+    - constraints
+    - resources and budget
+    - scale
+    - climate and geography
+    - institutions
+    - the legal stack
+
+    It then suggests solution paths that worked elsewhere, adapted to the new context.
+  - **Suggestions:**
+    - Each suggestion shows the context differences and must pass the new jurisdiction's legality and resource-fit checks.
+    - Suggestions are never adopted automatically.
+    - The source case is always credited.
+  - **Speed:**
+    - Strong archive evidence speeds up volunteer review; at least one review is still required (D-74).
+    - After publication, the AI drafts the stage plan from matching paths. The poster edits it and starts work straight away.
+    - The community still takes part, but is no longer a blocker.
+  - **The goal:** open, reusable infrastructure for solving common problems. One example: an affordable Dutch solution offered as a starting path to a low-resource community elsewhere.
+  - **Default (orchestrator):** the license for contributed content is CC BY 4.0, so reuse is allowed with credit to the source case. This is logged as OQ-contribution-license, with CC0 as the alternative.
+  - **Reverse:** reuse becomes manual search only.
