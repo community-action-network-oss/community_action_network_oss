@@ -7,7 +7,7 @@ When the rules change, past resolutions may no longer hold (D-59). A review job 
 A policy version reaching full rollout ([policy-amendment.md](policy-amendment.md)), or a legal-corpus version activating ([legal-corpus-update.md](legal-corpus-update.md)).
 
 ## Status
-plan 09/10 (pending; the rework planner assigns exact ids). Needs a reopen transition in [../../spec/01a-lifecycle.md](../../spec/01a-lifecycle.md) (id assigned there; this flow cites it and does not restate the table). Feasibility criteria are an open question; the defaults below are D-59's.
+plan 09/10 (pending; the rework planner assigns exact ids). Uses transition T23 and rule RERESOLVE-1 in [../../spec/01a-lifecycle.md](../../spec/01a-lifecycle.md) (the table is not restated here). Feasibility criteria are open question `OQ-reresolution-feasibility`; the defaults below are D-59's.
 
 ## Sequence
 ```mermaid
@@ -33,7 +33,7 @@ sequenceDiagram
     else annotate
       Mod->>DB: visible annotation on the record, old decision intact
     else reopen and feasible
-      Mod->>Eng: reopen transition
+      Mod->>Eng: T23 reopen
       Eng->>DB: tx: state, event, notice, old record kept
       Mod->>Mail: initiator and followers, with rule, version and appeal path
     end
@@ -64,10 +64,10 @@ Feasibility defaults: the problem still exists, the jurisdiction is still enable
 `moderation_run` (trigger `re_resolution`, with policy and corpus versions), `moderation_decision`, annotation rows, transition event, notices, `audit_event`. Old decision records are never edited or deleted.
 
 ## Events emitted
-`resolution.review.completed`, `resolution.annotated`, `problem.reopened` (planned; the state event follows the lifecycle file), `notice.created`.
+`resolution.review.completed`, `resolution.annotated`, `problem.reopened` (planned), `notice.created`.
 
 ## DPs invoked
-DP-RERESOLUTION (see [../ai/decision-points.md](../ai/decision-points.md) when it lands), DP-LEGALITY over all legal layers L0 to L6, DP-CRISIS on any text. Mode: async.
+DP-RERESOLUTION (see [../ai/decision-points.md](../ai/decision-points.md)), DP-LEGALITY over all legal layers L0 to L6, DP-CRISIS on any text. Mode: async, bounded. Reopening goes to the earliest state the changed conclusion affects (default `solution_development`, `eligible` if eligibility or legality of the problem itself changed).
 
 ## Related
 [post-publication-recheck.md](post-publication-recheck.md), [lifecycle-transition.md](lifecycle-transition.md), [../ai/legal-stack.md](../ai/legal-stack.md).

@@ -26,7 +26,7 @@ flowchart TD
 |---|---|
 | `packs/base/` | platform rules, thresholds |
 | `packs/jurisdictions/<id>/` | jurisdiction rules overlay (local platform rules, enabled languages) |
-| `packs/legal/<layer>/<jurisdiction>/` | versioned legal corpora with source provenance, one per layer of the cumulative stack (D-61): L1 UN human rights (UDHR, ICCPR, ICESCR), L2 supranational where binding (NL: EU Charter, EU law, ECHR), L3 national constitution, L4 national law, L5 regional, L6 city; L0 is the base platform pack. Each article has source URL, retrieval date, hash and a topic index entry (legal-source integrity, constitution IV.6). Maintained by lawyers and rights experts through PRs: [../flows/legal-corpus-update.md](../flows/legal-corpus-update.md) |
+| `packs/legal/<layer>/<jurisdiction>/` (for example `L2-supranational/nl/`, `L6-city/nl-amsterdam/`) | versioned legal corpora, each with `corpus.yaml` provenance (LEGAL-SRC-1), `articles/` with stable ids, `topic-index.json` and `review/`; one per layer of the cumulative stack (D-61): L1 UN human rights (UDHR, ICCPR, ICESCR), L2 supranational where binding (NL: EU Charter, EU law, ECHR), L3 national constitution, L4 national law, L5 regional, L6 city; L0 is the base platform pack. Official publisher text only, hash pinned into the pack hash (legal-source integrity, constitution IV.6). Maintained by lawyers and rights experts through PRs: [../flows/legal-corpus-update.md](../flows/legal-corpus-update.md) |
 | `decision-points/<DP-id>/prompt.md` | one prompt template per DP |
 | `decision-points/<DP-id>/schema.json` | output schema |
 | `decision-points/<DP-id>/examples/` | labeled examples (appeal labels land here) |
