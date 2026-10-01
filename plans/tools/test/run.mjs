@@ -45,7 +45,7 @@ const defects = {
 test('lint passes on valid corpus', () => {
   const r = run(valid, 'lint');
   assert.equal(r.status, 0, r.stderr);
-  assert.match(r.stdout, /lint OK: 2 plans, 6 units/);
+  assert.match(r.stdout, /lint OK: 2 plans, 7 units/);
   assert.match(r.stdout, /lane can_server: 3 units, 3\.0h/);
 });
 
@@ -126,4 +126,12 @@ test('lint does not warn when a unit edge backs the plan dependency', () => {
   const r = run(valid, 'lint');
   assert.equal(r.status, 0);
   assert.doesNotMatch(r.stderr, /WARN/);
+});
+
+test('can_policy unit lints and is scheduled in its own lane', () => {
+  const r = run(valid, 'lint');
+  assert.match(r.stdout, /lane can_policy: 1 units/);
+  const j = JSON.parse(run(valid, 'next', '--hours', '6', '--json').stdout);
+  assert.deepEqual(j.lanes.can_policy.units.map((u) => u.id), ['01-u06']);
+  assert.equal(run(mutant(sub('01-alpha/u06-policy-lane.md', 'area: can-policy', 'area: can-bogus')), 'lint').status, 1);
 });

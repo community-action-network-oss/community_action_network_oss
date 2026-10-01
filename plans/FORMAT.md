@@ -40,8 +40,8 @@ Unit-level `depends_on` is the only enforced dependency constraint. Keep `depend
 | id | string | `"02-u03"`, unique corpus-wide |
 | plan | string | must equal the folder's PLAN.md id |
 | title | string | |
-| repo | enum | `.`, `can_server`, `can_app`, `can_gallery`; this is the lane. Paths in `writes` and `verify` are relative to it, and `verify` runs with it as cwd |
-| area | enum | can-spec, can-root, can-server, can-app, can-gallery |
+| repo | enum | `.`, `can_server`, `can_app`, `can_gallery`, `can_policy`; this is the lane. Paths in `writes` and `verify` are relative to it, and `verify` runs with it as cwd |
+| area | enum | can-spec, can-root, can-server, can-app, can-gallery, can-policy |
 | model | enum | sonnet (default), haiku |
 | est_hours | number | > 0 and <= 1.5 |
 | priority | int | lower runs first |
