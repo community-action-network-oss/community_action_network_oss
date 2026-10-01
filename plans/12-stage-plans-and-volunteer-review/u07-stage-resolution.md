@@ -7,7 +7,7 @@ area: can-server
 model: sonnet
 est_hours: 1.5
 priority: 50
-depends_on: ["12-u06", "09-u23", "09-u22", "09-u33"]
+depends_on: ["12-u06", "09-u23", "09-u22", "09-u33", "10-u64"]
 writes: ["src/stages/app/resolution/**", "src/stages/infra/resolution/**", "src/stages/http/**", "src/db/schema.ts", "drizzle/**", "test/stage-resolution.e2e-spec.ts", "openapi/openapi.json"]
 reads: ["src/**"]
 spec: ["docs/spec/01b-stages.md", "docs/design/flows/stage-work.md", "docs/design/flows/appeal.md", "docs/spec/constitution/rules.md#STAGE-RESOLVE-1", "docs/spec/constitution/rules.md#VERIFY-1", "docs/spec/01-slice-1-brief.md#5-moderation-decisions-and-appeals", "docs/design/ux/wireframes/stages.md#WF-STAGE-2"]

@@ -7,7 +7,7 @@ area: can-server
 model: sonnet
 est_hours: 1.5
 priority: 51
-depends_on: ["12-u03", "12-u04", "09-u23", "09-u24", "09-u18", "03-u11"]
+depends_on: ["12-u03", "12-u04", "09-u23", "09-u24", "09-u18", "03-u11", "10-u62", "10-u63"]
 writes: ["src/problems/app/publication/**", "src/problems/domain/publish-aggregation.ts", "src/problems/domain/publish-aggregation.spec.ts", "src/review/app/**", "test/publication-decision.e2e-spec.ts", "openapi/openapi.json"]
 reads: ["src/**"]
 spec: ["docs/spec/01a-lifecycle.md", "docs/spec/01-slice-1-brief.md#43-publication-decision", "docs/design/flows/publication-decision.md", "docs/design/flows/volunteer-review.md", "docs/spec/constitution/rules.md#REVIEW-1", "docs/spec/constitution/rules.md#RECO-1", "docs/spec/constitution/rules.md#PUB-FAILCLOSED-1", "docs/design/ai/decision-points.md"]

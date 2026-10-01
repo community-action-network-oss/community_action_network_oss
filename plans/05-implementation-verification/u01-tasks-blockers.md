@@ -7,7 +7,7 @@ area: can-server
 model: sonnet
 est_hours: 1.5
 priority: 90
-depends_on: ["04-u07", "10-u29", "12-u02", "04-u05"]
+depends_on: ["04-u07", "10-u29", "12-u02", "04-u05", "10-u70"]
 writes: ["src/tasks/**","src/problems/app/**","src/db/schema.ts","drizzle/**","src/app.module.ts","test/tasks.e2e-spec.ts","openapi/openapi.json"]
 reads: ["src/**"]
 spec: ["docs/spec/01-slice-1-brief.md#4-lifecycle", "docs/spec/01b-stages.md", "docs/design/components/server.md#lifecycle-v2-entities", "docs/design/system-design.md#6-api-surface-v1", "docs/spec/constitution/rules.md#LEGAL-GATE-1", "docs/spec/constitution/rules.md#STRUCT-ONLY-1", "docs/design/ux/wireframes/participate.md#WF-TASK-2", "docs/design/ux/wireframes/stages.md#WF-STAGE-1"]

@@ -18,21 +18,21 @@ On a seeded problem with the FakeModel: a poster prepares facts, sources and fin
 | Unit | Title | Lane | Hours | Pri | Depends on | Founder gate |
 |---|---|---|---|---|---|---|
 | [12-u01](u01-stages-domain.md) | Stages domain: stage plan DAG, acceptance criteria, gating engine and stage state machine (ST01 to ST11) | can_server | 1.5 | 16 | 02-u09 | - |
-| [12-u02](u02-stages-persistence-api.md) | Stages persistence and API: stage, stage_edge, acceptance_criterion, stage_option, stage_choice, stage_evidence | can_server | 1.5 | 46 | 12-u01, 02-u10, 02-u08, 03-u05 | - |
-| [12-u03](u03-review-module.md) | Review module: opt-in volunteers, masked review view, review_recommendation, poster accept or decline, quorum | can_server | 1.5 | 48 | 12-u04, 12-u02, 09-u09, 02-u04 | - |
-| [12-u04](u04-preparation-api.md) | Preparation API: sources, final acceptance criteria, optional stage plan, and problem states v2 (T00 to T10) | can_server | 1.5 | 47 | 12-u02, 03-u05, 03-u06, 03-u08, 02-u10 | - |
+| [12-u02](u02-stages-persistence-api.md) | Stages persistence and API: stage, stage_edge, acceptance_criterion, stage_option, stage_choice, stage_evidence | can_server | 1.5 | 46 | 12-u01, 02-u10, 02-u08, 03-u05, 10-u29, 10-u11 | - |
+| [12-u03](u03-review-module.md) | Review module: opt-in volunteers, masked review view, review_recommendation, poster accept or decline, quorum | can_server | 1.5 | 48 | 12-u04, 12-u02, 09-u09, 02-u04, 10-u60 | - |
+| [12-u04](u04-preparation-api.md) | Preparation API: sources, final acceptance criteria, optional stage plan, and problem states v2 (T00 to T10) | can_server | 1.5 | 47 | 12-u02, 03-u05, 03-u06, 03-u08, 02-u10, 10-u29, 10-u69 | - |
 | [12-u05](u05-stage-map-screen.md) | Problem page stage map (WF-STAGEMAP-1) with accessible list view | can_app | 1.5 | 36 | 12-u02, 02-u20, 02-u24, 02-u25, 02-u14 | - |
 | [12-u06](u06-stage-engine.md) | Stage transition engine: ST01 to ST11 on rows, the gating transaction, start, submit and block endpoints | can_server | 1.5 | 49 | 12-u02, 03-u05, 12-u04 | - |
-| [12-u07](u07-stage-resolution.md) | Stage resolution: DP-STAGE-RESOLUTION adapter, ST04 to ST06, per-criterion results and appeals | can_server | 1.5 | 50 | 12-u06, 09-u23, 09-u22, 09-u33 | - |
-| [12-u08](u08-publication-decision.md) | Publication decision adapter: DP-PUBLISH on the in_review problem, open recommendations weighed, T02, T04, T05 and T09 applied | can_server | 1.5 | 51 | 12-u03, 12-u04, 09-u23, 09-u24, 09-u18, 03-u11 | - |
-| [12-u09](u09-plan-change.md) | Plan change after publication (PLAN-CHANGE-1, T22): proposals, DP-STAGE-PLAN, atomic plan version | can_server | 1.5 | 52 | 12-u06, 09-u23, 04-u07 | - |
+| [12-u07](u07-stage-resolution.md) | Stage resolution: DP-STAGE-RESOLUTION adapter, ST04 to ST06, per-criterion results and appeals | can_server | 1.5 | 50 | 12-u06, 09-u23, 09-u22, 09-u33, 10-u64 | - |
+| [12-u08](u08-publication-decision.md) | Publication decision adapter: DP-PUBLISH on the in_review problem, open recommendations weighed, T02, T04, T05 and T09 applied | can_server | 1.5 | 51 | 12-u03, 12-u04, 09-u23, 09-u24, 09-u18, 03-u11, 10-u62, 10-u63 | - |
+| [12-u09](u09-plan-change.md) | Plan change after publication (PLAN-CHANGE-1, T22): proposals, DP-STAGE-PLAN, atomic plan version | can_server | 1.5 | 52 | 12-u06, 09-u23, 04-u07, 10-u63, 10-u62 | - |
 | [12-u10](u10-templates-ahead-fixtures.md) | Stage templates endpoint, attaching contributions made ahead to an active stage (STAGE-PREP-1), stage fixtures | can_server | 1.2 | 53 | 12-u06, 04-u02, 02-u12 | - |
 | [12-u11](u11-impact-read-side.md) | Impact label read side: impactedOnly filter and exact filter counts on every content list | can_server | 1.5 | 54 | 14-u02, 04-u02, 12-u02, 12-u03 | - |
 | [12-u12](u12-prep-workspace-screen.md) | Preparation workspace (WF-PREP-1): parts, sources with trust hints, readiness, send to volunteer review | can_app | 1.5 | 37 | 12-u04, 03-u16, 10-u05, 10-u29, 02-u14, 02-u16, 02-u24, 02-u25 | - |
 | [12-u13](u13-criteria-editor-screen.md) | Acceptance criteria editor (WF-PREP-2): final criteria and a reusable per-stage editor | can_app | 1.2 | 38 | 12-u04, 10-u05, 02-u14, 12-u12, 02-u24, 02-u25 | - |
-| [12-u14](u14-stage-plan-editor-screen.md) | Stage plan editor (WF-PREP-3): templates, graph and list, dependency checkboxes, classic-5 | can_app | 1.5 | 39 | 12-u13, 12-u10, 12-u05, 12-u04, 02-u24, 02-u25 | - |
+| [12-u14](u14-stage-plan-editor-screen.md) | Stage plan editor (WF-PREP-3): templates, graph and list, dependency checkboxes, classic-5 | can_app | 1.5 | 39 | 12-u13, 12-u10, 12-u05, 12-u04, 02-u24, 02-u25, 10-u69 | - |
 | [12-u15](u15-review-queue-screen.md) | Volunteer review queue and opt-in (WF-VREVIEW-1) | can_app | 1.2 | 40 | 12-u03, 02-u16, 02-u15, 02-u24, 02-u25 | - |
-| [12-u16](u16-review-problem-screen.md) | Review a problem and make recommendations (WF-VREVIEW-2) | can_app | 1.5 | 41 | 12-u15, 12-u05, 10-u05, 10-u29, 02-u24, 02-u25 | - |
+| [12-u16](u16-review-problem-screen.md) | Review a problem and make recommendations (WF-VREVIEW-2) | can_app | 1.5 | 41 | 12-u15, 12-u05, 10-u05, 10-u29, 02-u24, 02-u25, 10-u60 | - |
 | [12-u17](u17-review-resolve-screen.md) | Poster resolves recommendations and requests publication (WF-VREVIEW-3) | can_app | 1.5 | 42 | 12-u03, 12-u12, 10-u05, 02-u24, 02-u25 | - |
 | [12-u18](u18-stage-workspace-screen.md) | Stage workspace (WF-STAGE-1): options, choice, steps, evidence, criteria and submit | can_app | 1.5 | 43 | 12-u05, 12-u06, 04-u08, 04-u09, 04-u10, 05-u05, 10-u05, 10-u29, 02-u24, 02-u25 | - |
 | [12-u19](u19-stage-result-screen.md) | Stage resolution result (WF-STAGE-2) and the final solved result | can_app | 1.2 | 44 | 12-u07, 12-u18, 09-u51, 05-u02, 02-u24, 02-u25 | - |

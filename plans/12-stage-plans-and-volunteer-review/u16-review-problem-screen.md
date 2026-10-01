@@ -7,7 +7,7 @@ area: can-app
 model: sonnet
 est_hours: 1.5
 priority: 41
-depends_on: ["12-u15", "12-u05", "10-u05", "10-u29", "02-u24", "02-u25"]
+depends_on: ["12-u15", "12-u05", "10-u05", "10-u29", "02-u24", "02-u25", "10-u60"]
 writes: ["app/review/**", "src/review/problem/**", "src/i18n/en.json", "__tests__/review-problem-*.test.tsx", "src/api/schema.d.ts"]
 reads: ["src/**"]
 spec: ["docs/design/ux/wireframes/prepare.md#WF-VREVIEW-2", "docs/spec/constitution/rules.md#REVIEW-1", "docs/spec/constitution/rules.md#RECO-1", "docs/design/flows/volunteer-review.md", "docs/design/ux/copy-deck-lifecycle.md", "docs/design/ux/ui-unit-template.md"]

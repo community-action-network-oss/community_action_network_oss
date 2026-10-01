@@ -7,7 +7,7 @@ area: can-server
 model: sonnet
 est_hours: 1.2
 priority: 74
-depends_on: ["04-u04","12-u02"]
+depends_on: ["04-u04", "12-u02", "10-u70"]
 writes: ["src/decisions/**","src/stages/app/choice/**","src/db/schema.ts","drizzle/**","src/app.module.ts","test/decision-record.e2e-spec.ts","openapi/openapi.json"]
 reads: ["src/**"]
 spec: ["docs/spec/01-slice-1-brief.md#4-lifecycle", "docs/spec/01b-stages.md", "docs/spec/01-slice-1-brief.md#2-slice-1-defaults", "docs/spec/constitution/rules.md#LEGAL-GATE-1", "docs/spec/constitution/rules.md#LEGAL-CITE-1", "docs/spec/constitution/rules.md#INTERIM-1", "docs/open-questions/OQ-stage-decision-method.md", "docs/open-questions/OQ-legal-policy-reviewers.md", "docs/design/ux/wireframes/stages.md#WF-STAGE-1", "docs/design/ux/wireframes/participate.md#WF-DECREC-2"]

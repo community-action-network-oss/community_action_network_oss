@@ -7,7 +7,7 @@ area: can-server
 model: sonnet
 est_hours: 1.5
 priority: 52
-depends_on: ["12-u06", "09-u23", "04-u07"]
+depends_on: ["12-u06", "09-u23", "04-u07", "10-u63", "10-u62"]
 writes: ["src/stages/app/plan-change/**", "src/stages/http/**", "src/stages/infra/**", "src/db/schema.ts", "drizzle/**", "test/plan-change.e2e-spec.ts", "openapi/openapi.json"]
 reads: ["src/**"]
 spec: ["docs/spec/01a-lifecycle.md", "docs/spec/01b-stages.md", "docs/design/flows/plan-change.md", "docs/spec/constitution/rules.md#PLAN-CHANGE-1", "docs/design/ux/wireframes/stages.md#WF-STAGEMAP-1"]

@@ -7,7 +7,7 @@ area: can-server
 model: sonnet
 est_hours: 1.5
 priority: 47
-depends_on: ["12-u02", "03-u05", "03-u06", "03-u08", "02-u10"]
+depends_on: ["12-u02", "03-u05", "03-u06", "03-u08", "02-u10", "10-u29", "10-u69"]
 writes: ["src/problems/http/**", "src/problems/app/**", "src/problems/infra/**", "src/problems/domain/**", "src/stages/app/**", "src/db/schema.ts", "drizzle/**", "test/preparation.e2e-spec.ts", "openapi/openapi.json"]
 reads: ["src/**"]
 spec: ["docs/spec/01-slice-1-brief.md#41-preparation-private", "docs/spec/01a-lifecycle.md", "docs/spec/01b-stages.md", "docs/design/flows/problem-preparation.md", "docs/design/flows/lifecycle-transition.md", "docs/spec/constitution/rules.md#CRITERIA-1", "docs/spec/constitution/rules.md#SOURCE-1"]
