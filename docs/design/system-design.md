@@ -2,7 +2,7 @@
 
 Status: design baseline for plan units. Binding inputs: `DECISIONS.md` (D-1 to D-28), `docs/spec/01-slice-1-brief.md` (scope, defaults, lifecycle table). Tonight `can_server` and `can_app` are scaffolds (D-25); this document specifies the slice so later plan units can build it without inventing architecture. Where this file and the brief disagree about lifecycle, the brief wins.
 
-Lifecycle states, transitions, actors, labels and next actions live only in [`docs/spec/01-slice-1-brief.md#lifecycle`](../spec/01-slice-1-brief.md#lifecycle). This file never restates them.
+Lifecycle states, transitions, actors, labels and next actions live only in [`docs/spec/01-slice-1-brief.md#4-lifecycle`](../spec/01-slice-1-brief.md#4-lifecycle). This file never restates them.
 
 ## 1. Containers
 
@@ -239,7 +239,7 @@ erDiagram
 | Entity | Retention |
 |---|---|
 | draft or rejected or withdrawn problem body | Hard-deleted 30 days after the state change (`purge_after`); UI shows the date. Event rows keep only type, states and timestamps, no body text. |
-| draft_fingerprint | Deleted 90 days after creation. Salt rotated yearly; old fingerprints expire, never re-hashed. |
+| draft_fingerprint | Deleted 90 days after creation, or at publish (T04) if the problem is published. Salt rotated yearly; old fingerprints expire, never re-hashed. |
 | published problem, contribution, proposal, decision_record, task, problem_event | Kept; public record. Withdrawn contributions become tombstones (see UX). |
 | moderation_decision, appeal | Kept with the problem; `revision_hint` and spans cleared at purge for rejected drafts. |
 | session | Deleted 30 days after expiry or revoke. |

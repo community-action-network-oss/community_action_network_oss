@@ -17,7 +17,7 @@ The system design, UX pack and decision records that let contributors and overni
 | [../adr/](../adr/README.md) | Architecture decision records 0001 to 0006 |
 
 ## Ground rules
-- Lifecycle states, transitions, actors, public labels, plain explanations and next actions live **only** in [`docs/spec/01-slice-1-brief.md#lifecycle`](../spec/01-slice-1-brief.md#lifecycle). Link to it, never copy it.
+- Lifecycle states, transitions, actors, public labels, plain explanations and next actions live **only** in [`docs/spec/01-slice-1-brief.md#4-lifecycle`](../spec/01-slice-1-brief.md#4-lifecycle). Link to it, never copy it.
 - Binding decisions are in `DECISIONS.md`. This pack records choices beyond it in ADRs.
 - No em or en dashes in user-facing copy. Fictional data only. Anything not built is labelled "planned".
 

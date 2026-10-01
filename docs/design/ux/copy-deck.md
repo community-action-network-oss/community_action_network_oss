@@ -2,7 +2,7 @@
 
 All user-facing strings. Source of truth for `can_app` message files (`en.json`, ICU MessageFormat). Rules: calm, plain, non-shaming; reading level about grade 8; say what happens and what the person can do; no blame for stuck, paused or withdrawn; no exclamation marks; zero em dashes and en dashes (a lint grep enforces this); no string concatenation, use placeholders; plurals via ICU `plural`. Examples in the product are labelled fictional. Anything not built is labelled "planned". Placeholders in braces are ICU arguments, not message ids.
 
-Status wording (neutral, matches `tokens.json` status keys): Waiting for review, In discovery, Needs changes, Paused, Stuck for now, Withdrawn, Closed, Redirected, Solved, Interim decision. State labels, plain explanations and next actions for every lifecycle state come from `docs/spec/01-slice-1-brief.md#lifecycle`; this deck holds the surrounding UI strings only.
+Status wording (neutral, matches `tokens.json` status keys): Waiting for review, In discovery, Needs changes, Paused, Stuck for now, Withdrawn, Closed, Redirected, Solved, Interim decision. State labels, plain explanations and next actions for every lifecycle state come from `docs/spec/01-slice-1-brief.md#4-lifecycle`; this deck holds the surrounding UI strings only.
 
 ## Common
 | id | English |
@@ -103,8 +103,6 @@ Status wording (neutral, matches `tokens.json` status keys): Waiting for review,
 | status.stuck.body | There has been no recent progress. This is not a judgement of anyone. |
 | status.stuck.next | Here is what would help move it forward. |
 | status.stuck.help | See what would help |
-| status.withdrawn.title | Withdrawn |
-| status.withdrawn.body | The person who started this withdrew it. Anything that refers to it is kept. |
 | status.closed.title | Closed |
 | status.redirected.title | Redirected |
 | status.redirected.body | This is better handled by another group. Routes that can help are listed below. |

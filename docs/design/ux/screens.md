@@ -1,6 +1,6 @@
 # Screen inventory (slice 1)
 
-Every screen has a wireframe ID. "State" refers to lifecycle state keys defined in [`docs/spec/01-slice-1-brief.md#lifecycle`](../../spec/01-slice-1-brief.md#lifecycle). That table owns state names, public labels, plain explanations, next actions and transition rights; this file only maps states to screens. If a state key below does not match the brief, the brief wins and this table is corrected in a follow-up commit. Public labels shown in the UI always come from the brief's table, never from strings in the app code.
+Every screen has a wireframe ID. "State" refers to lifecycle state keys defined in [`docs/spec/01-slice-1-brief.md#4-lifecycle`](../../spec/01-slice-1-brief.md#4-lifecycle). That table owns state names, public labels, plain explanations, next actions and transition rights; this file only maps states to screens. If a state key below does not match the brief, the brief wins and this table is corrected in a follow-up commit. Public labels shown in the UI always come from the brief's table, never from strings in the app code.
 
 ## Screens
 
@@ -9,7 +9,7 @@ Every screen has a wireframe ID. "State" refers to lifecycle state keys defined 
 | WF-LIST-1, WF-LIST-2 | `/` | anyone | Browse and filter published problems | loading, empty, error, offline |
 | WF-DETAIL-1 | `/problems/{id}` | anyone | Problem workspace and status panel | loading, error, offline, tombstone |
 | WF-DETAIL-2 | same | anyone | Tombstone for withdrawn or removed items | n/a (is the state) |
-| WF-DETAIL-3 | same | anyone | Status panel variants (paused, stuck, withdrawn, closed, redirected) | n/a |
+| WF-DETAIL-3 | same | anyone | Status panel variants (paused, stuck, closed, redirected) | n/a |
 | WF-RESOLUTION-1 | `/resolutions` | anyone | Resolution records archive | loading, empty, error |
 | WF-SIGNUP-1 | `/sign-up` | anyone | Redeem invite, email | validation, offline, error |
 | WF-SIGNIN-1, WF-SIGNIN-2 | `/sign-in`, `/sign-in/code` | anyone | Email code sign-in | validation, rate limited, offline |
@@ -34,19 +34,21 @@ Every screen has a wireframe ID. "State" refers to lifecycle state keys defined 
 
 | Lifecycle state key | What the initiator sees | What the public sees |
 |---|---|---|
-| draft | WF-SUBMIT-1..7, WF-MYACT-1 (purge date if it came back from a decision) | nothing |
-| submitted, human_review | WF-PENDING-1 | nothing (tombstone not shown, item not public) |
-| needs_clarification | WF-DECISION-1 | nothing |
-| rejected or not eligible (end of review) | WF-DECISION-2, WF-APPEAL-1, WF-EXTERNAL-1 | nothing |
-| eligible, discovery, root_cause_analysis | WF-DETAIL-1 | WF-DETAIL-1, WF-CONTRIB-1 |
-| solution_development, solution_selection | WF-PROPOSAL-1, WF-DECREC-1 | same |
+| draft | WF-SUBMIT-1..7, WF-MYACT-1 | nothing |
+| submitted | WF-PENDING-1 | nothing (private) |
+| needs_revision | WF-DECISION-1 (hints beside fields, deletion date, appeal entry) | nothing (private) |
+| rejected | WF-DECISION-2, WF-APPEAL-1, WF-EXTERNAL-1 (deletion date shown) | nothing (never published) |
+| withdrawn | WF-MYACT-1 with deletion date; the draft is deleted at 30 days | nothing (never published) |
+| eligible (includes discovery in slice 1) | WF-DETAIL-1, WF-CONTRIB-1 | same |
+| solution_development, solution_selection | WF-PROPOSAL-1, WF-PROPOSAL-2, WF-DECREC-1 | same |
 | implementation, verification | WF-TASK-1, WF-TASK-2 | same |
-| solved | WF-DETAIL-1, WF-RESOLUTION-1 | WF-RESOLUTION-1 |
 | paused | WF-DETAIL-3 (reason and resume condition) | WF-DETAIL-3 |
-| stuck | WF-DETAIL-3 | WF-DETAIL-3 |
-| withdrawn | WF-DETAIL-3 for published; draft deleted at 30 days | WF-DETAIL-3 or WF-DETAIL-2 |
-| closed | WF-DETAIL-3 variant | WF-DETAIL-3 variant, WF-RESOLUTION-1 |
-| redirected | WF-DETAIL-3 variant with routes | same |
+| stuck | WF-DETAIL-3 (blocker, next route, review date) | WF-DETAIL-3 |
+| solved | WF-DETAIL-1, WF-RESOLUTION-1 | WF-RESOLUTION-1 |
+| closed | WF-DETAIL-3 variant, WF-RESOLUTION-1 | same |
+| redirected | WF-DETAIL-3 variant with routes, WF-RESOLUTION-1 | same |
+
+Pre-publication states (draft, submitted, needs_revision, rejected, withdrawn) are visible only to the initiator and moderators. WF-DETAIL-2 (tombstone) covers withdrawn contributions and removed public items, not private drafts.
 
 Appeals attach to moderation decisions, not to a problem state (D-15); WF-APPEAL-1 hangs off WF-DECISION-1 and WF-DECISION-2.
 

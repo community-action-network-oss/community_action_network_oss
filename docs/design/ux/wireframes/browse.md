@@ -72,7 +72,7 @@ Route `/problems/{id}`. Sections are tabs on mobile, a two column layout on desk
 `History` is the public problem_event timeline with plain labels. Interim decisions display the badge "Interim decision, will be re-reviewed" (WF-DECREC-1).
 
 ## WF-DETAIL-2  Tombstone (never a 404)
-Shown for withdrawn contributions and for problems that were published then withdrawn or removed.
+Shown for withdrawn contributions and for public items a volunteer removed. Problems that were never published (draft, submitted, needs_revision, rejected, withdrawn) are private and never show a public tombstone.
 ```
 +--------------------------------------+
 | {tombstone.title}                    |
@@ -85,7 +85,7 @@ Shown for withdrawn contributions and for problems that were published then with
 ```
 Variants: `tombstone.removed` (removed by a volunteer under a rule id, linking the rule text), `tombstone.notFound` only for ids that never existed.
 
-## WF-DETAIL-3  Status panel variants: paused, stuck, withdrawn, closed
+## WF-DETAIL-3  Status panel variants: paused, stuck, closed, redirected
 Neutral wording from the copy deck. Same panel position as WF-DETAIL-1.
 ```
 +--------------------------------------+
@@ -102,11 +102,13 @@ Neutral wording from the copy deck. Same panel position as WF-DETAIL-1.
 | judgement. {status.stuck.next}       |
 | [ See what would help ]              |
 +--------------------------------------+
-| (Withdrawn)  Withdrawn by its author |
-| {status.withdrawn.body}              |
+| (Redirected)                        |
+| {status.redirected.title}  Redirected|
+| {status.redirected.body}             |
+| Routes that can help (fictional)     |
 +--------------------------------------+
 ```
-Closed and redirected show the reason and, for redirected, a static external route list (WF-EXTERNAL-1 pattern).
+Closed shows the reason code and plain explanation, and `duplicate_of` as a link when it applies. Redirected lists the destination and route text. Panel text for every state comes from the brief's table.
 
 ## WF-RESOLUTION-1  Resolution records
 Route `/resolutions`. A plain archive of solved or closed problems. No ranking, no counts, sorted by date resolved, newest first, with a date filter.

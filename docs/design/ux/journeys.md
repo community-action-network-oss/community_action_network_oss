@@ -1,6 +1,6 @@
 # Journeys (slice 1)
 
-Three journeys, each a numbered path through screens (IDs are wireframe frames in `wireframes/`). All use fictional data in one fictional jurisdiction, English only. Lifecycle state names and who may move a problem between them come from [`docs/spec/01-slice-1-brief.md#lifecycle`](../../spec/01-slice-1-brief.md#lifecycle); journeys only say where the person sees the result.
+Three journeys, each a numbered path through screens (IDs are wireframe frames in `wireframes/`). All use fictional data in one fictional jurisdiction, English only. Lifecycle state names and who may move a problem between them come from [`docs/spec/01-slice-1-brief.md#4-lifecycle`](../../spec/01-slice-1-brief.md#4-lifecycle); journeys only say where the person sees the result.
 
 Principles carried through every step: progress over discussion, calm under conflict, honest waiting, no engagement hooks (no streaks, counts as status, infinite scroll or urgency nudges), a visible next meaningful action.
 
