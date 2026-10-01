@@ -5,12 +5,12 @@ description: Read or edit the CAN specification in docs/spec, the open-questions
 
 # can-spec
 
-Weight: 24 spec files in `docs/spec/` (about 215KB in total, each 25KB or less), the constitution (chapters ch01 to ch11, `map.tsv`, `rules.md`) beside them, 41 files in `docs/open-questions/`, plus `manifesto.md`. Never load it all. Start with `docs/spec/00-index.md` ("What to load"). Slice-1 work always loads `01-slice-1-brief.md` and `02-agent-rules.md` first.
+Weight: 25 spec files in `docs/spec/` (about 215KB in total, each 25KB or less), the constitution (chapters ch01 to ch11, `map.tsv`, `rules.md`) beside them, 50 files in `docs/open-questions/`, plus `manifesto.md`. Never load it all. Start with `docs/spec/00-index.md` ("What to load"). Slice-1 work always loads `01-slice-1-brief.md` and `02-agent-rules.md` first; lifecycle work also loads `01a-lifecycle.md`.
 
 ## Layout
 
 - `docs/spec/00-index.md`: what each file covers, which to load for which work, glossary.
-- `docs/spec/01..23-*.md`: the specification. `01` is the slice-1 brief. `23` maps the original question list to the register.
+- `docs/spec/01..23-*.md`: the specification. `01` is the slice-1 brief and `01a-lifecycle.md` the lifecycle state and transition table (split from 01). `23` maps the original question list to the register.
 - `docs/spec/constitution/`: owned by the constitution work. Start at its `README.md`. Rule IDs live in `rules.md`; old to new article numbers in `map.tsv`.
 - `docs/spec/split-map.tsv`, `docs/spec/tools/`: provenance and check scripts.
 - `docs/open-questions/`: one `OQ-<slug>.md` per undecided item, plus `README.md`.
@@ -23,17 +23,24 @@ Weight: 24 spec files in `docs/spec/` (about 215KB in total, each 25KB or less),
 Community-legislated, AI-executed moderation. The community never judges single items. It legislates policy, and AI agents apply it before publication, on every update and after publication. Slice 1 builds the full pipeline on `FakeModel` plus recorded responses; the live Anthropic provider is founder-gated (API key, spend cap). Vocabulary and where it lives:
 
 - **Policy pack:** versioned bundle in the planned fifth repo `can_policy` (`11-architecture.md`, `docs/design/ai/policy-pack.md`).
-- **Decision point (`DP-*`):** ids are in the `01` lifecycle table (`DP-ELIGIBILITY`, `DP-PRIVACY`, `DP-FRAMING`, `DP-DUPLICATE`, `DP-CONTRIB-RELEVANCE`, `DP-TONE`, `DP-NAMING`, `DP-LEGALITY`, `DP-DECISION-RECORD`, `DP-VERIFICATION`, `DP-CRISIS`, `DP-EVIDENCE-TIER`). Catalog: `docs/design/ai/decision-points.md`.
+- **Decision point (`DP-*`):** ids are in the `01` lifecycle table (`DP-ELIGIBILITY`, `DP-PRIVACY`, `DP-FRAMING`, `DP-DUPLICATE`, `DP-CONTRIB-RELEVANCE`, `DP-TONE`, `DP-NAMING`, `DP-LEGALITY`, `DP-DECISION-RECORD`, `DP-VERIFICATION`, `DP-CRISIS`, `DP-EVIDENCE-TIER`, plus `DP-ASSUMPTIONS` and `DP-COMPLETENESS` from D-58). Defined in `01a-lifecycle.md`. Catalog: `docs/design/ai/decision-points.md`.
 - **Moderation run, outcomes** (`publish`, `needs_revision`, `reject`, `route_external`, `hold`, `escalate_human`): `15-ai-inference.md`, `06`, `docs/design/ai/runtime.md`. Decision fields incl. `policy_version`, `prompt_hash`, `model_id`, `confidence`, `run_id`: `01` section 5.
 - **Pre-decided and post-decided consensus, replay diff, amendment loop:** Constitution V.5, `docs/design/ai/amendment-loop.md`.
 - **Label task, appeal-to-example loop:** Constitution V.5, V.6, `docs/design/ai/appeals.md`.
 - **Privacy gateway** (mandatory before any model call): `14`. **Human roles:** legislators, auditors, labelers, the emergency/legal lane, maintainers. Per-item moderators no longer exist; the `moderator` role is the lane, auditor or labeler.
-- **Rules:** `POLICY-CITE-1`, `FAIL-CLOSED-AI-1`, `NO-INSTANCE-OVERRIDE-1`, `REMOD-NOTICE-1`, `PRIV-GATEWAY-1`, `AGENT-NO-TOOLS-1`, `INTERIM-1` (interim policy stewardship) in `constitution/rules.md`. `AI-OFF-1` is gone.
+- **Rules:** `POLICY-CITE-1`, `FAIL-CLOSED-AI-1`, `NO-INSTANCE-OVERRIDE-1`, `REMOD-NOTICE-1`, `PRIV-GATEWAY-1`, `AGENT-NO-TOOLS-1`, `INTERIM-1` (interim policy stewardship) in `constitution/rules.md`. `AI-OFF-1` is gone. D-55 to D-58 added: `STRUCT-ONLY-1`, `SCHEMA-1`, `AI-ASSIST-1`, `ASSUMP-1`, `COMPLETE-1`, `SIM-GATE-1`, `SIM-LABEL-1`, `SIM-NOSECRET-1`, and the decision-point rules `FRAME-1`, `DUP-1`, `RELEVANCE-1`, `SOLUTION-ONLY-1`, `TONE-1`, `DECISION-REC-1`, `VERIFY-1`, `STAGE-1`, `BLOCKER-1`, `CLOSE-1`, `LEGAL-LANE-1`.
+
+## Simulation, seeds and structured content (D-55 to D-58)
+
+- **Persona simulation is the slice-1 proof.** AI personas drive lifecycles through the real pipeline on seeds 1 and 2 and red-team the pack. Graduation criteria G1 to G13 (`docs/design/ai/simulation.md` section 8; link, never restate) gate public participation (`SIM-GATE-1`). CI uses `FakeModel`; live persona runs are founder-gated.
+- **Seeds:** four real framings with synthetic evidence, labelled "Seed problem, synthetic evidence"; Amsterdam (NL) is the first jurisdiction overlay. Seeds 1 and 2 first; 3 and 4 wait for the problem graph (`07`). D-12's fictional-jurisdiction wording is superseded for seeds.
+- **Hosting undecided, services portable (D-57):** `11-architecture.md` (Portable hosting). GCP was a lean, not a decision.
+- **Structured content (D-58):** no free-form posting; schemas live in the policy pack; `05`, `17`, `docs/design/ai/structured-content.md`.
 
 ## Editing rules
 
-- `01-slice-1-brief.md` alone owns the lifecycle state and transition table, the public labels, the contribution-type enum, the moderation decision fields and the minimal entity list. Other files link there. Never copy the table elsewhere.
-- Do not rename the `## 4. Lifecycle` heading in `01`. Design docs link to `#4-lifecycle`.
+- `01a-lifecycle.md` alone owns the lifecycle state classes, the T-table (T00 to T22) and the public labels. `01-slice-1-brief.md` owns the scope and defaults, the contribution-type enum, the moderation decision fields and the minimal entity list. Other files link there. Never copy the table elsewhere.
+- Do not rename the `## 4. Lifecycle` heading in `01`; it is a short pointer to `01a`. Design docs link to `01-slice-1-brief.md#4-lifecycle`.
 - Every file in `docs/spec/` (excluding `constitution/`) stays at 25KB or less. Split before you exceed it.
 - No em dashes or en dashes in the manifesto, the spec or the open-questions files. No `<aside>`, emoji or empty `> ` lines. Say "problem", never "case", for a public problem. Say "Resolution records", never "Hall of fame". Ladder roles are "Watcher" and "Project steward"; platform roles are "Observer" and "Steward".
 - Cross-reference by file and section name instead of repeating content. Cite the constitution by new ID (for example `Constitution V.4`) or rule ID (`MOD-EXPLAIN-1`).

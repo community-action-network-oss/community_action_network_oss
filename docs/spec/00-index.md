@@ -9,7 +9,7 @@ The Community Action Network (CAN) is an open-source platform where people turn 
 | Work | Load |
 |---|---|
 | Any slice-1 work | `01-slice-1-brief.md` and `02-agent-rules.md` first, always |
-| Lifecycle, states, transitions | `01` (owns the table), `05` |
+| Lifecycle, states, transitions | `01a` (owns the table), `05` |
 | Roles, who may do what | `01`, `04` |
 | Moderation, appeals, jurisdiction | `01` (section 5), `06`, constitution chapters IV and V, `docs/design/ai/README.md` |
 | Evidence, claims, systemic graph | `07` (Phase 7 design), constitution chapter III |
@@ -30,7 +30,8 @@ The Community Action Network (CAN) is an open-source platform where people turn 
 
 | File | Covers |
 |---|---|
-| `01-slice-1-brief.md` | Slice 1 scope and defaults, the lifecycle state and transition table, moderation decision fields, contribution-type enum, "solved", sign-in, draft retention, minimal entity list, accessibility baseline |
+| `01-slice-1-brief.md` | Slice 1 scope and defaults (full AI pipeline, structured content, persona simulation proof, graduation gate), moderation decision fields, contribution-type enum, "solved", sign-in, draft retention, minimal entity list, accessibility baseline |
+| `01a-lifecycle.md` | The lifecycle state classes and the transition table T00 to T22 (single owner; split from 01) |
 | `02-agent-rules.md` | Agent mandate, autonomy rules, unattended-run rule, founder-operated agent pipeline, first instruction |
 | `03-scope.md` | Canonical scope and non-goals, product definition, core outcome, initial release hypothesis |
 | `04-roles-stewardship.md` | Canonical platform roles, authorization, problem stewardship groups |
@@ -72,6 +73,9 @@ The Community Action Network (CAN) is an open-source platform where people turn 
 - **Resolution record:** the unranked archive entry for a solved, closed or redirected problem. It replaces an older name that implied ranking.
 - **Stuck:** documented effort hit a blocker; the blocker stays public. **Paused:** on hold with a reason and resume condition. Neither is terminal.
 - **Slice 1:** the smallest end-to-end build (`01`).
+- **Structured content:** no free-form posting; every content type is a structured response to a community-decided schema in the policy pack (D-58). **`DP-ASSUMPTIONS`** holds back wrong assumptions; **`DP-COMPLETENESS`** checks every required field is answered.
+- **Persona simulation:** AI persona agents drive lifecycles through the real pipeline on seeds 1 and 2 and red-team the policy pack (D-55). **Graduation criteria** decide when public participation opens (`docs/design/ai/simulation.md`).
+- **Seed problem:** a real framing with synthetic evidence, labelled "Seed problem, synthetic evidence"; Amsterdam (NL) is the first jurisdiction overlay (D-56).
 - **Seams:** the four decentralization hooks kept from the start: UUIDv7 ids, `origin_node_id`, `protocol_version`, append-only events with a nullable `prev_hash`.
 - **Policy pack:** a versioned bundle (semver plus content hash) in the planned `can_policy` repo: rules, one prompt template per decision point, labeled examples, eval sets, thresholds, with layers base, constitution, jurisdiction, local. Design: `../design/ai/policy-pack.md`.
 - **Decision point (`DP-*`):** a place where CAN would otherwise need human consensus, with a trigger, inputs, a policy section, an output and a mode (blocking or async). Catalog: `../design/ai/decision-points.md`.

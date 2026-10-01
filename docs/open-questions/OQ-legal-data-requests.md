@@ -13,7 +13,7 @@ Email addresses and moderation records could be demanded. A policy written after
 
 ## Current default (what we built meanwhile)
 
-No process yet. Slice 1 holds only fictional data. No real user data may be collected until a policy exists.
+No process yet. Slice 1 holds only synthetic seed data and no real participants until graduation (`SIM-GATE-1`). No real user data may be collected until a policy exists.
 
 ## Who can help
 

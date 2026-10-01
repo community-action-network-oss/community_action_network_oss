@@ -6,7 +6,7 @@ We think that is a design failure, not a law of nature. This project is an open-
 
 ## Where we are
 
-**Concept and scaffolding.** The specification, the constitution and the repositories exist. Nothing handles real problems yet. Everything you see is a plan, a fictional example, or a first piece of code. We say so plainly and we label anything not built as planned.
+**Concept and scaffolding.** The specification, the constitution and the repositories exist. Nothing handles real problems yet. Everything you see is a plan, a synthetic example, or a first piece of code. We say so plainly and we label anything not built as planned.
 
 ## The idea at the heart of it
 
@@ -17,6 +17,10 @@ Every open platform hits the same wall. The moment it grows, it needs an army of
 **Appeals make the rules better for everyone.** If you think a decision is wrong, you appeal. A second, independent check looks at it. If it is still disputed, randomly chosen people, who see only what they need to see, label it. That label becomes an example in the rulebook, so the same mistake does not happen to the next person. The change goes through a public review, is tried on past decisions to see what it would change, and is rolled out in stages. If a rule change affects something already published, the page says so and offers an appeal. Nothing disappears quietly.
 
 That is how an open platform can reach any scale without an army of moderators: more rules, better rules, and more agents to apply them, not more people judging posts one at a time. People make every rule. AI applies it, explains it and answers to appeal. Only real emergencies and legal matters go to a small team of people, and every action they take is logged.
+
+**Everything on CAN is structured, so every poster sees the whole situation before posting.** There is no blank box. Each kind of post is a short, guided form that the community designed in advance: what is happening, why, who is affected, how far it reaches, which lawful options exist, what is still uncertain, and what you are assuming. If a post rests on a wrong assumption, it is held with a note beside the field, so you can fix it before anyone else reads it. AI can help you fill the form in, and you always confirm it.
+
+**We prove it before people join.** CAN is being tried first by AI participants working through real problems, starting with two real ones in Amsterdam, with clearly synthetic evidence and no real people named. They submit, argue, propose, appeal and try to break the rules, so we find the flaws before anyone is let down by them. Public participation opens only when agreed criteria are met. Then the first people arrive to a platform that has already been tested hard.
 
 Today this is a design and a first build. The rulebook for the first version is approved by the founder, openly, until a community panel can take over, and the AI runs on test data. Nothing handles real problems yet.
 
@@ -45,6 +49,8 @@ Surface a public problem. Say who and where it affects. Contribute evidence and 
 - Real, solvable, bounded problems.
 - Progress is visible and trackable.
 - People make every rule. AI applies it, explains it and answers to appeal.
+- Everything is structured: no free-form posting, so every poster sees the whole situation first.
+- Proven first by AI participants on real problems with synthetic evidence, then opened to people.
 - The community writes and improves the moderation rules, and appeals improve them for everyone.
 - Location-aware and context-aware, built on a material connection to a problem, not only a postcode.
 - Law-aware: grounded in the constitution, laws and local rules that apply.
@@ -140,7 +146,7 @@ The platform never charges, sells, takes donations, holds balances, pays bountie
 
 ## Centralized first, decentralization later
 
-We start with one founder-hosted reference deployment so the first workflow can be proven and operated responsibly. From day one we keep the seams that let it spread later: globally unique identifiers, an origin for every record, and an append-only history. Federation, portability and independent nodes come after the first workflow works. We will not call it decentralized before it is.
+We start with one founder-run reference deployment, built to run on any container host, so the first workflow can be proven and operated responsibly. From day one we keep the seams that let it spread later: globally unique identifiers, an origin for every record, and an append-only history. Federation, portability and independent nodes come after the first workflow works. We will not call it decentralized before it is.
 
 ## Open source, and how to contribute
 

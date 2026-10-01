@@ -12,7 +12,7 @@ Minimum controls:
 - Rate limits, abuse detection, and anti-automation controls
 - CSRF, XSS, injection, SSRF, broken access control, and dependency protections
 - Append-only or tamper-evident audit strategy for consequential events
-- Backup, restore, disaster recovery, and deletion testing
+- Backup, restore, disaster recovery, and deletion testing. Portability is tested too (D-57, `11-architecture.md`): each service builds a production image, boots from its documented environment contract alone, answers health checks, and restores from a backup in CI
 - Privacy-preserving logs and analytics
 - Coordinated vulnerability disclosure process before broad launch
 
@@ -54,6 +54,9 @@ Maintain a layered test suite. This section lists categories only. The detailed 
 - Integration tests for database, jobs, storage and adapters; contract tests for the API and policy schemas
 - End-to-end tests for each critical user journey (slice 1: the script in `01-slice-1-brief.md`)
 - Moderation evaluation sets, including multilingual and adversarial cases
+- Persona simulation (D-55): AI personas drive full lifecycles on seeds 1 and 2 through the real pipeline on `FakeModel` in CI (live persona runs are founder-gated); graduation criteria gate public participation (`SIM-GATE-1`, `docs/design/ai/simulation.md`)
+- Schema tests: every content type validates against its ratified schema; `DP-COMPLETENESS` and `DP-ASSUMPTIONS` have labeled eval sets (`STRUCT-ONLY-1`)
+- Portability tests: production image build, env-contract boot, health checks, backup and restore
 - Accessibility checks, security scanning, dependency review and authorization tests (horizontal and vertical privilege escalation)
 - Migration, backup, restore, export and deletion tests; load and resilience tests before broad launch
 - Systemic-accountability suites, once those features exist: provenance, contradiction, correction and tamper-evident timeline; responsibility attribution and term boundaries; public-asset permission and unsafe-action; mass participation, duplicate-report and brigading

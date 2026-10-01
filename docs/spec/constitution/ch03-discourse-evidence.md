@@ -27,7 +27,7 @@ The platform is not a speculation, personality, trial, or defense forum. It neve
 
 Discussion stays on structural conditions, institutional responsibilities, verifiable procedures and outcomes, root causes, safeguards and incentives, lawful routes, and implementation and verification. Where an individual legal case matters, competent authorities handle identifiable evidence, and the platform asks only what it reveals about systems.
 
-Rules: NAME-1
+Rules: NAME-1, TONE-1
 
 ### III.3 EXTERNAL-EVIDENCE: External and restricted evidence
 *Status: Drafted (Art 55); Decided (Art 61) · Old: Art 55, 61 · First phase: S1-min, P7*

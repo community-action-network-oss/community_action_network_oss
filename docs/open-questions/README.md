@@ -35,7 +35,7 @@ Copy any existing file. Keep the same headings. Night or agent runs add question
 |---|---|
 | [OQ-license](OQ-license.md) | Resolved, MIT (D-49): which license should each repository carry? |
 | [OQ-domain](OQ-domain.md) | What public name and domain should the project use? |
-| [OQ-launch-jurisdiction-language](OQ-launch-jurisdiction-language.md) | Where and in what language does the first real pilot run? |
+| [OQ-launch-jurisdiction-language](OQ-launch-jurisdiction-language.md) | Amsterdam is the seed overlay (D-56): is it also the pilot place, and in what language? |
 | [OQ-promo-interest-channel](OQ-promo-interest-channel.md) | How can a visitor register interest without handing over personal data? |
 | [OQ-emergency-routing](OQ-emergency-routing.md) | Which emergency and crisis resources are shown, per jurisdiction? |
 | [OQ-eligible-categories](OQ-eligible-categories.md) | Which kinds of public problem are eligible, and which are excluded? |
@@ -43,7 +43,7 @@ Copy any existing file. Keep the same headings. Night or agent runs add question
 | [OQ-location-verification](OQ-location-verification.md) | How is a person's connection to an area established and shown? |
 | [OQ-decision-method](OQ-decision-method.md) | How are solutions selected, and how are stewardship groups formed? |
 | [OQ-legal-policy-reviewers](OQ-legal-policy-reviewers.md) | Who can review and approve jurisdiction policy packs? |
-| [OQ-hosting-region](OQ-hosting-region.md) | Where is the first deployment hosted, and which email provider sends sign-in codes? |
+| [OQ-hosting-region](OQ-hosting-region.md) | Where is the first deployment hosted (undecided, but portable, D-57), and which email provider sends sign-in codes? |
 | [OQ-draft-ttl](OQ-draft-ttl.md) | Are the draft retention numbers right? |
 | [OQ-unsupported-language](OQ-unsupported-language.md) | What happens to submissions in unsupported languages, and which languages come after English? |
 | [OQ-legal-data-requests](OQ-legal-data-requests.md) | How does the project answer legal or government requests for data? |
@@ -74,5 +74,14 @@ Copy any existing file. Keep the same headings. Night or agent runs add question
 | [OQ-replay-diff-sample-size](OQ-replay-diff-sample-size.md) | How large must a replay diff sample be? |
 | [OQ-label-task-panel](OQ-label-task-panel.md) | How big is a label-task panel, and how is it randomized? |
 | [OQ-bias-monitoring](OQ-bias-monitoring.md) | How is moderation bias monitored across jurisdictions? |
+| [OQ-content-schema-design](OQ-content-schema-design.md) | Who designs the v1 content schemas, and how are they kept sound? |
+| [OQ-graduation-criteria](OQ-graduation-criteria.md) | Are graduation criteria G1 to G13 the right bar for opening public participation? |
+| [OQ-persona-realism-bias](OQ-persona-realism-bias.md) | How realistic and how unbiased are the AI personas? |
+| [OQ-reremoderation-grace](OQ-reremoderation-grace.md) | How long is the grace period when a policy change flips a published item? |
+| [OQ-lane-oversight](OQ-lane-oversight.md) | Who oversees the emergency and legal lane? |
+| [OQ-amsterdam-overlay-review](OQ-amsterdam-overlay-review.md) | Who reviews the Amsterdam overlay, and which local partners help? |
+| [OQ-steward-entity-grants](OQ-steward-entity-grants.md) | May a steward entity receive grants without breaking the non-monetary rule? |
+| [OQ-mera-disclosure](OQ-mera-disclosure.md) | Must hosting or links from Mera be disclosed? |
+| [OQ-limits](OQ-limits.md) | What per-account limits apply to posting and appeals? |
 
 Related: [spec index](../spec/00-index.md), [constitution](../spec/constitution/README.md), [decision log](../../DECISIONS.md), [design](../design/), [ADRs](../adr/).

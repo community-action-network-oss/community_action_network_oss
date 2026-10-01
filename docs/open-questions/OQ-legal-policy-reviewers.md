@@ -13,7 +13,7 @@ A policy pack states what is lawful to discuss and do. Without qualified review 
 
 ## Current default (what we built meanwhile)
 
-No real pack exists. The fictional jurisdiction uses a rule set written by the project and marked as fictional.
+No real pack exists. The Amsterdam (NL) overlay is a rule set drafted by the project from public sources and marked unreviewed (`OQ-amsterdam-overlay-review`).
 
 ## Who can help
 

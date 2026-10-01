@@ -1,0 +1,59 @@
+# Lifecycle states and transition table
+
+This file is the **single owner** of the problem lifecycle: state classes, the transition table (T00 to T22), and the rules that apply to the table. It was split out of `01-slice-1-brief.md` section 4 to keep both files under 25KB. Link here for the table; never copy it elsewhere. The slice-1 brief still owns the defaults, the moderation decision fields (its section 5), the contribution-type enum and the entity list. The structured fields each transition requires are defined by the content schemas in the policy pack (`05-lifecycle-participation.md`, D-58); the "required fields" column below is the minimum the server enforces.
+
+## 4.1 State classes
+
+- **Pre-publication (private):** `draft`, `submitted`, `needs_revision`.
+- **Working (public):** `eligible`, `solution_development`, `solution_selection`, `implementation`, `verification`.
+- **Resting (public, not terminal):** `paused`, `stuck`.
+- **Terminal:** `solved`, `closed`, `redirected`, `withdrawn` (public, T21); `rejected`, `withdrawn` before publication (private).
+
+Notes on the model:
+
+- `automated_review` is a synchronous check inside T01, not a state. A hard failure keeps the problem in `draft` with field hints and creates no moderation decision.
+- `eligible` means the moderation run passed it and the problem is published. In slice 1 it is also the discovery stage. `discovery` and `root_cause_analysis` split out later.
+- `appealed` is not a state. An appeal attaches to a moderation decision (section 5).
+- `investigation_needed` is not a state or a tier. It is a **derived flag**, true when the strongest evidence tier on a published problem is below the investigation threshold. Evidence tiers are defined in the constitution (Constitution III.4, `EVIDENCE-TIERS`).
+- `paused` is not terminal: it requires a reason and a resume condition. `stuck` means documented effort has hit a blocker; it is the public "accountable unresolved record".
+- Reopening terminal states is deferred. Pre-publication states are visible only to the initiator and the emergency/legal lane.
+- Invalid transitions fail atomically. Every transition writes a `problem_event` (actor, time, from, to, reason, evidence ids) in the same transaction.
+- `W` below means any working state: `eligible`, `solution_development`, `solution_selection`, `implementation`, `verification`.
+- "Proposes / decides": the initiator (provisional steward) records a pending transition; the moderation run applies the policy and confirms or declines it, citing rule ids. No human confirms an ordinary transition. `escalate_human` (emergency, crisis, law enforcement) goes to the logged emergency/legal lane.
+- Decision points are the `DP-*` ids in the table (fourteen in slice 1, including `DP-ASSUMPTIONS` and `DP-COMPLETENESS`; catalog: `docs/design/ai/decision-points.md`). Outcomes: `publish`, `needs_revision`, `reject`, `route_external`, `hold` (fail closed), `escalate_human`.
+
+## 4.2 Transition table
+
+| id | from | to | actor | required fields | side effects | public label | plain explanation | next action |
+|---|---|---|---|---|---|---|---|---|
+| T00 | (none) | draft | initiator | none | autosaved locally; saved to the server once signed in; no event until T01 | Draft | "Only you can see this. Nothing is shared until you submit." | Submit when ready, or discard (T22). |
+| T01 | draft | submitted | initiator | the problem form completed against the current problem schema version (every required field answered, including assumptions and uncertainty): title, structural statement, affected scope, coarse area, 1+ evidence URL or a "no evidence yet" note, no-identifiers confirmation; synchronous checks pass | checks run (identifiers and contact details, secrets, URL scheme, length, language script, repost fingerprint); version snapshot; event; fingerprint stored; blocking moderation run starts (fails closed to `hold`) | Awaiting review | "Your problem is being checked against the community's published rules. Nothing is public yet." | Edit or withdraw while you wait. |
+| T02 | submitted | needs_revision | moderation run (`DP-COMPLETENESS`, `DP-ASSUMPTIONS`, `DP-FRAMING`, `DP-PRIVACY`, `DP-NAMING`, `DP-TONE`, `DP-CONTRIB-RELEVANCE`) | moderation decision (rule_ids, field refs, revision hints, appealable_until) | email to initiator; draft kept; hints shown beside fields | Changes requested | "The review asked for changes before this can be published. Each note names the rule and sits next to the part it is about." | Edit the marked fields and resubmit. |
+| T03 | needs_revision | submitted | initiator | at least one flagged field changed | new version snapshot; checks re-run; hints marked addressed | Awaiting review | "Your changes are back in review." | Wait for the decision email. |
+| T04 | submitted | eligible | moderation run (`DP-ELIGIBILITY`, `DP-COMPLETENESS`, `DP-ASSUMPTIONS`, `DP-PRIVACY`, `DP-FRAMING`, `DP-DUPLICATE`, `DP-NAMING`, `DP-TONE`, `DP-EVIDENCE-TIER`) | decision with rule_ids; jurisdiction; `investigation_needed` flag computed | published; handle shown; initiator becomes provisional steward; guests can read; email to initiator; fingerprint purged | Open: gathering facts | "The community's rules were applied and this was published. Anyone can now ask questions and add evidence." | Add evidence or answer questions. |
+| T05 | submitted | rejected | moderation run (same `DP-*` set; `DP-CRISIS` routes to the emergency/legal lane) | decision with rule_ids, public explanation, optional revision hint, appealable_until | email; deletion date = decision date + 30 days shown to initiator; fingerprint kept 90 days | Not accepted | "This was not accepted, for the reasons given. Your text is deleted on the date shown." | Appeal before the date shown, or copy your text and start a new draft. |
+| T06 | submitted | withdrawn | initiator | none (reason optional) | deletion date + 30 days; fingerprint kept 90 days | Withdrawn | "You withdrew this. It was never public." | Start a new draft if you wish. |
+| T07 | needs_revision | withdrawn | initiator, or system after 30 days without activity (reminder at day 23) | none | as T06 | Withdrawn | "Withdrawn by you, or after 30 days without changes." | Start a new draft. |
+| T08 | eligible | solution_development | initiator | stage summary: what is established, what is disputed; 1+ evidence URL or a documented missing-evidence note | event | Open: developing solutions | "Enough is known to start proposing fixes." | Add proposals. |
+| T09 | solution_development | solution_selection | initiator | 2+ proposals each with mechanism, success metric, risks and verification plan, or 1 proposal plus a documented "no alternatives" note | event | Open: choosing a solution | "Proposals are ready to compare." | Review the proposals and the decision. |
+| T10 | solution_selection | solution_development | initiator | reason (new information or objection) | event | Open: developing solutions | "New information reopened the options." | Revise or add proposals. |
+| T11 | solution_selection | implementation | initiator, gated by moderation run (`DP-DECISION-RECORD`, `DP-LEGALITY`) | decision record: chosen proposal, method, rationale, decider, authority, dissent notes (optional); legal-gate check record (`LEGAL-GATE-1`); 1+ task | decision record published; tasks visible | In progress | "A solution was chosen and the reason is on record. Work is being tracked." | Claim a task. |
+| T12 | implementation | verification | initiator | all required tasks done or dropped with a reason; verification plan present | event | Checking the result | "Work is done. People are checking whether it fixed the problem." | Add verification evidence. |
+| T13 | verification | implementation | initiator or moderation run (`DP-VERIFICATION`) | failed-check note with evidence | event; new tasks allowed | In progress | "The check showed more work is needed." | Pick up the new tasks. |
+| T14 | verification | solved | initiator proposes, moderation run decides (`DP-VERIFICATION`, `DP-EVIDENCE-TIER`) | verification evidence (1+ URL tagged `verification_evidence`) and an outcome statement against the chosen proposal's success metric | Resolution record created; followers emailed; policy version shown | Solved | "The rules for evidence were applied and the result matches the goal, using the evidence shown." Decided under policy vX. | Read the Resolution record. |
+| T15 | W | stuck | initiator or moderation run (`DP-LEGALITY`) | blocker statement (the blocking constraint), its source and version, blocked actions, recheck condition (the review date), next lawful escalation route, 1+ documented attempt (task, evidence or the legal-gate record) | event; blocker shown publicly | Stuck | "Documented work hit a blocker. The blocker and the next route are shown." | Follow the escalation route or add information. |
+| T16 | stuck | implementation | initiator or moderation run (`DP-LEGALITY`) | blocker-cleared note with evidence | event | In progress | "The blocker was cleared." | Continue the tasks. |
+| T17 | W | paused | initiator or moderation run | reason code, resume condition, review date (default at most 90 days) | stores the state to resume; event | Paused | "On hold: [reason]. Resumes when: [condition]." | Wait, or meet the condition. |
+| T18 | paused | resume state | initiator or moderation run | resume-condition-met note | event | (previous label) | "The condition for resuming was met." | Continue. |
+| T19 | W, paused or stuck | closed | initiator proposes, moderation run decides (`DP-DUPLICATE`, `DP-ELIGIBILITY`) | reason code (duplicate, invalid, out of scope, no longer relevant, initiator request, rule violation), plain explanation; `duplicate_of` if duplicate | Resolution record (closed); policy version shown; followers emailed | Closed | "Closed because: [reason]." Decided under policy vX. | Read the reason; appeal if you disagree. |
+| T20 | W, paused or stuck | redirected | initiator proposes, moderation run decides (`DP-ELIGIBILITY`, `DP-CRISIS`; emergency channel via the emergency/legal lane) | destination (institution, partner project or emergency channel) and route text, reason | Resolution record (redirected); policy version shown | Redirected | "This is better handled by [destination]. Their route is shown." | Use the route shown. |
+| T21 | W | withdrawn | initiator, only if no other account has an accepted contribution | none (reason optional) | problem kept visible as withdrawn; initiator text tombstoned (`OWN-1`) | Withdrawn | "The person who raised this withdrew it before anyone else took part." | Start a new problem if you wish. |
+| T22 | draft | (deleted) | initiator | none | draft removed immediately; no event | n/a | A never-submitted draft is just discarded. | n/a |
+
+Rules that apply to the table:
+
+- **Withdrawal after publication** (T21) only while nobody else has an accepted contribution. After that the initiator can only tombstone their own text (`tombstoned_at`) or ask for closure with reason "initiator request" (T19). The initiator owns nothing (`OWN-1`).
+- **Pause review:** when the review date passes, the system queues a re-check by the moderation run and notifies the initiator. It never changes state by itself.
+- **Appeals** change state only through the effects in section 5.
+- **Re-moderation after a policy change** can flip an outcome on a published problem. It never removes silently: the page shows "re-reviewed under policy vX", the reason and an appeal path (`REMOD-NOTICE-1`).
+- Public labels are the exact chip text; explanations appear on the problem page and in the email. Labels never use red.

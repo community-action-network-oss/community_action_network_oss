@@ -5,7 +5,7 @@
 
 ## Question
 
-For each decision point (`DP-ELIGIBILITY`, `DP-PRIVACY`, `DP-FRAMING`, `DP-DUPLICATE`, `DP-CONTRIB-RELEVANCE`, `DP-TONE`, `DP-NAMING`, `DP-LEGALITY`, `DP-DECISION-RECORD`, `DP-VERIFICATION`, `DP-CRISIS`, `DP-EVIDENCE-TIER`), below what confidence does a run hold or escalate instead of deciding? This replaces `OQ-moderation-confidence-threshold`.
+For each decision point (`DP-ELIGIBILITY`, `DP-PRIVACY`, `DP-FRAMING`, `DP-DUPLICATE`, `DP-CONTRIB-RELEVANCE`, `DP-TONE`, `DP-NAMING`, `DP-LEGALITY`, `DP-DECISION-RECORD`, `DP-VERIFICATION`, `DP-CRISIS`, `DP-EVIDENCE-TIER`, `DP-ASSUMPTIONS`, `DP-COMPLETENESS`), below what confidence does a run hold or escalate instead of deciding? This replaces `OQ-moderation-confidence-threshold`.
 
 ## Why it matters
 

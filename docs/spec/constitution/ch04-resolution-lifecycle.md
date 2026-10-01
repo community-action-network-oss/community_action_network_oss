@@ -1,6 +1,6 @@
 # Chapter IV. Resolution and lifecycle
 
-Binds slice 1 in part. Rewritten from Arts 4-14, 16-17, 21-22, 24, 30, 37, 46. The state and transition table is owned by `01-slice-1-brief.md`. This chapter holds principles only.
+Binds slice 1 in part. Rewritten from Arts 4-14, 16-17, 21-22, 24, 30, 37, 46. The state and transition table is owned by `01a-lifecycle.md`. This chapter holds principles only.
 
 ### IV.1 CONTRIBUTION-FRAMING: Contributions and contestable framing
 *Status: Position · Old: Art 4, 5 · First phase: S1*
@@ -11,12 +11,14 @@ The platform distinguishes: lived experience; local knowledge; factual claims an
 
 A submitter may define the initial problem but not permanently define reality, causation, affected populations, or the solution space. Contributions are typed so observations, interpretations, desired outcomes, causal hypotheses, and proposed solutions stay separate. Participants may challenge the framing with reasons and evidence. In slice 1 the only link between problems is `duplicate_of`.
 
-Rules: none yet.
+**Structured content (D-58).** CAN has no free-form posting. Every content type (problem, contribution, proposal, decision record, task and verification, appeal, policy proposal) is a structured response to a schema the community decided in advance and ratified in the policy pack. A schema makes the poster confront the whole situation before posting: facts, causes, affected people, scope, lawful options, uncertainty and explicit assumptions. The decision points `DP-COMPLETENESS` and `DP-ASSUMPTIONS` check that every required field is meaningfully answered and hold back posts built on incorrect factual, causal, legal or scope assumptions, returning `needs_revision` with hints beside fields. AI may help fill fields; the poster confirms. Schemas change only through a policy proposal.
+
+Rules: STRUCT-ONLY-1, SCHEMA-1, AI-ASSIST-1, ASSUMP-1, COMPLETE-1, FRAME-1, DUP-1, RELEVANCE-1, SOLUTION-ONLY-1
 
 ### IV.2 SCOPE-AFFECTED: Scope, affected people, anti-gerrymandering, minorities
 *Status: Decided (Art 11); Drafted (Art 12, 13); Position (Art 14) · Old: Art 11, 12, 13, 14 · First phase: S1-min, P3*
 
-Impact is not only geographic. A problem distinguishes subject, direct-impact, indirect-impact, geographic, legal-jurisdiction, implementation-authority, visibility, contribution, and decision-participation scope. Slice 1 records geography and jurisdiction only, inside one fictional jurisdiction.
+Impact is not only geographic. A problem distinguishes subject, direct-impact, indirect-impact, geographic, legal-jurisdiction, implementation-authority, visibility, contribution, and decision-participation scope. Slice 1 records geography and jurisdiction only, inside one jurisdiction overlay, Amsterdam (NL), on synthetic seed evidence.
 
 - Scope decisions are reasoned, versioned, contestable, appealable, and revisable. No submitter, administrator, majority, government, supporter, or model may include or exclude populations to engineer a result.
 - Affected people include those with material direct or indirect consequences: people outside the geography, absent stakeholders, vulnerable groups, future generations, and ecological interests. Weigh severity, concentration, directness, duration, reversibility, ability to avoid the impact, vulnerability, responsibility for implementation, and relevant expertise.
@@ -32,7 +34,7 @@ Every solution is an option and every implementation is an experiment. The ladde
 
 A problem is never marked solved by concealing, externalizing, or unjustly transferring material harm to another person, community, generation, or ecosystem. Before implementation a proposal discloses benefits, uncertainty, risks, affected parties, cost distribution, alternatives, success criteria, monitoring, mitigation, stopping conditions, and rollback. Experiment scale is proportionate to the problem and the evidence. High-uncertainty interventions are limited and reversible where possible. Irreversible ones need stronger evidence, authority, consent, and review.
 
-Rules: none yet.
+Rules: DECISION-REC-1
 
 ### IV.4 STATUS-VERIFICATION: Horizons, status, verification
 *Status: Decided (Art 6); Drafted (Art 9, 17) · Old: Art 6, 9, 17 · First phase: S1-min, P4*
@@ -43,7 +45,7 @@ Status is multidimensional, never one `solved` label. Record separately: immedia
 
 Work does not end at generated guidance. The platform tracks, with the participants' consent, the proposal chosen, implementation start, progress and blockers, reported outcome, independent verification, recurrence, and unknown or abandoned outcomes. A generated answer is not a solved problem.
 
-Rules: none yet.
+Rules: VERIFY-1, STAGE-1, BLOCKER-1, CLOSE-1
 
 ### IV.5 LAW-GATE-STUCK: Law and reform tracks, the legality gate, and stuck
 *Status: Decided · Old: Art 10, 21 · First phase: P4, S1*
@@ -54,7 +56,7 @@ If law blocks a valid resolution, the problem enters a visible `stuck` state and
 
 Current law and legal reform are separate tracks. The platform distinguishes what law permits, disputed interpretation, constitutional or judicial challenge, policy reform, legislative reform, moral or rights-based criticism, and operational facilitation of unlawful conduct. It supports lawful challenge, advocacy, consultation, petitions, elections, and peaceful participation. Reform workflows are jurisdiction-specific, source-backed, versioned, and reviewed. An LLM's legal reading is never presented as legal advice.
 
-Rules: LEGAL-GATE-1
+Rules: LEGAL-GATE-1, LEGAL-LANE-1
 
 ### IV.6 LEGAL-SOURCES: Legal sources
 *Status: Drafted · Old: Art 24, 37 · First phase: S1-min, P5*

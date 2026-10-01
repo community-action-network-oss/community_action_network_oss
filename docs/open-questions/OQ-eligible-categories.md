@@ -13,7 +13,7 @@ It decides what the moderation run accepts, what users see in the form, and whic
 
 ## Current default (what we built meanwhile)
 
-A placeholder list for fictional data: public services, infrastructure, environment, safety, accessibility. Exclusions follow the scope rule (no individual advice, no emergencies, no named private people).
+A placeholder list for the seed problems (synthetic evidence): public services, infrastructure, environment, safety, accessibility. Exclusions follow the scope rule (no individual advice, no emergencies, no named private people).
 
 ## Who can help
 

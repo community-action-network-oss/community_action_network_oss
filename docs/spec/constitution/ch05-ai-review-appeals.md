@@ -65,7 +65,9 @@ A successful or disputed appeal does not edit a decision by hand, and it does no
 
 Before use, a candidate example needs privacy review and redaction, independent extra labeling, coordination and poisoning checks, failure analysis, regression tests, disparate-impact evaluation, and formal approval. An unsuccessful good-faith appeal carries no penalty, and penalties need separate evidence of deliberate abuse. Appeal outcomes write nothing to grounding tables directly. Design: `docs/design/ai/amendment-loop.md`, `docs/design/ai/appeals.md`.
 
-Rules: APPEAL-1
+**Simulation before public (D-55).** The first red team of a policy pack is AI personas (submitters, contributors, proposers, appellants, adversaries) driving full lifecycles through the real pipeline on seed problems with synthetic evidence. Their findings feed this loop like any other proposal. Public participation opens only after graduation criteria, agreed in advance, pass on the simulation (`docs/design/ai/simulation.md`). CI personas run on `FakeModel`; live persona runs are founder-gated.
+
+Rules: APPEAL-1, SIM-GATE-1, SIM-LABEL-1, SIM-NOSECRET-1
 
 ### V.6 DISTRIBUTED-REVIEW: Distributed review: label tasks and ratification panels
 *Status: Decided (Art 23); Drafted (Art 32) · Old: Art 23, 32 · First phase: S1, P5*

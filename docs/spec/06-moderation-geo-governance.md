@@ -57,7 +57,7 @@ The system must distinguish:
 - Legal jurisdiction
 - Service availability region
 
-Do not infer legal jurisdiction solely from GPS coordinates. Handle overlapping municipal, regional, national, and supranational rules. Record the source, effective dates, authority, reviewer, and version of every legal policy pack. The launch jurisdiction and the location-verification model are open questions (`docs/open-questions/OQ-launch-jurisdiction-language.md`, `OQ-location-verification.md`). Slice 1 uses one fictional jurisdiction and a self-declared coarse area, for display only.
+Do not infer legal jurisdiction solely from GPS coordinates. Handle overlapping municipal, regional, national, and supranational rules. Record the source, effective dates, authority, reviewer, and version of every legal policy pack. The launch jurisdiction and the location-verification model are open questions (`docs/open-questions/OQ-launch-jurisdiction-language.md`, `OQ-location-verification.md`). Slice 1 uses the Amsterdam (NL) overlay for seed problems with synthetic evidence (D-56) and a self-declared coarse area, for display only.
 
 ## 11. Preparation paths and solved-problem playbooks
 

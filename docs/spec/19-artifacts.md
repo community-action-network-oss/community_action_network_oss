@@ -10,7 +10,7 @@ An index of the documents and living records the project maintains, version-cont
 | Decision log | `DECISIONS.md` | 0B | exists |
 | Architecture decision records (Expo, gluestack on UniWind, NestJS, PostgreSQL, Drizzle, three submodules, server-owned OpenAPI, Next.js gallery, email-code auth, web-first verification, live AI only behind the founder gate) | `docs/adr/` | 0B | exists |
 | Architecture overview, diagrams, slice-1 ERD, API surface, auth flow, test strategy | `docs/design/` | 0B | exists |
-| Domain glossary and state machines | `00-index.md` (glossary), `01-slice-1-brief.md` (state table) | 0B | exists |
+| Domain glossary and state machines | `00-index.md` (glossary), `01a-lifecycle.md` (state table) | 0B | exists |
 | Data model and data classification | `10-data-model.md`, `docs/design/` | 1 | exists (model), planned (classification) |
 | Constitution, rule registry, article map | `docs/spec/constitution/` | 0B | exists |
 | API contract | `can_server/openapi/openapi.json` (generated) | 1 | planned |

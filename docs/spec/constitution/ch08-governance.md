@@ -68,6 +68,6 @@ The enablement checklist should cover:
 
 Readiness is not permanent. It expires, is periodically reviewed, and may be partially deactivated when sources, providers, laws, or safety conditions deteriorate.
 
-Slice 1 carries one fictional jurisdiction with a stub readiness record. Until a quorum exists, the readiness review is performed by the transitional steward (VIII.2).
+Slice 1 carries one jurisdiction overlay, Amsterdam (NL), with a stub readiness record. Until a quorum exists, the readiness review is performed by the transitional steward (VIII.2).
 
 Rules: none yet.

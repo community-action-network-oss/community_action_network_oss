@@ -13,7 +13,7 @@ The lane can act on emergency and legal cases, auditors see sampled decisions, a
 
 ## Current default (what we built meanwhile)
 
-The same email code as everyone, with every privileged action audited. Acceptable only on fictional data.
+The same email code as everyone, with every privileged action audited. Acceptable only before graduation, on synthetic seed data.
 
 ## Who can help
 

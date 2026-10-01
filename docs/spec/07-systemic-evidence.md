@@ -1,6 +1,6 @@
 ## 6A. Systemic problems, public evidence, and accountable implementation
 
-**Status:** the problem graph, claim ledger, blocker ledger and the rest of this file are Phase 7 design (`18-phases-gates.md`). Slice 1 has `evidence_ref` (URL only), `duplicate_of` as the only link type, and an append-only event table with a nullable `prev_hash` (`01-slice-1-brief.md`). Systemic-hypothesis detection waits for the graph.
+**Status:** the problem graph, claim ledger, blocker ledger and the rest of this file are Phase 7 design (`18-phases-gates.md`). Slice 1 has `evidence_ref` (URL only), `duplicate_of` as the only link type, and an append-only event table with a nullable `prev_hash` (`01-slice-1-brief.md`). Systemic-hypothesis detection waits for the graph. Seed problems 3 (continuous AI capability risk) and 4 (climate change) are parent problems that need this graph: they decompose into bounded child problems, and they wait until the graph exists (D-56).
 
 ### Evidence tiers and `investigation_needed`
 

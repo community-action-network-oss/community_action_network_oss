@@ -20,6 +20,17 @@ Rules:
 - API responses that return lists use `{ items: [...] }`.
 - Tooling: npm only, Node 24 LTS (`engines.node >= 24`, no `.nvmrc`). Postgres and Mailpit run through docker compose for local development (Postgres on host port 5433). Ports: API 4000, Expo web 8081, gallery 3000.
 
+### Portable hosting (D-57)
+
+Where CAN runs is undecided (`docs/open-questions/OQ-hosting-region.md`); GCP was an early lean, not a decision. Every service must therefore be portable to any container host. Provisioning and any provider choice stay founder-gated plan units. Requirements for each service (`can_server`, `can_gallery`, any worker, and later the policy loader):
+
+- A **production Docker image**: multi-stage, non-root, pinned base, no dev tooling, reproducible from the repo.
+- An **environment-variable contract**: every setting documented with name, type, default and whether it is a secret; the service fails at start with a clear message if a required value is missing. No provider-specific SDK is required to boot.
+- **Health checks**: liveness and readiness endpoints (readiness covers the database and the loaded policy pack version).
+- **Backup and restore**: a documented, tested path for Postgres and any stored object, with a restore drill in CI against a fixture (`16-security-a11y-ops-testing.md`).
+- **Stateless processes** apart from Postgres and object storage; configuration only through the environment; migrations run as an explicit step.
+- The policy pack is loaded by version and hash from a path or URL given in the environment, not baked in.
+
 ### Approved implementation baseline
 
 The approved default is a universal TypeScript platform with an Expo frontend and a NestJS backend. Treat this as the implementation baseline rather than reopening the framework decision during Phase 0. The engineering team may propose a change only through an architecture decision record that demonstrates a material security, accessibility, operability, performance, licensing, or maintenance advantage and includes migration and rollback consequences.
@@ -67,7 +78,7 @@ Backend defaults:
 - A generated TypeScript API client in `can_app` (and in approved integrations)
 - Server-Sent Events or WebSockets only for workflows that demonstrably require live updates
 - OpenTelemetry-compatible logs, metrics, and traces
-- Containerized local and deployment environments (docker compose for Postgres and Mailpit locally)
+- Containerized local and deployment environments (docker compose for Postgres and Mailpit locally; portable production images per the section above)
 
 The backend remains authoritative for authentication, authorization, lifecycle transitions, moderation status, evidence visibility, stewardship permissions, responsibility attribution, commitment status, audit events, and every consequential mutation. The client may provide optimistic presentation only where rollback is safe and the server remains final.
 

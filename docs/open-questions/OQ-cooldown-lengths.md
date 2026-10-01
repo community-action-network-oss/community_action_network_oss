@@ -15,6 +15,8 @@ A flat wait punishes everyone. A well-aimed delay calms a heated exchange.
 
 2 minutes between contributions by one account on one problem; 10 minutes after a rejected contribution on that problem; none for progress updates and verification evidence.
 
+Per-account volume limits (problems, contributions, proposals, drafts, appeals) are in `OQ-limits`.
+
 ## Who can help
 
 Community managers; behavioural researchers; UX researchers.

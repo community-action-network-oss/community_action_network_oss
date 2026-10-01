@@ -2,7 +2,7 @@
 
 This is the **canonical** phase list. The timing table is under "Indicative timing" below. Phase contents that are specified elsewhere link there instead of repeating.
 
-**Slice 1** (`01-slice-1-brief.md`) is a cut across phases 1 to 4: invite-only intake, review, typed contributions, proposals, decisions, tasks, verification and appeals on fictional data. It has no playbooks, governance issues or problem graph. Those stay in the phases below.
+**Slice 1** (`01-slice-1-brief.md`) is a cut across phases 1 to 4: invite-only intake, review, typed contributions, proposals, decisions, tasks, verification and appeals, all as structured content (D-58). **The phase structure is simulation first, then public (D-55, D-56):** (1) build the slice and run AI persona agents on seeds 1 and 2 (real Amsterdam framings, synthetic evidence) through the real pipeline, red-teaming the policy pack; (2) public participation opens only when the graduation criteria pass (`SIM-GATE-1`, `docs/design/ai/simulation.md`); (3) seeds 3 and 4 follow the problem graph (`07-systemic-evidence.md`, Phase 7). It has no playbooks, governance issues or problem graph. Those stay in the phases below.
 
 ### Phase 0A: Public concept and founding contributor page
 
@@ -65,13 +65,14 @@ Phase 0A acceptance criteria:
 
 ### Phase 2: Safe public problem intake
 
-- Non-identifying structural problem submission
+- Non-identifying structural problem submission through the problem schema (no free-form posting; `DP-COMPLETENESS`, `DP-ASSUMPTIONS`)
 - Evidence tiers and the derived `investigation_needed` flag
 - Geography, affected-population, and jurisdiction scoping
 - Role-alias and privacy controls
 - Duplicate detection (`duplicate_of` is the only link type until the problem graph in Phase 7). Systemic-hypothesis detection waits for Phase 7
 - **The AI moderation pipeline is part of the first vertical slice (D-51, D-53):** the privacy gateway, decision points (`DP-*`), moderation runs before publication, on every update and after publication, run records, `FakeModel` plus recorded responses, and the live provider behind the founder gate (`14`, `15`)
 - Emergency and legal lane, audit sampling and label-task tooling
+- **Persona simulation harness (D-55):** persona agents (submitters, contributors, proposers, appellants, adversaries) on seeds 1 and 2; red-team findings feed the amendment loop; graduation criteria are the gate to public participation
 - Explanations, revision, withdrawal, and appeals (the appeal-to-example loop)
 
 ### Phase 3: Structured resolution
@@ -101,7 +102,7 @@ Phase 0A acceptance criteria:
 - Accessibility and localization audit
 - Adversarial moderation and abuse testing
 - Security review and incident drills
-- Backup and restore verification
+- Backup and restore verification (portable images, D-57)
 - Pilot analytics, feedback, and launch checklist
 
 ### Phase 7: Systemic accountability and mass participation
@@ -168,7 +169,7 @@ The phases above are the canonical sequence; this table only adds time. It is a 
 | Months | Phases | What it proves |
 |---|---|---|
 | 0 to 2 | 0A, 0B | The project is legible: concept page, charter, governance and contribution documents, a pilot problem and jurisdiction chosen (open questions), license decided (MIT, D-49), low-fidelity UX, domain model, threat model, repository, tests and CI. |
-| 3 to 5 | 1 to 4 (slice 1) | The vertical slice runs on fictional data: intake, evidence tiers, workspace, typed contributions, proposals and decisions, implementation tracking, verification, moderation and appeals, accessibility testing, fictional example problems. |
+| 3 to 5 | 1 to 4 (slice 1) | The vertical slice runs end to end and the persona simulation graduates on seeds 1 and 2 (real framings, synthetic evidence, Amsterdam overlay): structured intake, evidence tiers, workspace, typed contributions, proposals and decisions, implementation tracking, verification, moderation and appeals, accessibility testing. Public participation opens only after graduation. |
 | 6 to 8 | 6 (hardening and pilot) | A controlled pilot with a small real community. Observe the whole journey, record failures and confusion, measure whether the workflow produces meaningful action, publish transparent findings, and correct the workflow before expanding. |
 | 9 to 12 | growth; 5 and 7 as capacity allows | Grow maintainership: onboard independent maintainers, formalize justified working groups, publish protocol version `0.1`, release contributor-focused resources, support a second controlled deployment, begin interoperability experiments. Establish a maintainer council only if the contributor base supports it. |
 

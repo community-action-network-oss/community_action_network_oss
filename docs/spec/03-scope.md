@@ -18,7 +18,7 @@ It is not an individual advice service, therapy platform, medical service, legal
 
 ### Core outcome
 
-A valid problem moves from an unstructured real-world concern to an explicit end state. The full state and transition table is owned by `01-slice-1-brief.md`; this is the summary.
+A valid problem moves from an unstructured real-world concern to an explicit end state. The full state and transition table is owned by `01a-lifecycle.md`; this is the summary.
 
 - **Solved:** a solution was implemented and sufficiently verified. A steward proposes, the moderation run decides under the policy pack.
 - **Closed:** the problem is invalid, duplicated, no longer relevant, or cannot continue under platform rules.

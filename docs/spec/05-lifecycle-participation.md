@@ -4,7 +4,7 @@ Model lifecycle transitions explicitly. Every transition must record actor, time
 
 ### States and transitions
 
-The state list, allowed transitions, actors, required fields, side effects, public labels and next actions are owned by `01-slice-1-brief.md` (section 4). Do not copy them here.
+The state list, allowed transitions, actors, required fields, side effects, public labels and next actions are owned by `01a-lifecycle.md` (linked from `01-slice-1-brief.md` section 4). Do not copy them here.
 
 Design rules that apply to every lifecycle:
 
@@ -16,9 +16,20 @@ Design rules that apply to every lifecycle:
 - Reopening terminal states is deferred and needs its own rules.
 - Invalid transitions fail atomically.
 
+### Structured content (D-58)
+
+There is no free-form posting. Every content type is submitted as a structured response to a schema: problem, contribution, proposal, decision record, task and verification, appeal, policy proposal. Principles (`STRUCT-ONLY-1`):
+
+- **Community-decided in advance.** Schemas live in `can_policy`, are versioned, and are part of the policy pack. Changing a schema is a policy proposal. Founder stewardship drafts and ratifies v1 (`INTERIM-1`; `OQ-content-schema-design`). The first problem schema is drawn from `docs/design/ai/structured-content.md`.
+- **The poster sees the whole situation before posting.** Each schema forces the poster to cover facts, causes, affected people, scope, lawful options, uncertainty and explicit assumptions. The fields below are the problem schema's starting point, not a second list to maintain.
+- **`DP-COMPLETENESS`** checks that every required field is meaningfully answered (not filler) and returns `needs_revision` with a hint beside the empty or hollow field (`COMPLETE-1`).
+- **`DP-ASSUMPTIONS`** reads the stated assumptions and the content that relies on them. A post built on an incorrect factual, causal, legal or scope assumption is held as `needs_revision` with field hints, never silently edited or rejected for a fixable error (`ASSUMP-1`).
+- **AI may help fill fields; the poster confirms.** Nothing is submitted that the poster has not read and confirmed.
+- **The app renders forms from the schema version.** It never hard-codes fields (`17-ux.md`).
+
 ### Public problem submission requirements
 
-A submission should capture:
+The problem schema should capture:
 
 - Concise structural problem statement
 - Observable condition, recurring pattern, institutional failure, shared risk, or systemic hypothesis

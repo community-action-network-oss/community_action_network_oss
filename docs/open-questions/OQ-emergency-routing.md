@@ -13,7 +13,7 @@ The platform is not an emergency service. A wrong or stale number can cause harm
 
 ## Current default (what we built meanwhile)
 
-Every form shows a generic "If someone is in danger, contact your local emergency number" notice. No real numbers. The fictional jurisdiction has placeholder text.
+Every form shows a generic "If someone is in danger, contact your local emergency number" notice. No real numbers. The Amsterdam (NL) overlay uses placeholder text until real, reviewed resources exist (`OQ-amsterdam-overlay-review`).
 
 ## Who can help
 
