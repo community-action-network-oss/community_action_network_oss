@@ -18,12 +18,12 @@ It is not an individual advice service, therapy platform, medical service, legal
 
 ### Core outcome
 
-A valid problem moves from an unstructured real-world concern to an explicit end state. The full state and transition table is owned by `01a-lifecycle.md`; this is the summary.
+A valid problem moves from an unstructured real-world concern to an explicit end state. The problem state table is owned by `01a-lifecycle.md` and the stage plan by `01b-stages.md`; this is the summary. The path (D-72): the poster prepares the problem privately (facts, trusted sources, what solved means, optional stages), volunteers review it privately, the moderation run decides publication, then a per-problem stage plan runs until the final criteria are met.
 
-- **Solved:** a solution was implemented and sufficiently verified. A steward proposes, the moderation run decides under the policy pack.
+- **Solved:** the problem's final acceptance criteria are met, with evidence. A steward proposes, the moderation run decides (`DP-VERIFICATION`) under the policy pack.
 - **Closed:** the problem is invalid, duplicated, no longer relevant, or cannot continue under platform rules.
 - **Redirected:** a better institution, partner project, emergency channel, political platform, legal process, or specialist service should handle it.
-- **Withdrawn / rejected:** the submission was withdrawn by its initiator or not accepted before it was ever published.
+- **Withdrawn / rejected:** the submission was withdrawn by its initiator or not accepted (`rejected`, `needs_revision` and `held` are private pre-publication states).
 
 Two further states are not terminal:
 

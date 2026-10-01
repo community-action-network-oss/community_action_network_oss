@@ -13,7 +13,7 @@ What becomes public is the most consequential privacy decision. It is hard to ta
 
 ## Current default (what we built meanwhile)
 
-Two classes plus notes: `private` (draft, submitted, needs_revision, rejected: initiator, the emergency/legal lane and auditors on masked samples) and `public` (published problems). Auditor-only notes are never public.
+Two classes plus notes: `private` (draft, in_review, needs_revision, held, rejected: the poster, opted-in volunteers on `in_review` with personal data masked, the emergency/legal lane and auditors on masked samples) and `public` (published problems). Auditor-only notes are never public.
 
 ## Who can help
 

@@ -5,7 +5,7 @@
 
 ## Question
 
-When a policy or legal-corpus change would alter the conclusion of a solved, closed, redirected or stuck problem, which feasibility criteria decide whether it actually reopens (T23)?
+When a policy or legal-corpus change would alter the conclusion of a solved, closed, redirected or stuck problem, which feasibility criteria decide whether it actually reopens (T20 or T21)?
 
 ## Why it matters
 
@@ -25,6 +25,6 @@ A criteria list with worked examples (a reopened solved problem, an infeasible o
 
 ## Spec links
 
-- `docs/spec/01a-lifecycle.md (T23)`
+- `docs/spec/01a-lifecycle.md (T20 `REOPEN-RULE`, T21 `REOPEN-EVIDENCE`)`
 - `docs/spec/constitution/rules.md (RERESOLVE-1)`
 - `docs/open-questions/OQ-policy-retroactivity.md`

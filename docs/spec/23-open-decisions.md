@@ -28,7 +28,8 @@ Questions are not founder blockers. For each, the build continues on the stated 
 | Emergency and imminent-harm routing | `OQ-emergency-routing` |
 | Participation radius and visitor limits | `OQ-location-verification` |
 | Expert verification and expiry | deferred (`04-roles-stewardship.md`) |
-| Decision and legitimacy model | `OQ-decision-method` |
+| Decision and legitimacy model | `OQ-decision-method`, `OQ-stage-decision-method` |
+| Volunteer review: quorum, eligibility, trusted sources | `OQ-review-quorum`, `OQ-reviewer-eligibility`, `OQ-trusted-sources` |
 | Meaning and evidence threshold for `solved` | `OQ-solved-evidence-threshold` |
 | Appeal stages and reviewer independence | `OQ-moderator-pool-size`, `01-slice-1-brief.md` (section 5) |
 | Retention, account deletion, public-record expectations | `OQ-draft-ttl`, `OQ-account-deletion-retention`, `OQ-edit-after-publication` |

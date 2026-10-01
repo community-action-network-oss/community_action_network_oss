@@ -87,5 +87,9 @@ Copy any existing file. Keep the same headings. Night or agent runs add question
 | [OQ-legal-layer-conflicts](OQ-legal-layer-conflicts.md) | What happens when human rights (L1) conflict with national law (L3 or L4)? |
 | [OQ-supranational-default](OQ-supranational-default.md) | Is the binding supranational layer (L2) the right default, and for which jurisdictions? |
 | [OQ-reresolution-feasibility](OQ-reresolution-feasibility.md) | When is reopening a past resolution feasible? |
+| [OQ-review-quorum](OQ-review-quorum.md) | How many volunteer reviews, or how long, before the publication decision can run? |
+| [OQ-stage-decision-method](OQ-stage-decision-method.md) | How is the choice inside a stage made, and who may override the default? |
+| [OQ-trusted-sources](OQ-trusted-sources.md) | What makes a cited URI a trusted source? |
+| [OQ-reviewer-eligibility](OQ-reviewer-eligibility.md) | Who may be a volunteer reviewer, and what conflict rules apply? |
 
 Related: [spec index](../spec/00-index.md), [constitution](../spec/constitution/README.md), [decision log](../../DECISIONS.md), [design](../design/), [ADRs](../adr/).

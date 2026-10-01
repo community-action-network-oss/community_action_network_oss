@@ -9,7 +9,7 @@ The Community Action Network (CAN) is an open-source platform where people turn 
 | Work | Load |
 |---|---|
 | Any slice-1 work | `01-slice-1-brief.md` and `02-agent-rules.md` first, always |
-| Lifecycle, states, transitions | `01a` (owns the table), `05` |
+| Lifecycle, states, transitions | `01a` (problem states, T-table), `01b` (stage plan, stage states, gating), `05` |
 | Roles, who may do what | `01`, `04` |
 | Moderation, appeals, jurisdiction | `01` (section 5), `06`, constitution chapters IV and V, `docs/design/ai/README.md` |
 | Evidence, claims, systemic graph | `07` (Phase 7 design), constitution chapter III |
@@ -31,7 +31,8 @@ The Community Action Network (CAN) is an open-source platform where people turn 
 | File | Covers |
 |---|---|
 | `01-slice-1-brief.md` | Slice 1 scope and defaults (full AI pipeline, structured content, persona simulation proof, graduation gate), moderation decision fields, contribution-type enum, "solved", sign-in, draft retention, minimal entity list, accessibility baseline |
-| `01a-lifecycle.md` | The lifecycle state classes and the transition table T00 to T24 (single owner; split from 01) |
+| `01a-lifecycle.md` | The problem state classes, the transition table T00 to T22 and the old to new T-id map (single owner of problem states) |
+| `01b-stages.md` | The stage plan (a DAG), stage states, the stage transition table ST01 to ST11, stage gating, work inside a stage, contributions ahead of time, the `classic-5` template (single owner of stage states) |
 | `02-agent-rules.md` | Agent mandate, autonomy rules, unattended-run rule, founder-operated agent pipeline, first instruction |
 | `03-scope.md` | Canonical scope and non-goals, product definition, core outcome, initial release hypothesis |
 | `04-roles-stewardship.md` | Canonical platform roles, authorization, problem stewardship groups |
@@ -65,6 +66,10 @@ The Community Action Network (CAN) is an open-source platform where people turn 
 - **Moderator:** the small emergency and legal lane, an auditor of sampled decisions, or a labeler. Does not decide single items.
 - **Observer:** a platform role that follows a problem. Different from **Watcher**, the first rung of the contribution ladder.
 - **Core participant, visitor:** whether a person has a material connection to the affected scope.
+- **Stage plan:** the per-problem graph of stages (series, parallel or mixed) that replaces the old fixed sequence. Each stage has its own acceptance criteria and decision method. The old sequence survives as the optional template `classic-5` (`01b`, D-72).
+- **Acceptance criteria:** measurable statements of when something is done. A problem has final criteria (what "solved" means) and each stage has its own (`CRITERIA-1`).
+- **Volunteer review:** the private step before publication where opted-in members, with personal data masked, check a problem and recommend changes. Nothing from it is public (`REVIEW-1`).
+- **Recommendation:** one volunteer suggestion on a field or metadata path. The poster accepts or declines it with a reason (`RECO-1`).
 - **Contribution:** a typed piece of participation (one value of the enum in `01`).
 - **Evidence tier:** how well a claim is supported (Constitution III.4). **`investigation_needed`** is a flag derived from the tier, not a state.
 - **Decision record:** the public record of how a solution was chosen and why.
@@ -76,7 +81,7 @@ The Community Action Network (CAN) is an open-source platform where people turn 
 - **Structured content:** no free-form posting; every content type is a structured response to a community-decided schema in the policy pack (D-58). **`DP-ASSUMPTIONS`** holds back wrong assumptions; **`DP-COMPLETENESS`** checks every required field is answered.
 - **Persona simulation:** AI persona agents drive lifecycles through the real pipeline on seeds 1 and 2 and red-team the policy pack (D-55). **Graduation criteria** decide when public participation opens (`docs/design/ai/simulation.md`).
 - **Legal layer stack:** L0 CAN rules, L1 UN human rights, L2 supranational where binding, L3 national constitution, L4 national law, L5 regional, L6 city; cumulative constraints applied by every moderation run (D-61, Constitution I.2).
-- **Re-resolution:** a policy or legal-corpus change re-examines past solved, closed, redirected and stuck problems and can reopen them (T23 and T24, `DP-RERESOLUTION`, D-59).
+- **Re-resolution:** a policy or legal-corpus change re-examines past solved, closed, redirected and stuck problems and can reopen them (T20 `REOPEN-RULE` and T21 `REOPEN-EVIDENCE`, `DP-RERESOLUTION`, D-59).
 - **Seed problem:** a real framing with synthetic evidence, labelled "Seed problem, synthetic evidence"; Amsterdam (NL) is the first jurisdiction overlay (D-56).
 - **Seams:** the four decentralization hooks kept from the start: UUIDv7 ids, `origin_node_id`, `protocol_version`, append-only events with a nullable `prev_hash`.
 - **Policy pack:** a versioned bundle (semver plus content hash) in the planned `can_policy` repo: rules, one prompt template per decision point, labeled examples, eval sets, thresholds, with layers base, constitution, jurisdiction, local. Design: `../design/ai/policy-pack.md`.

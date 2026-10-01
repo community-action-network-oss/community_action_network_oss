@@ -13,7 +13,7 @@ Majority voting is not assumed to be right. The method decides local legitimacy,
 
 ## Current default (what we built meanwhile)
 
-A recorded decision with rationale, decider, authority and dissent notes. No vote. The initiator is provisional steward and the moderation run decides publish, solved, closed and redirected under the policy pack.
+A recorded decision with rationale, decider, authority and dissent notes. No vote. The initiator is provisional steward and the moderation run decides publish, stage resolution, solved, closed and redirected under the policy pack. The per-stage choice is covered by `OQ-stage-decision-method`.
 
 ## Who can help
 

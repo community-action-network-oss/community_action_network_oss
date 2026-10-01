@@ -4,16 +4,19 @@ Model lifecycle transitions explicitly. Every transition must record actor, time
 
 ### States and transitions
 
-The state list, allowed transitions, actors, required fields, side effects, public labels and next actions are owned by `01a-lifecycle.md` (linked from `01-slice-1-brief.md` section 4). Do not copy them here.
+The state list, allowed transitions, actors, required fields, side effects, public labels and next actions are owned by `01a-lifecycle.md` (problem level) and `01b-stages.md` (stage level), linked from `01-slice-1-brief.md` section 4. Do not copy them here.
+
+The path (D-72): prepare privately, volunteer review, the AI publication decision (`DP-PUBLISH`), then a stage plan that runs in series, in parallel or mixed until the final acceptance criteria are met. Each stage moves on only when its evidence meets its criteria (`STAGE-RESOLVE-1`), and anyone can prepare contributions for later stages (`STAGE-PREP-1`).
 
 Design rules that apply to every lifecycle:
 
 - `automated_review` is a synchronous check, not a state.
-- `stuck`, `paused` and `withdrawn` exist. `paused` is not terminal.
+- `stuck`, `paused` and `withdrawn` exist. `paused` is not terminal. `held` is the private fail-closed state. A single blocked stage is a stage state, not a problem state.
 - `appealed` is not a problem state. Appeals attach to moderation decisions.
 - `investigation_needed` is a flag derived from the evidence tier, not a state.
+- A problem cannot leave `draft` without final acceptance criteria (`CRITERIA-1`). Volunteer review is required before publication and is never public (`REVIEW-1`). A stage plan change after publication needs a proposal (`PLAN-CHANGE-1`).
 - Timeouts flag a problem for people. They never change a state silently.
-- Terminal and stuck problems reopen only through re-resolution (`01a-lifecycle.md`, T23, `RERESOLVE-1`): never silently, history kept, appealable.
+- Terminal and stuck problems reopen only through re-resolution (`01a-lifecycle.md`, T20 and T21, `RERESOLVE-1`): never silently, history kept, appealable.
 - Invalid transitions fail atomically.
 
 ### Structured content (D-58)
@@ -58,9 +61,9 @@ Each contribution should support citations, scope, status, moderation outcome, a
 
 Do not optimize for engagement (canonical rules: `17-ux.md`, "Deliberate, not addictive"). Ranking should prioritize relevance, evidence quality, local applicability, safety, novelty, and contribution to the current stage. Keep core-participant, visitor, and expert signals distinguishable. Provide chronological or transparent alternative views where practical.
 
-## 7. Solution development and decisions
+## 7. Stage options and decisions
 
-A solution proposal should contain:
+Within each stage, people contribute options (`stage_option`) and the stage's decision method chooses (`stage_choice`, default: the poster after community input). A solution option should contain:
 
 - Summary and mechanism
 - Target outcome and success metric
@@ -74,5 +77,5 @@ A solution proposal should contain:
 - Verification plan
 - Status and revision history
 
-Do not assume majority voting is the correct decision rule. The decision method is an open question (`docs/open-questions/OQ-decision-method.md`). It must define how local legitimacy, expertise, feasibility, minority rights, legal constraints, and the preferences of the initiator and affected parties interact. The slice-1 default is a recorded decision with rationale and no vote. The system should support a configurable and explainable decision record rather than a single universal score.
+Do not assume majority voting is the correct decision rule. The decision method is an open question (`docs/open-questions/OQ-decision-method.md`, and per stage `OQ-stage-decision-method`). It must define how local legitimacy, expertise, feasibility, minority rights, legal constraints, and the preferences of the initiator and affected parties interact. The slice-1 default is a recorded decision with rationale and no vote, made by the poster after community input unless the stage sets another method. The system should support a configurable and explainable decision record rather than a single universal score.
 

@@ -69,7 +69,7 @@ Before substantial implementation, present:
 - Confirmed goals and non-goals (`03-scope.md`)
 - Open questions with recommended defaults (`docs/open-questions/`)
 - User journeys and acceptance criteria
-- Domain model and state diagrams (`01a-lifecycle.md` owns the slice-1 table)
+- Domain model and state diagrams (`01a-lifecycle.md` owns the problem table and `01b-stages.md` the stage table)
 - Architecture with alternatives and trade-offs
 - Threat model and privacy boundaries
 - Moderation architecture and evaluation approach
