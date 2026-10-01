@@ -329,8 +329,8 @@ diff listed in the report; morning report `plans/runs/<date>.md`: units done + S
 defaults applied, verify per repo, merge order (submodules first, then superproject; ff or `--no-ff`,
 never squash), next night's queue.
 
-**Never:** push to a network remote, deploy, boot a device, touch `main`, apply infra, activate
-`.claude/settings.proposed.json`.
+**Never:** push to a network remote, deploy, boot a device, touch `main`, apply infra, or edit
+`.claude/settings.json` (active since D-64; it denies `git push`, so the founder pushes).
 
 You may amend this runbook mid-wave only after replaying the change against a previous wave's samples
 and getting same-or-better results. Otherwise propose it at P6 alongside the skill fold-back.

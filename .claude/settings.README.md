@@ -1,6 +1,6 @@
 # Proposed permissions for unattended night runs
 
-`settings.proposed.json` is a proposal. It is not active. To activate it, review it, then rename it to `.claude/settings.json` (or merge the `permissions` block into your existing one).
+`settings.json` is a proposal. It is not active. To activate it, review it, then rename it to `.claude/settings.json` (or merge the `permissions` block into your existing one).
 
 Deny rules take precedence over allow rules. That matters for `git -C:*`, which is allowed so agents can work in each submodule, while `git -C * push:*` is denied.
 

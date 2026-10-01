@@ -336,3 +336,18 @@ Every default, deviation and judgment call made while building CAN. Each one can
   - **Known gaps:**
     - No copy exists yet for the forbidden-topic refusal. 07-u22 uses the generic not-accepted text plus the cited layer.
     - The env var names in cross-cutting.md and 10-u04 differ. 07-u13 maps them.
+- **D-64 · W8 · `.claude/settings.json` is active (founder approved).**
+  - It allows the night-run toolchain and denies `git push`, publish, EAS, docker push and non-localhost curl. Agents, including this session, can no longer push: the founder pushes.
+  - Unit 08-u14 is done.
+  - Reverse: rename the file back to `settings.proposed.json`.
+- **D-65 · W8 · OpenRouter is the model provider, free and cheap models first, chosen by eval (founder).**
+  - **Key:** `OPEN_ROUTER_KEY` lives in the superproject `.env`, which is gitignored and never committed. The key has a $50 hard limit set on the OpenRouter side and is on a paid account, which gets higher free-model rate limits.
+  - **Model choice:** for each decision point, the router uses the cheapest model that passes that DP's eval thresholds. Free (`:free`) models come first, then cheap ones. It escalates only on low confidence or an eval failure.
+  - **Model register:** records the model id, price and per-DP eval score, with dates.
+  - **Rate limits:** a 429 or an outage backs off, then falls through to the next registered model. If every model fails, the item is held (fail closed).
+  - **App spend cap:** $10 per month by default, plus per-run budgets. Both sit under the key's $50 limit.
+  - **Privacy:** free endpoints may log or train on their inputs, so they are allowed only for synthetic data: simulation, seeds and evals. After graduation, real member content goes only to endpoints with data collection denied (OpenRouter provider routing `data_collection: "deny"` or zero-data-retention endpoints), always behind the privacy gateway.
+  - **Gates lifted:** the provider implementation, live record runs and live persona runs are no longer founder-gated, within the caps.
+  - **Still gated:** the graduation review (11-u40) and anything that sends real member data.
+  - **Anthropic:** its adapter becomes optional.
+  - Reverse: re-gate the units, or switch the provider.

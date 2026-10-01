@@ -14,10 +14,10 @@ spec: ["docs/spec/02-agent-rules.md","DECISIONS.md","docs/spec/22-ai-contributio
 verify: ["node -e \"if(require('fs').statSync('docs/ops/activate-agent-settings.md').size>25000)throw new Error(1)\"","node plans/tools/corpus.mjs lint"]
 founder_gate: true
 defaults: "Until the founder activates it, the file stays proposed (D-24)."
-status: "todo"
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["superproject: settings activation W8"]
+actual_hours: 0.1
 ---
 
 ## Objective
