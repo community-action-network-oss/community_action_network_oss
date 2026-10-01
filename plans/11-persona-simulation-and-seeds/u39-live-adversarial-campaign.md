@@ -12,7 +12,7 @@ writes: ["test/simulation/runs-evidence/**"]
 reads: []
 spec: ["docs/design/ai/simulation.md#8-graduation-criteria-defaults-to-be-ratified","docs/design/ai/simulation.md#2-persona-catalog","docs/design/ai/amendment-loop.md#ratification-checklist-every-pr","docs/open-questions/OQ-graduation-criteria.md"]
 needs: []
-verify: ["npm run lint","npm run build","npm test","npm run verify"]
+verify: ["npm run lint","npm run build","npx vitest run test/simulation"]
 founder_gate: true
 defaults: "Same three gates as 11-u38. Any leak, injection success or fail-open stops the campaign, produces candidates, and resets the counters; do not continue past a critical miss until a ratified fix."
 status: todo

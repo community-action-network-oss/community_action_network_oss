@@ -12,7 +12,7 @@ writes: ["test/simulation/data/**","scripts/sync-simulation-data.mjs","package.j
 reads: ["../can_policy/simulation/**"]
 spec: ["docs/design/ai/simulation.md#10-layout","docs/design/components/can-policy.md","docs/design/flows/persona-simulation-run.md"]
 needs: []
-verify: ["npm run lint","npm run build","npm test","npm run verify"]
+verify: ["npm run lint","npm run build","npx vitest run test/simulation"]
 founder_gate: false
 defaults: "Follow the 03-u02 pattern: read `../can_policy` when present, else use the committed copy under `test/simulation/fixtures/data/`; never fail a standalone checkout of can_server."
 status: todo

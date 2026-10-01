@@ -38,12 +38,12 @@ Without network or paid calls, `npm run sim:ci` in can_server starts the test st
 | [11-u10](u10-candidate-intake-format.md) | Labeled example candidates and policy PR draft format | can_policy | 1 | 110 | 10-u14, 11-u01 | - |
 | [11-u11](u11-harness-skeleton.md) | Simulation harness skeleton: HTTP-only runner, run store, import-boundary test | can_server | 1.5 | 111 | 10-u04 | - |
 | [11-u12](u12-sim-data-sync.md) | Simulation data sync and loaders: personas, seeds and thresholds from can_policy | can_server | 1.2 | 112 | 11-u11, 11-u01 | - |
-| [11-u13](u13-synthetic-labeling-server.md) | Server simulation mode: synthetic flag on accounts and content, public-surface guard (SIM-LABEL-1) | can_server | 1.5 | 113 | 10-u29, 02-u04 | - |
+| [11-u13](u13-synthetic-labeling-server.md) | Server simulation mode: synthetic flag on accounts and content, public-surface guard (SIM-LABEL-1) | can_server | 1.5 | 113 | 10-u29, 02-u04, 04-u01, 04-u04, 04-u05, 09-u33, 10-u32 | - |
 | [11-u14](u14-observer-feed.md) | Read-only observer feed of run records for the harness | can_server | 1.5 | 114 | 11-u13, 09-u22, 09-u04 | - |
 | [11-u15](u15-evidence-fixture-host.md) | Fixture evidence host for synthetic evidence URLs | can_server | 0.8 | 115 | 11-u11 | - |
-| [11-u16](u16-persona-api-driver.md) | Persona API driver: sessions, schema-form filler, hint answering | can_server | 1.5 | 116 | 11-u11, 10-u29, 11-u13 | - |
+| [11-u16](u16-persona-api-driver.md) | Persona API driver: sessions, schema-form filler, hint answering | can_server | 1.5 | 116 | 11-u11, 10-u29, 11-u13, 10-u40 | - |
 | [11-u17](u17-script-executor.md) | Deterministic script executor: seeded order, expectations, FakeModel binding | can_server | 1.5 | 117 | 11-u16, 11-u12, 09-u12 | - |
-| [11-u18](u18-seed-bootstrap-loader.md) | Seed bootstrap loader: idempotent seed submission through the normal pipeline | can_server | 1.5 | 118 | 11-u12, 11-u16, 11-u13, 09-u25 | - |
+| [11-u18](u18-seed-bootstrap-loader.md) | Seed bootstrap loader: idempotent seed submission through the normal pipeline | can_server | 1.5 | 118 | 11-u12, 11-u16, 11-u13, 09-u25, 10-u40 | - |
 | [11-u19](u19-scenario-seed1-happy-revise.md) | Seed 1 scenarios: happy path and the revise loop | can_server | 1.5 | 119 | 11-u17, 11-u18, 11-u07, 11-u02, 11-u03 | - |
 | [11-u20](u20-scenario-seed1-appeal-stuck.md) | Seed 1 scenarios: appeal, stuck proposal, decision and tasks to terminal state | can_server | 1.5 | 120 | 11-u19, 09-u33, 09-u34 | - |
 | [11-u21](u21-scenario-seed2-all.md) | Seed 2 scenarios: happy, revise, appeal, stuck and attack variants | can_server | 1.5 | 121 | 11-u17, 11-u18, 11-u08, 11-u02, 11-u03 | - |

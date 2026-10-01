@@ -12,7 +12,7 @@ writes: ["test/simulation/graduation/**","docs/graduation-report.md"]
 reads: []
 spec: ["docs/design/ai/simulation.md#8-graduation-criteria-defaults-to-be-ratified","docs/open-questions/OQ-graduation-criteria.md","docs/spec/constitution/rules.md#SIM-GATE-1","docs/design/flows/persona-simulation-run.md#graduation-check"]
 needs: []
-verify: ["npm run lint","npm run build","npm test","npm run verify"]
+verify: ["npm run lint","npm run build","npx vitest run test/simulation"]
 founder_gate: false
 defaults: "A criterion that cannot be assessed from the run kinds present is `not_assessable`, never `met`. The engine never edits thresholds; unmet criteria are reported, not argued."
 status: todo

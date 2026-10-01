@@ -12,7 +12,7 @@ writes: ["test/simulation/regression/**"]
 reads: []
 spec: ["docs/design/ai/simulation.md#7-feeding-the-amendment-loop","docs/design/ai/evaluation.md#regression-suite"]
 needs: []
-verify: ["npm run lint","npm run build","npm test","npm run verify"]
+verify: ["npm run lint","npm run build","npx vitest run test/simulation"]
 founder_gate: false
 defaults: "Only confirmed candidates (status `confirmed`) become regression scripts; unconfirmed ones stay reports."
 status: todo

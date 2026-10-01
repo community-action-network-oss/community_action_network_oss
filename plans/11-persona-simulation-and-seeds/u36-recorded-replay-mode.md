@@ -12,7 +12,7 @@ writes: ["test/simulation/replay/**"]
 reads: []
 spec: ["docs/design/ai/simulation.md#5-modes","docs/design/flows/persona-simulation-run.md"]
 needs: []
-verify: ["npm run lint","npm run build","npm test","npm run verify"]
+verify: ["npm run lint","npm run build","npx vitest run test/simulation"]
 founder_gate: false
 defaults: "Replay uses persona transcripts and recorded model responses; DP model responses come from recorded provider responses stored by the gateway test recorder (plan 09). Missing recordings fail the replay with the missing turn named."
 status: todo

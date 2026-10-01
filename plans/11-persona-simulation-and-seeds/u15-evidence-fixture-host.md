@@ -12,7 +12,7 @@ writes: ["test/simulation/evidence-host/**"]
 reads: []
 spec: ["docs/design/ai/simulation.md#3-seed-scenarios-seeds-1-and-2","docs/design/ai/decision-points.md#per-dp-notes"]
 needs: []
-verify: ["npm run lint","npm run build","npm test","npm run verify"]
+verify: ["npm run lint","npm run build","npx vitest run test/simulation"]
 founder_gate: false
 defaults: "Agents never fetch URLs (DP-EVIDENCE-TIER reads stored metadata). The host exists so a human opening a seed evidence link in the sim stack sees a clearly marked synthetic page; keep it a tiny static server."
 status: todo

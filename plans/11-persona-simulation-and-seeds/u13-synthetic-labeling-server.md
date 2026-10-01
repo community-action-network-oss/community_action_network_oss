@@ -7,7 +7,7 @@ area: can-server
 model: sonnet
 est_hours: 1.5
 priority: 113
-depends_on: ["10-u29","02-u04"]
+depends_on: ["10-u29","02-u04","04-u01","04-u04","04-u05","09-u33","10-u32"]
 writes: ["src/simulation/**","src/app.module.ts","src/config.ts","src/db/schema.ts","drizzle/**","test/simulation-mode/**","openapi/openapi.json",".env.example"]
 reads: []
 spec: ["docs/spec/constitution/rules.md#SIM-LABEL-1","docs/spec/constitution/rules.md#SIM-NOSECRET-1","docs/design/ai/simulation.md#1-principles","docs/design/flows/persona-simulation-run.md","docs/design/components/server.md"]

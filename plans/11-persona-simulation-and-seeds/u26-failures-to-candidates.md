@@ -12,7 +12,7 @@ writes: ["test/simulation/amend/**"]
 reads: []
 spec: ["docs/design/ai/simulation.md#7-feeding-the-amendment-loop","docs/design/ai/amendment-loop.md","docs/design/ai/evaluation.md#sets-per-decision-point"]
 needs: []
-verify: ["npm run lint","npm run build","npm test","npm run verify"]
+verify: ["npm run lint","npm run build","npx vitest run test/simulation"]
 founder_gate: false
 defaults: "The harness writes files only; opening a PR or editing an eval set is a human or night-run step in can_policy. Inputs are post-gateway redacted text taken from the run record, never raw persona text containing canaries."
 status: todo

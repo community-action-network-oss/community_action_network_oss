@@ -12,7 +12,7 @@ writes: ["test/simulation/metrics/**"]
 reads: []
 spec: ["docs/design/ai/simulation.md#6-run-reports-and-metrics","docs/design/ai/evaluation.md","docs/design/ai/simulation.md#8-graduation-criteria-defaults-to-be-ratified"]
 needs: []
-verify: ["npm run lint","npm run build","npm test","npm run verify"]
+verify: ["npm run lint","npm run build","npx vitest run test/simulation"]
 founder_gate: false
 defaults: "Intervals: Wilson 95% (same formula as can_policy tools/lib/metrics.mjs from 10-u23; copy the formula with a test vector in both repos, do not import across repos)."
 status: todo

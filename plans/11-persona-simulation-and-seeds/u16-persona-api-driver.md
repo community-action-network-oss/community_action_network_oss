@@ -7,7 +7,7 @@ area: can-server
 model: sonnet
 est_hours: 1.5
 priority: 116
-depends_on: ["11-u11","10-u29","11-u13"]
+depends_on: ["11-u11","10-u29","11-u13","10-u40"]
 writes: ["test/simulation/api/**","test/simulation/personas/driver/**"]
 reads: []
 spec: ["docs/design/ai/simulation.md#1-principles","docs/design/ai/simulation.md#4-lifecycle-driving","docs/design/flows/structured-submission.md","docs/design/ai/structured-content.md#4-dp-assumptions"]

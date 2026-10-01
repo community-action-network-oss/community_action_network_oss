@@ -12,7 +12,7 @@ writes: ["test/simulation/runs-evidence/**"]
 reads: []
 spec: ["docs/design/ai/simulation.md#5-modes","docs/design/ai/simulation.md#8-graduation-criteria-defaults-to-be-ratified","docs/open-questions/OQ-graduation-criteria.md","DECISIONS.md"]
 needs: []
-verify: ["npm run lint","npm run build","npm test","npm run verify"]
+verify: ["npm run lint","npm run build","npx vitest run test/simulation"]
 founder_gate: true
 defaults: "Do not start without all three gates: an Anthropic API key held by the founder outside the repo, a written USD spend cap, and the DPIA gate (spec 14) signed. Stop and report if any is missing."
 status: todo

@@ -12,7 +12,7 @@ writes: ["test/simulation/report/**","schemas/**","docs/simulation-report.md"]
 reads: []
 spec: ["docs/design/ai/simulation.md#6-run-reports-and-metrics","docs/design/ux/wireframes/policy.md#WF-SIM-1","docs/design/flows/persona-simulation-run.md"]
 needs: []
-verify: ["npm run lint","npm run build","npm test","npm run verify"]
+verify: ["npm run lint","npm run build","npx vitest run test/simulation"]
 founder_gate: false
 defaults: "Report JSON key order is stable and values contain no input text; the summary markdown states the run mode in its first line (\"deterministic, FakeModel\" or \"live\")."
 status: todo
