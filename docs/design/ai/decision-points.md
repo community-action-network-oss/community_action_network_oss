@@ -22,29 +22,29 @@ Canonical ids follow the slice-1 brief. Names seen elsewhere that map here: DP-E
 | DP-ELIGIBILITY | problem submitted or resubmitted | T01, T03 | blocking | publish, needs_revision, reject, route_external, hold | SCOPE-1 |
 | DP-PRIVACY | any text field or contribution submitted or edited | T01, T03, T04, contribution accept | blocking | publish, needs_revision, reject, hold | PRIV-GATE-1 |
 | DP-FRAMING | problem submitted or edited | T01, T03, T04 | blocking | publish, needs_revision, hold | FRAME-1 (proposed) |
-| DP-DUPLICATE | problem submitted; new published problem (context change) | T01, T04, T19 | blocking at submit, async after | publish, needs_revision, route_external, hold | DUP-1 (proposed) |
+| DP-DUPLICATE | problem submitted; new published problem (context change) | T01, T04, T16 | blocking at submit, async after | publish, needs_revision, route_external, hold | DUP-1 (proposed) |
 | DP-CONTRIB-RELEVANCE | contribution submitted or edited | contribution accept | blocking | publish, needs_revision, reject, hold | RELEVANCE-1, SOLUTION-ONLY-1 (proposed), contribution-type rules of the brief section 6 |
 | DP-TONE | any public text submitted or edited | T01, T03, contribution accept | blocking | publish, needs_revision, reject, hold | TONE-1 (proposed) |
 | DP-NAMING | any public text submitted or edited | T01, T03, contribution accept | blocking | publish, needs_revision, reject, hold | NAME-1 |
-| DP-LEGALITY | proposal marked ready; law pack change | T09, T11, T15 | blocking at T11, async on law change | publish, needs_revision, reject, hold | LEGAL-GATE-1 |
-| DP-DECISION-RECORD | decision record submitted | T11 | blocking | publish, needs_revision, hold | DECISION-REC-1 (proposed), LEGAL-GATE-1 |
+| DP-LEGALITY | proposal marked ready; law pack change | ST05 (solutions stage), CHOICE-GATE, T13 | blocking at CHOICE-GATE, async on law change | publish, needs_revision, reject, hold | LEGAL-GATE-1 |
+| DP-DECISION-RECORD | decision record submitted | CHOICE-GATE | blocking | publish, needs_revision, hold | DECISION-REC-1 (proposed), LEGAL-GATE-1 |
 | DP-VERIFICATION | all required stages resolved and final evidence added; solved proposed | final solved (old T12, T13, T14) | blocking | publish, needs_revision, reject, hold | VERIFY-1 (proposed), CRITERIA-1 |
 | DP-CRISIS | any user text, every event | all text-bearing transitions | blocking, runs first | route_external, escalate_human, hold, publish (no signal) | CRISIS-STATIC-1, SCOPE-1 |
-| DP-EVIDENCE-TIER | evidence URL added or edited; solved proposed | T01, T08, T14, evidence add | blocking at add, async on tier recompute | publish, needs_revision, hold | EVID-URL-1, EVIDENCE-TIERS (constitution III.4) |
+| DP-EVIDENCE-TIER | evidence URL added or edited; solved proposed | T01, ST05, T15, evidence add | blocking at add, async on tier recompute | publish, needs_revision, hold | EVID-URL-1, EVIDENCE-TIERS (constitution III.4) |
 | DP-SOURCE-TRUST | draft submitted to review; review to publish run; `sources[]` edited | draft to `in_review`, publish | blocking | publish, needs_revision, hold | SOURCE-1 (proposed), EVID-URL-1 |
 | DP-CRITERIA | draft submitted to review; review to publish run; criteria edited; every plan-change proposal | draft to `in_review`, publish, plan change | blocking | publish, needs_revision, reject, hold | CRITERIA-1 |
 | DP-STAGE-PLAN | draft submitted to review; review to publish run; every plan-change proposal | draft to `in_review`, publish, plan change | blocking | publish, needs_revision, hold | STAGE-GATE-1, PLAN-CHANGE-1 |
 | DP-PUBLISH | review to publish run | `in_review` to `active` | blocking, aggregates | publish, needs_revision, reject, route_external, hold | REVIEW-1, RECO-1 |
 | DP-STAGE-RESOLUTION | every stage evidence submission; rule or policy change on a resolved stage (async) | stage `resolving` to `resolved`, `active` or `blocked` | blocking, async on rule change | publish (resolved), needs_revision, hold | STAGE-RESOLVE-1, STAGE-GATE-1 |
-| DP-BLOCKER | stuck proposed | T15 | blocking | publish, needs_revision, hold | LEGAL-GATE-1, BLOCKER-1 (proposed) |
-| DP-CLOSURE | closed or redirected proposed | T19, T20 | blocking | publish, needs_revision, reject, route_external, hold | CLOSE-1 (proposed) |
+| DP-BLOCKER | stuck proposed | T13 | blocking | publish, needs_revision, hold | LEGAL-GATE-1, BLOCKER-1 (proposed) |
+| DP-CLOSURE | closed or redirected proposed | T16, T17 | blocking | publish, needs_revision, reject, route_external, hold | CLOSE-1 (proposed) |
 | DP-LEGAL | text or request that looks like a legal or law-enforcement matter | any text-bearing transition | blocking | escalate_human, hold, publish (no signal) | LEGAL-LANE-1 (proposed) |
 | DP-APPEAL | appeal filed | appeal re-run (spec section 5) | async, bounded | publish, needs_revision, reject, route_external, hold | the rules of the appealed decision, APPEAL-1 |
 | DP-RERESOLUTION | policy or legal-corpus change (async job over past resolutions) | reopen transition (spec owner assigns T-id), annotate | async, bounded | keep, reopen, annotate (plus hold) | RERESOLVE-1 (proposed), LEGAL-STACK-1 (proposed) |
 | DP-ASSUMPTIONS | every content type at submit and update | every gated transition and contribution accept | blocking | publish, needs_revision, hold | ASSUMP-1 (proposed) |
 | DP-COMPLETENESS | every content type at submit and update | every gated transition and contribution accept | blocking | publish, needs_revision, hold | COMPLETE-1 (proposed), STRUCT-ONLY-1 (proposed) |
 
-In the transition table, the "moderator confirms" actors (T02, T04, T05, T14, T19, T20) become the moderation run; the table's required fields and side effects are unchanged. A `publish` from all blocking DPs completes T04 automatically. `needs_revision` completes T02. `reject` completes T05. The contribution accept step uses the same DPs on the contribution instead of the problem.
+In the transition table, the "moderator confirms" actors (T02, T04, T05, T15, T16, T17) become the moderation run; the table's required fields and side effects are unchanged. A `publish` from all blocking DPs completes T04 automatically. `needs_revision` completes T02. `reject` completes T05. The contribution accept step uses the same DPs on the contribution instead of the problem.
 
 ## Which DPs apply to which content type
 
@@ -103,7 +103,7 @@ Counters are keyed by account and the pack's identity tier or device signal as p
 
 **DP-FRAMING.** Checks the statement describes a shared condition, an institutional failure or pattern, a scope and an outcome, not a single complaint. Revision hints are rewrites in the person's own terms. Never rewrites text itself: the AI suggests, the person edits (spec 14 output control).
 
-**DP-DUPLICATE.** Inputs are salted-fingerprint matches (never text of other private drafts) and candidate published problems retrieved by authorized search (public only). Outcome `route_external` is not used; a match gives `needs_revision` with `duplicate_of` suggestion, or at T19 closes as duplicate. Post-publication: a new related problem triggers an async re-check of candidates.
+**DP-DUPLICATE.** Inputs are salted-fingerprint matches (never text of other private drafts) and candidate published problems retrieved by authorized search (public only). Outcome `route_external` is not used; a match gives `needs_revision` with `duplicate_of` suggestion, or at T16 closes as duplicate. Post-publication: a new related problem triggers an async re-check of candidates.
 
 **DP-CONTRIB-RELEVANCE.** Checks the contribution fits its declared type and the current state's allowed types (brief section 6), is relevant to the problem, and is solution-oriented where the type requires. Contribution `personal_experience` also passes DP-PRIVACY.
 
@@ -111,11 +111,11 @@ Counters are keyed by account and the pack's identity tier or device signal as p
 
 **DP-NAMING.** Detects PERSON entities in public text and suggests the office alias (NAME-1). Exception only when the election layer is on for the jurisdiction (constitution XI.2).
 
-**DP-LEGALITY.** Dual legality gate on a proposal: constitution and jurisdiction pack. A blocked proposal yields the `stuck` payload (blocking constraint, source and version, blocked actions, recheck condition) which DP-BLOCKER then validates for T15. Never presented as legal advice (spec 06). On a law-pack update, async re-check can move an item to a re-review notice, not to a state change by itself (pause-review principle).
+**DP-LEGALITY.** Dual legality gate on a proposal: constitution and jurisdiction pack. A blocked proposal yields the `stuck` payload (blocking constraint, source and version, blocked actions, recheck condition) which DP-BLOCKER then validates for T13. Never presented as legal advice (spec 06). On a law-pack update, async re-check can move an item to a re-review notice, not to a state change by itself (pause-review principle).
 
 **DP-DECISION-RECORD.** Completeness and legitimacy of the record, now written for each `stage_choice`: chosen option or steps, decision method (set in the stage metadata; default poster chooses after community input) and its authority, rationale, decider, authority, dissent notes, legal-gate record. Checks completeness and consistency, never whether the decision is good.
 
-**DP-VERIFICATION.** Checks that evidence tagged `verification_evidence` actually bears on the proposal's success metric and that the outcome statement answers it. A completed task alone is not solved. Threshold is `OQ-solved-evidence-threshold`; the pack carries the current default. Confirmation at T14 is a run outcome, labeled with the policy version.
+**DP-VERIFICATION.** Checks that evidence tagged `verification_evidence` actually bears on the proposal's success metric and that the outcome statement answers it. A completed task alone is not solved. Threshold is `OQ-solved-evidence-threshold`; the pack carries the current default. Confirmation at T15 is a run outcome, labeled with the policy version.
 
 **DP-CRISIS.** Runs first on every text-bearing event, in parallel with a deterministic keyword layer so detection never depends on a model. Positive signal: `route_external` to static emergency resources (shown regardless of anything else), the text is not published, and, for credible imminent danger only, `escalate_human` to the emergency lane. Fails open for safety: if the model is down, the static crisis notice is already on every form (CRISIS-STATIC-1) and the item is held, not lost.
 

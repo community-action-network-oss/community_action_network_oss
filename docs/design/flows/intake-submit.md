@@ -46,7 +46,7 @@ sequenceDiagram
 
 Labels shown to the initiator come from the brief: "Awaiting review" while the run is pending or held, "Changes requested" on `needs_revision`, and on any decision the line "Decided under policy vX" with "Policy v1, transitional stewardship" while `transitional` is true (founder-approved pack, INTERIM-1). Auditors sample these decisions later; a labeler only sees them if appealed.
 
-Outcome mapping (transition ids from the brief): `publish` T04, `needs_revision` T02, `reject` T05, `route_external` T20 style external route shown on WF-EXTERNAL-1, `hold` stays `submitted` with an honest wait, `escalate_human` only via [emergency-legal-lane.md](emergency-legal-lane.md).
+Outcome mapping (transition ids from the brief): `publish` T04, `needs_revision` T02, `reject` T05, `route_external` T17 style external route shown on WF-EXTERNAL-1, `hold` stays `submitted` with an honest wait, `escalate_human` only via [emergency-legal-lane.md](emergency-legal-lane.md).
 
 ```mermaid
 flowchart TD

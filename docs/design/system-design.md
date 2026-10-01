@@ -70,8 +70,7 @@ Layout inside `can_server/src`: each module has `domain/` (pure TS, no Nest or D
 | `stages` | stage, stage_edge, acceptance_criterion, stage_option, stage_choice, stage_evidence, source_ref | problems, moderation | Stage DAG and gating engine (D-72, W10). |
 | `review` | review_recommendation, volunteer opt-in | problems, moderation, accounts | Private volunteer review, quorum (D-72, W10). |
 | `contributions` | contribution, evidence_ref (URL only) | problems, moderation | Typed contributions; the type list comes from the brief. |
-| `proposals` | proposal | problems, contributions | Comparison data only; no voting rule. |
-| `decisions` | decision_record | proposals, problems | States who decided, under which authority, why. |
+| `decisions` | decision_record | stages, problems | States who decided, under which authority, why. |
 | `tasks` | task | decisions, problems | Task status, verification evidence refs. |
 | `audit` | audit_event | none | Write-only API for other modules; read for auditors and maintainers. |
 | `platform` (not domain) | config, health, event log writer, clock, id generator (UUIDv7), retention jobs | none | Shared kernel; keep tiny. |
@@ -94,8 +93,7 @@ erDiagram
   problem ||--o{ problem_event : "history"
   problem ||--o{ contribution : has
   contribution ||--o{ evidence_ref : cites
-  problem ||--o{ proposal : has
-  proposal ||--o| decision_record : "decided by"
+  stage_choice ||--o| decision_record : "recorded as"
   decision_record ||--o{ task : spawns
   problem ||--o{ moderation_run : "checked by"
   policy_pack_version ||--o{ moderation_run : "applied in"
@@ -194,19 +192,9 @@ erDiagram
     text note "public"
     text kind "public"
   }
-  proposal {
-    uuid id PK
-    uuid problem_id FK
-    uuid author_id FK
-    text summary "public"
-    text mechanism "public"
-    text outcome_metric "public"
-    text risks "public"
-    text status "public"
-  }
   decision_record {
     uuid id PK
-    uuid proposal_id FK
+    uuid stage_choice_id FK
     uuid decided_by FK
     text authority "public, who and under what rule"
     text rationale "public"
@@ -294,7 +282,7 @@ Lifecycle v2 entities are detailed in [components/server.md](components/server.m
 |---|---|
 | draft or rejected or withdrawn problem body | Hard-deleted 30 days after the state change (`purge_after`); UI shows the date. Event rows keep only type, states and timestamps, no body text. |
 | draft_fingerprint | Deleted 90 days after creation, or at publish (T04) if the problem is published. Salt rotated yearly; old fingerprints expire, never re-hashed. |
-| published problem, contribution, proposal, decision_record, task, problem_event | Kept; public record. Withdrawn contributions become tombstones (see UX). |
+| published problem, contribution, stage_option, decision_record, task, problem_event | Kept; public record. Withdrawn contributions become tombstones (see UX). |
 | moderation_run, moderation_decision, appeal, label_task | Kept with the problem (runs keep hashes and outputs, not raw prompts); `revision_hint` and spans cleared at purge for rejected drafts. |
 | session | Deleted 30 days after expiry or revoke. |
 | login_code | Deleted 24 hours after expiry or consumption. |
@@ -353,10 +341,10 @@ Conventions: JSON; list responses are `{items: [...], nextCursor: string | null}
 | GET | /v1/problems/{id}/contributions | anon | Typed contributions, grouped client-side by type. |
 | POST | /v1/problems/{id}/contributions | member | Add contribution with `evidenceRefs[{url,note}]`. |
 | PATCH | /v1/contributions/{id} | author | Edit or withdraw (tombstone). |
-| GET | /v1/problems/{id}/proposals | anon | List proposals. |
-| POST | /v1/problems/{id}/proposals | member | Create proposal. |
-| PATCH | /v1/proposals/{id} | author | Edit proposal. |
-| POST | /v1/problems/{id}/decision | initiator | Record decision for a proposal (authority text required). |
+| GET | /v1/stages/{id}/options | anon | List stage options. |
+| POST | /v1/stages/{id}/options | member | Create stage option. |
+| PATCH | /v1/stage-options/{id} | author | Edit stage option. |
+| POST | /v1/stages/{id}/choice | steward | Record the stage choice (authority text required). |
 | GET | /v1/problems/{id}/tasks | anon | List tasks. |
 | POST | /v1/problems/{id}/tasks | initiator | Create task from decision. |
 | PATCH | /v1/tasks/{id} | assignee or initiator | Update status and verification note. |

@@ -1,6 +1,6 @@
 # Flow: re-resolution
 
-> **D-72 (W10):** a reopen (T23, T24) returns the problem to `active` and reactivates only the affected stages (resolved back to `active`; their unstarted successors back to `planned`). The "earliest state" default below reads as "the earliest affected stage". Stage resolutions and `stage_choice` records are re-resolved like decision records and never deleted.
+> **D-72 (W10):** a reopen (T20, T21) returns the problem to `active` and reactivates only the affected stages (resolved back to `active`; their unstarted successors back to `planned`). The "earliest state" default below reads as "the earliest affected stage". Stage resolutions and `stage_choice` records are re-resolved like decision records and never deleted.
 
 ## Purpose
 When the rules change, past resolutions may no longer hold (D-59). A review job replays the new rule over solved, closed, redirected and stuck problems and their decision records. If the conclusion changes and reopening is feasible, the problem reopens for re-resolution. It is never silent, never deletes the old record, and can be appealed.
@@ -9,7 +9,7 @@ When the rules change, past resolutions may no longer hold (D-59). A review job 
 A policy version reaching full rollout ([policy-amendment.md](policy-amendment.md)), or a legal-corpus version activating ([legal-corpus-update.md](legal-corpus-update.md)).
 
 ## Status
-plan 09/10 (pending; the rework planner assigns exact ids). Uses transition T23 and rule RERESOLVE-1 in [../../spec/01a-lifecycle.md](../../spec/01a-lifecycle.md) (the table is not restated here). Feasibility criteria are open question `OQ-reresolution-feasibility`; the defaults below are D-59's.
+plan 09/10 (pending; the rework planner assigns exact ids). Uses transitions T20 and T21 and rule RERESOLVE-1 in [../../spec/01a-lifecycle.md](../../spec/01a-lifecycle.md) (the table is not restated here). Feasibility criteria are open question `OQ-reresolution-feasibility`; the defaults below are D-59's.
 
 ## Sequence
 ```mermaid
@@ -35,7 +35,7 @@ sequenceDiagram
     else annotate
       Mod->>DB: visible annotation on the record, old decision intact
     else reopen and feasible
-      Mod->>Eng: T23 reopen
+      Mod->>Eng: T20 reopen
       Eng->>DB: tx: state, event, notice, old record kept
       Mod->>Mail: initiator and followers, with rule, version and appeal path
     end

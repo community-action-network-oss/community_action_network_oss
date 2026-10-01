@@ -1,12 +1,12 @@
 # Flow: contribution, proposal and decision record
 
-> **D-72 (W10):** the fixed stages (facts, solutions, choosing, in progress) are replaced by stage nodes. Contributions and proposals target a stage (`stage_option`); the choice is a `stage_choice` with the stage's decision method ([stage-work.md](stage-work.md)). T08 to T11 below read as per-stage steps. Contributions to a `planned` stage are allowed and kept ready (STAGE-PREP-1); they surface when the stage becomes `ready`. The allowed-type matrix is per stage, not per problem state.
+> **D-72 (W10):** the fixed stages (facts, solutions, choosing, in progress) are replaced by stage nodes. Contributions and proposals target a stage (`stage_option`); the choice is a `stage_choice` with the stage's decision method ([stage-work.md](stage-work.md)). The old T08 to T11 below read as ST05 and CHOICE-GATE per stage. Contributions to a `planned` stage are allowed and kept ready (STAGE-PREP-1); they surface when the stage becomes `ready`. The allowed-type matrix is per stage, not per problem state.
 
 ## Purpose
 Move a problem from facts to a chosen fix: typed contributions, comparable proposals, a decision record with authority, rationale and a legality check.
 
 ## Trigger
-`POST /v1/problems/{id}/contributions`, `.../proposals`, `.../decision`, plus stage transitions T08 to T11.
+`POST /v1/problems/{id}/contributions`, `.../proposals`, `.../decision`, plus stage transitions ST05 and the choice gate.
 
 ## Status
 planned: 04-u01 to 04-u07 (server), 04-u08 to 04-u11 (app). Moderation of contributions in 04-u03 assumes human review; plan 09 (pending) replaces it with a run.
@@ -28,16 +28,16 @@ sequenceDiagram
   User->>API: proposal (mechanism, metric, risks, verification plan)
   API->>UC: store, run DP-LEGALITY
   User->>API: POST decision {proposalId, authority, rationale, dissent}
-  API->>Eng: T11 with decision record and legal-gate record
+  API->>Eng: CHOICE-GATE with decision record and legal-gate record
   Eng->>Mod: gate DP-LEGALITY dual legality, DP-DECISION-RECORD completeness
   Eng->>DB: tx: decision_record, state=implementation, event, tasks
 ```
 
 ## Failure paths
 - Type not allowed in the state: 409 before any run.
-- Lawfulness fails or unsure: outcome `needs_revision` with hint, or the problem goes `stuck` per T15 with the blocking constraint named; `hold` on model failure.
-- Decision record incomplete: DP-DECISION-RECORD returns `needs_revision`; T11 does not run.
-- Duplicate: `duplicate_of` link (04-u06) via DP-DUPLICATE, then T19.
+- Lawfulness fails or unsure: outcome `needs_revision` with hint, or the problem goes `stuck` per T13 with the blocking constraint named; `hold` on model failure.
+- Decision record incomplete: DP-DECISION-RECORD returns `needs_revision`; the choice gate does not pass.
+- Duplicate: `duplicate_of` link (04-u06) via DP-DUPLICATE, then T16.
 
 ## Data written
 `contribution`, `evidence_ref`, `proposal`, `decision_record`, `task`, `moderation_run`, `moderation_decision`.

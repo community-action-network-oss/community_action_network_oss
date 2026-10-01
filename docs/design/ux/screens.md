@@ -10,7 +10,7 @@ Every screen has a wireframe ID. "State" refers to lifecycle state keys in [`doc
 | WF-DETAIL-1 | `/problems/{id}` | anyone | Problem workspace, policy badge | loading, error, offline, tombstone |
 | WF-DETAIL-2 | same | anyone | Tombstone for withdrawn or removed items | n/a |
 | WF-DETAIL-3 | same | anyone | Status variants (paused, stuck, withdrawn, closed, redirected) | n/a |
-| WF-DETAIL-4 | same | anyone | Reopened under policy vX (T23, T24): old conclusion, what changed, next step, appeal | n/a |
+| WF-DETAIL-4 | same | anyone | Reopened under policy vX (T20, T21): old conclusion, what changed, next step, appeal | n/a |
 | WF-RESOLUTION-1 | `/resolutions` | anyone | Resolution records | loading, empty, error |
 | WF-SIGNUP-1 | `/sign-up` | anyone | Redeem invite | validation, offline, error |
 | WF-SIGNIN-1, WF-SIGNIN-2 | `/sign-in`, `/sign-in/code` | anyone | Email code sign-in | validation, rate limited, offline |
@@ -118,7 +118,7 @@ Retired frames stay in `wireframes/` with a "Retired (D-72)" note until the app 
 
 Draft, needs_revision, held, rejected and withdrawn-before-publication items are visible to the initiator only. In_review items are also visible to opted-in volunteers with personal data masked (WF-VREVIEW-2); the poster handle never shows. The emergency/legal lane sees the minimum redacted record for its case. Auditors and labelers see only masked samples (WF-AUDIT-2, WF-LABEL-1): no handle, no account, no identity. No role may publish, reject or overturn one item by hand. WF-DETAIL-2 (tombstone) covers withdrawn contributions and public items taken out of view, never private drafts. Decided items show "Decided under policy vX", or "Policy vX, transitional stewardship" while only founder stewardship approves the pack. Seed problems show "Seed problem, synthetic evidence" in list and detail, and name no one.
 
-Appeals attach to decisions, not to a state (D-15), and cover T02, T05, T19 and T20 plus re-moderation notices; WF-APPEAL-1 hangs off WF-DECISION-1, WF-DECISION-2 and WF-REMOD-1.
+Appeals attach to decisions, not to a state (D-15), and cover T02, T05, T16 and T17 plus re-moderation notices; WF-APPEAL-1 hangs off WF-DECISION-1, WF-DECISION-2 and WF-REMOD-1.
 
 ## Navigation
 

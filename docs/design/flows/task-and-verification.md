@@ -1,15 +1,15 @@
 # Flow: task and verification
 
-> **D-72 (W10):** tasks belong to a stage. "Verification" of a stage is DP-STAGE-RESOLUTION on its evidence against that stage's criteria; the problem-level "solved" is DP-VERIFICATION against the final criteria, run once every required stage is resolved ([stage-advancement.md](stage-advancement.md)). T12 to T14 below read as the stage-level loop; a failed check returns the stage to `active` with hints, not the problem to a fixed `implementation` state.
+> **D-72 (W10):** tasks belong to a stage. "Verification" of a stage is DP-STAGE-RESOLUTION on its evidence against that stage's criteria; the problem-level "solved" is DP-VERIFICATION against the final criteria, run once every required stage is resolved ([stage-advancement.md](stage-advancement.md)). The old T12 to T14 below read as ST05 on `implement` and `verify`, ST06 and T15, as the stage-level loop; a failed check returns the stage to `active` with hints, not the problem to a fixed `implementation` state.
 
 ## Purpose
 Track implementation tasks, collect verification evidence from someone other than the implementer, and decide "solved" against the chosen proposal's success metric.
 
 ## Trigger
-`PATCH /v1/tasks/{id}`, verification contribution, T12, T13, T14.
+`PATCH /v1/tasks/{id}`, verification contribution, ST05, ST06, T15.
 
 ## Status
-planned: 05-u01 (tasks, T11 and T12), 05-u02 (verification, T13, T14, resolution records), 05-u05 (screens). Solved-evidence DP: plan 09 (pending).
+planned: 05-u01 (tasks, CHOICE-GATE and ST05), 05-u02 (verification, ST06, T15, resolution records), 05-u05 (screens). Solved-evidence DP: plan 09 (pending).
 
 ## Sequence
 ```mermaid
@@ -23,11 +23,11 @@ sequenceDiagram
   participant DB
   Assignee->>API: PATCH task status, verification note
   API->>UC: authz assignee or initiator, update moderated (content-update)
-  Assignee->>API: T12 implementation to verification
+  Assignee->>API: ST05 on the implement stage
   Verifier->>API: verification_evidence contribution (URL)
   API->>UC: verifier must differ from implementer
-  Verifier->>API: T14 propose solved
-  API->>Eng: T14 request
+  Verifier->>API: propose solved
+  API->>Eng: T15 request
   Eng->>Mod: gate DP-VERIFICATION (evidence vs success metric)
   alt evidence sufficient
     Mod-->>Eng: publish
@@ -35,7 +35,7 @@ sequenceDiagram
   else insufficient
     Mod-->>Eng: needs_revision with hint (what evidence is missing)
   else check failed
-    Eng->>DB: T13 back to implementation with failed-check note
+    Eng->>DB: ST06 back to active with failed-check note
   end
 ```
 
@@ -49,7 +49,7 @@ sequenceDiagram
 `task`, `contribution` (verification_evidence), resolution record, `moderation_run`, `audit_event`.
 
 ## Events emitted
-`task.updated`, `problem.verification`, `problem.solved` (resolution record created), `problem.implementation` (T13) (planned).
+`task.updated`, `problem.verification`, `problem.solved` (resolution record created), `stage.active` (ST06) (planned).
 
 ## DPs invoked
 DP-VERIFICATION, DP-PRIVACY, DP-NAMING on task text; DP-COMPLETENESS and DP-ASSUMPTIONS on task and verification-evidence fields (schema-structured, D-58). See [../ai/decision-points.md](../ai/decision-points.md).

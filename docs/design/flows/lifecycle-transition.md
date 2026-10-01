@@ -32,17 +32,17 @@ sequenceDiagram
   API-->>App: new state, allowed next actions
 ```
 
-Which transitions have a gate: T01 (intake DPs), T08 and T09 (DP-FRAMING and DP-LEGALITY on stage summaries and proposals), T11 (DP-LEGALITY dual legality gate, DP-DECISION-RECORD), T14 (DP-VERIFICATION), T15 (stuck needs a lawful route), T19 and T20 (closure and redirect reasons). The table owning these rows is the brief; this list only says where a DP applies.
+Which transitions have a gate: T01 (intake DPs), ST05 (DP-STAGE-RESOLUTION, with DP-FRAMING and DP-LEGALITY on stage options), CHOICE-GATE (DP-LEGALITY dual legality gate, DP-DECISION-RECORD), T15 (DP-VERIFICATION), T13 (stuck needs a lawful route), T16 and T17 (closure and redirect reasons). The table owning these rows is the brief; this list only says where a DP applies.
 
-Every legality check (DP-LEGALITY, DP-BLOCKER, DP-DECISION-RECORD, and legality inside DP-ELIGIBILITY) applies the full cumulative legal stack for the problem's jurisdiction, L0 platform rules, L1 UN human rights, L2 supranational where binding, L3 constitution, L4 national law, L5 regional law, L6 city rules (D-61). A solution illegal at any layer sends the problem to `stuck` (legally blocked); a topic forbidden by local law is not published there and the refusal is logged with its legal basis. Reopening a resolved problem is T23, owned by [../../spec/01a-lifecycle.md](../../spec/01a-lifecycle.md), triggered only by [re-resolution.md](re-resolution.md).
+Every legality check (DP-LEGALITY, DP-BLOCKER, DP-DECISION-RECORD, and legality inside DP-ELIGIBILITY) applies the full cumulative legal stack for the problem's jurisdiction, L0 platform rules, L1 UN human rights, L2 supranational where binding, L3 constitution, L4 national law, L5 regional law, L6 city rules (D-61). A solution illegal at any layer sends the problem to `stuck` (legally blocked); a topic forbidden by local law is not published there and the refusal is logged with its legal basis. Reopening a resolved problem is T20 (REOPEN-RULE) or T21 (REOPEN-EVIDENCE), owned by [../../spec/01a-lifecycle.md](../../spec/01a-lifecycle.md), triggered only by [re-resolution.md](re-resolution.md).
 
-D-72 (W10): the fixed stage sequence is replaced by a per-problem stage DAG. Problem-level transitions (draft, in_review, needs_revision, held, active, solved, and the pause, stuck, redirect, close and withdraw family) go through this engine; stage-level state changes go through the `stages` gating engine ([stage-advancement.md](stage-advancement.md)), which uses the same one-transaction rule. Gates: `in_review` needs CRITERIA-1 and a valid DAG; `active` only through DP-PUBLISH; `solved` through DP-VERIFICATION once all required stages are resolved. The old T08 to T14 gate list above applies per stage as DP-STAGE-RESOLUTION and DP-LEGALITY ([stage-work.md](stage-work.md)).
+D-72 (W10): the fixed stage sequence is replaced by a per-problem stage DAG. Problem-level transitions (draft, in_review, needs_revision, held, active, solved, and the pause, stuck, redirect, close and withdraw family) go through this engine; stage-level state changes go through the `stages` gating engine ([stage-advancement.md](stage-advancement.md)), which uses the same one-transaction rule. Gates: `in_review` needs CRITERIA-1 and a valid DAG; `active` only through DP-PUBLISH; `solved` through DP-VERIFICATION once all required stages are resolved. The old T08 to T14 gates (now ST05, ST06, CHOICE-GATE and T15, see spec 01a section 4.3) apply per stage as DP-STAGE-RESOLUTION and DP-LEGALITY ([stage-work.md](stage-work.md)).
 
 ## Failure paths
 - Concurrent transition: row lock plus expected-state check; loser gets `conflict`.
 - Event insert fails: whole transaction rolls back (unit test injects the failure).
 - Gate hold: no state change, `hold` recorded, retried.
-- Roles: the brief's "moderator confirms" for T04, T14, T19, T20 becomes "ratified policy decides via the run"; person-in-the-loop only for the emergency and legal lane.
+- Roles: the brief's "moderator confirms" for T04, T15, T16, T17 becomes "ratified policy decides via the run"; person-in-the-loop only for the emergency and legal lane.
 
 ## Data written
 `problem.state`, `problem_event` (or `events` row in the scaffold), `moderation_run` when gated, `audit_event`.

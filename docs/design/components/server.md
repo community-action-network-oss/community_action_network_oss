@@ -11,7 +11,6 @@ flowchart TD
   http[http: controllers and DTOs] --> acc[accounts]
   http --> prob[problems]
   http --> contrib[contributions]
-  http --> prop[proposals]
   http --> dec[decisions]
   http --> task[tasks]
   http --> stg[stages]
@@ -23,7 +22,6 @@ flowchart TD
   http --> modr[moderation runtime]
   prob --> modr
   contrib --> modr
-  prop --> modr
   dec --> modr
   task --> modr
   modr --> pol[policy]
@@ -49,8 +47,7 @@ flowchart TD
 | `stages` | stage plan DAG (`stage`, `stage_edge`, `acceptance_criterion`), gating engine, `stage_option`, `stage_choice`, `stage_evidence`, plan versions and plan-change proposals | problems, moderation, contributions | W10 (D-72) | planned |
 | `review` | volunteer opt-in, review queue with masked view, `review_recommendation`, poster resolution, quorum check that triggers DP-PUBLISH | problems, moderation, accounts, ai-gateway (masking) | W10 (D-72) | planned |
 | `contributions` | contribution, evidence_ref (URL only), allowed-per-state matrix | problems, moderation | 04-u01 to 04-u03 | planned |
-| `proposals` | proposal, comparison data | problems, contributions | 04-u04 | planned |
-| `decisions` | decision_record, legal-gate record | proposals, problems | 04-u05 | planned |
+| `decisions` | decision_record, legal-gate record | stages, problems | 04-u05 | planned |
 | `tasks` | task, blockers, verification refs | decisions, problems | 05-u01, 05-u02 | planned |
 | `audit` | audit_event, write-only API for others | none | 02-u04 | planned |
 
