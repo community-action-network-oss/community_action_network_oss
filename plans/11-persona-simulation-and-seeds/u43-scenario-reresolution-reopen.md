@@ -31,7 +31,7 @@ A persona run in which a solved seed problem is reopened by T20 `REOPEN-RULE` af
 5. Register as `seed1.reresolve`; tests as in 11-u19.
 
 ## Acceptance
-- The reopen run keeps the old record and reaches T23 with the full payload (test).
+- The reopen run keeps the old record and reaches T20 with the full payload (test).
 - A non-changing corpus update leaves state unchanged (test).
 - The scenario skips with `pending_dependency` when 09-u66 behavior is absent (test).
 - `npm run verify` is green.

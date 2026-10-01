@@ -38,7 +38,7 @@ From the repo roots with no network: `npm run verify` is green in can_policy, ca
 | [10-u08](u08-schema-problem-v1.md) | Content schema v1: problem core (16 fields incl. sources and final acceptance criteria) | can_policy | 1.5 | 8 | 10-u07 | - |
 | [10-u09](u09-schema-contribution-a.md) | Content schemas v1: contribution common fields and first seven types | can_policy | 1.5 | 9 | 10-u07 | - |
 | [10-u10](u10-schema-contribution-b.md) | Content schemas v1: remaining contribution types | can_policy | 1.5 | 10 | 10-u09 | - |
-| [10-u11](u11-schema-proposal-decision-task.md) | Content schemas v1: stage_option, stage_choice, stage_evidence | can_policy | 1.5 | 11 | 10-u07, 10-u69 | - |
+| [10-u11](u11-content-schemas-v1-stage-option-stage.md) | Content schemas v1: stage_option, stage_choice, stage_evidence | can_policy | 1.5 | 11 | 10-u07, 10-u69 | - |
 | [10-u12](u12-schema-appeal-policy-migration.md) | Content schemas v1: appeal and policy_proposal, plus migration-map format | can_policy | 1.5 | 12 | 10-u07 | - |
 | [10-u13](u13-schema-completability-lint.md) | Schema completability lint: widgets, DP references, message ids, guidance in eval | can_policy | 1.2 | 13 | 10-u08, 10-u09, 10-u10, 10-u11, 10-u12, 10-u60, 10-u61, 10-u69, 10-u70 | - |
 | [10-u14](u14-dp-scaffolding.md) | Decision-point scaffolding: shared prompt skeleton, output schema base, DP lint | can_policy | 1 | 14 | 10-u03 | - |
@@ -61,7 +61,7 @@ From the repo roots with no network: `npm run verify` is green in can_policy, ca
 | [10-u31](u31-draft-schema-migration.md) | Draft schema migration: minor auto-migrate, major mapping with 30-day grace | can_server | 1.5 | 31 | 10-u29, 10-u12 | - |
 | [10-u32](u32-policy-proposals-api.md) | Policy proposals API: submit, stage, protected-core refusal, eval and replay reports | can_server | 1.5 | 32 | 10-u29, 10-u24, 10-u12 | - |
 | [10-u33](u33-facts-section-of-the-preparation-workspace.md) | Facts section of the preparation workspace (WF-PREP-1) and the exact preview, on the schema renderer | can_app | 1.5 | 33 | 10-u05, 10-u29, 03-u16, 03-u08, 10-u08 | - |
-| [10-u34](u34-contribution-proposal-forms.md) | Contribution and stage option forms rebuilt on the schema renderer | can_app | 1.5 | 34 | 10-u05, 10-u29, 10-u10, 04-u08, 04-u09 | - |
+| [10-u34](u34-contribution-and-stage-option-forms-rebuilt.md) | Contribution and stage option forms rebuilt on the schema renderer | can_app | 1.5 | 34 | 10-u05, 10-u29, 10-u10, 04-u08, 04-u09 | - |
 | [10-u35](u35-resolution-appeal-forms.md) | Decision record, task and verification forms rebuilt on the schema renderer | can_app | 1.5 | 35 | 10-u05, 10-u29, 10-u11, 04-u10, 05-u05, 05-u08, 10-u70 | - |
 | [10-u36](u36-assist-and-hints.md) | Fill-assist per-field confirm and revision hints beside fields (WF-FORM-2, WF-FORM-3) | can_app | 1.5 | 36 | 10-u30, 10-u33, 09-u24, 09-u26 | - |
 | [10-u37](u37-draft-migration-screen.md) | Draft schema version change screen: pin, move, confirm mappings (WF-FORM-5) | can_app | 1.5 | 37 | 10-u31, 10-u33 | - |

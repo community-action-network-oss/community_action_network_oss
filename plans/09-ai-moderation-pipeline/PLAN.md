@@ -72,7 +72,7 @@ Units 09-u44, 09-u45, 09-u66 and 09-u67 (the e2e files) prove this in CI; the ap
 | [09-u22](u22-run-orchestrator-event-and-dp-to.md) | Run orchestrator: event and DP to a recorded, aggregated result | can_server | 1.5 | 251 | 09-u16, 09-u18, 09-u19, 09-u04, 09-u17, 09-u11, 09-u21, 09-u09, 09-u14 | - |
 | [09-u23](u23-outcome-applier-moderationtarget-port-and-decision.md) | Outcome applier: ModerationTarget port and decision write in the transition engine | can_server | 1.5 | 252 | 09-u22, 03-u05 | - |
 | [09-u24](u24-problem-as-the-first-moderationtarget-with.md) | Problem as the first ModerationTarget with checks gate and decisions read | can_server | 1.5 | 253 | 09-u23, 03-u08, 02-u10 | - |
-| [09-u25](u25-pre-publication-blocking-path-on-t01.md) | Submit gate and publication run paths: T01, T03, T04, T02, T05, edit cancel and withdraw | can_server | 1.5 | 254 | 09-u24, 09-u07, 03-u07, 12-u04, 12-u03 | - |
+| [09-u25](u25-submit-gate-and-publication-run-paths.md) | Submit gate and publication run paths: T01, T03, T04, T02, T05, edit cancel and withdraw | can_server | 1.5 | 254 | 09-u24, 09-u07, 03-u07, 12-u04, 12-u03 | - |
 | [09-u26](u26-on-update-path-diff-aware-runs.md) | On-update path: diff-aware runs and pending versions of published items | can_server | 1.5 | 255 | 09-u25, 12-u09 | - |
 | [09-u27](u27-post-publication-re-check-on-policy.md) | Post-publication re-check on policy change: rollout state, batches, flips | can_server | 1.5 | 256 | 09-u07, 09-u24, 09-u26 | - |
 | [09-u28](u28-context-change-triggers-related-problem-law.md) | Context-change triggers: related problem, law update, evidence tier | can_server | 1.2 | 257 | 09-u27 | - |
@@ -88,7 +88,7 @@ Units 09-u44, 09-u45, 09-u66 and 09-u67 (the e2e files) prove this in CI; the ap
 | [09-u38](u38-emergency-and-legal-lane-module-with.md) | Emergency and legal lane module with NO-INSTANCE-OVERRIDE-1 route test | can_server | 1.5 | 267 | 09-u23, 09-u02, 09-u11 | - |
 | [09-u39](u39-observability-metrics-without-content-alerts-and.md) | Observability: metrics without content, alerts and cost per accepted result | can_server | 1.3 | 268 | 09-u22 | - |
 | [09-u40](u40-contribution-adapter-moderation-on-contribution-submit.md) | Contribution adapter: moderation on contribution submit and accept | can_server | 1.5 | 269 | 09-u24, 04-u02 | - |
-| [09-u41](u41-proposal-and-decision-record-adapters-dp.md) | Stage option and stage choice adapters (DP-LEGALITY, DP-DECISION-RECORD at the CHOICE-GATE) | can_server | 1.5 | 270 | 09-u40, 04-u04, 04-u05 | - |
+| [09-u41](u41-stage-option-and-stage-choice-adapters.md) | Stage option and stage choice adapters (DP-LEGALITY, DP-DECISION-RECORD at the CHOICE-GATE) | can_server | 1.5 | 270 | 09-u40, 04-u04, 04-u05 | - |
 | [09-u42](u42-task-and-verification-adapters-dp-verification.md) | Task, final verification and terminal adapters (DP-VERIFICATION on final criteria, DP-BLOCKER, DP-CLOSURE) | can_server | 1.5 | 271 | 09-u41, 05-u01, 05-u02 | - |
 | [09-u43](u43-openapi-audit-operation-ids-response-key.md) | OpenAPI audit: operation ids, response key sets and no content leaks | can_server | 1.2 | 272 | 09-u25, 09-u29, 09-u34, 09-u35, 09-u32, 09-u38, 09-u37, 09-u39 | - |
 | [09-u44](u44-e2e-with-fakemodel-part-1-seeded.md) | E2E with FakeModel part 1: seeded problem, pre-publication, update re-check | can_server | 1.5 | 273 | 09-u25, 09-u26, 09-u43, 02-u12, 12-u08, 12-u03 | - |
