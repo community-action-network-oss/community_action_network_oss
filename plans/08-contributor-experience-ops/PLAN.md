@@ -3,7 +3,7 @@ id: "08"
 title: "Contributor experience and operations"
 approved: true
 status: "todo"
-depends_on_plans: []
+depends_on_plans: ["10"]
 spec: ["docs/spec/21-open-source-governance.md","docs/spec/22-ai-contribution-policy.md","docs/spec/02-agent-rules.md","DECISIONS.md","plans/FORMAT.md"]
 ---
 
@@ -22,7 +22,7 @@ Make the repositories ready for a stranger and for an overnight agent: issue and
 
 ## Units
 
-Total estimate: 14.5 hours across 14 units. Gated units are never selected by `corpus.mjs next`.
+Total estimate: 15.7 hours across 15 units. Gated units are never selected by `corpus.mjs next`.
 
 | Unit | Title | Repo | Hours | Needs units | Founder gate |
 |---|---|---|---|---|---|
@@ -40,6 +40,7 @@ Total estimate: 14.5 hours across 14 units. Gated units are never selected by `c
 | 08-u12 | Dependency update policy | . | 1 | none | no |
 | 08-u13 | Release and versioning policy | . | 1 | none | no |
 | 08-u14 | Activation checklist for .claude/settings.proposed.json | . | 0.75 | none | yes |
+| 08-u15 | can_policy contributor path for lawyers, activists and policy experts (no git needed) | can_policy | 1.2 | 10-u02, 10-u26, 10-u41 | no |
 
 ## Conventions
 
