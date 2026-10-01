@@ -435,3 +435,20 @@ Every default, deviation and judgment call made while building CAN. Each one can
   - **Spoofing:** spoofing cannot be fully prevented. Device integrity checks (App Attest or Play Integrity on native, weaker on web), plausibility signals and rate limits raise the cost.
   - **Signals, not identity:** a suspect attestation downgrades the contribution to guest. It never leads to an accusation.
   - **Reverse:** go back to a self-declared coarse area.
+- **D-74 · W10 · How lifecycle v2 landed in the spec** (`fa03e9d`, `33fd55a`, `6782e0a`).
+  - **Spec files:**
+    - `01a-lifecycle.md` covers problem states, T00 to T22, and a map from the old transition ids to the new ones.
+    - `01b-stages.md` covers stage states, ST01 to ST11, and the stage plan as a DAG.
+  - **Rules:** eight new ones: CRITERIA-1, REVIEW-1, RECO-1, SOURCE-1, STAGE-GATE-1, STAGE-PREP-1, STAGE-RESOLVE-1, PLAN-CHANGE-1.
+  - **Defaults chosen by the orchestrator:**
+    - Review quorum: 3 distinct completed reviews with no recommendation open longer than 7 days. After 14 days with at least 1 completed review, the poster may send the problem to DP-PUBLISH anyway.
+    - At least one completed volunteer review is always required, and nothing publishes without one. A problem with no reviews stays `in_review` and shows a visible "needs reviewers" call to the community.
+    - `stage_option` replaces the old `proposal` entity.
+    - `DP-CLOSURE` stays, gating close and redirect.
+    - Recommendations still open are weighed and cited by DP-PUBLISH, never counted as accepted.
+  - **Rules file split:** `rules.md` is split, and the legal-stack, simulation and legal-lane rules moved to `rules-legal-sim.md`.
+- **D-75 · W11 · Private location attestation design (ADR 0016, `16cee5b`).**
+  - **Slice 1:** a local area check plus a server challenge, with App Attest or Play Integrity tokens on native. On the web the result is self-asserted.
+  - **Target:** `zk_cell_v1`, a blinded H3 cell-membership proof. It is adopted only after a spike meets: proof at or under 3 s median on a mid-range Android browser, proof at or under 20 KB, verification at or under 50 ms, and a clean privacy review.
+  - **Privacy:** proofs are verified and then discarded. Attestation never enters moderation inputs.
+  - **Labelling:** default label wording on web while the check is self-asserted is "Reported impacted". The founder may override this.
