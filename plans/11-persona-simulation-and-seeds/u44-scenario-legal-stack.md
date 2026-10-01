@@ -25,7 +25,7 @@ A persona run that exercises the legal layer stack: a forbidden-topic problem is
 
 ## Steps
 1. In a synthetic jurisdiction whose corpus forbids one topic, a submitter persona submits a problem on that topic; assert T05 rejection with `TOPIC-FORBIDDEN-1` and the legal basis (layer and source version) logged, and that nothing is published in that jurisdiction.
-2. A proposer persona submits a proposal whose solution is illegal under one layer (L1 to L6 fixture); assert `DP-LEGALITY` yields `stuck` (legally blocked) citing layer, source and recheck condition, and that a lawful sibling proposal is unaffected.
+2. A proposer persona submits a stage option whose solution is illegal under one layer (L1 to L6 fixture); assert `DP-LEGALITY` blocks the stage (ST07) with the stuck payload citing layer, source and recheck condition, the problem goes `stuck` (T13) only when every remaining required stage is blocked, and a lawful sibling option is unaffected.
 3. Assert refusal notices show the rule id and appeal route, and that the observer feed records both decisions.
 4. Register as `legal.stack`; tests as in 11-u19.
 

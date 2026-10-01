@@ -26,6 +26,7 @@ Seed 4, framing verbatim: "Climate change creates large, interconnected harms th
 1. Confirm the graph units exist and are done; if not, stop and report.
 2. Write the seed files with a parent and children along the seven axes in the framing (geographic, sectoral, mitigation, adaptation, finance, governance, verification), synthetic evidence under the fake domain, a rubric and variants as in seed 3.
 3. Extend the persona variants for decomposition proposals; run lint.
+4. Lifecycle v2 (W13): each child problem gets its own stage plan and final acceptance criteria, as in 11-u41.
 
 ## Acceptance
 - The seed lints and the framing equals D-56 seed 4 byte for byte.

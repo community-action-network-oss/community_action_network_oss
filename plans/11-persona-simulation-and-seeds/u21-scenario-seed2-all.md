@@ -28,6 +28,7 @@ Seed 2 (city centre cleanliness) scenarios for every variant in simulation.md: `
 2. Assert `existing_efforts` is filled in the published problem, the `con-institution` operational constraint is published, the proposal combines collection design, enforcement and communications (rubric coverage), tasks complete, verification reaches `solved` or honest `stuck`.
 3. `seed2.attack`: the individual plea gets `route_external` or reject with no narrative retained; spam is bounded by `limits.yaml` caps (assert counts equal the cap) and DP-DUPLICATE.
 4. Register ids and write tests (docker and db).
+5. Lifecycle v2 (W13): run the seed 2 stage plan (`measure-baseline`, then `collection-design` and `enforcement-and-comms` in parallel, `pilot`, `measure-result`) through the same lifecycle as 11-u19 (prepare, review, publication, stages, final verification), asserting parallel stages do not gate each other and that the `pilot` stage stays `planned` until both predecessors are `resolved`.
 
 ## Acceptance
 - All five seed 2 scenarios run in deterministic mode and meet their assertions (tests).

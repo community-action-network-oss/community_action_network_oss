@@ -7,7 +7,7 @@ area: can-server
 model: sonnet
 est_hours: 1.5
 priority: 120
-depends_on: ["11-u19","09-u33","09-u34"]
+depends_on: ["11-u19", "09-u33", "09-u34", "11-u47"]
 writes: ["test/simulation/scenarios/seed1/**"]
 reads: []
 spec: ["docs/design/ai/simulation.md#3-seed-scenarios-seeds-1-and-2","docs/design/ai/appeals.md","docs/design/ai/decision-points.md#per-dp-notes"]
@@ -28,6 +28,7 @@ The seed 1 variants that exercise the other half of the lifecycle: `appeal` (a r
 2. `stuck.ts`: prop-proposer submits one lawful and one blocked proposal (overlay rule blocks it); assert DP-LEGALITY produces the stuck payload (constraint, source and version, blocked actions, recheck condition), DP-BLOCKER validates it, the decision record for the other proposal passes DP-DECISION-RECORD, and the problem reaches `solved` through verified evidence or an honest `stuck`.
 3. Add tasks: con-implementer claims, posts progress and `verification_evidence`; assert DP-VERIFICATION runs and a completed task alone does not mark solved.
 4. Register as `seed1.appeal` and `seed1.stuck`; tests as in 11-u19.
+5. Lifecycle v2 (W13): where this unit says proposal read `stage_option`, decision record `stage_choice` with its record, and stuck proposal the `blocked` stage (ST07, DP-BLOCKER) that makes the problem `stuck` (T13) when every remaining required stage is blocked or behind a blocked one. The appeal scenario adds a stage resolution appeal: `stg-evidence-weak` gets `needs_revision` on a stage, the contributor appeals (target `stage_resolution`), the independent re-run runs, an overturn returns the stage through ST10 and the successors stay `planned`. The solved check is DP-VERIFICATION on the final acceptance criteria, and the unit asserts the archive record exists for the `stuck` ending.
 
 ## Acceptance
 - `seed1.appeal` records an independent re-run and a resolved appeal (test).

@@ -28,6 +28,7 @@ Trigger every row of the fail-closed matrix (timeout, schema failure after one r
 2. For each row: set the fault, drive a submit by a careful persona, assert outcome `hold`, state unchanged, no public row, `GET` of the static crisis route returns 200, then clear the fault and assert the item can proceed (retry works).
 3. Result `failclosed.matrix` lists rows covered and `publishes_on_failure` (must be 0) feeding G9.
 4. Test on the test server (docker and db): all coverable rows pass; a deliberately fail-open stub (test double) is caught.
+5. Lifecycle v2 (W13): add matrix rows for the new blocking DPs: a held DP-PUBLISH run keeps the problem `in_review` (T09) with no public row; a held DP-STAGE-RESOLUTION leaves the stage `resolving`; a held DP-ARCHIVE keeps the archive record private and the terminal state unchanged; a held DP-REUSE-FIT shows no suggestion; an unresolved legal stack holds a suggestion. Each row asserts the crisis route stays reachable and that recovery proceeds after the fault clears.
 
 ## Acceptance
 - Each coverable matrix row ends in hold and no publish (test).

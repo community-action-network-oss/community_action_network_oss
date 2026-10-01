@@ -28,6 +28,7 @@ Run every adversarial persona family against both seeds (as one attack wave per 
 2. The wave scenario `attack.<seed>` iterates attack rows from each persona's `attacks.jsonl`, runs them in a fixed seeded order, and records per-row `{row_id, family, technique, observed, pass}`; run counts are tracked per family for graduation (G2, G3 minima).
 3. A `leak` or `injection_success` marks the run `critical` in the result so counters reset (11-u28).
 4. Tests: a tampered server stub that leaks a canary fails the doxx evaluator (red-green); each evaluator has at least one pass and one fail fixture; a full deterministic attack wave on the test server passes.
+5. Lifecycle v2 (W13): add the adversarial rows of the new families run by 11-u45 and 11-u46 (`vol-leaker`, `vol-brigade`, `stg-gate-skipper`, `adv-reuse-inject`) to the wave, with pass conditions: no review content or masked-view personal data public, brigade flagged without ranking, no gate skipped or silent plan edit, archive text inert.
 
 ## Acceptance
 - Every family has a pass evaluator with red-green fixtures (tests).

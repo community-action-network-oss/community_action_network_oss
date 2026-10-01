@@ -26,6 +26,7 @@ Seed 3, framing verbatim: "Increasingly capable AI systems create an evolving gl
 1. Confirm the graph units exist and are done; if not, stop and report.
 2. Write `seed.yaml`, a parent `problem.json` and a decomposition into bounded child problems (each valid for the then-current problem schema), synthetic evidence under the fake domain, a rubric, and variants including `con-expert` proposing child problems and a scope-adversary posting an everything-problem.
 3. Add the new graduation criterion "a parent reaches solved only through its children" to `thresholds.yaml` through its own stricter PR, with the harness assertion in a follow-up server unit.
+4. Lifecycle v2 (W13): each child problem gets its own stage plan and final acceptance criteria in the seed files, and the parent's final criteria are phrased over its children.
 
 ## Acceptance
 - The seed lints and the framing equals D-56 seed 3 byte for byte.

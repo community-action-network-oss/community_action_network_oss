@@ -7,7 +7,7 @@ area: can-server
 model: sonnet
 est_hours: 1.5
 priority: 118
-depends_on: ["11-u12","11-u16","11-u13","09-u25","10-u40"]
+depends_on: ["11-u12", "11-u16", "11-u13", "09-u25", "10-u40", "12-u08", "12-u03"]
 writes: ["scripts/seed-bootstrap.ts","test/simulation/seeds/**","package.json"]
 reads: []
 spec: ["docs/design/flows/seed-bootstrap.md","docs/design/ai/simulation.md#3-seed-scenarios-seeds-1-and-2","docs/adr/0011-persona-simulation-proof.md"]
@@ -30,6 +30,7 @@ Implement docs/design/flows/seed-bootstrap.md: a maintainer runs one command wit
 4. Report: published, revised, held per seed to stdout and `seed-report.json`; exit code 1 if any seed is not published.
 5. Set `is_seed` and `synthetic_evidence` through the normal write path from 11-u13 (the loader sends the seed flag only in simulation mode).
 6. Tests with FakeModel: both seeds publish; a seed containing a planted name is refused before any request; missing overlay refuses; rerun is idempotent; a failing seed is reported and not force-published.
+7. Lifecycle v2 (W13): the seed goes through the real path: create draft, fill sections (facts, sources, final criteria, stage plan, area reference), T01 to `in_review`, then the volunteer review: the loader opts in the seeded volunteer accounts (labelled simulation accounts through the normal opt-in API) and each completes a review through the review API (recommendation fixtures from the seed `reviews/`), the poster resolves each recommendation with a reason, then `request_publication` and T04. The ledger records `in_review`, `active` and the review count. The loader never writes a stage row directly. The seeded reviewer accounts exist only in simulation mode.
 
 ## Acceptance
 - Re-running changes nothing when hashes are unchanged (test).

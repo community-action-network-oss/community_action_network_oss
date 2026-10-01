@@ -7,7 +7,7 @@ area: can-server
 model: sonnet
 est_hours: 1.5
 priority: 131
-depends_on: ["11-u20","09-u34","09-u35","09-u36","09-u37","11-u26"]
+depends_on: ["11-u20", "09-u34", "09-u35", "09-u36", "09-u37", "11-u26", "12-u07"]
 writes: ["test/simulation/scenarios/appeals/**"]
 reads: []
 spec: ["docs/design/ai/appeals.md","docs/design/ai/simulation.md#8-graduation-criteria-defaults-to-be-ratified","docs/design/ai/amendment-loop.md"]
@@ -28,6 +28,7 @@ Run at least 10 simulated appeals across personas, with at least one overturn, a
 2. Full loop on one disputed case: independent re-run still disputed, label task created (randomized, context-masked fixture panel of 3 synthetic labelers), label stored, candidate written (11-u26), a pack variant with the example added is built via a fixture step, activated, and the original instance is re-decided by AI with the new version recorded; assert the poster sees the new notice.
 3. Output `appeals {filed, upheld, overturned, time_to_decision, loop_exercised, example_ratified_fixture: true}`; the report marks `ratified_example: simulated_panel`.
 4. Tests on the test server.
+5. Lifecycle v2 (W13): at least 2 of the 10 appeals target stage resolution decisions (`stage_resolution`); one overturn follows the ST10 path with the notice and the re-decision under the new version. The loop assertions are otherwise unchanged.
 
 ## Acceptance
 - At least 10 appeals resolved within the bound (test).

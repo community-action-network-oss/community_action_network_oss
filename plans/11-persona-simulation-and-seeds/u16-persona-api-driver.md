@@ -7,7 +7,7 @@ area: can-server
 model: sonnet
 est_hours: 1.5
 priority: 116
-depends_on: ["11-u11","10-u29","11-u13","10-u40"]
+depends_on: ["11-u11", "10-u29", "11-u13", "10-u40", "12-u08", "12-u07", "12-u09", "14-u11"]
 writes: ["test/simulation/api/**","test/simulation/personas/driver/**"]
 reads: []
 spec: ["docs/design/ai/simulation.md#1-principles","docs/design/ai/simulation.md#4-lifecycle-driving","docs/design/flows/structured-submission.md","docs/design/ai/structured-content.md#4-dp-assumptions"]
@@ -29,6 +29,7 @@ The HTTP client layer personas use: sign up by synthetic invite, keep a session 
 3. `HintAnswerer`: reads `needs_revision` hints (`field_ref`, `revision_hint`, rule ids) from the decision payload and applies the step's `assumption_strategy`: `mark_assumption` (adds an entry to `assumptions[]` and sets the basis to assuming), `correct` (replaces the field with the script's `revise.fields`), `ignore` (resubmits unchanged to prove the pipeline holds).
 4. High-level methods used by scenarios: `submitProblem`, `contribute`, `proposeSolution`, `recordDecision`, `claimTask`, `postProgress`, `postVerification`, `appeal`, `readNotices`, `readPublicProblem`, each returning a typed result `{status, decision?, hints[], http}`.
 5. Tests against a stub server and, where available, the real test server: session handling, filler stamps, hint strategies, missing route reporting, no call outside `/v1`.
+6. Lifecycle v2 (W13): replace the method list of step 4 by the lifecycle v2 calls: `prepareProblem`, `requestReview`, `volunteerOptIn`, `recommend`, `resolveRecommendation`, `requestPublication`, `startStage`, `proposeStageOption` (formerly proposeSolution, contributes `stage_option`), `chooseStageOption` (formerly recordDecision), `submitStageEvidence`, `proposePlanChange`, `claimTask`, `postProgress`, `postVerification`, `getSuggestions`, `acceptSuggestion`, `getStageDraft`, `applyStageDraft`, `appeal`, `readNotices`, `readPublicProblem`, each returning the typed result; `attest(label)` attaches the test attestation of 14-u11 (HTTP body field only, never a coordinate). Contribution-like writes carry the persona's declared `location`.
 
 ## Acceptance
 - Each strategy changes the body as specified (tests).

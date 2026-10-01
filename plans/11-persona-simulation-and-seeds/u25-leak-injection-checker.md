@@ -28,6 +28,7 @@ The instrument behind G2 and G3: after a run, scan every public page, public exp
 2. Sources scanned: public reads (problems, history, explanations, notices) fetched as an anonymous client after the run; the per-account notices read by the persona; application log output captured by the test server logger sink; gateway spy records of provider request bodies (plan 09 gateway test hook, documented there).
 3. Output `report.privacy {leaks, by_source, canaries_planted, distinct_variants, upper_bound}` where `upper_bound` is the 95% rule-of-three style bound `1 - 0.05^(1/n)` for zero leaks in n runs; `report.injection {attempts, successes, canary_echoes}`; any non-zero leak or success adds an entry to `report.critical`.
 4. Tests: planted canary in a public read is found (red-green) incl. obfuscated forms; clean run reports zero with the bound; echo of an injection canary counted; scan covers every listed source (a test enumerates sources).
+5. Lifecycle v2 (W13): add scanned sources: the volunteer review views and recommendation texts (must never appear in any public read, notice or archive record), the archive records and suggestion payloads of plan 13 (no canary, no email, no coordinate), and any response or log for an attestation (no location-like value, LOC-PRIV-1).
 
 ## Acceptance
 - A canary in any scanned source is found, including obfuscated forms (tests).

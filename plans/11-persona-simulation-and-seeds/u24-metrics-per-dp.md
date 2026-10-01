@@ -29,6 +29,7 @@ Compute the metrics the graduation criteria need from the run records and person
 3. Each metric returns `{value, n, lower, upper}` with Wilson bounds where it is a proportion; small samples (n under 20) carry `small_sample: true`.
 4. Write into `report.json.metrics` through the report builder; do not compute thresholds here (that is 11-u28).
 5. Tests with synthetic record tables: known precision and recall, Wilson vectors shared with can_policy, ECE example, parity gap, small-sample flag, revise-within-2 computation.
+6. Lifecycle v2 (W13): the per-DP metric tables include DP-SOURCE-TRUST, DP-CRITERIA, DP-STAGE-PLAN, DP-PUBLISH and DP-STAGE-RESOLUTION (recall of non-publish on the attack personas, false-reject on `sub-careful` and `stg-evidence-strong`, hint quality), and the report lists DP-ARCHIVE, DP-REUSE-FIT and DP-STAGE-DRAFT outcomes from the reuse scenario (11-u49) as counts only (their quality is gated by the archive eval, 13-u19). `vol-nitpick` contributes a metric: share of runs where open low-value recommendations changed the DP-PUBLISH outcome (expected zero).
 
 ## Acceptance
 - Each metric matches hand-computed values on fixture tables (tests).
