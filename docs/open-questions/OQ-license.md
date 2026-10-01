@@ -1,7 +1,7 @@
 # OQ-license: Which license should each repository carry?
 
 - **ID:** OQ-license
-- **Status:** open
+- **Status:** decided (resolved 2026-10-01, D-49)
 
 ## Question
 
@@ -13,7 +13,11 @@ It is very hard to change once outside contributions land. It decides whether ho
 
 ## Current default (what we built meanwhile)
 
-No LICENSE file exists in any repository (D-27). Nothing is published. Recommendation to be confirmed: AGPL-3.0 for `can_server` (network copyleft keeps hosted forks open), Apache-2.0 for `can_app`, `can_gallery`, documentation and protocol schemas.
+Resolved: MIT for all four repositories, code and docs alike (D-49).
+
+## Resolution (2026-10-01)
+
+The founder chose MIT for all four repositories (code and docs), logged as D-49. Why: maximum reuse. CAN is meant to be copied and used by anyone, so the most permissive, widely recognized license fits. Copyright line: "Community Action Network contributors". No CLA; inbound = outbound. Earlier AGPL and Apache-2.0 recommendations (D-27) are superseded. Relicensing later would need the agreement of contributors, so this is effectively one-way once outside contributions land. This file is kept for history.
 
 ## Who can help
 
@@ -26,4 +30,4 @@ A one-page compatibility analysis covering the dependencies of all three reposit
 ## Spec links
 
 - `docs/spec/21-open-source-governance.md` (Licensing strategy)
-- `DECISIONS.md D-27`
+- `DECISIONS.md D-27`, `D-49`

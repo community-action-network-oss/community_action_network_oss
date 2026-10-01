@@ -33,7 +33,7 @@ Copy any existing file. Keep the same headings. Night or agent runs add question
 
 | Question | Summary |
 |---|---|
-| [OQ-license](OQ-license.md) | Which license should each repository carry? |
+| [OQ-license](OQ-license.md) | Resolved, MIT (D-49): which license should each repository carry? |
 | [OQ-domain](OQ-domain.md) | What public name and domain should the project use? |
 | [OQ-launch-jurisdiction-language](OQ-launch-jurisdiction-language.md) | Where and in what language does the first real pilot run? |
 | [OQ-promo-interest-channel](OQ-promo-interest-channel.md) | How can a visitor register interest without handing over personal data? |

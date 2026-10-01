@@ -23,7 +23,7 @@ An index of the documents and living records the project maintains, version-cont
 | Runbooks: deploy, rollback, incident response, backup, restore, data deletion | each repository `docs/runbooks/` | 6 | later |
 | Changelog and release notes | each repository | 1 | planned |
 | Contributor guide, code of conduct, security policy | `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md` | 0A | planned |
-| Open-source license decision | `docs/open-questions/OQ-license.md` (no LICENSE file yet) | 0B | open |
+| Open-source license decision | `docs/open-questions/OQ-license.md` (resolved: MIT, D-49; LICENSE in every repository) | 0B | done |
 | AI-assisted contribution policy, disclosure template, reviewer checklist, merge gates, autonomous-agent rules, tool setup guide | `22-ai-contribution-policy.md`, `AI_CONTRIBUTIONS.md` | 0A to 1 | planned |
 | Concept-page brief, factual claims register, recruitment content, contribution calls, launch checklist | `can_gallery/`, `18-phases-gates.md` (Phase 0A) | 0A | planned |
 | Interest channel (form or list), if any | `docs/open-questions/OQ-promo-interest-channel.md` | 0A | open |

@@ -19,7 +19,7 @@ Pilot-ready (`18-phases-gates.md`, "Definition of pilot-ready") and Gate X (same
 
 ## 2. Slice-1 defaults
 
-1. **Scope:** section 1 above. Any non-fictional data is out of scope until the blockers in `docs/open-questions/` (emergency routing, license, legal review) are resolved.
+1. **Scope:** section 1 above. Any non-fictional data is out of scope until the blockers in `docs/open-questions/` (emergency routing, legal review; the license is decided, MIT, D-49) are resolved.
 2. **AI:** deterministic checks plus human review of everything published. The AI gateway interface exists behind a flag that stays off. Public wording: "Rules-based checks and human review today. AI assistance is planned; people make and answer for every decision."
 3. **Accounts:** see section 8.
 4. **Lifecycle:** see section 4. Status styling is neutral, never red.

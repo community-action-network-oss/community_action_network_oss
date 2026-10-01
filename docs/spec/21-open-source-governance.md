@@ -114,7 +114,7 @@ Before broad public promotion, maintain at least the following. These block publ
 - `CONTRIBUTING.md`
 - `CODE_OF_CONDUCT.md`
 - `SECURITY.md`
-- An approved license
+- An approved license (MIT, D-49)
 - Product, constitutional, architecture, protocol, threat-model, decision, and user-research documentation
 - Clearly separated application, domain, policy, protocol, and design-system components
 - Fictional, non-sensitive example problems
@@ -162,17 +162,9 @@ Classify each contribution task by skill, estimated effort, risk level, required
 
 ### Licensing strategy
 
-License selection is a founder decision with legal review because it affects adoption, interoperability, proprietary forks, and the long-term commons.
+**Decided (D-49):** MIT for all four repositories, code and docs alike. The founder chose maximum reuse: CAN is meant to be copied and used by anyone. Copyright line "Community Action Network contributors". Contributions are accepted under MIT (inbound = outbound), with no CLA. Relicensing later needs the agreement of contributors, so the choice is effectively one-way once outside contributions land.
 
-Evaluate at least:
-
-- **Apache 2.0:** Familiar to companies and public institutions, supportive of broad implementation, and includes an explicit patent grant, but permits proprietary hosted derivatives.
-- **AGPL:** Encourages hosted modifications to remain open, but may reduce adoption by some organizations and governments.
-- **Layered licensing:** For example, an Apache-licensed protocol and client libraries, an AGPL reference server, and an appropriate Creative Commons license for documentation and constitutional material. This may balance adoption and commons protection but increases complexity.
-
-Do not finalize licensing without qualified legal advice and a documented compatibility analysis.
-
-**Current state (D-27):** there is no LICENSE file yet. The recommendation, to be confirmed, is AGPL-3.0 for `can_server` (network copyleft keeps hosted forks open) and Apache-2.0 for `can_app`, `can_gallery`, documentation and protocol schemas. The license blocks publishing and broad promotion, not building. See `docs/open-questions/OQ-license.md`.
+The options considered were Apache 2.0 (explicit patent grant), AGPL (hosted forks stay open, lower adoption) and layered licensing (more complexity). MIT trades the patent grant and copyleft for simplicity and the widest adoption. See `docs/open-questions/OQ-license.md` (resolved, kept for history).
 
 ### Outcome-led adoption
 

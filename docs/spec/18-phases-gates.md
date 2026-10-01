@@ -165,7 +165,7 @@ The phases above are the canonical sequence; this table only adds time. It is a 
 
 | Months | Phases | What it proves |
 |---|---|---|
-| 0 to 2 | 0A, 0B | The project is legible: concept page, charter, governance and contribution documents, a pilot problem and jurisdiction chosen (open questions), license decided, low-fidelity UX, domain model, threat model, repository, tests and CI. |
+| 0 to 2 | 0A, 0B | The project is legible: concept page, charter, governance and contribution documents, a pilot problem and jurisdiction chosen (open questions), license decided (MIT, D-49), low-fidelity UX, domain model, threat model, repository, tests and CI. |
 | 3 to 5 | 1 to 4 (slice 1) | The vertical slice runs on fictional data: intake, evidence tiers, workspace, typed contributions, proposals and decisions, implementation tracking, verification, moderation and appeals, accessibility testing, fictional example problems. |
 | 6 to 8 | 6 (hardening and pilot) | A controlled pilot with a small real community. Observe the whole journey, record failures and confusion, measure whether the workflow produces meaningful action, publish transparent findings, and correct the workflow before expanding. |
 | 9 to 12 | growth; 5 and 7 as capacity allows | Grow maintainership: onboard independent maintainers, formalize justified working groups, publish protocol version `0.1`, release contributor-focused resources, support a second controlled deployment, begin interoperability experiments. Establish a maintainer council only if the contributor base supports it. |

@@ -88,6 +88,10 @@ Reference policies the project drew on (snapshot, may date):
 - Significant technical choices get an ADR in `docs/adr/`.
 - Questions nobody can answer yet become `OQ-*.md` files in `docs/open-questions/`. Add your reasoning there, or open a pull request with a new one. A maintainer records the outcome in `DECISIONS.md` and, where needed, an ADR.
 
+## License of contributions
+
+CAN is MIT licensed (see [LICENSE](LICENSE), D-49). Contributions are accepted under the same license (inbound = outbound). There is no CLA. By opening a pull request you confirm you have the right to submit the work under MIT: it is yours, or it comes from a source whose terms allow it. Say so in the pull request if a part is not your own.
+
 ## Review expectations
 
 Expect a human reviewer to look at intent, design, test quality and risk, not only whether CI is green. Keep pull requests small so review is quick. Respond to review in your own words. Maintainers may ask you to split, reduce or add a design note before review continues.

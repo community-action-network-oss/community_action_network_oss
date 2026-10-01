@@ -86,4 +86,4 @@ Code, design, docs, open questions and review are all welcome. Pick a unit from 
 
 ## License
 
-License not yet chosen, see `docs/open-questions/OQ-license.md`. The repositories are public and readable, but until a license is chosen no license is granted for reuse.
+MIT, see [LICENSE](LICENSE). It applies to all four repositories, code and docs alike (D-49). Anyone may use, copy, modify and redistribute this work, commercially or not, as long as the copyright and license notice are kept. This is meant to be copied and used by anyone.

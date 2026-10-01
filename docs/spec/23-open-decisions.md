@@ -16,7 +16,8 @@ Questions are not founder blockers. For each, the build continues on the stated 
 | Location verification | `OQ-location-verification` |
 | Legal and safety experts | `OQ-legal-policy-reviewers` |
 | Actions that need human moderation before publication | slice 1: all of them (`01-slice-1-brief.md`); later `OQ-moderation-confidence-threshold` |
-| Hosting region, budget, open-source license | `OQ-hosting-region`, `OQ-license` |
+| Hosting region, budget | `OQ-hosting-region` |
+| Open-source license: resolved, MIT (D-49) | `OQ-license` |
 | Production actions the agent may perform | `02-agent-rules.md` |
 
 ### Critical before workflow implementation
