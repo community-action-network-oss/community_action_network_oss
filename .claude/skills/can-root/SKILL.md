@@ -23,11 +23,11 @@ Only the root owner writes `.gitmodules` and pointer bumps. Area agents commit i
 git -C <root> add -- <submodule>
 git -C <root> commit -m "<prefix>: bump <submodule>" -- <submodule>
 ```
-Push the submodule's main to its bare repo first (`git -C <root>/<submodule> push origin main`) so the pointer is resolvable by clones. Pushes to network remotes are never done by agents.
+Remotes: `origin` is GitHub (org `community-action-network-oss`); submodules also keep `local`, the old bare mirror. Push the submodule's main first (`git -C <root>/<submodule> push origin main`), then the superproject, so the pointer is resolvable by clones. Pushing main is a human or morning step; night runs never push.
 
 ## Fresh-clone check
 ```sh
-git clone --recurse-submodules <parent>/community_action_network_oss <scratch>/clonetest
+git clone --recurse-submodules git@github.com:community-action-network-oss/community_action_network_oss.git <scratch>/clonetest   # local mirror clones need -c protocol.file.allow=always
 git -C <root> submodule foreach git status --porcelain   # must be empty
 ```
 The clone path works because submodule URLs are relative to the superproject URL.

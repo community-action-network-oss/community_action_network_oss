@@ -249,7 +249,7 @@ report to you; you route.
 
 ## Deploy agent (P7)
 
-No network remote or infra exists yet; overnight runs never deploy. Applies when a wave targets one.
+GitHub remotes exist (public, org `community-action-network-oss`); no infra exists yet. Night runs and agents never push or deploy; the founder merges `night/*` branches and pushes. Applies when a wave targets one.
 
 Runs at P7, after the P6 fold-back has landed.
 
@@ -320,7 +320,7 @@ from it. Corpus format: `plans/FORMAT.md`; tool: `node plans/tools/corpus.mjs li
 
 **Traps**
 - `npx expo start` rewrites `can_app/tsconfig.json`: keep it stable and re-check `git status` after any expo start.
-- Git blocks file-transport submodule clones (sibling bare remotes) unless `-c protocol.file.allow=always`.
+- Git blocks file-transport submodule clones (only when cloning from the local `local` mirrors) unless `-c protocol.file.allow=always`.
 
 **Time:** no new unit after T-75min. Log `actual_hours`.
 

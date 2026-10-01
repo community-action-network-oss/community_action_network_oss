@@ -13,7 +13,7 @@ A form or list collects personal data and needs a controller, storage and a priv
 
 ## Current default (what we built meanwhile)
 
-No form, no list, no analytics. The primary call to action is the repository and its open questions. The repository link is a placeholder until the remote exists.
+No form, no list, no analytics. The primary call to action is the repository and its open questions. The repository link points at the GitHub organization `community-action-network-oss`. GitHub Discussions is a candidate interest channel; the decision stays with the founder.
 
 ## Who can help
 

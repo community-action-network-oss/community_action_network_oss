@@ -2,7 +2,7 @@
 
 ## Reporting a vulnerability
 
-Do not open a public issue or pull request for a vulnerability. Report it privately. No private reporting channel exists yet. Until the repository is hosted, report privately to the maintainer through the channel by which you received the repository. GitHub private vulnerability reporting will be enabled at hosting time. See `docs/open-questions/OQ-security-and-conduct-contact.md`.
+Do not open a public issue or pull request for a vulnerability. Report it privately. The repositories are hosted on GitHub, but private vulnerability reporting is not enabled yet (only the founder can switch it on). Once it is enabled, use the repository Security tab and choose "Report a vulnerability". Until then, open no public issue and contact the maintainer privately, through the channel by which you found the project. See `docs/open-questions/OQ-security-and-conduct-contact.md`.
 
 Please include what you found, how to reproduce it, and the impact. Reports must be verified by a human. Unverified or AI-fabricated reports may be closed.
 

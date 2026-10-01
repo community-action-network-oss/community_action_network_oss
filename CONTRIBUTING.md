@@ -12,7 +12,7 @@ Thank you for helping. CAN is at the concept and scaffolding stage, so careful s
 
 ## Setup
 
-1. Clone with submodules. The repository is not hosted yet, and submodule URLs are relative (`../<name>.git`), so they resolve once all four repos are pushed under one host. Today you clone from a local copy: `git -c protocol.file.allow=always clone --recurse-submodules /path/to/community_action_network_oss` (or `git -c protocol.file.allow=always submodule update --init` afterwards). The setting is needed only for local-path clones, because git blocks the file transport for submodules by default.
+1. Clone with submodules: `git clone --recurse-submodules https://github.com/community-action-network-oss/community_action_network_oss.git` (SSH: `git@github.com:community-action-network-oss/community_action_network_oss.git`). Cloned without them? Run `git submodule update --init`. The `-c protocol.file.allow=always` setting is only needed when cloning from a local mirror.
 2. Install Node 24 or newer, Docker and Python 3.
 3. Follow the Quick start in [README.md](README.md).
 4. Run `scripts/verify-all.sh`. It should be green before you change anything.
@@ -33,11 +33,13 @@ Units in `plans/` are sized at about one hour. Read the unit file, follow its sp
 
 ## Submodule workflow
 
-The three apps are separate git repositories mounted in this one.
+The three apps are separate git repositories mounted in this one:
+[can_server](https://github.com/community-action-network-oss/can_server), [can_app](https://github.com/community-action-network-oss/can_app) and [can_gallery](https://github.com/community-action-network-oss/can_gallery). The superproject is [community_action_network_oss](https://github.com/community-action-network-oss/community_action_network_oss).
 
-1. Make and commit your change inside the submodule (`can_server/`, `can_app/` or `can_gallery/`).
-2. Back in the root, `git add -- <submodule>` and commit the pointer bump. Only maintainers merge pointer bumps to `main`.
-3. Contract order: when the API changes, `can_server` regenerates `openapi/openapi.json` (`npm run openapi`) and commits it first. Then `can_app` runs `npm run gen:api` to rebuild its client.
+1. For a code change, fork the submodule's own repository on GitHub, work in your fork (inside `can_server/`, `can_app/` or `can_gallery/`, or a separate clone), and open a pull request against that submodule repo.
+2. Changes to specs, plans, docs and root files go to the superproject: fork it and open a pull request there.
+3. Pointer bumps (the superproject recording a new submodule commit) are a superproject pull request: `git add -- <submodule>` and commit. Only maintainers merge pointer bumps to `main`, after the submodule change has merged.
+4. Contract order: when the API changes, `can_server` regenerates `openapi/openapi.json` (`npm run openapi`) and commits it first. Then `can_app` runs `npm run gen:api` to rebuild its client.
 
 ## AI-assisted contributions
 
@@ -93,4 +95,4 @@ Expect a human reviewer to look at intent, design, test quality and risk, not on
 ## Conduct and security
 
 - [Code of Conduct](CODE_OF_CONDUCT.md)
-- [Security policy](SECURITY.md): report vulnerabilities privately, never in public issues.
+- [Security policy](SECURITY.md): report vulnerabilities privately, never in public issues. Private reporting on GitHub is not enabled yet; see the policy.

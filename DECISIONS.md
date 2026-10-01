@@ -8,7 +8,7 @@ Every default, deviation and judgment call made while building CAN. Each one can
 
 ## Morning review: start here
 
-1. **License (D-27).** No LICENSE exists yet. This blocks outside contributions. The recommendation is AGPL-3.0 for can_server and Apache-2.0 for everything else. See `docs/open-questions/OQ-license.md`.
+1. **License (D-27).** No LICENSE exists yet, and the repos are now public: code is readable but not reusable until a license is added. This blocks outside contributions. The recommendation is AGPL-3.0 for can_server and Apache-2.0 for everything else. See `docs/open-questions/OQ-license.md`.
 2. **Night-run permissions (D-24).** Review `.claude/settings.proposed.json` and its README, then rename it to `settings.json`. Until you do, a night run will stop at permission prompts.
 3. **Founder-gated units.** These eight units never run unattended:
    - 02-u22: real SMTP
@@ -26,6 +26,7 @@ Every default, deviation and judgment call made while building CAN. Each one can
 5. **Gallery hero copy (D-39).** Read the site at `can_gallery`: `npm run dev` on port 3000.
 6. **All 7 plans are `approved: true` (D-42).** This lets night 1 run without waiting. To hold a plan, set `approved: false` in its PLAN.md.
 7. **Starting night 1.** In Claude Code, from the superproject, run `/can-code-large night`. The dry run in `plans/00-ROOT.md` shows about 4 hours per lane across 4 lanes.
+8. **Enable private vulnerability reporting on all four repos** (Settings → Code security).
 
 ## 2026-10-01 · Wave W1 (spec, repos, plan corpus)
 
@@ -237,3 +238,4 @@ Every default, deviation and judgment call made while building CAN. Each one can
   - Their one useful hint, "read `node_modules/next/dist/docs` before writing Next code", now lives in the can-promo-site skill.
   - Reverse: remove the two lines from the gitignore and commit the files.
 - **D-47 · W2 · Renamed can_promo_site to can_gallery.** Founder: it is the public gallery of CAN, a read-only observation area showing what is happening inside the project and explaining what CAN is, not a promotional site. Area skill is now can-gallery; plan 06 folder is 06-gallery-phase-0a; bare repo ../can_gallery.git. Reverse: repeat the rename.
+- **D-48 · W2 · Hosted on GitHub (public) under community-action-network-oss.** Four repos; .gitmodules stays relative; submodule remotes: origin = GitHub, local = old bare mirror. Fresh recursive clone from GitHub verified. Gallery REPO_URL set (unit 06-u12 done). Still pending: LICENSE (D-27), enabling GitHub private vulnerability reporting on each repo. Reverse: make repos private in GitHub settings.

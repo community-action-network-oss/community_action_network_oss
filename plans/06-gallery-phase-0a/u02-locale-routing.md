@@ -27,7 +27,7 @@ Make adding a language later a content task, not a refactor, while shipping Engl
 
 1. Create src/lib/locale.ts: LOCALES = ["en"], DEFAULT_LOCALE = "en", a direction map (ltr/rtl) and `htmlAttrs(locale)` returning lang and dir. Use it in the root layout.
 2. Create src/lib/paths.ts: `localePath(path, locale = DEFAULT_LOCALE)` returns the path unprefixed for the default locale and `/{locale}{path}` otherwise. All internal links and nav items go through it (find and replace literal internal hrefs in components and pages).
-3. Create src/content/site.ts as the single place for external links and site constants: `REPO_URL = null` (rendered as "Repository link coming once the remote exists") and the other documented repository paths. No invented URL.
+3. Create src/content/site.ts as the single place for external links and site constants: `REPO_URL = null` (since set to the GitHub superproject URL by 06-u12) and the other documented repository paths.
 4. Write docs/i18n.md: how a locale is added (move pages under src/app/[locale], add generateStaticParams from LOCALES, copy src/content/en to src/content/<locale>, translator rules from OQ-unsupported-language, RTL check, hreflang), and what is deliberately not done yet.
 5. Write scripts/check-locale.mjs: fail if any source file under src contains an internal `href="/` literal outside paths.ts, or if the layout hard-codes lang. Add `check:locale` to package.json and `verify`.
 

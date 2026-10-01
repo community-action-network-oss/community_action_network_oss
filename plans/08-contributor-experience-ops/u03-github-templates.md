@@ -12,7 +12,7 @@ writes: [".github/ISSUE_TEMPLATE/**",".github/PULL_REQUEST_TEMPLATE.md",".github
 spec: ["docs/spec/22-ai-contribution-policy.md","docs/spec/21-open-source-governance.md","docs/open-questions/README.md","SECURITY.md","CONTRIBUTING.md"]
 verify: ["node scripts/check-github.mjs"]
 founder_gate: false
-defaults: "No contact_links in config.yml until the remote exists; CODEOWNERS contains commented placeholders only."
+defaults: "No contact_links in config.yml until the founder enables private vulnerability reporting; CODEOWNERS contains commented placeholders only."
 status: "todo"
 attempts: 0
 commits: []

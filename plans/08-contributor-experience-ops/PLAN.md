@@ -11,12 +11,12 @@ spec: ["docs/spec/21-open-source-governance.md","docs/spec/22-ai-contribution-po
 
 ## Goal
 
-Make the repositories ready for a stranger and for an overnight agent: issue and pull request templates, CI workflows for every repo (committed, inert until a remote exists), a one-command bootstrap and devcontainer, a generated good-first-units index, a short onboarding tour, a night-run report template, dependency and release policies, and the founder-gated activation of the proposed agent settings.
+Make the repositories ready for a stranger and for an overnight agent: issue and pull request templates, CI workflows for every repo (committed, run on GitHub once merged), a one-command bootstrap and devcontainer, a generated good-first-units index, a short onboarding tour, a night-run report template, dependency and release policies, and the founder-gated activation of the proposed agent settings.
 
 ## Acceptance
 
 - A new contributor can go from clone to green verify with one command and a short tour.
-- Every repo has a CI workflow that runs its verify; none runs until a remote exists.
+- Every repo has a CI workflow that runs its verify; each runs on GitHub once merged.
 - The corpus tool can emit a catalog that both the gallery and the good-first index consume.
 - Nothing is applied to GitHub, no secret is referenced, nothing is pushed or deployed.
 
@@ -44,7 +44,7 @@ Total estimate: 14.5 hours across 14 units. Gated units are never selected by `c
 ## Conventions
 
 - Unit order within lane "." matters: 08-u01 (catalog command) first; 08-u03 creates scripts/check-github.mjs which later CI units extend.
-- Files only: GitHub settings, labels, branch protection and Actions enablement are applied by a founder after a remote exists (see .github/README.md written by 08-u03).
+- Files only: GitHub settings, labels, branch protection and Actions enablement are applied by a founder on GitHub (the repositories are hosted) (see .github/README.md written by 08-u03).
 - Workflows use `permissions: contents: read`, never `pull_request_target`, never reference secrets, and pin actions to a major version with a comment saying to pin to a commit SHA once online (policy in 08-u12).
 - Docs files stay at 25 KB or less and use no em or en dashes.
 - Optional unit frontmatter field `tags` (added in 08-u01) marks units for humans: `good-first`, `needs-context`, `design`, `a11y`, `docs`, `research`, `policy`, `translation`.

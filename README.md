@@ -6,6 +6,17 @@ CAN is an open-source platform where people surface a real public problem, bring
 
 Concept and scaffolding. The specification, the constitution, the design system and three repositories exist. Nothing handles real problems yet. The server has a health endpoint, an append-only event table and an OpenAPI contract. The app is a shell that shows whether the server is reachable. The gallery, a read-only public window into the project, is a static site. Everything else is a plan, and we label it as planned.
 
+## Repositories
+
+All four repositories are public on GitHub under the organization `community-action-network-oss`.
+
+| Repository | Link |
+| --- | --- |
+| Superproject (spec, plans, decisions, wiring) | https://github.com/community-action-network-oss/community_action_network_oss |
+| `can_server` | https://github.com/community-action-network-oss/can_server |
+| `can_app` | https://github.com/community-action-network-oss/can_app |
+| `can_gallery` | https://github.com/community-action-network-oss/can_gallery |
+
 ## Repo map
 
 | Path | What it is |
@@ -26,14 +37,15 @@ Concept and scaffolding. The specification, the constitution, the design system 
 
 Prerequisites: Node 24 or newer, Docker, Python 3.
 
-The repository is not hosted yet. Submodule URLs are relative (`../<name>.git`) and resolve once all four repos (this one and the three submodules) are pushed under one host. Today you clone from a local copy:
+Clone with submodules (HTTPS or SSH):
 
 ```sh
-git -c protocol.file.allow=always clone --recurse-submodules /path/to/community_action_network_oss
-# already cloned without submodules? git -c protocol.file.allow=always submodule update --init
+git clone --recurse-submodules https://github.com/community-action-network-oss/community_action_network_oss.git
+# or: git clone --recurse-submodules git@github.com:community-action-network-oss/community_action_network_oss.git
+# already cloned without submodules? git submodule update --init
 ```
 
-The `protocol.file.allow` setting is needed only for local-path clones: git blocks the file transport for submodules by default.
+The `protocol.file.allow` git setting is only needed when cloning from a local mirror.
 
 Server (http://localhost:4000/health, Swagger at /docs):
 
@@ -74,4 +86,4 @@ Code, design, docs, open questions and review are all welcome. Pick a unit from 
 
 ## License
 
-License not yet chosen, see `docs/open-questions/OQ-license.md`. Until it is chosen, no license is granted for reuse.
+License not yet chosen, see `docs/open-questions/OQ-license.md`. The repositories are public and readable, but until a license is chosen no license is granted for reuse.

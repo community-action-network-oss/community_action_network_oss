@@ -13,7 +13,7 @@ The domain appears in emails, links and the gallery, and is hard to move later. 
 
 ## Current default (what we built meanwhile)
 
-No domain and no brand. The gallery uses a placeholder repository link. Local development uses localhost ports.
+No domain and no brand. The code is hosted on GitHub under the organization `community-action-network-oss` (repository hosting is answered; the domain and brand are still open). The gallery links to those repositories. Local development uses localhost ports.
 
 ## Who can help
 

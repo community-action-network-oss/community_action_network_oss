@@ -21,12 +21,12 @@ actual_hours: null
 
 ## Objective
 
-Root CI mirrors scripts/verify-all.sh for everything that is not a submodule: corpus lint and tests, the good-first index check, the spec, constitution and design checks. Committed but inert until a remote exists.
+Root CI mirrors scripts/verify-all.sh for everything that is not a submodule: corpus lint and tests, the good-first index check, the spec, constitution and design checks. Committed; runs on GitHub once merged.
 
 ## Steps
 
 1. Read scripts/verify-all.sh and reuse exactly its non-submodule commands (corpus lint, spec check if present, constitution check, `python3 docs/design/check.py`, `node docs/design/ux/tokens.build.mjs` in check mode if it has one).
-2. Write .github/workflows/ci.yml: triggers push to main and pull_request; permissions contents read; concurrency cancel-in-progress; Node 24 and Python 3 setup; jobs corpus, spec-docs, design. A top comment states it is inert until a remote exists.
+2. Write .github/workflows/ci.yml: triggers push to main and pull_request; permissions contents read; concurrency cancel-in-progress; Node 24 and Python 3 setup; jobs corpus, spec-docs, design. A top comment states it runs on GitHub once merged.
 3. Add a dash check: fail on U+2014 or U+2013 in files changed under docs/, README.md, CONTRIBUTING.md (grep step, quoted codepoints).
 4. Extend scripts/check-github.mjs to verify the workflow commands exist as files or scripts in the repo.
 5. Run each command locally and confirm green.

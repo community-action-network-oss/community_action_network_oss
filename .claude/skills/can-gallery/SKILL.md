@@ -20,7 +20,7 @@ Weight: light. Next.js 16 static export, plain CSS, zero client JavaScript of ou
 - Never imply the platform is live or handles real problems. Status: concept and early scaffolding; not an emergency, legal, medical, government or individual case service.
 - Copy rules: no em or en dashes; examples labelled "Fictional example"; no real jurisdiction named; anything unbuilt carries the `Planned` tag; calm, warm, no hype.
 - Visual: only tokens (`--can-*`), system fonts, no red for ordinary states, label always carries meaning. One h1 per page, skip link, visible focus, reduced motion respected, no horizontal scroll at 320px.
-- `REPO_URL` lives only in `src/config/site.ts` and stays `#repository-coming-soon` until a remote exists. Doc references use `DocRef` so they become links automatically.
+- `REPO_URL` lives only in `src/config/site.ts` and is set to the GitHub superproject URL. Doc references use `DocRef` and link to GitHub. github.com is the only allowed external host (`check:out` allows exactly it, as `<a href>` over https).
 
 ## Single-owner synced files (never hand edit)
 - `src/content/tokens.json` and `src/app/tokens.css`: from `docs/design/ux/tokens.json`

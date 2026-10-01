@@ -26,7 +26,7 @@ Run can_server verify in CI: it already starts compose, migrates, lints, builds,
 ## Steps
 
 1. Read package.json (`verify` script) and docker-compose.yml.
-2. Write .github/workflows/ci.yml: push and pull_request, permissions contents read, Node 24, npm cache, `npm ci`, `npm run verify`, then `docker compose down -v` in an always step. Comment: inert until a remote exists.
+2. Write .github/workflows/ci.yml: push and pull_request, permissions contents read, Node 24, npm cache, `npm ci`, `npm run verify`, then `docker compose down -v` in an always step. Comment: runs on GitHub once merged.
 3. Note in the workflow that a diff in openapi/openapi.json fails the job and means run `npm run openapi` and commit it.
 4. Validate with `node ../scripts/check-github.mjs .` and run `npm run lint`.
 
