@@ -145,3 +145,33 @@ Same panel position as WF-DETAIL-1 and WF-DETAIL-3. Shown while a problem reopen
 +--------------------------------------+
 ```
 Variants: `reopen.body.t20` and `reopen.next.t20` (changed legal conclusion or solution rule, continues from solution development, or from eligible when eligibility changed) and `reopen.body.t21` and `reopen.next.t21` (changed evidence rule, continues from verification, asks for evidence that meets the new rule). Never silent: the same notice goes to the initiator or a steward (WF-REMOD-1 wording). Appeal runs to `appealable_until` and uses WF-APPEAL-1. Neutral wording, no blame.
+
+## WF-NEWS-1  Contribution added by news watch
+Spec `25-news-watch.md` section 25.6. Shown wherever a contribution card appears (problem contributions list, stage workspace, history).
+```
++--------------------------------------+
+| (Added by news watch)                |
+| Evidence for: Stage 2, criterion 1   |
+| "City expands night cleaning to the  |
+|  canal belt", City Herald, 3 Oct     |
+| {news.contribution.why}: the article |
+| reports the new schedule the stage   |
+| asked for.                           |
+| [ Open the article ]  [ Dispute ]    |
++--------------------------------------+
+```
+The label `news.contribution.label` replaces the author handle; it never reads as a person. The rationale is the run's plain-words explanation. "Open the article" goes to the publisher's own URL in a new tab. Dispute is the normal dispute flow. The chip uses the same neutral style as `(Assisted)`. Seed problems only ever show synthetic articles, with the seed label.
+
+## WF-PARTNER-1  News pipeline partner badge
+Spec `25-news-watch.md` section 25.9, D-79. App: shown only when the server reports a news source (`newsSource` on `GET /health`); hidden otherwise. Gallery: always shown.
+```
+                     +-------------------------------+
+  (page content)     | Powered by Mera News          |
+                     | news pipeline partner       ↗ |
+                     +-------------------------------+
+                                       bottom right, 16px from edges
+```
+- Small pill fixed to the bottom end corner (bottom right in left-to-right layouts, bottom left in right-to-left), above the safe area inset. It is a single link to the partner URL (new tab, `rel="noopener"`).
+- Under 480px wide it collapses to `news.partner.short` ("Mera News, news partner") and never covers a primary action or the footer links: on the gallery it sits inside the footer's end on narrow screens instead of floating.
+- Neutral token colours with full contrast in light and dark. No logo image in slice 1 (text only), so no brand asset is bundled.
+- The accessible name is `news.partner.a11y`.

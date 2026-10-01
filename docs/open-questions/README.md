@@ -82,6 +82,7 @@ Copy any existing file. Keep the same headings. Night or agent runs add question
 | [OQ-amsterdam-overlay-review](OQ-amsterdam-overlay-review.md) | Who reviews the Amsterdam overlay, and which local partners help? |
 | [OQ-steward-entity-grants](OQ-steward-entity-grants.md) | May a steward entity receive grants without breaking the non-monetary rule? |
 | [OQ-mera-disclosure](OQ-mera-disclosure.md) | Must hosting or links from Mera be disclosed? |
+| [OQ-news-ledger](OQ-news-ledger.md) | Should the news pipeline become a self-hostable, shared node service? |
 | [OQ-limits](OQ-limits.md) | What per-account limits apply to posting and appeals? |
 | [OQ-legal-corpus-sourcing](OQ-legal-corpus-sourcing.md) | Who curates and verifies the legal corpus for each layer, and how often does it update? |
 | [OQ-legal-layer-conflicts](OQ-legal-layer-conflicts.md) | What happens when human rights (L1) conflict with national law (L3 or L4)? |

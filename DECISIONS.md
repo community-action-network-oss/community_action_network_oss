@@ -27,6 +27,7 @@ Every default, deviation and judgment call made while building CAN. Each one can
 6. **All 7 plans are `approved: true` (D-42).** This lets night 1 run without waiting. To hold a plan, set `approved: false` in its PLAN.md.
 7. **Starting night 1.** In Claude Code, from the superproject, run `/can-code-large night`. The dry run in `plans/00-ROOT.md` shows about 4 hours per lane across 4 lanes.
 8. **Enable private vulnerability reporting on all four repos** (Settings → Code security).
+9. **News watch (D-79).** Plan 15 is `approved: false`. Approve it to let nights build it. Then do the Mera handoff in `docs/integrations/mera-news.md` section 1 and run founder gate 15-u11. After any open-question edit, resync `can_gallery` (`npm run sync:content`, commit, bump the pointer).
 
 - **Before night 1 (W7):**
   - Done: the `can_policy` GitHub repo exists (10-u01).
@@ -506,6 +507,14 @@ Every default, deviation and judgment call made while building CAN. Each one can
     - Founder-gated: the external privacy review (14-u28), native round trips (14-u29), real-device measurements (14-u30) and the adoption decision (14-u32).
     - The `zk_cell_v1` units (14-u40 to 14-u45) wait on 14-u32.
   - **No skips:** no units were skipped. Old-sequence units were rewritten under their existing ids.
+- **D-79 · W14 · News watch: CAN problems follow the news, with Mera News as the first news pipeline partner behind a port (founder).** Spec `25-news-watch.md`, plan 15, `docs/integrations/mera-news.md`.
+  - **Source:** CAN consumes the Mera News API, not an open-sourced copy of its pipeline. Mera's pipeline runs on Mongo Atlas vector search, GCP Scheduler, BullMQ and Redis, a GPU and paid keys. CAN mandates Postgres jobs (D-31), ports (spec 12), free-first models (ADR 0014) and MIT, so opening Mera's code would still mean a rewrite and saves no work now.
+  - **Never a dependency:** the server depends only on `NewsSourcePort`. With no adapter configured, CAN runs normally and news watch is off. A self-hostable, node-shared pipeline is tracked in `OQ-news-ledger` with four reopen triggers.
+  - **Hands off Mera:** CAN agents never edit Mera repositories. The founder makes the Mera changes listed in `docs/integrations/mera-news.md` section 1, deploys them, and supplies the URLs and keys. Turning on the live adapter is founder-gated (15-u11).
+  - **AI autonomy:** news reaches a problem only as an `evidence` or `progress_update` contribution filed by the `news_watch` system actor, with its source and an "added by news watch" label. The existing contribution moderation and decision points (STAGE-RESOLUTION, VERIFICATION, BLOCKER) decide any state change, with cited rules and appeals. News watch never writes state itself, so the constitution is unchanged (ch04, 01a pause rule, V.1).
+  - **Attribution:** a "Powered by Mera News, news pipeline partner" badge sits at the bottom right of the gallery, and of the app while the Mera adapter is configured (WF-PARTNER-1). It is in-kind support recognition under spec 20 and buys no prominence. `OQ-mera-disclosure` default updated.
+  - **Defaults chosen:** poll every 12 hours (Mera keeps articles 48 hours); at most 3 assessments per problem per poll and 1 filed contribution per problem per day; store only the publisher URL, title, publisher, published and retrieved times; synthetic articles only until graduation (`SIM-GATE-1`).
+  - **Reverse:** set plan 15 `approved: false` and remove the badge units; nothing else depends on news watch.
 - **D-80 · W14 · CAN for everyone: a gallery anyone can read, gradual unfolding, and the private capability profile (founder).**
   - **Audience:**
     - The gallery is for anyone with any expertise: nurses, hospitality workers, civil servants, trades people, students and everyone else. Developers are one audience among many.

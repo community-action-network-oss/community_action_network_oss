@@ -13,7 +13,14 @@ Independence is a core promise. Earlier planning notes say CAN should not operat
 
 ## Current default (what we built meanwhile)
 
-Hosting is undecided and every service is portable (D-57). No link, brand use or shared data with any other product in slice 1. If a host is chosen, the choice and who can access the data are published before any real participant joins. Neutral "take action" links, if ever used, need a policy proposal.
+Hosting is undecided and every service is portable (D-57). If a host is chosen, the choice and who can access the data are published before any real participant joins. Neutral "take action" links, if ever used, need a policy proposal.
+
+Since D-79, Mera News is CAN's news pipeline partner:
+- **Data flow:** CAN sends only the watch text of published, public problems to Mera, and reads articles back. No member data is sent.
+- **Brand use:** a "Powered by Mera News, news pipeline partner" badge appears on the gallery, and in the app while the Mera adapter is configured.
+- **Independence:** Mera is replaceable behind `NewsSourcePort` and has no say in moderation, ranking or governance.
+
+The data flow and the partner are documented in `docs/integrations/mera-news.md`, and are listed in the public support ledger before any real participant joins.
 
 ## Who can help
 

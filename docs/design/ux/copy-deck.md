@@ -385,3 +385,15 @@ Form field labels, guidance, examples and hints-by-field come from the content s
 | sim.graduation.met | Met |
 | sim.graduation.notMet | Not yet met |
 | sim.live.gated | Live model runs need the founder's go ahead and a spend cap. This report uses recorded responses. |
+
+## News watch and partner (D-79, spec 25)
+| id | English |
+|---|---|
+| news.contribution.label | Added by news watch |
+| news.contribution.why | Why it was added |
+| news.contribution.open | Open the article |
+| news.contribution.explain | News watch checks the news for active problems and adds articles that look like evidence or progress. People can dispute it like any other contribution. It never changes a problem's status by itself. |
+| news.partner.badge | Powered by {name} |
+| news.partner.role | news pipeline partner |
+| news.partner.short | {name}, news partner |
+| news.partner.a11y | Powered by {name}, our news pipeline partner. Opens in a new tab. |

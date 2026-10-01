@@ -41,8 +41,9 @@ Generated from the corpus (snapshot; recompute with the tool). Lanes are repos; 
 | 12 | Stage plans and volunteer review | true | 26 | 26 | 0 | 0 | 36.9 | can_app, can_server | 02, 03, 04, 05, 09, 10, 11, 14 | none |
 | 13 | Archive and path reuse | true | 28 | 28 | 0 | 0 | 39.9 | can_app, can_policy, can_server | 02, 03, 09, 10 | none |
 | 14 | Location attestation | true | 29 | 29 | 0 | 0 | 36.6 | root, can_app, can_server | 02, 04, 09 | 14-u28, 14-u29, 14-u30, 14-u32 |
+| 15 | News watch | false | 12 | 12 | 0 | 0 | 13.4 | root, can_app, can_gallery, can_server | 02, 04, 09, 12, 13 | 15-u11 |
 | 16 | CAN for everyone: gallery anyone can read, gradual unfolding, private capability profile | true | 15 | 15 | 0 | 0 | 18.3 | root, can_app, can_gallery, can_server | 06, 10 | none |
-| | **Total** | | 408 | 393 | 12 | 3 | 525.1 | | | 24 |
+| | **Total** | | 420 | 405 | 12 | 3 | 538.5 | | | 25 |
 
 ## Plan dependencies
 
@@ -63,6 +64,7 @@ flowchart LR
   p12["12 Stage plans and volunteer review"]
   p13["13 Archive and path reuse"]
   p14["14 Location attestation"]
+  p15["15 News watch"]
   p16["16 CAN for everyone"]
   p02 --> p03
   p03 --> p04
@@ -106,6 +108,11 @@ flowchart LR
   p02 --> p14
   p04 --> p14
   p09 --> p14
+  p02 --> p15
+  p04 --> p15
+  p09 --> p15
+  p12 --> p15
+  p13 --> p15
   p06 --> p16
   p10 --> p16
 ```
@@ -125,6 +132,7 @@ flowchart LR
 - **12 Stage plans and volunteer review.** Lifecycle v2: private preparation, opted-in volunteer review with masked personal data, AI publication, a per-problem stage plan (a DAG) with its gating engine and screens, plan changes, contributing ahead to planned stages, the impacted and guest label UI and the end-to-end journey.
 - **13 Archive and path reuse.** A public archive of every ended problem with personal data stripped, AI retrieval of similar archived problems during preparation, adapted path proposals the poster accepts or declines with the source always credited, and AI-drafted stage plans from accepted suggestions.
 - **14 Location attestation.** Impacted versus guest labels from a private on-device check: versioned affected areas, single-use server challenges, App Attest and Play Integrity where native, rate limits, only four stored fields, and a spike toward a blinded cell-membership proof.
+- **15 News watch.** Active problems follow the news: a 12-hourly poll through `NewsSourcePort` (Mera News is the first adapter, never a dependency), a bounded relevance decision point, and relevant articles filed as labelled contributions so existing decision points decide any change. Plus the "Powered by Mera News" partner badge. Not yet approved; going live is founder-gated.
 - **16 CAN for everyone.** Runs first (priorities 1 to 11, D-80). The gallery rebuilt in its own Public Pictograms world on customised gluestack, plain first with gradual unfolding on every page and a new /where-you-fit/ page; spec 26 and constitution II.10 for the private capability profile, kept and matched only on the person's device; profile wireframes, `help_needed` tags on public problems, and the app's on-device store and matcher.
 
 ## For maintainers: overnight runs
