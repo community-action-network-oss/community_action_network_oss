@@ -18,7 +18,7 @@ Weight: light. Next.js 16 static export. TARGET: gluestack-ui for all components
 ## Invariants
 - Phase 0A limits: no forms, cookies, analytics, third-party fetches or fonts. No collection of personal data. The channel to get involved is the repository plus the open questions (`OQ-promo-interest-channel`, a stable id kept from before the rename).
 - Never imply the platform is live or handles real problems. Status: concept and early scaffolding; not an emergency, legal, medical, government or individual case service.
-- Copy rules: no em or en dashes; examples labelled "Fictional example"; no real jurisdiction named; anything unbuilt carries the `Planned` tag; calm, warm, no hype.
+- Copy rules: no em or en dashes; examples labelled "Fictional example"; the four seed problems (D-56) may name Amsterdam but are always labelled "Seed problem, synthetic evidence" and never name individuals; no other real jurisdiction named; anything unbuilt carries the `Planned` tag; calm, warm, no hype.
 - Visual: only tokens (`--can-*`), system fonts, no red for ordinary states, label always carries meaning. One h1 per page, skip link, visible focus, reduced motion respected, no horizontal scroll at 320px.
 - `REPO_URL` lives only in `src/config/site.ts` and is set to the GitHub superproject URL. Doc references use `DocRef` and link to GitHub. github.com is the only allowed external host (`check:out` allows exactly it, as `<a href>` over https).
 
