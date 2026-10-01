@@ -34,6 +34,7 @@ Canonical ids follow the slice-1 brief. Names seen elsewhere that map here: DP-E
 | DP-CLOSURE | closed or redirected proposed | T19, T20 | blocking | publish, needs_revision, reject, route_external, hold | CLOSE-1 (proposed) |
 | DP-LEGAL | text or request that looks like a legal or law-enforcement matter | any text-bearing transition | blocking | escalate_human, hold, publish (no signal) | LEGAL-LANE-1 (proposed) |
 | DP-APPEAL | appeal filed | appeal re-run (spec section 5) | async, bounded | publish, needs_revision, reject, route_external, hold | the rules of the appealed decision, APPEAL-1 |
+| DP-RERESOLUTION | policy or legal-corpus change (async job over past resolutions) | reopen transition (spec owner assigns T-id), annotate | async, bounded | keep, reopen, annotate (plus hold) | RERESOLVE-1 (proposed), LEGAL-STACK-1 (proposed) |
 | DP-ASSUMPTIONS | every content type at submit and update | every gated transition and contribution accept | blocking | publish, needs_revision, hold | ASSUMP-1 (proposed) |
 | DP-COMPLETENESS | every content type at submit and update | every gated transition and contribution accept | blocking | publish, needs_revision, hold | COMPLETE-1 (proposed), STRUCT-ONLY-1 (proposed) |
 
@@ -55,6 +56,7 @@ Content is structured (D-58, `structured-content.md`): DPs read typed fields wit
 | DP-EVIDENCE-TIER | f | f (evidence types) | f | | x | f | |
 | DP-STAGE, DP-BLOCKER, DP-CLOSURE | x (transitions) | | x | x | x | | |
 | DP-APPEAL | | | | | | x | |
+| DP-RERESOLUTION | past resolutions (all types) | | | decision record rechecked | | | |
 | DP-ASSUMPTIONS | x | x | x | x | x | x | x |
 | DP-COMPLETENESS | x | x | x | x | x | x | x |
 
@@ -113,6 +115,8 @@ Counters are keyed by account and the pack's identity tier or device signal as p
 **DP-BLOCKER.** Verifies the stuck payload has a real blocking constraint with source and version, a recheck date and a next lawful route.
 
 **DP-CLOSURE.** Verifies the closure reason code matches the facts (duplicate with `duplicate_of`, out of scope, no longer relevant) and that redirect destinations are institutions or approved partners, not individuals.
+
+**DP-RERESOLUTION.** Runs in the re-resolution review job (`triggers.md`), not on a user event. Inputs: the resolution record (terminal or `stuck` state, decision record, legal-gate record with its layer citations, policy version) and a **diff of the rules** (changed articles, rules, thresholds between the version decided under and the new active version). It asks one question: does the new rule change the conclusion? Outcomes: `keep` (conclusion stands; a note is stored, nothing shown unless the owner asks), `annotate` (the record gains a visible note, "Re-checked under policy vX, conclusion unchanged but see Y", or the conclusion changes but reopening is infeasible), `reopen` (conclusion changes and reopening is feasible), or `hold` (cannot decide, retried under backoff). It never emits `reject` or deletes anything. A `reopen` outcome requires every feasibility criterion: the problem still exists, the jurisdiction is still enabled, the initiator or a steward can be notified, and reopening does not undo a lawful completed implementation without a new proposal (OQ-reopen-feasibility, proposed; these are the defaults). Fail closed: `hold`, record unchanged. Appealable under DP-APPEAL.
 
 **DP-ASSUMPTIONS.** Holds back factual, causal, legal and scope assumptions stated as fact. Returns `needs_revision` with one hint per field, never a silent reject or edit. An honestly marked assumption passes. Detail in `structured-content.md`.
 

@@ -14,6 +14,7 @@ can_policy/
     jurisdictions/<id>/        layer 3: law overlays, e.g. fiktiva-city
       rules.yaml  pack.yaml    plus source, effective dates, reviewer record
     local/<id>/                layer 4: local rules (optional)
+  packs/legal/<layer>/<jurisdiction>/   legal corpora L1..L6 with provenance (legal-stack.md)
   content-schemas/<type>/      schema.json (JSON Schema + x-ui, x-guidance, x-checks), examples/
   limits.yaml                  caps, field bounds, cooldowns per layer (decision-points.md)
   simulation/                  personas, seeds, graduation thresholds (simulation.md)
@@ -29,6 +30,10 @@ can_policy/
 ```
 
 RULE-IDs in `docs/spec/constitution/rules.md` move into `packs/base` and `packs/constitution` over time. Until the repo exists, the superproject file is the source and slice-1 fixtures live beside the server tests.
+
+## Legal corpora and layer ordering
+
+Layer 3 (jurisdiction law) expands into the cumulative legal stack of `legal-stack.md` (D-61). Ordering from the base upwards: L0 CAN platform rules (base and constitution packs), L1 UN human rights, L2 supranational where binding, L3 national constitution, L4 national law, L5 regional, L6 city. Every legality-judging DP applies every layer that exists for the item's jurisdiction and date, cumulatively. Corpora live under `packs/legal/<layer>/<jurisdiction>/`, each with `corpus.yaml` (source URL, official publisher, retrieval date, version, content hash, license, reviewer), stable article ids, and a topic index used for retrieval, so prompts carry only relevant articles. The loader refuses a corpus without provenance or without a lawyer review record, pins corpus hashes into `pack_hash`, and records article ids and corpus versions in every run. A corpus change is a pack change: lawyer-reviewed, ratified, staged, and it triggers re-moderation and re-resolution.
 
 ## Layers and precedence
 

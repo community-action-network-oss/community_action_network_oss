@@ -15,5 +15,7 @@ MADR-lite: context, decision, consequences, how to reverse. One decision per fil
 | [0009](0009-can-policy-repo.md) | `can_policy` is the fifth repository | Accepted |
 | [0010](0010-structured-content-everywhere.md) | Structured content everywhere, no free-form posting | Accepted |
 | [0011](0011-persona-simulation-proof.md) | Persona simulation is the slice-1 proof | Accepted |
+| [0012](0012-legal-layer-stack.md) | Cumulative legal layer stack | Accepted |
+| [0013](0013-retroactive-re-resolution.md) | Retroactive re-resolution of past resolutions | Accepted |
 
 To propose a new ADR: copy an existing file, use the next number, state context and how to reverse, and open it as a pull request. Keep each file under 25KB.

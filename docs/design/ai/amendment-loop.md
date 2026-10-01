@@ -56,7 +56,8 @@ A PR cannot be ratified until each item is recorded in `ratifications/`:
 4. **Rollback plan:** the previous version and hash, the trigger metrics and thresholds for auto-rollback, who may trigger a manual rollback, how affected items are re-moderated, and the notice text for people affected. A PR with no rollback plan is not ratified.
 5. **Adversarial-test gate:** the `adversarial` and `regression` sets pass, and the persona suite (`simulation.md`) was run deterministically on the PR; for any change to a harmful-class DP, privacy, naming, crisis, tone or injection defenses, a live persona attack run is required once the live gate exists, with 0 leaks and 0 injection successes.
 6. For schema changes: form snapshots, in-flight draft migration plan, content replay count.
-7. Dissent recorded; `approved_by` and `expires_at` present (FOUNDER-TRANS-1).
+7. For legal corpus changes: provenance complete and a human legal review record from a lawyer (`legal-stack.md`, LEGAL-CORPUS-1); re-resolution estimate reported.
+8. Dissent recorded; `approved_by` and `expires_at` present (FOUNDER-TRANS-1).
 
 Failures found by persona runs enter this loop as labeled examples and draft PRs (`simulation.md` section 7).
 
@@ -73,6 +74,10 @@ The canary percentage is random, not by account class, so no group is systematic
 ## 6. Re-moderation
 
 After full rollout, post-publication runs (`triggers.md`) re-check affected content in throttled batches. Flipped items get the "re-reviewed under policy vX" notice, never silent removal.
+
+## 6b. Re-resolution of past resolutions
+
+A ratified change to a rule or legal corpus also starts the re-resolution review job (`triggers.md`, DP-RERESOLUTION, ADR 0013). The replay diff of step 3 reports an estimate of how many past resolutions the change would touch and how many would reopen, so ratifiers see the consequence of a rule on resolved problems before voting. Reopen volume above a set limit rolls out in batches. Rollback of a change also re-checks any resolution that was reopened under the bad version.
 
 ## 7. Monitoring and rollback
 

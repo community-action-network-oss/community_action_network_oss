@@ -26,6 +26,18 @@ The policy runs at every event that could change what is public or what the plat
 
 Async runs never change a visible state by themselves unless the outcome flips (below).
 
+## Re-resolution (D-59)
+
+A policy or legal-corpus change is also a trigger for a **re-resolution review job** over past resolutions: `solved`, `closed`, `redirected` and `stuck` problems together with their decision records. (Withdrawn and rejected items are not resolutions and go through ordinary re-moderation.)
+
+1. **Selection.** On rollout reaching canary (not shadow), the job selects resolutions whose recorded `policy_version` or corpus versions are older than the new one and whose cited articles or rules are in the rule diff, filtered by jurisdiction. It never re-runs everything, only what the diff touches.
+2. **Run.** DP-RERESOLUTION (`decision-points.md`) compares the resolution record to the diff and returns `keep`, `annotate`, `reopen` or `hold`.
+3. **Reopen** applies only when the conclusion changes and reopening is feasible (defaults: the problem still exists, the jurisdiction is still enabled, the initiator or a steward can be notified, and reopening does not undo a lawful completed implementation without a new proposal). It uses a reopen transition that `docs/spec/01a-lifecycle.md` must define (the spec owner assigns the id and target state; typically back to `solution_development` for a changed legal conclusion, or `verification` for a changed evidence rule). It carries the reason, rule ids and old record reference.
+4. **Notice.** Every outcome other than a quiet `keep` shows a visible notice: "Re-reviewed under policy vX" with the rule or law that changed, what it means for the conclusion, the full history link and the appeal path. The initiator or steward and followers are emailed. Where the owner cannot be notified, the problem is annotated, not reopened.
+5. **History.** The old resolution record stays, linked and readable. Nothing is deleted or rewritten. A completed lawful implementation stays on record as done.
+6. **Appeal.** The re-resolution decision is a moderation decision and can be appealed (`appeals.md`).
+7. **Throttle.** Batched with the same token bucket as re-moderation, canary then full. Volume and flip counts go in the public policy change log (counts, not content).
+
 ## Re-moderation semantics
 
 When a post-publication run produces an outcome that differs from the live one:
