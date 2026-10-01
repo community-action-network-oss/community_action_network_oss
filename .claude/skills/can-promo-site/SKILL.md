@@ -29,7 +29,8 @@ Weight: light. Next.js 16 static export, plain CSS, zero client JavaScript of ou
 Change the source in `docs/`, run `sync:content`, commit both.
 
 ## Traps
-- Next defaults leak in on scaffold: delete AGENTS.md, CLAUDE.md, default art, `next/font/google`.
+- Next defaults leak in on scaffold: delete default art and `next/font/google`. `next dev` regenerates AGENTS.md and CLAUDE.md on every run; both are gitignored, never delete or commit them.
+- Next 16 has breaking API changes versus older training data: read the guide in `node_modules/next/dist/docs/` before writing Next code.
 - `check:out` scans rendered HTML, so a dash inside JSON from sync (open questions) fails the build; the sync script already converts dashes to commas.
 - A `pre` inside a grid item overflows at 320px unless the item has `min-width: 0`.
 - `sync:check` skips when `../docs` is absent (standalone checkout).

@@ -233,3 +233,6 @@ Every default, deviation and judgment call made while building CAN. Each one can
   - Not verified: the home screen actually rendering in a browser, since no browser driver exists yet. That arrives with the Playwright unit 02-u10/07.
 - **D-45 · W1 · Overnight runs get a per-unit wall-clock cap of max(2 × est_hours, 1h).** When a unit hits it: stop the agent, commit its partial work to a `wip/` branch, mark the unit blocked with reason timeout.
   - Why: tonight one promo agent ran for about 7.7 hours.
+- **D-46 · W1 · `can_promo_site` now gitignores `AGENTS.md` and `CLAUDE.md`.** Next 16 regenerates both files on every `next dev`, so deleting them only made the tree dirty again.
+  - Their one useful hint, "read `node_modules/next/dist/docs` before writing Next code", now lives in the can-promo-site skill.
+  - Reverse: remove the two lines from the gitignore and commit the files.
