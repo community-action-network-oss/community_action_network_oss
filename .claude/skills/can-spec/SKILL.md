@@ -28,7 +28,7 @@ Community-legislated, AI-executed moderation. The community never judges single 
 - **Pre-decided and post-decided consensus, replay diff, amendment loop:** Constitution V.5, `docs/design/ai/amendment-loop.md`.
 - **Label task, appeal-to-example loop:** Constitution V.5, V.6, `docs/design/ai/appeals.md`.
 - **Privacy gateway** (mandatory before any model call): `14`. **Human roles:** legislators, auditors, labelers, the emergency/legal lane, maintainers. Per-item moderators no longer exist; the `moderator` role is the lane, auditor or labeler.
-- **Rules:** `POLICY-CITE-1`, `FAIL-CLOSED-AI-1`, `NO-INSTANCE-OVERRIDE-1`, `REMOD-NOTICE-1`, `PRIV-GATEWAY-1`, `AGENT-NO-TOOLS-1`, `INTERIM-1` (interim policy stewardship) in `constitution/rules.md`. `AI-OFF-1` is gone. D-55 to D-58 added: `STRUCT-ONLY-1`, `SCHEMA-1`, `AI-ASSIST-1`, `ASSUMP-1`, `COMPLETE-1`, `SIM-GATE-1`, `SIM-LABEL-1`, `SIM-NOSECRET-1`, and the decision-point rules `FRAME-1`, `DUP-1`, `RELEVANCE-1`, `SOLUTION-ONLY-1`, `TONE-1`, `DECISION-REC-1`, `VERIFY-1`, `STAGE-1`, `BLOCKER-1`, `CLOSE-1`, `LEGAL-LANE-1`; from D-59 and D-61: `LEGAL-STACK-1`, `LEGAL-SOURCE-1`, `TOPIC-FORBIDDEN-1`, `RERESOLVE-1`. The legal layer stack L0 to L6 is in Constitution I.2; re-resolution is T23 in `01a-lifecycle.md`.
+- **Rules:** `POLICY-CITE-1`, `FAIL-CLOSED-AI-1`, `NO-INSTANCE-OVERRIDE-1`, `REMOD-NOTICE-1`, `PRIV-GATEWAY-1`, `AGENT-NO-TOOLS-1`, `INTERIM-1` (interim policy stewardship) in `constitution/rules.md`. `AI-OFF-1` is gone. D-55 to D-58 added: `STRUCT-ONLY-1`, `SCHEMA-1`, `AI-ASSIST-1`, `ASSUMP-1`, `COMPLETE-1`, `SIM-GATE-1`, `SIM-LABEL-1`, `SIM-NOSECRET-1`, and the decision-point rules `FRAME-1`, `DUP-1`, `RELEVANCE-1`, `SOLUTION-ONLY-1`, `TONE-1`, `DECISION-REC-1`, `VERIFY-1`, `STAGE-1`, `BLOCKER-1`, `CLOSE-1`, `LEGAL-LANE-1`; from D-59 and D-61: `LEGAL-STACK-1`, `LEGAL-CITE-1`, `TOPIC-FORBIDDEN-1`, `LEGAL-CORPUS-1`, `LEGAL-SOURCE-1`, `RERESOLVE-1`. The legal layer stack L0 to L6 is in Constitution I.2; re-resolution is T23 and T24 in `01a-lifecycle.md`.
 
 ## Simulation, seeds and structured content (D-55 to D-58)
 
@@ -39,7 +39,7 @@ Community-legislated, AI-executed moderation. The community never judges single 
 
 ## Editing rules
 
-- `01a-lifecycle.md` alone owns the lifecycle state classes, the T-table (T00 to T23) and the public labels. `01-slice-1-brief.md` owns the scope and defaults, the contribution-type enum, the moderation decision fields and the minimal entity list. Other files link there. Never copy the table elsewhere.
+- `01a-lifecycle.md` alone owns the lifecycle state classes, the T-table (T00 to T24) and the public labels. `01-slice-1-brief.md` owns the scope and defaults, the contribution-type enum, the moderation decision fields and the minimal entity list. Other files link there. Never copy the table elsewhere.
 - Do not rename the `## 4. Lifecycle` heading in `01`; it is a short pointer to `01a`. Design docs link to `01-slice-1-brief.md#4-lifecycle`.
 - Every file in `docs/spec/` (excluding `constitution/`) stays at 25KB or less. Split before you exceed it.
 - No em dashes or en dashes in the manifesto, the spec or the open-questions files. No `<aside>`, emoji or empty `> ` lines. Say "problem", never "case", for a public problem. Say "Resolution records", never "Hall of fame". Ladder roles are "Watcher" and "Project steward"; platform roles are "Observer" and "Steward".

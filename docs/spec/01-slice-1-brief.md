@@ -54,7 +54,7 @@ Other defaults:
 
 ## 4. Lifecycle
 
-The state classes, the transition table (T00 to T23) and the rules that apply to it live in [`01a-lifecycle.md`](01a-lifecycle.md), the single owner. In one line: `draft`, `submitted` and `needs_revision` are private; `eligible` through `verification` are the public working states; `paused` and `stuck` are resting states; `solved`, `closed`, `redirected` and `withdrawn` are terminal (`rejected` and a pre-publication `withdrawn` are private). Every decision point (`DP-*`) and every transition id (`T01`, `T14`, ...) is defined there. Outcomes: `publish`, `needs_revision`, `reject`, `route_external`, `hold` (fail closed), `escalate_human`.
+The state classes, the transition table (T00 to T24) and the rules that apply to it live in [`01a-lifecycle.md`](01a-lifecycle.md), the single owner. In one line: `draft`, `submitted` and `needs_revision` are private; `eligible` through `verification` are the public working states; `paused` and `stuck` are resting states; `solved`, `closed`, `redirected` and `withdrawn` are terminal (`rejected` and a pre-publication `withdrawn` are private). Every decision point (`DP-*`) and every transition id (`T01`, `T14`, ...) is defined there. Outcomes: `publish`, `needs_revision`, `reject`, `route_external`, `hold` (fail closed), `escalate_human`.
 
 ## 5. Moderation decisions and appeals
 

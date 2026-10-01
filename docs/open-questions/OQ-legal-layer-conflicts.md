@@ -13,7 +13,7 @@ The layers are cumulative so CAN never requests anything illegal, but a regime m
 
 ## Current default (what we built meanwhile)
 
-Cumulative restriction: content and solutions must satisfy every layer, so the stricter layer applies. The platform never assists illegal action. The refusal is logged with layer, source and version, the person gets a plain explanation and an appeal, and an unresolved conflict is held and queued as a policy question (`PREC-1`, `TOPIC-FORBIDDEN-1`). The rights-core protections in Constitution I.2 stay in force.
+Content and solutions must satisfy every layer, and the platform never assists illegal action; refusals are logged with layer, source and version, with a plain explanation and an appeal. A conflict in how two layers should be read is held with a conflict note and queued as a policy question (`PREC-1`, `TOPIC-FORBIDDEN-1`, `LEGAL-CORPUS-1`). The rights-core protections in Constitution I.2 stay in force.
 
 ## Who can help
 

@@ -65,7 +65,7 @@ A lower tier never overrides a higher one. Within a tier, the stricter protectio
 | L5 | Regional law and rules |
 | L6 | City rules |
 
-The layers are constraints, not a ladder of overrides: a lower layer cannot relax a higher one, and a higher layer's silence does not excuse a lower layer's rule. The corpora live in `can_policy` as versioned, source-verified texts (IV.6). Where L1 and a national layer conflict, the cumulative restriction applies and the platform assists no illegal action; the refusal is logged (`OQ-legal-layer-conflicts`).
+The layers are constraints, not a ladder of overrides: a lower layer cannot relax a higher one, and a higher layer's silence does not excuse a lower layer's rule. The corpora live in `can_policy` as versioned, source-verified texts (IV.6). The platform assists no illegal action, and refusals are logged. A conflict in how two layers should be read is held with a conflict note and queued (`PREC-1`, `OQ-legal-layer-conflicts`).
 
 **Change protection.** The protected core cannot be removed or weakened by the ordinary amendment procedure (VIII.2). No extraordinary procedure exists yet, so until one is ratified the core is frozen.
 

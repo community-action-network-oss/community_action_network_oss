@@ -45,7 +45,7 @@ Status is multidimensional, never one `solved` label. Record separately: immedia
 
 Work does not end at generated guidance. The platform tracks, with the participants' consent, the proposal chosen, implementation start, progress and blockers, reported outcome, independent verification, recurrence, and unknown or abandoned outcomes. A generated answer is not a solved problem.
 
-**Re-resolution (D-59).** A resolution is never final against better rules. When a policy pack or legal corpus changes, a re-resolution review (`DP-RERESOLUTION`) replays the new rule over past solved, closed, redirected and stuck problems and their decision records. Where the conclusion changes and reopening is feasible, the problem reopens with a visible notice and its full history; the decision can be appealed. Nothing is reopened or changed silently, and the old record is never deleted. Each rule change and appeal therefore improves the rules for every past and future problem.
+**Re-resolution (D-59).** A resolution is never final against better rules. When a policy pack or legal corpus changes, a re-resolution review (`DP-RERESOLUTION`; outcomes `keep`, `annotate`, `reopen`, `hold`, never reject or delete) replays the new rule over past solved, closed, redirected and stuck problems and their decision records. Where the conclusion changes and reopening is feasible, the problem reopens with a visible notice and its full history; the decision can be appealed. Nothing is reopened or changed silently, and the old record is never deleted. Each rule change and appeal therefore improves the rules for every past and future problem.
 
 Rules: VERIFY-1, STAGE-1, BLOCKER-1, CLOSE-1, RERESOLVE-1
 
@@ -60,7 +60,7 @@ Current law and legal reform are separate tracks. The platform distinguishes wha
 
 The legality gate reads the legal layer stack (I.2, L0 to L6) cumulatively. If local law forbids discussing a topic at all, the problem is not published in that jurisdiction and the refusal is logged with its legal basis. If only the solution is illegal, the problem is published and enters `stuck` (legally blocked) with the blocking layer and source named, never rejected. A legal-corpus update triggers re-moderation and re-resolution (IV.4).
 
-Rules: LEGAL-GATE-1, LEGAL-LANE-1, TOPIC-FORBIDDEN-1
+Rules: LEGAL-GATE-1, LEGAL-LANE-1, TOPIC-FORBIDDEN-1, LEGAL-CITE-1
 
 ### IV.6 LEGAL-SOURCES: Legal sources
 *Status: Drafted · Old: Art 24, 37 · First phase: S1-min, P5*
@@ -71,7 +71,7 @@ A detected change never silently alters production behavior. The system may inge
 
 Each layer's corpus (L1 to L6) is held in `can_policy` with source provenance: official URL, original text, language, jurisdiction, layer, effective date, amendment status, retrieval time, content hash and the verifying reviewer. A corpus update is versioned, verified and shadow-tested before it goes live, then triggers re-moderation and re-resolution.
 
-Rules: LEGAL-GATE-1, LEGAL-SOURCE-1
+Rules: LEGAL-GATE-1, LEGAL-SOURCE-1, LEGAL-CORPUS-1
 
 ### IV.7 CONTEXTUAL-REUSE: Contextual reuse
 *Status: Drafted · Old: Art 16 · First phase: P4*
