@@ -15,12 +15,15 @@ needs: ["docker","db"]
 verify: ["npm run verify","npx vitest run --config ./vitest.config.e2e.ts test/moderation-decisions.e2e-spec.ts"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: skipped
 attempts: 0
 commits: []
 actual_hours: null
+blocked_reason: "superseded by 09-u03, 09-u22, 09-u23"
 ---
 ## Objective
+SUPERSEDED: replaced by 09-u03, 09-u22, 09-u23. Human moderator decisions and POST /v1/moderation/decisions are replaced by moderation runs. This unit is skipped and builds nothing; the text below is kept only as history.
+
 POST /v1/moderation/decisions turns a moderator decision into T02, T04 or T05 through the transition engine, in one transaction with the decision row, the problem event and the audit event.
 
 ## Steps

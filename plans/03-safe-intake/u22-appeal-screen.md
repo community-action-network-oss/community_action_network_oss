@@ -15,12 +15,15 @@ needs: []
 verify: ["npm run verify","npx jest --ci __tests__/appeal-screen.test.tsx"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: skipped
 attempts: 0
 commits: []
 actual_hours: null
+blocked_reason: "superseded by 09-u51"
 ---
 ## Objective
+SUPERSEDED: replaced by 09-u51. The appeal screen is replaced by the appeal form and status timeline. This unit is skipped and builds nothing; the text below is kept only as history.
+
 WF-APPEAL-1: file an appeal with grounds before the deadline, see the status and the honest reviewer disclosure.
 
 ## Steps

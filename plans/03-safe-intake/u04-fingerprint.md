@@ -32,7 +32,7 @@ Detect reposts of rejected or withdrawn drafts without keeping text: a salted HM
 
 ## Acceptance
 - No text and no account or problem id is persisted.
-- A repost match is advisory only (returns a boolean for the moderator note, never blocks).
+- A repost match is advisory only (returns a boolean passed to the moderation run as an input, never blocks).
 - Expiry is 90 days from creation.
 - `npm run verify` is green.
 

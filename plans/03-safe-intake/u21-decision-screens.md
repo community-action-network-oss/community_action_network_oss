@@ -15,12 +15,15 @@ needs: []
 verify: ["npm run verify","npx jest --ci __tests__/decision-screens.test.tsx"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: skipped
 attempts: 0
 commits: []
 actual_hours: null
+blocked_reason: "superseded by 09-u49"
 ---
 ## Objective
+SUPERSEDED: replaced by 09-u49. Decision screens are replaced by decision screens with hints beside fields and policy version. This unit is skipped and builds nothing; the text below is kept only as history.
+
 WF-DECISION-1 (changes requested) shows each revision hint beside its field with rule texts; WF-DECISION-2 (not accepted) shows reasons, the exact deletion date, and appeal and external route entries. "Revise and resubmit" keeps the draft.
 
 ## Steps

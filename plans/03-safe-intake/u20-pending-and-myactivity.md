@@ -15,12 +15,15 @@ needs: []
 verify: ["npm run verify","npx jest --ci __tests__/pending-screen.test.tsx __tests__/myactivity-screen.test.tsx"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: skipped
 attempts: 0
 commits: []
 actual_hours: null
+blocked_reason: "superseded by 09-u48, 09-u52"
 ---
 ## Objective
+SUPERSEDED: replaced by 09-u48, 09-u52. Pending and my-activity screens are replaced by the awaiting-review and my-activity screens. This unit is skipped and builds nothing; the text below is kept only as history.
+
 WF-PENDING-1: "Submitted, awaiting volunteer review" with the honest wait statement, Withdraw and Edit. WF-MYACT-1: drafts and submissions with exact deletion dates.
 
 ## Steps

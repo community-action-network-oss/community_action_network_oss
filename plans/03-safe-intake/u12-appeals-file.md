@@ -15,12 +15,15 @@ needs: ["docker","db"]
 verify: ["npm run verify","npx vitest run --config ./vitest.config.e2e.ts test/appeals-file.e2e-spec.ts"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: skipped
 attempts: 0
 commits: []
 actual_hours: null
+blocked_reason: "superseded by 09-u33"
 ---
 ## Objective
+SUPERSEDED: replaced by 09-u33. Reviewer selection and the human appeal queue are replaced by structured appeals with an independent re-run. This unit is skipped and builds nothing; the text below is kept only as history.
+
 Add the appeal table, the pure reviewer-selection rule, and the filing endpoint. One appeal per decision, before appealable_until.
 
 ## Steps

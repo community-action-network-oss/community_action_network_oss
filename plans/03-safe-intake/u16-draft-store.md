@@ -24,7 +24,7 @@ actual_hours: null
 The intake form must never lose text: a local draft store that autosaves every field, survives reload and session expiry, works signed out, and later uploads on the first authenticated save. No server dependency.
 
 ## Steps
-1. Add @react-native-async-storage/async-storage (works on web via localStorage). src/drafts/draftStore.ts: typed Draft {localId, serverId?, fields: {title, condition, affected, affectedKind, affectedCount, coarseArea, jurisdictionId, desiredOutcome, observed, uncertain, evidenceUrls: {url, note}[], noEvidenceNote, identifiersConfirmed}, step, updatedAt, version}; functions load(), save(partial) debounced 400 ms, clear(), listLocal(). Single draft per device in slice 1.
+1. Add @react-native-async-storage/async-storage (works on web via localStorage). src/drafts/draftStore.ts: typed Draft {localId, serverId?, schemaId, schemaVersion, schemaHash, body: Record<string, unknown> (keys come from the pinned content schema, never a hard-coded field list, D-58), section, updatedAt, version}; functions load(), save(partial) debounced 400 ms, clear(), listLocal(). Single draft per device in slice 1.
 2. src/drafts/useDraft.ts hook: returns draft, setField, savedAt and a status "saved" | "saving" | "unsynced" announced through a polite live region component (src/drafts/SavedIndicator.tsx) that says "Saved on this device" with the time.
 3. Storage failures (quota, private mode) are caught: the hook keeps the draft in memory and shows a calm warning "This device could not save your draft" once.
 4. Security: only the draft text is stored locally, never tokens or email. Provide purgeLocalDraft() used on logout only if the user chooses ("Delete the draft on this device") to avoid silent loss.

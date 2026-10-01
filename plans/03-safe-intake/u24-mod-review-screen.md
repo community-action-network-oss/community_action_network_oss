@@ -15,12 +15,15 @@ needs: []
 verify: ["npm run verify","npx jest --ci __tests__/mod-review.test.tsx"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: skipped
 attempts: 0
 commits: []
 actual_hours: null
+blocked_reason: "superseded by 09-u53, 09-u54, 09-u55"
 ---
 ## Objective
+SUPERSEDED: replaced by 09-u53, 09-u54, 09-u55. The moderator review screen is replaced by the auditor, label and lane screens. This unit is skipped and builds nothing; the text below is kept only as history.
+
 WF-MOD-REVIEW-1: read a submission with its check results, then decide (publish, request changes, reject) with the MOD-EXPLAIN-1 fields enforced by the form.
 
 ## Steps

@@ -15,12 +15,15 @@ needs: []
 verify: ["npm run verify","npx jest --ci __tests__/mod-appeal.test.tsx"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: skipped
 attempts: 0
 commits: []
 actual_hours: null
+blocked_reason: "superseded by 09-u53, 09-u54"
 ---
 ## Objective
+SUPERSEDED: replaced by 09-u53, 09-u54. The moderator appeal screen is replaced by label tasks and auditor review. This unit is skipped and builds nothing; the text below is kept only as history.
+
 WF-MOD-APPEAL-1: the assigned reviewer reads the original decision and the appellant grounds, then upholds or overturns with an explanation.
 
 ## Steps

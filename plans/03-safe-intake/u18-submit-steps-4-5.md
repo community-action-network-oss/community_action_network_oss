@@ -15,12 +15,15 @@ needs: []
 verify: ["npm run verify","npx jest --ci __tests__/submit-steps-4-5.test.tsx"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: skipped
 attempts: 0
 commits: []
 actual_hours: null
+blocked_reason: "superseded by 10-u33"
 ---
 ## Objective
+SUPERSEDED: replaced by 10-u33. Hard-coded submit steps 4 and 5 are replaced by the schema renderer. This unit is skipped and builds nothing; the text below is kept only as history.
+
 Step 4 separates what is observed from what is uncertain; step 5 collects evidence as URLs only, or an honest "no evidence yet" note.
 
 ## Steps

@@ -15,12 +15,15 @@ needs: ["docker","db","mail"]
 verify: ["npm run verify","npx vitest run --config ./vitest.config.e2e.ts test/appeals-resolve.e2e-spec.ts"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: skipped
 attempts: 0
 commits: []
 actual_hours: null
+blocked_reason: "superseded by 09-u34, 09-u37"
 ---
 ## Objective
+SUPERSEDED: replaced by 09-u34, 09-u37. Resolving appeals by a human reviewer is replaced by DP-APPEAL and re-decision under the new policy. This unit is skipped and builds nothing; the text below is kept only as history.
+
 POST /v1/moderation/appeals/{id}/resolve: the assigned reviewer upholds or overturns. Overturning applies the brief effect through the engine.
 
 ## Steps

@@ -15,12 +15,15 @@ needs: []
 verify: ["npm run verify","npx jest --ci __tests__/submit-steps-1-3.test.tsx"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: skipped
 attempts: 0
 commits: []
 actual_hours: null
+blocked_reason: "superseded by 10-u33"
 ---
 ## Objective
+SUPERSEDED: replaced by 10-u33. Hard-coded submit steps 1 to 3 are replaced by the schema renderer. This unit is skipped and builds nothing; the text below is kept only as history.
+
 Build the staged intake shell (one question per screen, "Step n of 7" as text, back and next, saved indicator) and steps 1 to 3 over the local draft store. Signed-out users can write; sign-in happens at submit.
 
 ## Steps

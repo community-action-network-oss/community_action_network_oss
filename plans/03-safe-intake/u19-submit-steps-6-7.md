@@ -15,12 +15,15 @@ needs: []
 verify: ["npm run verify","npx jest --ci __tests__/submit-steps-6-7.test.tsx"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: skipped
 attempts: 0
 commits: []
 actual_hours: null
+blocked_reason: "superseded by 10-u33"
 ---
 ## Objective
+SUPERSEDED: replaced by 10-u33. Hard-coded submit steps 6 and 7 are replaced by the schema renderer. This unit is skipped and builds nothing; the text below is kept only as history.
+
 Step 6 shows the server privacy and eligibility check results beside the fields they refer to; step 7 is the mandatory preview with an explanation of what publishing means, then submits (T01).
 
 ## Steps
