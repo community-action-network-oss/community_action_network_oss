@@ -28,6 +28,11 @@ Every default, deviation and judgment call made while building CAN. Each one can
 7. **Starting night 1.** In Claude Code, from the superproject, run `/can-code-large night`. The dry run in `plans/00-ROOT.md` shows about 4 hours per lane across 4 lanes.
 8. **Enable private vulnerability reporting on all four repos** (Settings → Code security).
 
+- **Before night 1 (W7):**
+  - Create the empty GitHub repo `community-action-network-oss/can_policy` (unit 10-u01).
+  - Start Docker Desktop. Its daemon was down at close-out, so server checks that need Postgres could not run.
+  - Optional: provide an Anthropic API key and spend cap to unlock the live provider and live persona runs (09-u13, 11-u38, 11-u39).
+
 ## 2026-10-01 · Wave W1 (spec, repos, plan corpus)
 
 - **D-1 · W1 · The superproject has three submodules: `can_server` (NestJS), `can_app` (Expo), `can_promo_site` (Next.js).**
@@ -321,3 +326,13 @@ Every default, deviation and judgment call made while building CAN. Each one can
     - Legal-corpus changes need a lawyer review record before ratification.
   - **Rule text trimmed** to keep `rules.md` under 25KB. The cut clauses still hold elsewhere in the constitution.
   - **Open questions:** OQ-legal-corpus-sourcing, OQ-legal-layer-conflicts, OQ-supranational-default, OQ-reresolution-feasibility.
+- **D-63 · W7 · The plan corpus is reworked for the AI model.**
+  - **Size:** 10 plans (02 to 11), 299 units, about 379 agent-hours still to do.
+  - **New lane:** can_policy.
+  - **Superseded:** 11 human-moderator units are now `skipped`, each pointing to its replacement. No remaining unit depends on a skipped one.
+  - **Founder gates:** 24 founder-gated units, covering live AI, keys, legal texts and review, repo creation, deploy, and graduation.
+  - **Bottleneck:** the can_server lane alone is about 198h. At about 4.5h per lane per night, the server lane sets the pace. A second server worktree lane would roughly halve that, if wanted.
+  - **Close-out checks:** can_app and can_gallery pass verify. can_server passes lint, build and unit tests; its Docker-backed verify could not run because Docker was down.
+  - **Known gaps:**
+    - No copy exists yet for the forbidden-topic refusal. 07-u22 uses the generic not-accepted text plus the cited layer.
+    - The env var names in cross-cutting.md and 10-u04 differ. 07-u13 maps them.
