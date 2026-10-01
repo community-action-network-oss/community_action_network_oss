@@ -37,7 +37,7 @@ A diff above the approved flip limit for a minor version, or any unintended flip
 
 ## 4. Ratification
 
-Method is an open question (`docs/open-questions/OQ-policy-ratification-method.md`, proposed). **Default**, per the founder model:
+Method is an open question (`docs/open-questions/OQ-ratification-method.md`, proposed). **Default**, per the founder model:
 
 - A **randomized, context-masked, cross-jurisdiction review panel** drawn from eligible participants (conflict declarations; no one from the proposer's cluster; seats include affected jurisdictions) reads the diff, eval report and replay report, never individual people's identities.
 - **`can_policy` maintainers** confirm the CI evidence and the process was followed. They cannot ratify without the panel and cannot block a ratified change except for a failed gate.
