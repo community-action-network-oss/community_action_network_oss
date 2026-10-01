@@ -45,6 +45,8 @@ sequenceDiagram
 ## Events emitted
 `moderation.recheck.started`, `moderation.recheck.flipped`, `content.rereviewed` (planned).
 
+Screen: WF-REMOD-1. Auditors use WF-AUDIT-1 and WF-AUDIT-2.
+
 ## Notices
 A flipped item shows "re-reviewed under policy vX" (notices read model, plan 10 pending) with explanation and appeal path; unchanged items show "Decided under policy vX". Auditors sample unflipped items. A schema version bump (see [policy-schema-change.md](policy-schema-change.md)) is not a re-review trigger by itself: published content keeps its schema version.
 

@@ -28,6 +28,8 @@ sequenceDiagram
   Note over DB: published content keeps its schema version, forever
 ```
 
+Screens: WF-FORM-5 (author migration), WF-POLICY-1 and WF-POLICY-2 (proposal form and view).
+
 ## Rules
 - Semver: patch for wording or examples, minor for added optional fields or changed bounds, major for added or removed required fields. Rules: [../ai/structured-content.md](../ai/structured-content.md) section 8.
 - Minor bump: in-flight drafts auto-migrate (new optional fields empty, new bounds apply at next submit).

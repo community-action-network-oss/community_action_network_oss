@@ -32,6 +32,8 @@ sequenceDiagram
   R->>R: graduation check against criteria
 ```
 
+Screen: WF-SIM-1 (run report for maintainers).
+
 ## Failure paths
 - A persona bypassing the API (direct DB access) is a harness bug: the runner has only HTTP credentials.
 - Live run over spend cap: stops, partial report marked incomplete.

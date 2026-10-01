@@ -36,6 +36,8 @@ sequenceDiagram
   Mod->>User: outcome, rule, policy version, explanation
 ```
 
+Screens: WF-APPEAL-1, WF-APPEAL-2 (appellant timeline), WF-LABEL-1 (labeler).
+
 ## Failure paths
 - Window closed: `appeal_window_closed`, no row.
 - Independent run cannot complete: appeal stays open, retried; never auto-upheld.

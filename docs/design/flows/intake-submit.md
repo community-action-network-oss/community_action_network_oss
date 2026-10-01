@@ -4,7 +4,7 @@
 Take a person's frustration from staged local draft to a published public problem, a needs-revision draft, a rejection, an external route, or a hold. Publication is decided by the AI moderation run under the ratified policy pack (D-51), never by a person confirming a single item.
 
 ## Trigger
-The initiator presses Submit on the preview step (WF-SUBMIT-7), calling `POST /v1/problems/{id}/transitions {to: submitted}` (T01).
+The initiator presses Submit on the preview step (WF-SUBMIT-4), calling `POST /v1/problems/{id}/transitions {to: submitted}` (T01).
 
 ## Status
 planned. Deterministic gate and endpoints: 03-u02 to 03-u08, app steps 03-u16 to 03-u19. Moderation run, privacy gateway, outcome applier: plan 09 (pending). Replaces 03-u09, 03-u10, 03-u24 (human queue and decision form), which plan 09 is expected to rework.
@@ -39,7 +39,7 @@ sequenceDiagram
   Mod->>Mod: deterministic aggregation to one outcome
   Mod->>DB: tx: moderation_run + moderation_decision + transition + events
   Mod->>Mail: email initiator with outcome and hints
-  App->>API: poll or open WF-PENDING-1 / WF-DECISION-1
+  App->>API: poll or open WF-PENDING-1 / WF-HOLD-1 / WF-DECISION-1
 ```
 
 Labels shown to the initiator come from the brief: "Awaiting review" while the run is pending or held, "Changes requested" on `needs_revision`, and on any decision the line "Decided under policy vX" with "Policy v1, transitional stewardship" while `transitional` is true (founder-approved pack, INTERIM-1). Auditors sample these decisions later; a labeler only sees them if appealed.

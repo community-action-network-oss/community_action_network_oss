@@ -4,7 +4,7 @@
 No content type allows free-form posting (D-58). Every type (problem, contribution, proposal, decision record, task update, verification evidence) is a form rendered from a content schema that the community decided in advance and stored in the `can_policy` pack. This flow shows how a form is built, optionally pre-filled by AI, and checked.
 
 ## Trigger
-The user opens any submit or edit screen (for example WF-SUBMIT-1) and later presses Submit.
+The user opens any submit or edit screen (WF-SUBMIT-1 on the shell WF-FORM-1) and later presses Submit.
 
 ## Status
 plan 10 (pending): schema registry, form renderer, fill-assist. Moderation run underneath is plan 09 (pending). Replaces the hard-coded fields of 03-u16 to 03-u19. Detail: [../ai/structured-content.md](../ai/structured-content.md) (SCHEMA-1, AI-ASSIST-1).
@@ -42,6 +42,8 @@ sequenceDiagram
   Mod->>DB: tx: run + decision + transition + events
   Mod-->>App: outcome, field hints, "Decided under policy vX"
 ```
+
+Screens: WF-FORM-1 (shell), WF-FORM-2 (fill-assist confirm), WF-FORM-3 (hints beside fields), WF-FORM-4 (assumption prompt), WF-FORM-5 (schema version change).
 
 ## Failure paths
 - Schema version unknown or retired: rejected as unknown or retired with a prompt to reload; the draft keeps its pinned version or the app offers a migration (see [policy-schema-change.md](policy-schema-change.md)).

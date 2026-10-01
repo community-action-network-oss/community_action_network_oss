@@ -48,7 +48,7 @@ flowchart LR
 
 D-55 to D-58 in one paragraph: persona simulation is the slice-1 proof (harness above; CI uses FakeModel, live runs are founder-gated, graduation criteria open participation); seeds 1 and 2 use real framings with synthetic evidence and the Amsterdam overlay; every service is portable (Dockerfile per service, env contract, health and readiness, backup and restore, see [components/cross-cutting.md](components/cross-cutting.md)); every content type is schema-structured, schemas live in the policy pack, `DP-COMPLETENESS` and `DP-ASSUMPTIONS` check submissions, and the app renders forms from the schema version. Flows: [structured-submission](flows/structured-submission.md), [persona-simulation-run](flows/persona-simulation-run.md), [seed-bootstrap](flows/seed-bootstrap.md), [policy-schema-change](flows/policy-schema-change.md).
 
-Ports: API :4000, Expo web :8081, gallery :3000, Postgres :5433 (D-4, default 13).
+Ports: API :4000, Expo web :8081, gallery :3000, Postgres :5433 (D-4).
 
 Rules that follow from the diagram:
 - The gallery never calls the API. It is static HTML and links to the repository, docs and open questions.
@@ -74,7 +74,7 @@ Layout inside `can_server/src`: each module has `domain/` (pure TS, no Nest or D
 | `audit` | audit_event | none | Write-only API for other modules; read for auditors and maintainers. |
 | `platform` (not domain) | config, health, event log writer, clock, id generator (UUIDv7), retention jobs | none | Shared kernel; keep tiny. |
 
-Dependency direction is one way (arrows above go from left column to "Depends on"). `audit` and `platform` depend on nothing. Cross-module calls go through exported use-case interfaces, never through another module's tables.
+Dependency direction is one way; `audit` and `platform` depend on nothing; cross-module calls use exported use-case interfaces.
 
 Per-module detail and build status: [components/server.md](components/server.md). Domain rules are unit-tested without Nest.
 
