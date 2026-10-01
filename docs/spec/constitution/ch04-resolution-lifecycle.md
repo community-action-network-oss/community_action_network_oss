@@ -77,7 +77,7 @@ Rules: none yet.
 
 No submitter owns a public problem or chooses for all affected people. The data model has no `owner` field.
 
-- **Slice 1:** the initiator acts as provisional steward and may clarify the original report. A `moderator` confirms publish, solved, closed, and redirected. Before moderator panels exist these decisions follow the interim clause in V.4.
+- **Slice 1:** the initiator acts as provisional steward and may clarify the original report. The moderation run decides publish, solved, closed, and redirected under the ratified policy pack, and shows the policy version. Before a ratifying quorum exists the pack is under transitional stewardship (V.4).
 - **Later:** stewardship belongs to a decentralized, capability-balanced group (phase 3). The group represents the capabilities the problem needs (affected geography, lived experience, domain expertise, implementation responsibility, rights and safety knowledge) and acts only by a defined consent threshold. The platform records how stewards were chosen, who they represent, conflicts, decision and quorum rules, scope and duration of authority, actions needing wider consent, dissent, and replacement and removal. Stewardship never transfers private information automatically and gives no authority over others' rights. Avoid single-person dependency through multiple members per critical capability, diversity, independent conflict checks, alternates and succession, no unilateral access to sensitive data, and limited auditable permissions.
 - **Implementation authority** stays with the people, communities, institutions, or public bodies legally and practically responsible for the action.
 

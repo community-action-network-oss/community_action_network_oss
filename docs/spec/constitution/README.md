@@ -17,7 +17,7 @@ A merged article shows each source article's tag.
 
 ## Precedence
 
-When rules conflict: rights > crisis and safety > privacy > legal gate > procedure > ranking (I.2). Beneath that, the constitution outranks a policy pack, a policy pack outranks the spec's mechanics, and the spec outranks code comments. A conflict that cannot be settled mechanically fails closed to a human.
+When rules conflict: rights > crisis and safety > privacy > legal gate > procedure > ranking (I.2). Beneath that, the constitution outranks a policy pack, a policy pack outranks the spec's mechanics, and the spec outranks code comments. A conflict that cannot be settled mechanically holds the item and queues a policy question for the maintainers.
 
 ## Amendment, in brief
 

@@ -95,9 +95,9 @@ The platform is open by design. Submitting a problem that is then accepted is th
 
 **Drafts.** There is no hidden private problem that later goes public. Drafts are short-lived and exist only for checks. A rejected or withdrawn draft is hard-deleted within 30 days, and the UI shows the deletion date. A salted fingerprint is kept for 90 days to detect reposts.
 
-**AI and personal data.** Every AI interaction assumes inputs and outputs may contain personal data. Raw intake stays private and transient. Restricted evidence, identity material, and private drafts never enter general-purpose AI environments. Production AI runs only through an approved privacy gateway with minimum context, bounded retention, non-training terms, output screening, minimal logging, deletion controls, and a non-AI fallback. AI output is untrusted, is never auto-published, and fails closed (the item stays in `draft` or `submitted`) when privacy assurance is short. Slice 1 runs no live AI (V.1).
+**AI and personal data.** Every AI interaction assumes inputs and outputs may contain personal data. Raw intake stays private and transient. Restricted evidence, identity material, and private drafts never enter general-purpose AI environments. Production AI runs only through an approved privacy gateway with minimum context, bounded retention, non-training terms, output screening, minimal logging, deletion controls, and a non-AI fallback. AI output is untrusted. Publication follows the moderation run and its privacy checks (V.4), and the run fails closed (the item stays in `draft` or `submitted`) when privacy assurance is short. No model call happens without the gateway.
 
-Rules: PRIV-GATE-1, DRAFT-TTL-1, NOTIFY-CONSENT-1, AI-OFF-1
+Rules: PRIV-GATE-1, DRAFT-TTL-1, NOTIFY-CONSENT-1, PRIV-GATEWAY-1
 
 ### II.7 NO-BULK-EXTRACTION: No bulk extraction
 *Status: Drafted · Old: Art 79 · First phase: S1*

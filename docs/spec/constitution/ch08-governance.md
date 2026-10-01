@@ -37,12 +37,12 @@ The protected core in I.2 cannot be removed or weakened through an ordinary amen
 
 Until a constitutional quorum exists, the founder acts as transitional steward. Within the limits below the founder:
 
-- approves policy pack v1 and each later pack version;
+- ratifies policy pack v1 and each later pack version in `can_policy` until a ratifying panel exists (V.5);
 - approves each jurisdiction's readiness (VIII.3);
-- approves the AI provider list, and any decision to switch live AI on (V.1);
+- approves the AI provider list, the spend cap, and any decision to switch live model calls on (V.1);
 - interprets this constitution, recording every interpretation with the rule IDs it relies on.
 
-Limits: the founder may not amend or weaken the protected core (I.2), may not sell influence, may not decide an individual appeal in place of the review path, and logs each approval in a public decision log that names the rule IDs applied. Amendments in the meantime follow the ten-step protocol above, with the founder standing in for the quorum at step 7.
+Limits: the founder may not amend or weaken the protected core (I.2), may not sell influence, may not decide a single appeal or moderation outcome in place of the appeal-to-example loop (V.5), and logs each approval in a public decision log that names the rule IDs applied. Amendments in the meantime follow the ten-step protocol above, with the founder standing in for the quorum at step 7.
 
 Sunset condition: this stewardship ends on the earlier of (a) a constitutional quorum being seated under a ratified charter, with at least five members, none of whom is the founder or controlled by the founder, or (b) 24 months after the first public launch. On sunset, founder approvals stop and policy packs freeze at their last approved version until a quorum acts. Every policy pack records an `approved_by` and an `expires_at`. The numbers in (a) and (b) are proposed defaults, tracked as an open question.
 
