@@ -11,11 +11,11 @@ The Community Action Network (CAN) is an open-source platform where people turn 
 | Any slice-1 work | `01-slice-1-brief.md` and `02-agent-rules.md` first, always |
 | Lifecycle, states, transitions | `01` (owns the table), `05` |
 | Roles, who may do what | `01`, `04` |
-| Moderation, appeals, jurisdiction | `01` (section 5), `06`, constitution chapters IV and V |
+| Moderation, appeals, jurisdiction | `01` (section 5), `06`, constitution chapters IV and V, `docs/design/ai/README.md` |
 | Evidence, claims, systemic graph | `07` (Phase 7 design), constitution chapter III |
 | Architecture, repositories, API, stack | `11`, `12` |
 | Data model | `01` (section 10), `10`, `docs/design/` |
-| AI of any kind | `14`, `15` (nothing live in slice 1) |
+| AI of any kind | `14`, `15` (slice-1 core; live provider founder-gated), `docs/design/ai/README.md` |
 | Security, accessibility, testing, metrics | `16` |
 | UX and design | `17`, `docs/design/ux/` |
 | Phases, gates, timing | `18` |
@@ -35,16 +35,16 @@ The Community Action Network (CAN) is an open-source platform where people turn 
 | `03-scope.md` | Canonical scope and non-goals, product definition, core outcome, initial release hypothesis |
 | `04-roles-stewardship.md` | Canonical platform roles, authorization, problem stewardship groups |
 | `05-lifecycle-participation.md` | Lifecycle design rules, submission requirements, structured participation, solution decisions |
-| `06-moderation-geo-governance.md` | Moderation pipeline, community grounding, geography, playbooks, platform governance |
+| `06-moderation-geo-governance.md` | Moderation pipeline (community-legislated, AI-executed), community grounding, geography, playbooks, platform governance |
 | `07-systemic-evidence.md` | Problem graph, claim and evidence ledger, timelines, blockers, community implementation, mass participation |
 | `08-election-accountability.md` | Civic accountability and election information (Phase 8) |
 | `09-civic-protocol.md` | Shared Civic Protocol with the political organizing platform (deferred) |
 | `10-data-model.md` | Long-term entity menu |
-| `11-architecture.md` | The three repositories, frontend and backend stack, API principles |
+| `11-architecture.md` | The repositories (three, plus planned `can_policy`), frontend and backend stack, API principles |
 | `12-decentralization-ready.md` | Centralized-first decision, the four seams, decentralization-ready constraints |
 | `13-decentralization-track.md` | Node roles, federation, storage, working group, milestones D0 to D5 |
-| `14-ai-privacy-gateway.md` | AI status, the privacy gateway, data zones, operational gates |
-| `15-ai-inference.md` | Policy objects, staged inference, caching, model routing, cost |
+| `14-ai-privacy-gateway.md` | AI status (slice-1 core), the privacy gateway, data zones, operational gates |
+| `15-ai-inference.md` | The moderation run, policy objects, staged inference, caching, model routing, cost |
 | `16-security-a11y-ops-testing.md` | Security, accessibility, operations and metrics, test categories |
 | `17-ux.md` | UX principles, information architecture, problem workspace, design contribution |
 | `18-phases-gates.md` | Phases 0A to 8, Gate X, indicative timing, pilot-ready |
@@ -61,26 +61,32 @@ The Community Action Network (CAN) is an open-source platform where people turn 
 - **Problem:** a shared public condition, institutional failure, recurring pattern or structural cause. Never an individual's private matter. Replaces the older word "case".
 - **Initiator:** the member who submitted a problem. Provisional steward in slice 1. Does not own the problem.
 - **Steward:** a person responsible for coordinating one problem. Not a platform-wide authority. Different from **Project steward**, a rung on the open-source contribution ladder.
-- **Moderator:** a volunteer who reviews submissions and confirms publish, solved, closed and redirected.
+- **Moderator:** the small emergency and legal lane, an auditor of sampled decisions, or a labeler. Does not decide single items.
 - **Observer:** a platform role that follows a problem. Different from **Watcher**, the first rung of the contribution ladder.
 - **Core participant, visitor:** whether a person has a material connection to the affected scope.
 - **Contribution:** a typed piece of participation (one value of the enum in `01`).
 - **Evidence tier:** how well a claim is supported (Constitution III.4). **`investigation_needed`** is a flag derived from the tier, not a state.
 - **Decision record:** the public record of how a solution was chosen and why.
 - **Moderation decision:** a recorded decision with rule ids, field reference, revision hint and appeal deadline.
-- **Interim decision:** a decision made while there is no independent review panel, labelled "Interim decision, will be re-reviewed".
+- **Interim policy stewardship:** until a ratifying panel exists the founder ratifies the policy pack (Constitution VIII.2). Decisions show "Policy vX, transitional stewardship".
 - **Resolution record:** the unranked archive entry for a solved, closed or redirected problem. It replaces an older name that implied ranking.
 - **Stuck:** documented effort hit a blocker; the blocker stays public. **Paused:** on hold with a reason and resume condition. Neither is terminal.
 - **Slice 1:** the smallest end-to-end build (`01`).
 - **Seams:** the four decentralization hooks kept from the start: UUIDv7 ids, `origin_node_id`, `protocol_version`, append-only events with a nullable `prev_hash`.
-- **Policy pack:** a versioned, reviewed set of jurisdiction rules.
+- **Policy pack:** a versioned bundle (semver plus content hash) in the planned `can_policy` repo: rules, one prompt template per decision point, labeled examples, eval sets, thresholds, with layers base, constitution, jurisdiction, local. Design: `../design/ai/policy-pack.md`.
+- **Decision point (`DP-*`):** a place where CAN would otherwise need human consensus, with a trigger, inputs, a policy section, an output and a mode (blocking or async). Catalog: `../design/ai/decision-points.md`.
+- **Moderation run:** the bounded set of small agents that applies the policy at one event (before publication, on every update, after publication). Every run is recorded (`../design/ai/runtime.md`).
+- **Pre-decided and post-decided consensus:** policy is ratified before content arrives (pre-decided). The community then audits outcomes and amends the policy (post-decided).
+- **Replay diff:** a re-run of a proposed policy over past decisions that reports what would flip (`../design/ai/amendment-loop.md`).
+- **Label task:** a randomized, context-masked human labeling job on one example, from an appeal, an eval set or an audit sample (`../design/ai/appeals.md`).
+- **Re-moderation:** applying a new policy version to affected content. A flip shows a visible notice and an appeal path.
 - **Gate X:** the checkpoint before opening to wider participation (`18`).
 - **Open question (OQ):** an undecided item with a current default, tracked in `docs/open-questions/`.
 
 ## Links
 
 - Open questions: [`../open-questions/`](../open-questions/README.md)
-- Design (system design, ERD, UX): [`../design/`](../design/)
+- Design (system design, ERD, UX): [`../design/`](../design/). AI model: [`../design/ai/README.md`](../design/ai/README.md)
 - Architecture decisions: [`../adr/`](../adr/)
 - Decision log: [`../../DECISIONS.md`](../../DECISIONS.md)
 - Constitution: [`constitution/README.md`](constitution/README.md)

@@ -5,7 +5,7 @@ description: Read or edit the CAN specification in docs/spec, the open-questions
 
 # can-spec
 
-Weight: 24 spec files in `docs/spec/` (about 215KB in total, each 25KB or less), the constitution (chapters ch01 to ch11, `map.tsv`, `rules.md`) beside them, 33 files in `docs/open-questions/`, plus `manifesto.md`. Never load it all. Start with `docs/spec/00-index.md` ("What to load"). Slice-1 work always loads `01-slice-1-brief.md` and `02-agent-rules.md` first.
+Weight: 24 spec files in `docs/spec/` (about 215KB in total, each 25KB or less), the constitution (chapters ch01 to ch11, `map.tsv`, `rules.md`) beside them, 41 files in `docs/open-questions/`, plus `manifesto.md`. Never load it all. Start with `docs/spec/00-index.md` ("What to load"). Slice-1 work always loads `01-slice-1-brief.md` and `02-agent-rules.md` first.
 
 ## Layout
 
@@ -14,9 +14,21 @@ Weight: 24 spec files in `docs/spec/` (about 215KB in total, each 25KB or less),
 - `docs/spec/constitution/`: owned by the constitution work. Start at its `README.md`. Rule IDs live in `rules.md`; old to new article numbers in `map.tsv`.
 - `docs/spec/split-map.tsv`, `docs/spec/tools/`: provenance and check scripts.
 - `docs/open-questions/`: one `OQ-<slug>.md` per undecided item, plus `README.md`.
-- `docs/design/`: system design, ERD, UX (written by the design work, not by spec edits).
+- `docs/design/`: system design, ERD, UX, and `docs/design/ai/` (written by the design work, not by spec edits).
 - `docs/adr/`: architecture decision records.
 - `DECISIONS.md`: the decision log.
+
+## The AI model (D-51 to D-53)
+
+Community-legislated, AI-executed moderation. The community never judges single items. It legislates policy, and AI agents apply it before publication, on every update and after publication. Slice 1 builds the full pipeline on `FakeModel` plus recorded responses; the live Anthropic provider is founder-gated (API key, spend cap). Vocabulary and where it lives:
+
+- **Policy pack:** versioned bundle in the planned fifth repo `can_policy` (`11-architecture.md`, `docs/design/ai/policy-pack.md`).
+- **Decision point (`DP-*`):** ids are in the `01` lifecycle table (`DP-ELIGIBILITY`, `DP-PRIVACY`, `DP-FRAMING`, `DP-DUPLICATE`, `DP-CONTRIB-RELEVANCE`, `DP-TONE`, `DP-NAMING`, `DP-LEGALITY`, `DP-DECISION-RECORD`, `DP-VERIFICATION`, `DP-CRISIS`, `DP-EVIDENCE-TIER`). Catalog: `docs/design/ai/decision-points.md`.
+- **Moderation run, outcomes** (`publish`, `needs_revision`, `reject`, `route_external`, `hold`, `escalate_human`): `15-ai-inference.md`, `06`, `docs/design/ai/runtime.md`. Decision fields incl. `policy_version`, `prompt_hash`, `model_id`, `confidence`, `run_id`: `01` section 5.
+- **Pre-decided and post-decided consensus, replay diff, amendment loop:** Constitution V.5, `docs/design/ai/amendment-loop.md`.
+- **Label task, appeal-to-example loop:** Constitution V.5, V.6, `docs/design/ai/appeals.md`.
+- **Privacy gateway** (mandatory before any model call): `14`. **Human roles:** legislators, auditors, labelers, the emergency/legal lane, maintainers. Per-item moderators no longer exist; the `moderator` role is the lane, auditor or labeler.
+- **Rules:** `POLICY-CITE-1`, `FAIL-CLOSED-AI-1`, `NO-INSTANCE-OVERRIDE-1`, `REMOD-NOTICE-1`, `PRIV-GATEWAY-1`, `AGENT-NO-TOOLS-1`, `INTERIM-1` (interim policy stewardship) in `constitution/rules.md`. `AI-OFF-1` is gone.
 
 ## Editing rules
 
@@ -29,7 +41,7 @@ Weight: 24 spec files in `docs/spec/` (about 215KB in total, each 25KB or less),
 - OQ file format is enforced: `# OQ-<slug>: title`, a line `**ID:** OQ-<slug>`, a line `**Status:** open|proposed|decided|withdrawn`, and the sections Question, Why it matters, Current default (what we built meanwhile), Who can help, What a good answer looks like, Spec links. Every OQ states its current default. Resolution flow: proposal, discussion, founder or governance decision, logged in `DECISIONS.md`.
 - `DECISIONS.md` is written only by the orchestrator. Agents and unattended runs never write to it. Log unanswered questions as OQ files, apply a reversible default, or skip.
 - Founder-operated agents commit only to `night/*` branches; the founder merges (`02-agent-rules.md`). The external AI-contribution policy (`22`) is separate and unchanged.
-- The manifesto keeps its voice: a developer should think "Yes, finally, we can solve problems." Keep the stage line, the non-goals, the emergency exclusion and the AI sentence "Rules-based checks and human review today. AI assistance is planned, and people make and answer for every decision."
+- The manifesto keeps its voice: a developer should think "Yes, finally, we can solve problems." Keep the stage line, the non-goals, the emergency exclusion and the AI sentence "People make every rule. AI applies it, explains it and answers to appeal." The "idea at the heart of it" section carries the core innovation.
 
 ## Commands (from the superproject root)
 

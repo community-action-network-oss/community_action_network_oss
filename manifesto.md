@@ -8,9 +8,21 @@ We think that is a design failure, not a law of nature. This project is an open-
 
 **Concept and scaffolding.** The specification, the constitution and the repositories exist. Nothing handles real problems yet. Everything you see is a plan, a fictional example, or a first piece of code. We say so plainly and we label anything not built as planned.
 
+## The idea at the heart of it
+
+Every open platform hits the same wall. The moment it grows, it needs an army of moderators, and the army is either too small, too slow, too tired or too biased. We think the wall comes from asking people to judge every single post. So we do not.
+
+**The community writes the rules once. AI applies them to every post.** Before a post goes live, every time it changes, and again after it is live. People decide what the rules are: the prompts, the examples, the lines we will not cross, and the laws that apply where a problem happens. AI agents then apply those rules, the same way, to every post, in every language, at any hour. Every decision names the rule it used and the version of the rules it came from. Nothing is hidden and nothing is a mystery.
+
+**Appeals make the rules better for everyone.** If you think a decision is wrong, you appeal. A second, independent check looks at it. If it is still disputed, randomly chosen people, who see only what they need to see, label it. That label becomes an example in the rulebook, so the same mistake does not happen to the next person. The change goes through a public review, is tried on past decisions to see what it would change, and is rolled out in stages. If a rule change affects something already published, the page says so and offers an appeal. Nothing disappears quietly.
+
+That is how an open platform can reach any scale without an army of moderators: more rules, better rules, and more agents to apply them, not more people judging posts one at a time. People make every rule. AI applies it, explains it and answers to appeal. Only real emergencies and legal matters go to a small team of people, and every action they take is logged.
+
+Today this is a design and a first build. The rulebook for the first version is approved by the founder, openly, until a community panel can take over, and the AI runs on test data. Nothing handles real problems yet.
+
 ## What this is
 
-A public, open-source problem-resolution platform. People surface civic and structural problems. Eligible submissions are checked by clear rules and reviewed by people, and the community works through structured stages until the problem is solved, closed, redirected, or honestly marked stuck.
+A public, open-source problem-resolution platform. People surface civic and structural problems. Eligible submissions are checked against the community's published rules, and the community works through structured stages until the problem is solved, closed, redirected, or honestly marked stuck.
 
 The unit of work is the shared condition: an institutional failure, a recurring pattern, a geographic issue, a structural root cause. A single personal experience can reveal, evidence or corroborate it. It does not become a personal service request.
 
@@ -32,8 +44,8 @@ Surface a public problem. Say who and where it affects. Contribute evidence and 
 - Open source, in the open.
 - Real, solvable, bounded problems.
 - Progress is visible and trackable.
-- Rules-based checks and human review today. AI assistance is planned, and people make and answer for every decision.
-- The community helps improve the moderation framework.
+- People make every rule. AI applies it, explains it and answers to appeal.
+- The community writes and improves the moderation rules, and appeals improve them for everyone.
 - Location-aware and context-aware, built on a material connection to a problem, not only a postcode.
 - Law-aware: grounded in the constitution, laws and local rules that apply.
 - Solution-first, not conflict-first.
@@ -47,7 +59,7 @@ Surface a public problem. Say who and where it affects. Contribute evidence and 
     - A person posts a non-identifying civic, institutional, geographic, recurring or structural problem.
     - A personal experience may be submitted as evidence of the wider condition, not as a request for individual help.
     - The submission gets an evidence tier and an affected area. The person who raises it is the initiator. The initiator does not own the problem and decides for no one else.
-    - Automatic checks and human volunteers test the framing, evidence, privacy, legality, duplication and scope.
+    - Automatic checks and a moderation run under the community's rules test the framing, evidence, privacy, legality, duplication and scope.
 2. **Eligibility review**
     - Ineligible, abusive, duplicate, unsafe or irrelevant submissions are filtered out, with reasons and a path to revise and resubmit.
     - Eligible problems join the public list.
@@ -59,11 +71,11 @@ Surface a public problem. Say who and where it affects. Contribute evidence and 
         - **Visitors** have no such connection. They can read and contribute, but they do not steer the main direction.
         - **Experts** bring relevant knowledge, verified or useful in context, wherever they live.
         - **Observers** read, learn and follow.
-        - **Moderators** are volunteers who enforce scope, relevance, safety and rules.
+        - **Auditors and labelers** are volunteers who check samples of decisions and label disputed examples, so the rules keep improving. A small emergency and legal team handles real emergencies and legal matters.
     - People ask questions, identify root causes, clarify constraints, provide evidence and suggest solutions.
 4. **Solution-only discussion**
     - Contributions must clarify, add evidence, identify constraints, propose lawful solutions, improve proposals or support implementation.
-    - Each contribution is checked, and a human reviews it before it is accepted into the discussion.
+    - Each contribution is checked by a moderation run under the community's rules before it is accepted into the discussion.
     - Targeted reflection delays slow down heated exchanges and rejected contributions. There is no flat wait on everyone, and urgent updates are never held back.
     - Unrelated, hateful, unsafe or inflammatory contributions are deprioritized, rejected, redirected or removed.
     - Example: if people discuss the volume of amplified sound from places of worship, the platform welcomes petitions, requests, mediation, local authority processes, technical fixes, timing limits and legal remedies. It does not let the thread become a communal clash or an attack on any group.
@@ -74,7 +86,7 @@ Surface a public problem. Say who and where it affects. Contribute evidence and 
 6. **Resolution tracking**
     - A problem moves stage by stage until it is solved, closed, redirected, or withdrawn.
     - Some problems stall. They are marked **paused** (with a reason and a condition to resume) or **stuck** (documented effort hit a blocker). The blocker and the next lawful route stay public. An honest unresolved record is better than a quiet disappearance.
-    - **Solved** means a steward proposes it with verification evidence and a moderator confirms it. A promise is not an achievement.
+    - **Solved** means a steward proposes it with verification evidence and the moderation run decides it under the rules for evidence, with its reasons shown. A promise is not an achievement.
 7. **Resolution records**
     - Every problem that reaches an end keeps its whole journey in a plain archive of resolution records. No ranking, no scores, no rewards. Solved problems become examples others can learn from, and later reusable civic playbooks.
 8. **Preparation and adaptation**
@@ -97,20 +109,22 @@ Durable, source-backed records of who had authority, what was promised and what 
 - Rules define which problems, contributions and actions are allowed.
 - The stack starts with base platform rules, then the constitution, then the laws, regulations and local rules connected to the problem's place. For a problem raised in a given country, that means that country's constitution and laws, so nobody builds a solution that is illegal where it would happen.
 - Many public problems are political in the broad sense. The goal is not to avoid politics. The goal is to stop discussions turning into unrelated, hateful, unsafe or inflammatory conflict.
-- Rules-based checks and human review do the first line today. AI assistance is planned, behind strict privacy and safety gates, and never the final authority.
+- AI agents apply the rules before publication, on every update and after publication. They run behind strict privacy and safety gates, with no tools beyond the check they were asked to do, and if anything fails, the post waits and is never published. AI never makes the law. People do, and AI answers to appeal.
+- No person edits a single outcome by hand. People change the rules, and the rules then apply to everyone. The only exception is the small emergency and legal team, and every action is logged.
 - Every moderation decision is explainable:
     - which rule applied
     - which part of the content triggered it
     - what the person can change to make it eligible
+    - which version of the rules was used
     - how to appeal, and by when
 
 ## Community grounding layer (planned)
 
-The community will be able to improve the moderation framework: examples, labels, edge cases, legal and local context, relevance and safety rules, and solution-quality standards. Submitted grounding data is untrusted until reviewed, versioned and approved. Improvements enter the framework transparently, so moderation evolves without becoming arbitrary.
+The community improves the moderation rules through proposals to a public policy repository: examples, labels, edge cases, legal and local context, relevance and safety rules, and solution-quality standards. Submitted grounding data is untrusted until reviewed, versioned and approved. Each improvement is tested against labeled examples, replayed over past decisions to show what would change, ratified, and rolled out in stages, so moderation evolves without becoming arbitrary.
 
 ## Randomized, context-masked review (planned)
 
-To reduce bias and local capture, review of moderation improvements can be randomized across locations and masked so each reviewer sees only what the label needs. Basic abuse labels need little context. Relevance needs some. Legal compliance needs jurisdiction. Sensitive personal data stays masked unless essential. Disagreement is tracked and escalated, and high-risk questions go to trusted volunteers, domain experts, legal reviewers or maintainers.
+To reduce bias and local capture, review of rule changes and disputed labels is randomized across locations and masked so each reviewer sees only what the label needs. Basic abuse labels need little context. Relevance needs some. Legal compliance needs jurisdiction. Sensitive personal data stays masked unless essential. Disagreement is tracked and escalated, and high-risk questions go to domain experts, legal reviewers or maintainers.
 
 ## Platform governance issues
 
@@ -146,11 +160,12 @@ This is not a Q&A site, a social feed, a petition site or a complaint board. It 
 
 - real-world issue intake
 - participation based on a material connection
+- community-written rules, applied by AI to every post, before and after it goes live
 - law-aware moderation
 - solution-only discussion
 - structured stages and resolution tracking
 - evidence tiers and honest unresolved records
-- a community loop for improving the rules
+- appeals that improve the rules for everyone
 - preparation paths and, later, reusable playbooks
 - a governance process for improving the platform itself
 

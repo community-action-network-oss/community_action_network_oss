@@ -52,7 +52,7 @@ Phase 0A acceptance criteria:
 
 ### Phase 1: Foundation
 
-- Three repositories (`11-architecture.md`): `can_server`, `can_app`, `can_gallery`
+- Three repositories (`11-architecture.md`): `can_server`, `can_app`, `can_gallery`. A fifth, `can_policy`, is planned and founder-gated
 - Expo Router universal application, with gluestack v5 on UniWind, project-owned civic components, semantic tokens, RTL, accessibility and responsive-layout tests. Verified on web; native builds must bundle (D-8)
 - NestJS modular-monolith service with framework-light domain modules
 - PostgreSQL schema through Drizzle, migrations, transaction strategy, and a typed persistence boundary
@@ -70,8 +70,9 @@ Phase 0A acceptance criteria:
 - Geography, affected-population, and jurisdiction scoping
 - Role-alias and privacy controls
 - Duplicate detection (`duplicate_of` is the only link type until the problem graph in Phase 7). Systemic-hypothesis detection waits for Phase 7
-- Moderator and distributed-review console
-- Explanations, revision, withdrawal, and appeals
+- **The AI moderation pipeline is part of the first vertical slice (D-51, D-53):** the privacy gateway, decision points (`DP-*`), moderation runs before publication, on every update and after publication, run records, `FakeModel` plus recorded responses, and the live provider behind the founder gate (`14`, `15`)
+- Emergency and legal lane, audit sampling and label-task tooling
+- Explanations, revision, withdrawal, and appeals (the appeal-to-example loop)
 
 ### Phase 3: Structured resolution
 
@@ -89,10 +90,11 @@ Phase 0A acceptance criteria:
 
 ### Phase 5: Grounding and governance
 
-- Moderation feedback
-- Context-masked review tasks
-- Reviewer quality and disagreement handling
-- Policy versioning, experiments, approvals, and rollback
+- **Policy governance tooling:** the `can_policy` repository, policy PRs with eval and replay diff, ratification panels, staged rollout (shadow, canary, full) and rollback
+- Appeals turned into labeled examples
+- Context-masked label tasks, reviewer quality and disagreement handling
+- Re-moderation of affected content with visible notices
+- Bias monitoring across jurisdictions
 
 ### Phase 6: Hardening and pilot
 
@@ -124,7 +126,7 @@ Engineers must not open the platform to unrestricted public problem intake merel
 
 - The bounded vertical slice works from intake through a legitimate terminal state.
 - Authentication, authorization, privacy gates, PII handling, moderation, appeals, audit, deletion, backup, restore, incident response, and observability have passed their quality gates.
-- The launch jurisdiction and language have qualified policy coverage and human-review capacity.
+- The launch jurisdiction and language have qualified policy coverage and capacity for the emergency and legal lane, audits and label tasks.
 - Accessibility and low-bandwidth core flows are usable.
 - Fictional and controlled pilot data demonstrate the lifecycle without exposing real private matters.
 - Contribution governance, AI-assisted merge safeguards, maintainer capacity, code ownership, security disclosure, and release processes are operational.
@@ -142,7 +144,7 @@ At Gate X, create and publish role-specific participation pages for:
 - Legal, policy, rights, safety, and governance experts
 - Engineers, scientists, planners, and other domain experts
 - Public institutions and implementation partners
-- Moderators and evidence reviewers
+- Auditors, label-task reviewers and the emergency and legal lane
 - Independent auditors and security researchers
 - Civic-node, relay, witness, storage, and infrastructure operators as those capabilities become approved
 - In-kind supporters, infrastructure contributors, and external public-benefit organizations under the independence rules

@@ -1,19 +1,20 @@
 ## 14. Technical architecture requirements
 
-### The three repositories
+### The repositories
 
-The superproject holds the specification, plans and decisions. Code lives in three git submodules (D-1, D-2, ADR 0001 in `docs/adr/`). The earlier monorepo layout is dropped.
+The superproject holds the specification, plans and decisions. Code lives in three git submodules (D-1, D-2, ADR 0001 in `docs/adr/`), and a fifth repository, `can_policy`, is planned (D-52). The earlier monorepo layout is dropped.
 
 | Repository | Stack | Owns |
 |---|---|---|
 | `can_server` | NestJS 12 (ESM, Vitest, oxlint), Drizzle on Postgres 16, class-validator | domain and state machines (`src/domain/`, ORM-free behind repository interfaces), policy rules, protocol schemas, and the **OpenAPI contract**, generated from code with `@nestjs/swagger` into `openapi/openapi.json` |
 | `can_app` | Expo SDK 57, Expo Router, gluestack-ui (adopted by 02-u24 and 02-u25; RN-core civic wrappers until then), zod | the design system and civic components, i18n messages, and the typed API client **generated** from `can_server`'s OpenAPI file |
+| `can_policy` (planned; not created yet, a founder-gated plan unit) | versioned packs (semver plus content hash), schema and eval CI | the **policy pack**: `packs/base/`, `packs/jurisdictions/<id>/`, `decision-points/<DP-id>/{prompt.md, schema.json, examples/, eval/}`, `ratifications/`, `CHANGELOG.md`. Rule ids move here from `constitution/rules.md` over time. CI: schema lint, eval, replay diff against fixtures. The server loads packs by version and hash. Layers apply base platform, constitution, jurisdiction law, local rules (Constitution I.2). Community changes arrive as PRs (`docs/design/ai/policy-pack.md`) |
 | `can_gallery` | Next.js 16 static export, gluestack-ui (target, adopted by 06-u15 and 06-u16; plain CSS until then) | the public gallery: the Phase 0A public concept page plus a read-only window into the project. No forms, no analytics, no third-party fetches |
 
 Rules:
 
 - Only `can_server`'s OpenAPI file is shared between repositories. `can_app` pins a `can_server` version through the submodule SHA and regenerates its client with `npm run gen:api`. A neutral protocol repository can be split out later when federation needs one (ADR 0002).
-- Where the old `packages/*` went: domain and protocol schemas to `can_server` (`src/domain/`, `openapi/openapi.json`); api-client generated in `can_app`; design-system and i18n in `can_app`; policy in `can_server`; testing per repository.
+- Where the old `packages/*` went: domain and protocol schemas to `can_server` (`src/domain/`, `openapi/openapi.json`); api-client generated in `can_app`; design-system and i18n in `can_app`; policy rules in `can_server` until `can_policy` exists, then packs there; testing per repository.
 - Never import server secrets, persistence models, internal moderation signals, or private authorization logic into `can_app` or the client.
 - Server input is validated with class-validator and trimmed; the client validates with zod. The server is always final.
 - API responses that return lists use `{ items: [...] }`.

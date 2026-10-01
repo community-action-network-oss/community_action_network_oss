@@ -33,6 +33,7 @@ How project decisions of each size are made: `21-open-source-governance.md`, "De
 - Never claim completion without test or inspection evidence.
 - Never silently weaken safety, moderation, privacy, accessibility or legal controls to make a feature pass.
 - Never expose secrets, personal data, precise private locations, moderation evidence or internal risk signals.
+- Make no live model call. Tests and night runs use `FakeModel` and recorded responses. The live provider needs the founder gate (API key, spend cap, `14-ai-privacy-gateway.md`).
 - Do not deploy to production, spend money, register services, contact users, accept legal terms or make a public commitment without explicit approval.
 - Prefer boring, maintainable technology over novelty unless evidence supports the novelty.
 - Keep changes small, reviewable, reversible and covered by tests.
@@ -81,7 +82,7 @@ Implementation may begin on reversible foundations while founder decisions remai
 
 Do not reopen the approved baselines unless evidence reveals a material blocker. The approved baselines are:
 
-- three submodule repositories: `can_server` (NestJS, owns domain, policy and the OpenAPI contract), `can_app` (Expo, owns design system, i18n and the generated client), `can_gallery` (Next.js static export)
+- three submodule repositories today: `can_server` (NestJS, owns domain, the moderation runtime and the OpenAPI contract), `can_app` (Expo, owns design system, i18n and the generated client), `can_gallery` (Next.js static export), plus a planned fifth, `can_policy` (the policy pack; a founder-gated plan unit, D-52)
 - Expo with gluestack v5 on UniWind, NestJS, PostgreSQL, Drizzle, npm, Node 24
 - a centralized, founder-hosted reference deployment first, with decentralization as a later track that keeps four seams now (D-22)
 - the Phase 0A public concept page as a Next.js static site

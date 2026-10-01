@@ -20,7 +20,7 @@ It is not an individual advice service, therapy platform, medical service, legal
 
 A valid problem moves from an unstructured real-world concern to an explicit end state. The full state and transition table is owned by `01-slice-1-brief.md`; this is the summary.
 
-- **Solved:** a solution was implemented and sufficiently verified. A steward proposes, a moderator confirms.
+- **Solved:** a solution was implemented and sufficiently verified. A steward proposes, the moderation run decides under the policy pack.
 - **Closed:** the problem is invalid, duplicated, no longer relevant, or cannot continue under platform rules.
 - **Redirected:** a better institution, partner project, emergency channel, political platform, legal process, or specialist service should handle it.
 - **Withdrawn / rejected:** the submission was withdrawn by its initiator or not accepted before it was ever published.

@@ -114,7 +114,7 @@ A participant may withdraw a problem or a contribution. Ordinary display and fut
 **Withdrawal rule (new).**
 
 - If no other account has an accepted contribution on the problem, the whole problem is withdrawn (state `withdrawn`) and the draft rules in II.6 apply.
-- If at least one other account has an accepted contribution, the initiator's text is tombstoned ("Original report withdrawn by its author") and the problem stays. A moderator may replace the title and summary with a non-identifying neutral text drawn from what remains. Contributions, decisions, and tasks by others are untouched.
+- If at least one other account has an accepted contribution, the initiator's text is tombstoned ("Original report withdrawn by its author") and the problem stays. The moderation run may replace the title and summary with a non-identifying neutral text drawn from what remains. Contributions, decisions, and tasks by others are untouched.
 - Deleting an account is treated as withdrawing everything that account authored, under the same rule. The handle is detached from remaining records.
 - No `owner` field exists. Stewardship is IV.8.
 

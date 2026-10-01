@@ -1,6 +1,6 @@
 ## AI
 
-**Status (D-13, ADR 0006):** slice 1 has **no live AI**. It uses deterministic checks plus human review. The AI gateway interface exists in `can_server` behind a feature flag that stays off. Everything in this file and in `15-ai-inference.md` must be satisfied before any AI feature handles user content. Public wording: "Rules-based checks and human review today. AI assistance is planned; people make and answer for every decision."
+**Status (D-51, D-53):** the privacy gateway is **slice-1 core**. Every moderation run (`15-ai-inference.md`) sends its inputs through this gateway first (`PRIV-GATEWAY-1`). Tests and night runs use a deterministic `FakeModel` with recorded responses, so no content leaves the machine. The **live provider** (first adapter: Claude via the Anthropic API) is founder-gated: it switches on only with an API key, a spend cap, the hosted-provider requirements below and the operational gates below. These safety requirements are now load-bearing, not future work. Public wording: "People make every rule. AI applies it, explains it and answers to appeal." Design: `docs/design/ai/runtime.md`.
 
 This file (the safety boundary and its operational gates) is the **canonical** AI specification. `06-moderation-geo-governance.md` and `17-ux.md` only link here.
 
@@ -125,7 +125,7 @@ Before any public-facing AI feature enters production, require:
 - Prompt-injection, extraction, memorization, cross-tenant, retrieval-authorization, and tool-abuse tests
 - Redaction recall and harmful-over-redaction analysis
 - Provider failure, fallback, outage, breach, and termination runbooks
-- Human override, feature kill switch, and safe non-AI fallback
+- Feature kill switch, and a safe fallback: with the model off or failing, items are held and nothing is published (`FAIL-CLOSED-AI-1`). The human lane is only for emergency and legal cases
 - Independent security and privacy review proportionate to risk
 - Explicit founder approval for high-risk data classes or external processing
 

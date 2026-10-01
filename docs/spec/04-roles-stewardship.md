@@ -15,7 +15,7 @@ This file is the **canonical** definition of platform roles and problem stewards
 - **Expert:** Has relevant verified or contextually accepted expertise. Expertise must be scoped, reviewable, and non-transitive.
 - **Observer:** Follows a problem without participating materially.
 - **Volunteer reviewer:** Performs bounded labeling or review tasks with minimum necessary context.
-- **Moderator:** Reviews escalations and enforces rules. Sensitive actions require strong authentication and logging.
+- **Moderator:** The small emergency and legal lane, an auditor of sampled decisions, or a labeler of appeal and eval examples. Does not decide single items by hand. Sensitive actions require strong authentication and logging.
 - **Legal or domain reviewer:** Advises on scoped high-risk decisions. The system must distinguish advice from authoritative legal determination.
 - **Institutional representative:** A verified public or organizational role that can provide an official response, commitment, status update, or implementation record without gaining moderation authority.
 - **Candidate or elected-office participant:** A verified public candidate or officeholder who may submit structured proposals, commitments, responses, and implementation updates within a dedicated election-accountability layer. This role receives no ranking or moderation privilege.
@@ -28,7 +28,7 @@ Use explicit role and policy checks on the server. Do not rely on hidden UI cont
 
 ### Problem stewardship groups
 
-**Slice 1:** there is no group. The initiator is the provisional steward and a moderator confirms publish, solved, closed and redirected (D-16, interim clause in `01-slice-1-brief.md`). Group formation, quorum and consent thresholds are open design work, tracked in `docs/open-questions/OQ-decision-method.md`.
+**Slice 1:** there is no group. The initiator is the provisional steward and the moderation run decides publish, solved, closed and redirected under the ratified policy pack (D-51, `01-slice-1-brief.md`). Group formation, quorum and consent thresholds are open design work, tracked in `docs/open-questions/OQ-decision-method.md`.
 
 Long term, every eligible public problem should support a stewardship group that acts as the problem's scoped administrative and coordination team. Stewardship is attached to the problem, not to platform-wide authority.
 

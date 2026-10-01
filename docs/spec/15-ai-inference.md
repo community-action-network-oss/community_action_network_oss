@@ -1,6 +1,8 @@
 ### Context-efficient, cached, multi-model inference architecture
 
-**Status:** design for later phases. Nothing here is built in slice 1 (no live AI, D-13). It extends the gates in `14-ai-privacy-gateway.md`, which stay canonical.
+**Status:** slice-1 core (D-51, D-53). This is the design of the moderation run: a bounded DAG of small agents per event (classify, rule checks, explain, deterministic aggregation) that applies the ratified policy pack at each decision point (`DP-*`, `01-slice-1-brief.md`, section 4). It is built in slice 1 against a deterministic `FakeModel` plus recorded responses. The live Anthropic provider is founder-gated by an API key and a spend cap (`OQ-model-provider-spend-cap`). It extends the gates in `14-ai-privacy-gateway.md`, which stay canonical.
+
+**Moderation run rules.** Agents get no tools (`AGENT-NO-TOOLS-1`). User content is quoted data, never instructions, and outputs are schema-constrained. Every run records inputs hash, policy version, prompt hash, model id, outputs, confidence and cost (`POLICY-CITE-1`). Runs happen before publication, on every update (diff-aware) and after publication (policy change, context change, sampling). Any failure holds the item (`FAIL-CLOSED-AI-1`). The cache key includes the policy version. Design: `docs/design/ai/runtime.md`, `docs/design/ai/decision-points.md`.
 
 **Founder direction:** The AI subsystem must be designed for a large and continuously evolving body of constitutional rules, jurisdiction laws, policy packs, workflow rules, and evidence requirements without sending the entire rule corpus into every model request. It should use bounded staged inference, deterministic policy evaluation where possible, privacy-safe caching, and eval-driven routing to the cheapest model that has demonstrated adequate performance for the specific task and risk tier.
 
@@ -12,7 +14,7 @@ Represent rules as versioned, addressable policy objects with stable rule IDs, e
 - Retrieval rules that determine which policy subset applies
 - Classification or extraction tasks suitable for a smaller model
 - Ambiguous interpretation tasks requiring a stronger model or qualified human
-- Consequential decisions that AI may assist but cannot authorize
+- Decisions that only the emergency and legal lane may take (`escalate_human`), and policy changes, which AI may assist but cannot ratify
 
 A generated summary must not silently replace authoritative legal or constitutional text. Every model stage should receive only the applicable policy slice and retain source and rule identifiers for traceability.
 
@@ -104,7 +106,7 @@ Use an escalation ladder:
 2. Small or inexpensive model
 3. More capable specialist model
 4. Independent verifier or alternative model where required
-5. Qualified human review
+5. For emergency, crisis and legal cases only: the logged human lane
 
 Escalate on low confidence, disagreement, unsupported language, incomplete policy coverage, schema failure, novel attack patterns, high-risk data, or consequential outcome. Do not repeatedly retry a cheap model when evidence shows that it is not competent for the task.
 

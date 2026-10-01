@@ -1,6 +1,6 @@
 ## 8. Moderation and safety system
 
-Use defense in depth. **Slice 1 uses deterministic checks plus human review of everything published; there is no live AI (D-13).** Later, AI becomes an assistive first line, never the final authority for high-impact decisions, and only after the gates in `14-ai-privacy-gateway.md` pass. The sections below describe the long-term pipeline; in slice 1 steps 1, 2 and 4 are deterministic code, step 5 uses a fictional-jurisdiction rule set, and steps 6 to 9 are done by a human moderator.
+Use defense in depth. **The community legislates policy; AI agents execute it** (D-51, Constitution V.1). A moderation run applies the ratified policy pack at every decision point before publication, on every update, and after publication (`15-ai-inference.md`). Humans legislate, audit, label, and staff a small emergency and legal lane. Single outcomes are never edited by hand (`NO-INSTANCE-OVERRIDE-1`). Safety gates are in `14-ai-privacy-gateway.md`. In slice 1 steps 1, 2 and 4 are deterministic code, step 5 uses a fictional-jurisdiction rule set, and steps 6 to 9 are agent steps run on `FakeModel` and recorded responses; live calls are founder-gated. Design: `docs/design/ai/README.md`.
 
 ### Moderation pipeline
 
@@ -11,8 +11,8 @@ Use defense in depth. **Slice 1 uses deterministic checks plus human review of e
 5. Evaluate jurisdiction-specific policy packs that have been approved by qualified reviewers.
 6. Evaluate relevance, solution orientation, conflict-escalation risk, hate or abuse, threats, incitement, self-harm, exploitation, and illegal-action risk.
 7. Produce structured labels, confidence, cited policy rules, and a user-safe explanation.
-8. Allow, request revision, limit visibility, quarantine, escalate, redirect, or reject.
-9. Support appeal and independent review.
+8. Publish, request revision, hold, route to another institution, reject, or escalate to the emergency and legal lane (`escalate_human`).
+9. Support appeal: independent re-run, then a community label task, then a policy change through a `can_policy` PR (Constitution V.5).
 
 ### Moderation requirements
 
@@ -21,16 +21,17 @@ Use defense in depth. **Slice 1 uses deterministic checks plus human review of e
 - Every decision carries explanation fields (`rule_ids`, field or span reference, revision hint, `appealable_until`). They are defined in `01-slice-1-brief.md`, section 5.
 - Separate public explanations from sensitive internal evidence.
 - Give users actionable revision guidance when safe.
-- Require human review for defined high-risk categories and low-confidence consequential decisions.
-- Test disparate impact across languages, regions, identities, and political or religious contexts.
+- Hold low-confidence results (`OQ-dp-confidence-thresholds`). Send emergency, crisis and legal or law-enforcement cases to the logged human lane.
+- Test disparate impact across languages, regions, identities, and political or religious contexts, and monitor it after launch (`OQ-bias-monitoring`).
+- Re-moderate when policy or context changes. A flipped published item gets a visible notice and an appeal path (`REMOD-NOTICE-1`).
 - Defend against prompt injection, encoded abuse, multilingual evasion, coordinated manipulation, and poisoned community labels.
 - Never present an AI interpretation as legal advice or a definitive statement of law.
 
 ## 9. Community grounding and review
 
-Users may report moderation gaps and contribute examples, labels, edge cases, local context, or policy suggestions. Treat all submitted grounding data as untrusted.
+Users may report moderation gaps and contribute examples, labels, edge cases, local context, or policy suggestions. Treat all submitted grounding data as untrusted. Appeals produce labeled examples that amend the policy pack through a PR, a replay diff, ratification and staged rollout (Constitution V.5, `docs/design/ai/amendment-loop.md`). Panel sizes and ratification are open (`OQ-label-task-panel`, `OQ-ratification-method`).
 
-A review task must specify:
+A label task (or ratification review) must specify:
 
 - Exact labeling question
 - Minimum necessary context
