@@ -2,7 +2,7 @@
 
 ## Mission
 
-Community Action Network is a public, open-source platform where people surface a real public problem, bring evidence, work out what is causing it, propose lawful solutions, track who does what, and check whether it worked. Problem, evidence, lawful solution, tracked outcome. The community writes the rules in a versioned policy pack, and AI agents apply those rules before anything is published, on every update, and again after publication whenever policy or context changes. Content is structured everywhere: schema forms, not free text. Decisions are checked against a legal layer stack, from human rights instruments down to the city, and when the law or a rule changes, affected problems are re-resolved retroactively. All of this is proven first by AI persona simulation on real-framing seed problems with synthetic evidence, before any real participant is invited. It is not an advice service, an emergency service, a feed or a petition site. Nothing handles real problems yet: the specification, constitution and repositories exist, and everything else is planned (see `manifesto.md`).
+Community Action Network is a public, open-source platform where people surface a real public problem, bring evidence, work out what is causing it, propose lawful solutions, track who does what, and check whether it worked. The poster first prepares the problem with facts, sources and finish lines, and opted-in volunteers review it privately with personal data masked. AI agents then publish under rules the community writes, and apply them on every update and again after publication. A published problem gets a stage plan, serial or parallel, where each stage has options, a choice, work, evidence and an AI-checked finish line. Contributions are labelled impacted or guest using private location proofs, with no one learning where a person is. Content is structured everywhere: schema forms, not free text. Decisions are checked against a legal stack from human rights instruments down to the city, and a change in law or rule re-resolves affected problems. Every problem that ends, solved or not, goes to a public archive that seeds AI-suggested paths for similar problems elsewhere, which the poster accepts or declines. All of it is proven first by persona simulation on real-framing seed problems with synthetic evidence. It is not an advice service, an emergency service, a feed or a petition site. Nothing handles real problems yet: the specification, constitution and repositories exist, and everything else is planned (see `manifesto.md`).
 
 ## How a human contributor picks work
 
@@ -32,13 +32,16 @@ Generated from the corpus (snapshot; recompute with the tool). Lanes are repos; 
 | 03 | Safe intake | true | 25 | 14 | 11 | 0 | 18.5 | can_app, can_server | 02 | none |
 | 04 | Structured resolution | true | 11 | 11 | 0 | 0 | 15.2 | can_app, can_server | 03 | none |
 | 05 | Implementation and verification | true | 9 | 9 | 0 | 0 | 12.4 | can_app, can_server | 04 | 05-u09 |
-| 06 | Gallery, Phase 0A completion | true | 22 | 21 | 0 | 1 | 28.0 | can_gallery | 08 | 06-u11, 06-u12, 06-u14 |
-| 07 | Hardening | true | 22 | 22 | 0 | 0 | 26.7 | root, can_app, can_gallery, can_server | 02, 03, 04, 05, 06, 09, 10, 11 | 07-u11 |
-| 08 | Contributor experience and operations | true | 15 | 15 | 0 | 0 | 15.7 | root, can_app, can_gallery, can_policy, can_server | 10 | 08-u14 |
-| 09 | AI moderation pipeline | true | 68 | 68 | 0 | 0 | 95.0 | can_app, can_server | 02, 03, 04, 05, 10 | 09-u46 |
-| 10 | can_policy and structured content | true | 59 | 59 | 0 | 0 | 77.4 | root, can_app, can_policy, can_server | 02, 03 | 8 units |
-| 11 | Persona simulation harness and seed problems | true | 44 | 44 | 0 | 0 | 59.8 | can_app, can_policy, can_server | 09, 10 | 11-u40, 11-u41, 11-u42 |
-| | **Total** | | 300 | 288 | 11 | 1 | 380.0 | | | 20 |
+| 06 | Gallery, Phase 0A completion | true | 25 | 24 | 0 | 1 | 31.5 | can_gallery | 08, 10, 11 | 06-u11, 06-u12, 06-u14 |
+| 07 | Hardening | true | 22 | 21 | 1 | 0 | 25.2 | root, can_app, can_gallery, can_server | 02, 03, 04, 05, 06, 09, 10, 11, 12 | 07-u11 |
+| 08 | Contributor experience and operations | true | 15 | 14 | 0 | 1 | 14.9 | root, can_app, can_gallery, can_policy, can_server | 10 | 08-u14 |
+| 09 | AI moderation pipeline | true | 74 | 74 | 0 | 0 | 104.0 | can_app, can_server | 02, 03, 04, 05, 10 | 09-u46 |
+| 10 | can_policy and structured content | true | 69 | 68 | 0 | 1 | 90.8 | root, can_app, can_policy, can_server | 02, 03 | 8 units |
+| 11 | Persona simulation harness and seed problems | true | 50 | 50 | 0 | 0 | 67.9 | can_app, can_policy, can_server | 09, 10, 13, 14 | 11-u40, 11-u41, 11-u42 |
+| 12 | Stage plans and volunteer review | true | 26 | 26 | 0 | 0 | 36.9 | can_app, can_server | 02, 03, 04, 05, 09, 10, 11, 14 | none |
+| 13 | Archive and path reuse | true | 28 | 28 | 0 | 0 | 39.9 | can_app, can_policy, can_server | 02, 03, 09, 10 | none |
+| 14 | Location attestation | true | 29 | 29 | 0 | 0 | 36.6 | root, can_app, can_server | 02, 04, 09 | 14-u28, 14-u29, 14-u30, 14-u32 |
+| | **Total** | | 408 | 393 | 12 | 3 | 525.1 | | | 24 |
 
 ## Plan dependencies
 
@@ -56,10 +59,15 @@ flowchart LR
   p09["09 AI moderation pipeline"]
   p10["10 can_policy and structured content"]
   p11["11 Persona simulation harness and seed problems"]
+  p12["12 Stage plans and volunteer review"]
+  p13["13 Archive and path reuse"]
+  p14["14 Location attestation"]
   p02 --> p03
   p03 --> p04
   p04 --> p05
   p08 --> p06
+  p10 --> p06
+  p11 --> p06
   p02 --> p07
   p03 --> p07
   p04 --> p07
@@ -68,6 +76,7 @@ flowchart LR
   p09 --> p07
   p10 --> p07
   p11 --> p07
+  p12 --> p07
   p10 --> p08
   p02 --> p09
   p03 --> p09
@@ -78,20 +87,40 @@ flowchart LR
   p03 --> p10
   p09 --> p11
   p10 --> p11
+  p13 --> p11
+  p14 --> p11
+  p02 --> p12
+  p03 --> p12
+  p04 --> p12
+  p05 --> p12
+  p09 --> p12
+  p10 --> p12
+  p11 --> p12
+  p14 --> p12
+  p02 --> p13
+  p03 --> p13
+  p09 --> p13
+  p10 --> p13
+  p02 --> p14
+  p04 --> p14
+  p09 --> p14
 ```
 
 ## What the plans build
 
 - **02 Platform foundation.** Hardened config, the shared kernel, invite-only accounts with email codes, sessions, generated handles, a dev seed, the app shell and auth screens, a thin problems read slice, the Playwright smoke harness and the root verify script.
-- **03 Safe intake.** Private drafts, deterministic privacy and eligibility checks, the lifecycle state machine (T00 to T24), emails, retention jobs and the steward invite screen. Human moderation units were superseded (skipped) by plans 09 and 10.
+- **03 Safe intake.** Private drafts, deterministic privacy and eligibility checks, the lifecycle state machine, emails, retention jobs and the steward invite screen. Human moderation units were superseded (skipped) by plans 09 and 10.
 - **04 Structured resolution.** Typed contributions as schema forms, side-by-side proposals, recorded decisions with a legal-gate record, duplicate links and opt-in follows with notifications.
 - **05 Implementation and verification.** Tasks and blockers, verification evidence, every terminal or resting transition, public Resolution records with policy versions, and the external routes screen.
 - **06 Gallery, Phase 0A completion.** The read-only public gallery in `can_gallery`: sourced claims, task catalog and founding role pages from real units, accessibility and performance gates, with founder-gated deploy pieces prepared but not run.
-- **07 Hardening.** Adversarial inputs, rate limits, the authorization matrix, security checklist, backup and restore, the seeded end-to-end run of the AI-executed model, and portability work (images, env contract, readiness, prod-like rehearsal) without deploying anything.
+- **07 Hardening.** Adversarial inputs, rate limits, the authorization matrix, security checklist, backup and restore, the seeded end-to-end run, and portability work (images, env contract, readiness, prod-like rehearsal) without deploying anything.
 - **08 Contributor experience and operations.** Issue and PR templates, CI for every repo, one-command bootstrap, the good-first index and catalog, a night-run report template and release policies.
-- **09 AI moderation pipeline.** The core: AI moderation runs applying the policy pack before publication, on every update and after, appeals by independent re-run and community labelling, auditor sampling, re-resolution, and a logged emergency and legal lane. FakeModel first; live providers are founder-gated.
-- **10 can_policy and structured content.** The `can_policy` repo with the first policy pack, content schemas, prompts and eval sets for every decision point, schema-rendered forms with optional AI fill-assist, policy proposal UI, and the legal layer corpora with provenance.
-- **11 Persona simulation harness and seed problems.** AI personas driving the real pipeline over its public API, real-framing seed problems with synthetic evidence, a graduation report (G1 to G13) and the maintainers screen. Live runs and opening public participation are founder-gated.
+- **09 AI moderation pipeline.** AI runs applying the policy pack before publication, on every update and after, appeals by independent re-run and community labelling, auditor sampling, re-resolution, and a logged emergency and legal lane. FakeModel first; live providers are founder-gated.
+- **10 can_policy and structured content.** The `can_policy` repo with the first policy pack, content schemas, prompts and eval sets per decision point, schema-rendered forms with optional AI fill-assist, policy proposal UI, and the legal layer corpora with provenance.
+- **11 Persona simulation harness and seed problems.** AI personas driving the real pipeline over its public API, real-framing seed problems with synthetic evidence, a graduation report and the maintainers screen. Live runs and opening public participation are founder-gated.
+- **12 Stage plans and volunteer review.** Lifecycle v2: private preparation, opted-in volunteer review with masked personal data, AI publication, a per-problem stage plan (a DAG) with its gating engine and screens, plan changes, contributing ahead to planned stages, the impacted and guest label UI and the end-to-end journey.
+- **13 Archive and path reuse.** A public archive of every ended problem with personal data stripped, AI retrieval of similar archived problems during preparation, adapted path proposals the poster accepts or declines with the source always credited, and AI-drafted stage plans from accepted suggestions.
+- **14 Location attestation.** Impacted versus guest labels from a private on-device check: versioned affected areas, single-use server challenges, App Attest and Play Integrity where native, rate limits, only four stored fields, and a spike toward a blinded cell-membership proof.
 
 ## For maintainers: overnight runs
 
@@ -107,17 +136,16 @@ Morning:
 
 ## Night 1 snapshot
 
-Output of `node plans/tools/corpus.mjs next --hours 6` with 287 units `todo`, 11 `skipped` and 1 `done`. It will drift as units complete; rerun the command for the current queue. The long skipped list is condensed below.
+Output of `node plans/tools/corpus.mjs next --hours 6` with 393 units `todo`, 12 `skipped` and 3 `done`. It will drift as units complete; rerun the command for the current queue. The long skipped list is condensed below.
 
 ```
 night plan: 6h, budget 4.8h per lane
 
-lane . (4.8h)
+lane . (4.7h)
+  10-u02  1.2h  sonnet  Scaffold can_policy and add it as the fifth submodule
   02-u01  1h  sonnet  Extend verify-all.sh with flags and missing gates
   08-u01  1.5h  sonnet  corpus.mjs catalog command and optional tags field
   08-u02  1h  sonnet  Good-first-units index generated from plans
-  08-u11  0.5h  sonnet  Night-run report template
-  07-u18  0.8h  sonnet  Rename design token status.interim to status.transitional (tokens, build, contrast check)
 
 lane can_app (4.0h)
   02-u24  1.5h  sonnet  Adopt gluestack-ui: install, pin and generate the theme from tokens
@@ -133,12 +161,12 @@ lane can_policy (0.0h)
 
 lane can_server (4.5h)
   10-u04  1.5h  sonnet  Policy module: pack loader, version registry, content-schema registry, PII-safe cache, fixture pack  [needs docker,db]
-  02-u09  0.8h  sonnet  Lifecycle state vocabulary from the lifecycle spec (T00 to T24)
+  02-u09  0.8h  sonnet  Lifecycle v2 problem-state vocabulary from the lifecycle spec (states, labels, policy-version helpers)
   02-u02  1h  sonnet  Config hardening and structured logging  [needs docker,db]
   02-u03  1.2h  sonnet  Shared kernel: error envelope, clock, pagination, noindex  [needs docker,db]
 
 skipped (condensed):
-  232 units: deps not satisfied
-  23 units: founder_gate
-  17 units: over time budget
+  338 units: deps not satisfied
+  21 units: founder_gate
+  20 units: over time budget
 ```
