@@ -1,6 +1,6 @@
 # Execution flows
 
-One file per flow. A flow is a run through the system for one trigger: who starts it, which components talk to which, what is written, what can fail. Components are described in [../components/](../components/README.md); screens in [../ux/](../ux/screens.md); the AI design in [../ai/](../ai/README.md). Lifecycle states and transitions are owned only by [`docs/spec/01-slice-1-brief.md#4-lifecycle`](../../spec/01-slice-1-brief.md#4-lifecycle); flows cite transition ids (T01...) and never restate the table.
+One file per flow. A flow is a run through the system for one trigger: who starts it, which components talk to which, what is written, what can fail. Components are described in [../components/](../components/README.md); screens in [../ux/](../ux/screens.md); the AI design in [../ai/](../ai/README.md). Lifecycle v2 (D-72: prepare, volunteer review, AI publication, stage DAG) is described by the six W10 flows below and the vocabulary in `.claude/skills/can-code-large/briefs/lifecycle-v2.md`. Lifecycle states and transitions are owned only by [`docs/spec/01-slice-1-brief.md#4-lifecycle`](../../spec/01-slice-1-brief.md#4-lifecycle); flows cite transition ids (T01...) and never restate the table.
 
 Moderation model (D-51): humans legislate policy, AI agents apply it at every event, humans audit and label, and only the emergency and legal lane involves a person per case. Flows therefore show a **moderation run** where older drafts showed a moderator queue.
 
@@ -8,6 +8,12 @@ Moderation model (D-51): humans legislate policy, AI agents apply it at every ev
 
 | Flow | Trigger | Status |
 |---|---|---|
+| [problem-preparation.md](problem-preparation.md) | Poster prepares a draft (D-72) | planned, W10 |
+| [volunteer-review.md](volunteer-review.md) | Problem enters `in_review` | planned, W10 |
+| [publication-decision.md](publication-decision.md) | Review quorum met (DP-PUBLISH) | planned, W10 |
+| [stage-advancement.md](stage-advancement.md) | A stage changes state | planned, W10 |
+| [stage-work.md](stage-work.md) | A stage is `active` | planned, W10 |
+| [plan-change.md](plan-change.md) | Proposal to change the stage plan | planned, W10 |
 | [auth-signup-signin.md](auth-signup-signin.md) | Invite redeem, sign-in code | planned: 02-u04 to 02-u08, 02-u16 to 02-u18 |
 | [intake-submit.md](intake-submit.md) | Submit a draft problem | planned: 03-u05 to 03-u08, 03-u16 to 03-u19; AI parts plan 09 (pending) |
 | [content-update.md](content-update.md) | Edit or add content | planned: 03-u06, 04-u02, 04-u03; AI parts plan 09 (pending) |
@@ -57,6 +63,8 @@ Participant names (use exactly these, one alias per box):
 | `Mail` | notification port |
 | `PolicyRepo` | can_policy |
 | `H` | simulation harness (persona runner) |
+
+Intake-submit, lifecycle-transition, contribution-and-proposal, task-and-verification and re-resolution carry a D-72 note where they assumed the old fixed sequence.
 
 Rules for every flow file:
 1. Sections in order: Purpose, Trigger, Status, Sequence, Failure paths, Data written, Events emitted, DPs invoked, Related.

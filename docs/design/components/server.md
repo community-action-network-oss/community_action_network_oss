@@ -14,6 +14,12 @@ flowchart TD
   http --> prop[proposals]
   http --> dec[decisions]
   http --> task[tasks]
+  http --> stg[stages]
+  http --> rev[review]
+  stg --> modr
+  rev --> modr
+  stg --> prob
+  rev --> prob
   http --> modr[moderation runtime]
   prob --> modr
   contrib --> modr
@@ -40,6 +46,8 @@ flowchart TD
 | `moderation` | **AI moderation runtime orchestrator**: DP selector, run recorder, decision applier, outcome mapper, hold-and-retry, appeal re-run | problems, policy, ai-gateway, audit | plan 09 (pending); today 03-u09, 03-u10 (human queue, superseded) | plan 09 (pending) |
 | `policy` | pack loader, version registry (semver + hash), active and rollout state, cache keyed by version | platform | plan 09 (pending) | plan 09 (pending) |
 | `ai-gateway` | privacy gateway (redact, pseudonymize, zones), provider adapters (FakeModel, OpenRouter, optional Anthropic), router (small model first), budgets and spend caps, model register | policy, platform | plan 09 (pending) | plan 09 (pending) |
+| `stages` | stage plan DAG (`stage`, `stage_edge`, `acceptance_criterion`), gating engine, `stage_option`, `stage_choice`, `stage_evidence`, plan versions and plan-change proposals | problems, moderation, contributions | W10 (D-72) | planned |
+| `review` | volunteer opt-in, review queue with masked view, `review_recommendation`, poster resolution, quorum check that triggers DP-PUBLISH | problems, moderation, accounts, ai-gateway (masking) | W10 (D-72) | planned |
 | `contributions` | contribution, evidence_ref (URL only), allowed-per-state matrix | problems, moderation | 04-u01 to 04-u03 | planned |
 | `proposals` | proposal, comparison data | problems, contributions | 04-u04 | planned |
 | `decisions` | decision_record, legal-gate record | proposals, problems | 04-u05 | planned |
@@ -62,6 +70,91 @@ Added by D-55 to D-58 (all pending plans 09, 10, 11):
 
 ### Where the simulation harness lives
 Decision: `can_server/test/simulation`, a plain TypeScript runner (Vitest-launched in CI, a `node` script for night runs) that talks to a running server over HTTP only. Why: it needs the public API, FakeModel bindings, fixtures and the test database that already live in `can_server`; a separate package adds a repo, versioning and duplicated fixtures for no gain. The HTTP-only rule (the runner imports no server internals) keeps moving it out cheap later. It runs against its own database, never production. Detail: [../flows/persona-simulation-run.md](../flows/persona-simulation-run.md), [../ai/simulation.md](../ai/simulation.md).
+
+## Lifecycle v2 modules (D-72)
+Flows: [problem-preparation](../flows/problem-preparation.md), [volunteer-review](../flows/volunteer-review.md), [publication-decision](../flows/publication-decision.md), [stage-advancement](../flows/stage-advancement.md), [stage-work](../flows/stage-work.md), [plan-change](../flows/plan-change.md).
+
+`stages` module:
+- Domain (pure TS): DAG validation (no cycle, no dangling edge, start node, criteria on every stage), gating function `readyStages(plan, states)`, stage state machine (`planned`, `ready`, `active`, `resolving`, `resolved`, `blocked`, `skipped`), `classic-5` template.
+- Gating engine (app): after any stage change, in one transaction and under a row lock on successors, recompute `planned` to `ready` (STAGE-GATE-1), and request DP-VERIFICATION when all required stages are resolved.
+- Options, choices, evidence: `stage_option`, `stage_choice` (method, authority, rationale), `stage_evidence`; resolve requests call DP-STAGE-RESOLUTION through `moderation` (STAGE-RESOLVE-1).
+- Plan changes: versioned plans, `plan_version` optimistic check, DP-STAGE-PLAN (PLAN-CHANGE-1).
+
+`review` module:
+- Opt-in flag per account, queue of `in_review` problems, masked view built through the privacy gateway, `review_recommendation` lifecycle (`open`, `accepted`, `declined` with reason, RECO-1), quorum check (default for `OQ-review-quorum`: 3 finished reviews, none open over 7 days; poster may proceed after 14 days with 1), then enqueue DP-PUBLISH. Review content is never public (REVIEW-1).
+
+Additional endpoints (plan with W10, exact shapes in the spec): `PUT /v1/problems/{id}/stage-plan`, `GET /v1/problems/{id}/stages`, `POST /v1/stages/{id}/options|choice|evidence|resolve`, `POST /v1/problems/{id}/plan-changes`, `GET /v1/review/queue`, `POST /v1/review/{problemId}/recommendations`, `POST /v1/recommendations/{id}/resolve`, `POST /v1/me/review-opt-in`.
+
+### Lifecycle v2 entities
+```mermaid
+erDiagram
+  problem ||--o{ stage : "plan"
+  stage ||--o{ stage_edge : "depends_on"
+  problem ||--o{ acceptance_criterion : "final"
+  stage ||--o{ acceptance_criterion : "stage"
+  stage ||--o{ stage_option : has
+  stage ||--o| stage_choice : "chosen"
+  stage_choice }o--|| stage_option : picks
+  stage ||--o{ stage_evidence : has
+  problem ||--o{ review_recommendation : receives
+  problem ||--o{ source_ref : cites
+  stage {
+    uuid id PK
+    uuid problem_id FK
+    text name
+    text state "planned|ready|active|resolving|resolved|blocked|skipped"
+    text decision_method "poster|community_vote_advisory|named_authority"
+    bool required
+    int plan_version
+  }
+  stage_edge {
+    uuid stage_id FK
+    uuid depends_on_id FK
+  }
+  acceptance_criterion {
+    uuid id PK
+    uuid problem_id FK "final criteria"
+    uuid stage_id FK "or stage criteria, nullable"
+    text measure
+    bool met
+  }
+  stage_option {
+    uuid id PK
+    uuid stage_id FK
+    uuid contribution_id FK
+  }
+  stage_choice {
+    uuid id PK
+    uuid stage_id FK
+    uuid option_id FK
+    text method
+    text authority
+    text rationale
+  }
+  stage_evidence {
+    uuid id PK
+    uuid stage_id FK
+    uuid contribution_id FK
+    text url
+  }
+  review_recommendation {
+    uuid id PK
+    uuid problem_id FK
+    uuid reviewer_id FK "masked from the poster"
+    text path "field or metadata path"
+    text proposal
+    text status "open|accepted|declined"
+    text reason
+  }
+  source_ref {
+    uuid id PK
+    uuid problem_id FK
+    text uri
+    text category
+    text authenticity "verified|unverifiable|failed"
+  }
+```
+Visibility: all of these are private until publish; `review_recommendation` stays private after publish (REVIEW-1). Stage rows, edges, criteria, options, choices, evidence and source refs become public with the problem. `task` gains `stage_id`, `contribution` gains nullable `stage_id`, `decision_record` records a `stage_choice`.
 
 ## Inside moderation, policy and ai-gateway
 ```mermaid

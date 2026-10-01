@@ -1,5 +1,7 @@
 # Flow: re-resolution
 
+> **D-72 (W10):** a reopen (T23, T24) returns the problem to `active` and reactivates only the affected stages (resolved back to `active`; their unstarted successors back to `planned`). The "earliest state" default below reads as "the earliest affected stage". Stage resolutions and `stage_choice` records are re-resolved like decision records and never deleted.
+
 ## Purpose
 When the rules change, past resolutions may no longer hold (D-59). A review job replays the new rule over solved, closed, redirected and stuck problems and their decision records. If the conclusion changes and reopening is feasible, the problem reopens for re-resolution. It is never silent, never deletes the old record, and can be appealed.
 

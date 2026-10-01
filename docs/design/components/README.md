@@ -6,7 +6,7 @@ What the system is made of, per repo, and which plan unit builds each part. Beha
 
 | File | Covers | Built today |
 |---|---|---|
-| [server.md](server.md) | `can_server` modules, layers, AI moderation runtime, AI entities | scaffold: health, `events` table, `domain/{ids,event,protocol}`, config, OpenAPI export |
+| [server.md](server.md) | `can_server` modules, layers, AI moderation runtime, AI entities, lifecycle v2 `stages` and `review` modules and entities (D-72) | scaffold: health, `events` table, `domain/{ids,event,protocol}`, config, OpenAPI export |
 | [app.md](app.md) | `can_app` providers, query layer, generated client, civic layer, screens, i18n, tokens | scaffold: theme, i18n, typed client, `useHealth`, 5 civic components |
 | [gallery.md](gallery.md) | `can_gallery` static pages and synced content | built (Phase 0a in plan 06 continues) |
 | [can-policy.md](can-policy.md) | planned 5th repo with policy packs, content schemas, seed packs | not created (founder-gated, D-52) |

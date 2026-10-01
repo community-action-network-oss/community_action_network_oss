@@ -1,8 +1,8 @@
 # CAN slice 1 system design
 
-Status: design baseline for plan units. Binding inputs: `DECISIONS.md` (including D-50 to D-53), `docs/spec/01-slice-1-brief.md` (scope, defaults, lifecycle table). `can_server` and `can_app` are scaffolds (D-25); this document is the overview, and details are split out: [flows/](flows/README.md) (execution flows), [components/](components/README.md) (modules per repo, built vs planned), [ai/](ai/README.md) (AI moderation design). Where this file and the brief disagree about lifecycle, the brief wins. Moderation follows D-51: the community legislates policy, AI agents apply it at every event, humans audit and label, and only the emergency and legal lane acts per case.
+Status: design baseline for plan units. Binding inputs: `DECISIONS.md` (D-50 to D-53, D-72), `docs/spec/01-slice-1-brief.md`. `can_server` and `can_app` are scaffolds (D-25); this is the overview, with details in [flows/](flows/README.md) (execution flows), [components/](components/README.md) (modules per repo, built vs planned), [ai/](ai/README.md) (AI moderation design). Where this file and the brief disagree about lifecycle, the brief wins. Moderation follows D-51: the community legislates policy, AI agents apply it at every event, humans audit and label, and only the emergency and legal lane acts per case.
 
-Lifecycle states, transitions, actors, labels and next actions live only in [`docs/spec/01-slice-1-brief.md#4-lifecycle`](../spec/01-slice-1-brief.md#4-lifecycle). This file never restates them.
+Lifecycle states, transitions and labels live only in [`docs/spec/01-slice-1-brief.md#4-lifecycle`](../spec/01-slice-1-brief.md#4-lifecycle); never restated here.
 
 ## 1. Containers
 
@@ -46,15 +46,15 @@ flowchart LR
   server -- "openapi/openapi.json" --> app
 ```
 
-D-55 to D-58 in one paragraph: persona simulation is the slice-1 proof (harness above; CI uses FakeModel; graduation criteria open participation); seeds 1 and 2 use real framings with synthetic evidence and the Amsterdam overlay; every service is portable (Dockerfile per service, env contract, health and readiness, backup and restore, see [components/cross-cutting.md](components/cross-cutting.md)); every content type is schema-structured, schemas live in the policy pack, `DP-COMPLETENESS` and `DP-ASSUMPTIONS` check submissions, and the app renders forms from the schema version. D-59 to D-61: policy or legal-corpus changes trigger [re-resolution](flows/re-resolution.md) of past resolutions (never silent, appealable), and every legality check applies the cumulative legal stack L0 to L6 from versioned corpora in `can_policy` ([legal-corpus-update](flows/legal-corpus-update.md)).
+D-55 to D-58: persona simulation is the slice-1 proof (CI uses FakeModel); services are portable ([components/cross-cutting.md](components/cross-cutting.md)); every content type is schema-structured, with `DP-COMPLETENESS` and `DP-ASSUMPTIONS` checking submissions. D-59 to D-61: rule changes trigger [re-resolution](flows/re-resolution.md) (never silent, appealable), and legality checks apply the legal stack L0 to L6 ([legal-corpus-update](flows/legal-corpus-update.md)). D-72: lifecycle v2, see [flows/](flows/README.md) (prepare, volunteer review, DP-PUBLISH, stage DAG).
 
-Ports: API :4000, Expo web :8081, gallery :3000, Postgres :5433 (D-4).
+Ports: API :4000, Expo web :8081, gallery :3000, Postgres :5433.
 
 Rules that follow from the diagram:
 - The gallery never calls the API. It is static HTML and links to the repository, docs and open questions.
 - The app talks only to `/v1`. Its client is generated from `can_server/openapi/openapi.json` (ADR 0002).
-- Moderation is AI-executed under a ratified policy pack (D-51, D-53). Every model call goes through the privacy gateway; the provider sits behind an adapter. Tests and night runs bind `FakeModel` with recorded responses; the OpenRouter adapter (D-65) needs `OPEN_ROUTER_KEY` and a spend cap, with free-first, eval-chosen models, and is not founder-gated within the caps (real member data still is). Publication fails closed (`hold`). ADR 0006 is superseded. Policy lives in `can_policy` (D-52), see [components/can-policy.md](components/can-policy.md).
-- No object storage, Redis or queue in slice 1. Jobs run as Nest scheduled tasks calling job port methods, backed by Postgres rows (`SELECT ... FOR UPDATE SKIP LOCKED`).
+- Moderation is AI-executed under a ratified policy pack (D-51, D-53). Every model call goes through the privacy gateway behind a provider adapter; tests bind `FakeModel`, OpenRouter (D-65) needs `OPEN_ROUTER_KEY` and a spend cap (real member data is still founder-gated). Publication fails closed (`hold`). ADR 0006 is superseded. Policy lives in `can_policy` (D-52), see [components/can-policy.md](components/can-policy.md).
+- No object storage, Redis or queue in slice 1. Jobs are Nest scheduled tasks over Postgres rows (`FOR UPDATE SKIP LOCKED`).
 
 ## 2. can_server module boundaries
 
@@ -63,12 +63,14 @@ Layout inside `can_server/src`: each module has `domain/` (pure TS, no Nest or D
 | Module | Owns | Depends on | Notes |
 |---|---|---|---|
 | `accounts` | account, session, invite, handle generation, email encryption, sign-in codes | audit, notification port | Only module that sees plaintext email, and only at send time. |
-| `problems` | problem, problem_event, lifecycle transition engine, jurisdiction, draft_fingerprint, deterministic submission checks | accounts, moderation, audit | The transition engine executes the brief's table as data. Invalid transitions fail atomically. |
-| `moderation` | AI moderation runtime: DP selector, run recorder, decision applier; moderation_run, moderation_decision, appeal, label_task | problems, policy, ai-gateway, audit | Decisions carry `rule_ids[]`, span ref, `revision_hint`, `appealable_until`, `policy_version`, `prompt_hash`, `model_id`. Plan 09 (pending). |
+| `problems` | problem, problem_event, lifecycle transition engine, jurisdiction, draft_fingerprint, deterministic submission checks | accounts, moderation, audit | Executes the brief's table as data; invalid transitions fail atomically. |
+| `moderation` | AI moderation runtime: DP selector, run recorder, decision applier; moderation_run, moderation_decision, appeal, label_task | problems, policy, ai-gateway, audit | Decisions carry rule ids, hints, policy version. Plan 09 (pending). |
 | `policy` | pack loader, version registry, cache | platform | Loads `can_policy` packs by version and hash. Plan 09 (pending). |
 | `ai-gateway` | privacy gateway, provider adapters, router, budgets | policy, platform | FakeModel and OpenRouter adapters (Anthropic optional). Plan 09 (pending). |
+| `stages` | stage, stage_edge, acceptance_criterion, stage_option, stage_choice, stage_evidence, source_ref | problems, moderation | Stage DAG and gating engine (D-72, W10). |
+| `review` | review_recommendation, volunteer opt-in | problems, moderation, accounts | Private volunteer review, quorum (D-72, W10). |
 | `contributions` | contribution, evidence_ref (URL only) | problems, moderation | Typed contributions; the type list comes from the brief. |
-| `proposals` | proposal | problems, contributions | Comparison data only; no voting rule (decision rule is a recorded text, not a score). |
+| `proposals` | proposal | problems, contributions | Comparison data only; no voting rule. |
 | `decisions` | decision_record | proposals, problems | States who decided, under which authority, why. |
 | `tasks` | task | decisions, problems | Task status, verification evidence refs. |
 | `audit` | audit_event | none | Write-only API for other modules; read for auditors and maintainers. |
@@ -102,6 +104,15 @@ erDiagram
   appeal ||--o{ label_task : "may spawn"
   problem ||--o{ audit_event : "subject"
   problem ||--o| problem : "duplicate_of"
+  problem ||--o{ stage : "stage plan"
+  stage ||--o{ stage_edge : "depends_on"
+  problem ||--o{ acceptance_criterion : "final criteria"
+  stage ||--o{ acceptance_criterion : "stage criteria"
+  stage ||--o{ stage_option : has
+  stage ||--o| stage_choice : chosen
+  stage ||--o{ stage_evidence : has
+  problem ||--o{ review_recommendation : "review"
+  problem ||--o{ source_ref : cites
   account {
     uuid id PK
     bytea email_ciphertext "secret"
@@ -275,7 +286,7 @@ erDiagram
   }
 ```
 
-`draft_fingerprint` has no foreign key on purpose: it must not link back to an account or problem once the draft is purged. AI entities are expanded in [components/server.md](components/server.md). Sign-in codes live in `login_code` (account_id, code_hash secret, expires_at 10 min, attempts, consumed_at), an auxiliary table owned by `accounts`.
+Lifecycle v2 entities are detailed in [components/server.md](components/server.md); all are private until publish, and `review_recommendation` never becomes public. `draft_fingerprint` has no foreign key on purpose: it must not link back to an account or problem once the draft is purged. AI entities are expanded in [components/server.md](components/server.md). Sign-in codes live in `login_code` (account_id, code_hash secret, expires_at 10 min, attempts, consumed_at), an auxiliary table owned by `accounts`.
 
 ### Retention and deletion
 
@@ -304,9 +315,8 @@ erDiagram
 `problem_event` is the append-only history for lifecycle and consequential changes; `audit_event` records operational and security actions (sign-in, role changes, auditor reads, emergency lane actions). Both are insert-only: the app DB role has no UPDATE or DELETE on them (migration grants), and a test asserts that.
 
 - Id: UUIDv7. `origin_node_id` and `protocol_version` on every row. `prev_hash` nullable bytea, always null in slice 1 (reserved for the later chain; no hashing code now).
-- Same-transaction write: the state change and its `problem_event` row commit together or not at all. The transition engine takes a Drizzle transaction and writes both; a unit test injects a failing insert and asserts the state did not change.
-- Ordering: consumers order by UUIDv7 id; no separate sequence column.
-- No payloads containing email, tokens or restricted text. Purge of draft bodies leaves events intact.
+- Same-transaction write: the state change and its `problem_event` row commit together or not at all (a unit test injects a failing insert).
+- No email, tokens or restricted text in payloads.
 
 ## 5. Auth flow
 
@@ -360,7 +370,7 @@ Conventions: JSON; list responses are `{items: [...], nextCursor: string | null}
 | GET | /v1/content-schemas/{type} | member | Content schema by type and `?version=` (plan 10, pending). |
 | POST | /v1/invites | maintainer or admin | Issue an invite code (shown once). |
 
-Under D-51 moderator-queue and per-item decision endpoints no longer exist; audit and label paths: plan 09 (pending). Deliberate omissions: no email on any response, no DELETE on public records, no uploads, no search beyond `q`, no endpoint that lets a person overrule a single decision (the lane is internal).
+Under D-51 no moderator-queue or per-item decision endpoints exist. Lifecycle v2 endpoints (stage plan, options, review): [components/server.md](components/server.md). Omissions: no email on responses, no DELETE on public records, no uploads, no search beyond `q`, no endpoint to overrule a single decision.
 
 ## 7. Contract flow
 

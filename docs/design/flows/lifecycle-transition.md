@@ -36,6 +36,8 @@ Which transitions have a gate: T01 (intake DPs), T08 and T09 (DP-FRAMING and DP-
 
 Every legality check (DP-LEGALITY, DP-BLOCKER, DP-DECISION-RECORD, and legality inside DP-ELIGIBILITY) applies the full cumulative legal stack for the problem's jurisdiction, L0 platform rules, L1 UN human rights, L2 supranational where binding, L3 constitution, L4 national law, L5 regional law, L6 city rules (D-61). A solution illegal at any layer sends the problem to `stuck` (legally blocked); a topic forbidden by local law is not published there and the refusal is logged with its legal basis. Reopening a resolved problem is T23, owned by [../../spec/01a-lifecycle.md](../../spec/01a-lifecycle.md), triggered only by [re-resolution.md](re-resolution.md).
 
+D-72 (W10): the fixed stage sequence is replaced by a per-problem stage DAG. Problem-level transitions (draft, in_review, needs_revision, held, active, solved, and the pause, stuck, redirect, close and withdraw family) go through this engine; stage-level state changes go through the `stages` gating engine ([stage-advancement.md](stage-advancement.md)), which uses the same one-transaction rule. Gates: `in_review` needs CRITERIA-1 and a valid DAG; `active` only through DP-PUBLISH; `solved` through DP-VERIFICATION once all required stages are resolved. The old T08 to T14 gate list above applies per stage as DP-STAGE-RESOLUTION and DP-LEGALITY ([stage-work.md](stage-work.md)).
+
 ## Failure paths
 - Concurrent transition: row lock plus expected-state check; loser gets `conflict`.
 - Event insert fails: whole transaction rolls back (unit test injects the failure).

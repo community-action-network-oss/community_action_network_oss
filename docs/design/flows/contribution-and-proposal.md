@@ -1,5 +1,7 @@
 # Flow: contribution, proposal and decision record
 
+> **D-72 (W10):** the fixed stages (facts, solutions, choosing, in progress) are replaced by stage nodes. Contributions and proposals target a stage (`stage_option`); the choice is a `stage_choice` with the stage's decision method ([stage-work.md](stage-work.md)). T08 to T11 below read as per-stage steps. Contributions to a `planned` stage are allowed and kept ready (STAGE-PREP-1); they surface when the stage becomes `ready`. The allowed-type matrix is per stage, not per problem state.
+
 ## Purpose
 Move a problem from facts to a chosen fix: typed contributions, comparable proposals, a decision record with authority, rationale and a legality check.
 

@@ -1,5 +1,7 @@
 # Flow: task and verification
 
+> **D-72 (W10):** tasks belong to a stage. "Verification" of a stage is DP-STAGE-RESOLUTION on its evidence against that stage's criteria; the problem-level "solved" is DP-VERIFICATION against the final criteria, run once every required stage is resolved ([stage-advancement.md](stage-advancement.md)). T12 to T14 below read as the stage-level loop; a failed check returns the stage to `active` with hints, not the problem to a fixed `implementation` state.
+
 ## Purpose
 Track implementation tasks, collect verification evidence from someone other than the implementer, and decide "solved" against the chosen proposal's success metric.
 

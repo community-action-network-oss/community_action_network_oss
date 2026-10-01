@@ -1,5 +1,7 @@
 # Flow: intake and submit
 
+> **D-72 (W10):** publication is no longer decided at submit. The poster prepares in `draft` ([problem-preparation.md](problem-preparation.md)), volunteers review ([volunteer-review.md](volunteer-review.md)), then DP-PUBLISH decides ([publication-decision.md](publication-decision.md)): `active`, `needs_revision`, `rejected` or `held`. The run, gateway and hold mechanics below are reused unchanged; "submitted" reads as "in_review, then the DP-PUBLISH run", and `publish` leads to `active` with the stage plan running.
+
 ## Purpose
 Take a person's frustration from staged local draft to a published public problem, a needs-revision draft, a rejection, an external route, or a hold. Publication is decided by the AI moderation run under the ratified policy pack (D-51), never by a person confirming a single item.
 
