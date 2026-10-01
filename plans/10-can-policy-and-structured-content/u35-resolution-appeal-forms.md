@@ -7,7 +7,7 @@ area: can-app
 model: sonnet
 est_hours: 1.5
 priority: 35
-depends_on: ["10-u05","10-u29","10-u11","04-u10","05-u05","05-u08"]
+depends_on: ["10-u05", "10-u29", "10-u11", "04-u10", "05-u05", "05-u08", "10-u70"]
 writes: ["src/features/decisions/**","src/features/tasks/**","src/features/terminal/**","src/i18n/en.json","__tests__/decisions/**","__tests__/tasks/**","src/api/schema.d.ts"]
 reads: ["src/**","app/**"]
 spec: ["docs/design/ux/wireframes/forms.md#WF-FORM-1","docs/design/ux/wireframes/participate.md#WF-DECREC-1","docs/design/ai/structured-content.md#1-content-types-and-their-schemas"]
@@ -20,12 +20,13 @@ commits: []
 actual_hours: null
 ---
 ## Objective
-Decision record (04-u10), task and verification evidence (05-u05) and the terminal action forms of 05-u08 that have a schema are rendered from their schemas. The appeal form is plan 09 (09-u51).
+Stage choice and stage evidence (plan 12 stage workspace), decision record (04-u10), task and verification evidence (05-u05) and the terminal action forms of 05-u08 that have a schema are rendered from their schemas. The appeal form is plan 09 (09-u51).
 
 ## Steps
 1. Replace each hand-built form with `SchemaForm` for `decision_record`, `task`, `verification`; keep headers, status chips and state control wiring.
 2. Delete hard-coded field names and add grep tests; payloads carry schema stamps; unsupported widgets fail safe.
 3. Tests per form from fixture schemas; submit disabled until required fields answered or marked unknown where allowed; RTL snapshot for the decision record.
+4. Lifecycle v2: also render `stage_choice` (WF-STAGE-1 choose step: chosen options, steps with owner role and done criterion) and `stage_evidence` (WF-STAGE-1 evidence, one criterion per item) from their schemas (10-u11); the final DP-VERIFICATION evidence form maps to `verification` (10-u70).
 
 ## Acceptance
 - Acceptance: meets docs/design/ux/ui-unit-template.md (sections 1 to 6; mark items not applicable with a reason in the commit message). First screen re-checked: WF-DECREC-1.

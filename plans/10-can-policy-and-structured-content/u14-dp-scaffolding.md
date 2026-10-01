@@ -20,7 +20,7 @@ commits: []
 actual_hours: null
 ---
 ## Objective
-A single skeleton and a lint so the 19 DP directories written by 10-u15 to 10-u19 are uniform and machine-checkable.
+A single skeleton and a lint so the DP directories written by 10-u15 to 10-u19 and 10-u62 to 10-u65 (28 in total after lifecycle v2) are uniform and machine-checkable.
 
 ## Steps
 1. `decision-points/_template/` with `prompt.md` (sections ROLE, RULES `{{RULES}}`, OUTPUT, EXAMPLES `{{SHOTS}}`, DATA block with fixed delimiters from docs/design/ai/runtime.md), `schema.json` (extends `../../schemas/dp-output.schema.json`), `pack-section.yaml`, `examples/.gitkeep`, `eval/` with empty `core.jsonl`, `adversarial.jsonl`, `thresholds.yaml`, `README.md`. `tools/new-dp.mjs DP-NAME --rules A,B --outcomes x,y` copies and fills it; `npm run new-dp -- ...` script.

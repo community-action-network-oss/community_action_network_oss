@@ -39,7 +39,7 @@ The versioned affected area of a problem (D-73): one canonical polygon, a derive
 - `npm run verify` is green.
 
 ## Out of scope
-- The client check and permission flow (14-u04, 14-u05).
+- The client check and permission flow (14-u04, 12-u24).
 - The area picker UI in preparation (plan 12).
 - Poseidon root and circuits (14-u11).
 - Overlay boundary dataset ingestion (OQ-boundary-data).

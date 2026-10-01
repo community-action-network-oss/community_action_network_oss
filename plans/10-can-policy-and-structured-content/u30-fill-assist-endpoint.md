@@ -30,6 +30,7 @@ Implement `POST /v1/content-schemas/{type}/assist` per structured-content.md sec
 4. Record: an `assist_run` row with inputs hash, policy_version, prompt_hash, model_id, cost, outcome; the draft stores `assisted_fields: [{field_ref, assist_run_id}]` only when the poster confirms through the normal draft edit (field `assisted: true` accepted only with a valid, recent `assist_run_id` owned by the same account).
 5. Fail closed: gateway or model failure, budget exhausted, invalid output after one retry returns 503 with code `assist_unavailable`; the form still works without assist.
 6. Tests with FakeModel recordings: happy path; invented URL dropped; unknown field dropped; injection in notes ("ignore the rules") does not change the schema or leak the prompt; PII in notes is redacted before the adapter call (spy on the adapter input); `assisted: true` without a valid run id rejected. Regenerate `openapi/openapi.json`.
+7. Context profile proposals (D-76, used by 13-u03): the `fields` request may include the `context_profile` dimensions; the response then returns per-dimension proposals from the same ASSIST-FILL prompt (taxonomy ids from the pack value, bands, settlement and climate class at coarse level, constraints typed); the invention guard and the no accept-all rule apply unchanged.
 
 ## Acceptance
 - The adapter never sees raw identifiers from the notes (spy test).

@@ -27,6 +27,7 @@ Add the two interactions that make structured forms bearable: optional "Suggest 
 2. On Use or Edit then use: set the value, add `{field_ref, assist_run_id}` to the draft's `assisted` set, show `form.assist.marker`; the marker stays in preview and published view and clears only if the person clears and rewrites the field. Failure of assist (`assist_unavailable`) shows a plain message and leaves the form usable.
 3. Hints: render `hints` map from the check response beside fields (WF-FORM-3): text plus icon, rule id and policy version line, actions "Mark as assumption" (switches the basis control) and "Add source"; focus moves to the first hinted field after a check; fields without hints stay plain; "Check my draft" triggers the advisory pass.
 4. Tests: suggestion never fills by itself; Use and Edit paths set `assisted`; discard leaves value; hints rendering and focus move; no colour-only status; RTL; strings via messages and `useT()`.
+5. Context profile assist (D-76): the assist endpoint of 10-u30 also proposes per-dimension values of `context_profile` (never confirmed by itself); show them in the `context_profile` section with the same Use, Edit then use and Discard actions and the Assisted marker, and send nothing to path suggestions that the poster has not confirmed (13-u03 stores confirmations).
 
 ## Acceptance
 - Acceptance: meets docs/design/ux/ui-unit-template.md (sections 1 to 6; mark items not applicable with a reason in the commit message). First screen re-checked: WF-FORM-2.
