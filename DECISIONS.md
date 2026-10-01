@@ -384,3 +384,7 @@ Every default, deviation and judgment call made while building CAN. Each one can
 - **D-69 · W9 · The `can_policy` GitHub repo exists (founder). Unit 10-u01 is done.**
   - The repo is `community-action-network-oss/can_policy`. It is public and empty.
   - 10-u02 (scaffold, MIT license, 5th submodule) can now run on the next night. Night runs never push, so after that night the founder pushes `can_policy` main.
+- **D-70 · W9 · Visitors' IPs reaching GitHub is an accepted platform dependency, not a goal (founder).** CAN does not want visitor IPs sent to GitHub, but accepts it for now. It ends in either of two ways:
+  - the documents move to another provider, or
+  - the gallery gets hosting (D-57). A small server-side proxy, or an edge function on the same domain, then fetches GitHub on the visitor's behalf with a short cache. The pages stay the same and only the fetch origin changes.
+  - The privacy note stays until one of these happens.
