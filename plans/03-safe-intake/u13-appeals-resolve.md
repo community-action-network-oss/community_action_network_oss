@@ -7,7 +7,7 @@ area: can-server
 model: sonnet
 est_hours: 1.5
 priority: 50
-depends_on: ["03-u12","03-u11"]
+depends_on: ["03-u09", "03-u11"]
 writes: ["src/moderation/**","src/problems/app/**","src/platform/mail/templates.ts","test/appeals-resolve.e2e-spec.ts","openapi/openapi.json"]
 reads: ["src/**"]
 spec: ["docs/spec/01-slice-1-brief.md#5-moderation-decisions-and-appeals","docs/spec/constitution/rules.md#APPEAL-1","docs/spec/constitution/rules.md#APPEAL-2","docs/spec/constitution/rules.md#DRAFT-TTL-1","docs/design/ux/wireframes/moderation.md#WF-MOD-APPEAL-1"]

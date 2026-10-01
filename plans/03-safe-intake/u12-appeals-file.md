@@ -7,7 +7,7 @@ area: can-server
 model: sonnet
 est_hours: 1.5
 priority: 49
-depends_on: ["03-u10"]
+depends_on: ["03-u09"]
 writes: ["src/moderation/**","src/db/schema.ts","drizzle/**","test/appeals-file.e2e-spec.ts","openapi/openapi.json"]
 reads: ["src/**"]
 spec: ["docs/spec/01-slice-1-brief.md#5-moderation-decisions-and-appeals","docs/spec/constitution/rules.md#APPEAL-1","docs/spec/constitution/rules.md#APPEAL-2","docs/spec/constitution/rules.md#INTERIM-1","docs/design/ux/wireframes/submit.md#WF-APPEAL-1"]
