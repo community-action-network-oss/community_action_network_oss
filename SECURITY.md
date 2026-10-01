@@ -2,7 +2,7 @@
 
 ## Reporting a vulnerability
 
-Do not open a public issue or pull request for a vulnerability. Report it privately. The private contact is to be announced, see `docs/open-questions/OQ-domain.md`. Until it exists, ask a maintainer for a private channel without describing the problem publicly.
+Do not open a public issue or pull request for a vulnerability. Report it privately. No private reporting channel exists yet. Until the repository is hosted, report privately to the maintainer through the channel by which you received the repository. GitHub private vulnerability reporting will be enabled at hosting time. See `docs/open-questions/OQ-security-and-conduct-contact.md`.
 
 Please include what you found, how to reproduce it, and the impact. Reports must be verified by a human. Unverified or AI-fabricated reports may be closed.
 

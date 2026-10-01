@@ -26,8 +26,10 @@ Concept and scaffolding. The specification, the constitution, the design system 
 
 Prerequisites: Node 24 or newer, Docker, Python 3.
 
+The repository is not hosted yet. Submodule URLs are relative (`../<name>.git`) and resolve once all four repos (this one and the three submodules) are pushed under one host. Today you clone from a local copy:
+
 ```sh
-git clone --recurse-submodules <repo-url> community_action_network_oss
+git clone --recurse-submodules /path/to/community_action_network_oss
 # already cloned without submodules? git submodule update --init
 ```
 
@@ -49,7 +51,14 @@ npm install
 npm start
 ```
 
-Promo site (http://localhost:3000): see `can_promo_site/README.md` for the exact commands.
+Promo site (http://localhost:3000):
+
+```sh
+cd can_promo_site
+npm install
+npm run dev
+npm run verify   # lint, typecheck, build, output checks
+```
 
 Check everything:
 
@@ -59,7 +68,7 @@ scripts/verify-all.sh
 
 ## How to contribute
 
-Code, design, docs, open questions and review are all welcome. Pick a unit from `plans/`, read its spec links, make a small focused change with green tests, and open a pull request. If you used an AI tool, say so. The full process is in [CONTRIBUTING.md](CONTRIBUTING.md). Please also read the [Code of Conduct](CODE_OF_CONDUCT.md) and [SECURITY.md](SECURITY.md).
+Code, design, docs, open questions and review are all welcome. Pick a unit from `plans/` (first task: [how a human contributor picks work](plans/00-ROOT.md#how-a-human-contributor-picks-work)), read its spec links, make a small focused change with green tests, and open a pull request. If you used an AI tool, say so. The full process is in [CONTRIBUTING.md](CONTRIBUTING.md). Please also read the [Code of Conduct](CODE_OF_CONDUCT.md) and [SECURITY.md](SECURITY.md).
 
 ## License
 

@@ -12,7 +12,7 @@ Thank you for helping. CAN is at the concept and scaffolding stage, so careful s
 
 ## Setup
 
-1. `git clone --recurse-submodules <repo-url>` (or `git submodule update --init` afterwards).
+1. Clone with submodules. The repository is not hosted yet, and submodule URLs are relative (`../<name>.git`), so they resolve once all four repos are pushed under one host. Today you clone from a local copy: `git clone --recurse-submodules /path/to/community_action_network_oss` (or `git submodule update --init` afterwards).
 2. Install Node 24 or newer, Docker and Python 3.
 3. Follow the Quick start in [README.md](README.md).
 4. Run `scripts/verify-all.sh`. It should be green before you change anything.
@@ -21,7 +21,7 @@ Each submodule has its own README and `npm run verify`. Run it before every comm
 
 ## Picking work from plans/
 
-Units in `plans/` are sized at about one hour. Read the unit file, follow its spec links, and load the matching area skill under `.claude/skills/` (`can-server`, `can-app`, `can-promo-site`, `can-spec`), which holds the rules for that area. Format is in `plans/FORMAT.md`; lint it with `node plans/tools/corpus.mjs lint`. Status is maintained by maintainers: do not edit it. Open a pull request that references the unit id (for example in the title) and the maintainers will update status.
+Units in `plans/` are sized at about one hour. Read the unit file, follow its spec links, and load the matching area skill under `.claude/skills/` (`can-server`, `can-app`, `can-promo-site`, `can-spec`), which holds the rules for that area. The files in `.claude/skills/` are guides for AI agents and humans alike. Format is in `plans/FORMAT.md`; lint it with `node plans/tools/corpus.mjs lint`. Status is maintained by maintainers: do not edit it. Open a pull request that references the unit id (for example in the title) and the maintainers will update status.
 
 ## Commit conventions
 
