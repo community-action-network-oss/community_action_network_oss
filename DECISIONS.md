@@ -485,3 +485,13 @@ Every default, deviation and judgment call made while building CAN. Each one can
   - **The goal:** open, reusable infrastructure for solving common problems. One example: an affordable Dutch solution offered as a starting path to a low-resource community elsewhere.
   - **Default (orchestrator):** the license for contributed content is CC BY 4.0, so reuse is allowed with credit to the source case. This is logged as OQ-contribution-license, with CC0 as the alternative.
   - **Reverse:** reuse becomes manual search only.
+- **D-77 · W13 · Planner X defaults while adding plan 12 (lifecycle v2, 26 units) and reworking plans 02 to 05 and 07.**
+  - **Editing in review:** problems stay editable while `in_review`. This follows 01a and WF-PREP-1. `flows/problem-preparation.md` disagrees and needs a doc fix.
+  - **T03:** always returns the problem to `in_review`.
+  - **Who decides which transitions:**
+    - T13 to T17 and T22: the initiator proposes, the moderation run decides.
+    - T11 and T12: applied directly.
+  - **Interim aggregation:** 12-u08 includes a temporary publish-aggregation floor until 09-u72 lands.
+  - **Status screen:** 12-u17 doubles as the "In volunteer review" status screen.
+  - **Rewritten units:** they keep their old file slugs, so some file names no longer match their content.
+  - **Retired unit:** 07-u06 is the only one, replaced by the 12-u25 and 12-u26 journeys.
