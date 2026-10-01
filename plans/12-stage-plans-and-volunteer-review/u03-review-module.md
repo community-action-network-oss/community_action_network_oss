@@ -42,5 +42,5 @@ Build the `review` module (lifecycle v2, D-72 step 2): opt-in volunteers, a queu
 
 ## Out of scope
 - The publication decision itself (12-u08) and DP-PUBLISH (plan 09).
-- Review screens (12-u14 to 12-u17).
+- Review screens (12-u15 to 12-u17).
 - The impacted and guest label on recommendations (14-u02).

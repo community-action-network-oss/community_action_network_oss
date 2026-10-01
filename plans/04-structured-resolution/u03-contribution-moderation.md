@@ -21,7 +21,7 @@ commits: []
 actual_hours: null
 ---
 ## Objective
-Keep only what is not moderation: recompute the problem's evidence tier and investigation_needed flag when a contribution becomes public, and derive the after-rejection cooldown from the latest non-publish decision. Accepting, hiding and restoring contributions is done by moderation runs and appeals (09-u40, 09-u33, 09-u34), not by a moderator here.
+Keep only what is not moderation: recompute the problem's evidence tier (and, for evidence a stage has accepted, the tier on its stage_evidence rows) and investigation_needed flag when a contribution becomes public, and derive the after-rejection cooldown from the latest non-publish decision. Accepting, hiding and restoring contributions is done by moderation runs and appeals (09-u40, 09-u33, 09-u34), not by a moderator here.
 
 ## Steps
 1. Pure function recomputeEvidenceTier(urlRefs) (reuse evidenceTierFromUrls from plan 03 and extend with attestation presence: verification evidence is never counted here). It is called by the contribution adapter 09-u40 through a small port ContributionPublishedHook exported here (no-op until wired), after a run publishes an evidence-bearing contribution.

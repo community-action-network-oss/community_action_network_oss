@@ -21,7 +21,7 @@ commits: []
 actual_hours: null
 ---
 ## Objective
-A Follow control on the detail screen with explicit email consent text, mute and unfollow, and a notifications list under My activity. No badges with counts.
+A Follow control on the detail screen with explicit email consent text, mute and unfollow, and a notifications list under My activity (kinds include stage and plan changes, 04-u07). No badges with counts.
 
 ## Steps
 1. Run `npm run gen:api` (reads ../can_server/openapi/openapi.json) and commit `src/api/schema.d.ts` with this unit. The dependent server unit is already done, so the contract exists.

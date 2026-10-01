@@ -21,7 +21,7 @@ commits: []
 actual_hours: null
 ---
 ## Objective
-The only link type in slice 1: a problem can be marked duplicate_of another published problem. Used later as a required field of closing with reason duplicate (T19, plan 05).
+The only link type in slice 1: a problem can be marked duplicate_of another published problem. Used later as a required field of closing with reason duplicate (T16, plan 05).
 
 ## Steps
 1. POST /v1/problems/{id}/duplicate {duplicateOfId, note?} (initiator only): target must be published and not the same problem, must not create a cycle (follow the chain, max depth 10), must not be withdrawn or a tombstone; writes problem.duplicate_of and a problem_event "duplicate_linked" (no state change); DELETE clears with event "duplicate_unlinked" (initiator only).
@@ -38,4 +38,4 @@ The only link type in slice 1: a problem can be marked duplicate_of another publ
 
 ## Out of scope
 - Merging content or contributions.
-- Closing as duplicate (plan 05).
+- Closing as duplicate (T16, plan 05).
