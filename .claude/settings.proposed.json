@@ -1,0 +1,43 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run:*)",
+      "Bash(npm ci:*)",
+      "Bash(npm install:*)",
+      "Bash(npx expo:*)",
+      "Bash(npx --yes openapi-typescript@7.13.0:*)",
+      "Bash(npx -p typescript@5 -p openapi-typescript@7.13.0:*)",
+      "Bash(node plans/tools/corpus.mjs:*)",
+      "Bash(node docs/*)",
+      "Bash(python3 docs/design/check.py)",
+      "Bash(docker compose:*)",
+      "Bash(docker info)",
+      "Bash(docker ps:*)",
+      "Bash(git -C:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(sleep:*)",
+      "Bash(date:*)",
+      "Bash(ls:*)",
+      "Bash(mkdir:*)",
+      "Bash(lsof:*)",
+      "Bash(curl http://localhost:*)",
+      "Bash(caffeinate:*)",
+      "Edit",
+      "Write"
+    ],
+    "deny": [
+      "Bash(git push:*)",
+      "Bash(git -C * push:*)",
+      "Bash(npm publish:*)",
+      "Bash(npx eas:*)",
+      "Bash(eas:*)",
+      "Bash(npx expo publish:*)",
+      "Bash(docker push:*)",
+      "Bash(curl https://*)",
+      "Bash(curl http://[!l]*)",
+      "Bash(rm -rf /*)"
+    ]
+  }
+}
