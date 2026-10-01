@@ -88,7 +88,7 @@ Phase 0A acceptance criteria:
 
 - Plans, tasks, owners, blockers, metrics, and updates
 - Verification evidence and terminal transitions
-- Resolution records and, later, redacted playbooks
+- The Archive (`24-archive-reuse.md`) and, later, redacted playbooks
 
 ### Phase 5: Grounding and governance
 

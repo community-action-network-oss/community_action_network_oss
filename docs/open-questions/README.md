@@ -96,5 +96,8 @@ Copy any existing file. Keep the same headings. Night or agent runs add question
 | [OQ-boundary-data](OQ-boundary-data.md) | Which boundary data and licence define affected areas? |
 | [OQ-impact-decision-weight](OQ-impact-decision-weight.md) | May the impacted label ever carry decision weight? |
 | [OQ-zk-setup](OQ-zk-setup.md) | Which proof system setup suits a contributor-run project? |
+| [OQ-contribution-license](OQ-contribution-license.md) | Under what license is contributed content offered? |
+| [OQ-archive-retention](OQ-archive-retention.md) | How do withdrawal and account deletion interact with a permanent archive? |
+| [OQ-cross-language-reuse](OQ-cross-language-reuse.md) | How does reuse work across languages? |
 
 Related: [spec index](../spec/00-index.md), [constitution](../spec/constitution/README.md), [decision log](../../DECISIONS.md), [design](../design/), [ADRs](../adr/).

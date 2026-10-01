@@ -24,6 +24,8 @@ That is how an open platform can reach any scale without an army of moderators: 
 
 **Anyone can help. Those living the problem can be heard on their own.** People anywhere can contribute, and their contributions are marked as guest. People who live the problem can switch on a filter to hear only from the impacted. CAN proves you are inside the area without ever learning where you are: your phone checks it, and only the answer leaves your hands.
 
+**Nothing solved is solved only once.** Every solved problem, and every problem that honestly did not get solved, becomes a path others can start from. The Archive keeps what was tried, what failed and why, what it cost and what finally worked. A community short on money or people does not begin from nothing: it can start from what worked somewhere else, adapted to its own laws and means, with the source always credited. Nothing is adopted automatically, and every suggestion shows how your place differs.
+
 **The law of every place, all the way down.** CAN follows the law at every level that applies to a problem: universal human rights first, then the rules that bind a whole region such as the European Union, then the national constitution and national law, then the region and the city. Every post and every proposed fix has to satisfy all of them at once. So CAN never asks anyone to do something illegal, and it stays lawful everywhere it goes. If a fix is not lawful yet, the problem is not hidden. It is marked stuck, the blocking law is named, and the lawful route to change it stays in view.
 
 **Every rule change looks back.** When the rules or the law change, CAN re-examines every past resolution under the new rule. If the conclusion would be different and it is practical to reopen, the problem reopens with a plain notice, the whole history stays, and you can appeal. Nothing changes quietly, and every improvement helps every past problem, not just the next one.
@@ -103,8 +105,8 @@ Surface a public problem. Say who and where it affects. Contribute evidence and 
     - A problem moves through its stages until it is solved, closed, redirected, or withdrawn. Each stage moves on only when its evidence meets its criteria.
     - Some problems stall. They are marked **paused** (with a reason and a condition to resume) or **stuck** (documented effort hit a blocker). The blocker and the next lawful route stay public. An honest unresolved record is better than a quiet disappearance.
     - **Solved** means the criteria set at the start are met: a steward proposes it with evidence and the moderation run decides it under the rules for evidence, with its reasons shown. A promise is not an achievement.
-7. **Resolution records**
-    - Every problem that reaches an end keeps its whole journey in a plain archive of resolution records. No ranking, no scores, no rewards. Solved problems become examples others can learn from, and later reusable civic playbooks.
+7. **The Archive**
+    - Every problem that reaches an end keeps its whole journey in the Archive, failed paths included, with personal data removed. No ranking, no scores, no rewards. Each one becomes a path others can start from.
 8. **Preparation and adaptation**
     - The aim is also to prepare communities before problems escalate. A preparation path holds triggers, responsibilities, institutional routes, resources, steps and feedback loops. Personal advice stays out of scope.
 9. **Local community strengthening**

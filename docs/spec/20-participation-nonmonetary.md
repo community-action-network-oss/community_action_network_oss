@@ -49,7 +49,7 @@ The project has two continuous, connected loops:
 
 **Public problem-solving loop**
 
-> Problem → evidence → causes and constraints → proposals → decision → implementation → verification → Resolution record, playbook, or a `stuck` problem kept as an accountable unresolved record
+> Problem → evidence → causes and constraints → proposals → decision → implementation → verification → archive record, playbook, or a `stuck` problem kept as an accountable unresolved record
 
 **Platform-improvement loop**
 

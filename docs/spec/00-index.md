@@ -23,6 +23,7 @@ The Community Action Network (CAN) is an open-source platform where people turn 
 | Participation and the non-monetary rules | `20` |
 | Open source, governance, license | `21` |
 | External contributors using AI | `22` |
+| The Archive, reuse, suggested paths | `24`, constitution IV.7 |
 | Anything undecided | `docs/open-questions/`, then `23` |
 | Elections, civic protocol, decentralization | `08`, `09`, `12`, `13` (all later phases) |
 
@@ -54,6 +55,7 @@ The Community Action Network (CAN) is an open-source platform where people turn 
 | `20-participation-nonmonetary.md` | Participation sequence, "one hour, one problem, one step", non-monetary rules, supporter independence |
 | `21-open-source-governance.md` | Growth, governance, decision process, contribution ladder, license strategy |
 | `22-ai-contribution-policy.md` | AI-assisted contribution policy for external contributors |
+| `24-archive-reuse.md` | The Archive: archive record, context profile, path suggestions, `DP-ARCHIVE`, `DP-REUSE-FIT`, `DP-STAGE-DRAFT`, license, slice-1 scope |
 | `23-open-decisions.md` | Map from the original open-question list to `docs/open-questions/` |
 | `constitution/` | The constitution (chapters I to XI), `map.tsv`, `rules.md`; start at `constitution/README.md` |
 | `split-map.tsv`, `tools/` | Provenance of the split and the check scripts |
@@ -76,7 +78,8 @@ The Community Action Network (CAN) is an open-source platform where people turn 
 - **Decision record:** the public record of how a solution was chosen and why.
 - **Moderation decision:** a recorded decision with rule ids, field reference, revision hint and appeal deadline.
 - **Interim policy stewardship:** until a ratifying panel exists the founder ratifies the policy pack (Constitution VIII.2). Decisions show "Policy vX, transitional stewardship".
-- **Resolution record:** the unranked archive entry for a solved, closed or redirected problem. It replaces an older name that implied ranking.
+- **Archive:** CAN's second main goal (D-76): the public, unranked record of every ended problem with its whole journey, failed paths and challenges, personal data stripped. Replaces "Resolution records" (D-20). One entry is an **archive record** (`24-archive-reuse.md`).
+- **Context profile, path suggestion:** structured context used to match a new problem to archived ones, and a candidate path from archive records adapted to the new problem, always credited and never adopted automatically (`DP-REUSE-FIT`).
 - **Stuck:** documented effort hit a blocker; the blocker stays public. **Paused:** on hold with a reason and resume condition. Neither is terminal.
 - **Slice 1:** the smallest end-to-end build (`01`).
 - **Structured content:** no free-form posting; every content type is a structured response to a community-decided schema in the policy pack (D-58). **`DP-ASSUMPTIONS`** holds back wrong assumptions; **`DP-COMPLETENESS`** checks every required field is answered.

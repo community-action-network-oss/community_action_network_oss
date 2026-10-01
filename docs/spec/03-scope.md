@@ -30,7 +30,7 @@ Two further states are not terminal:
 - **Paused:** progress is temporarily on hold, with a reason and a resume condition.
 - **Stuck:** documented effort has hit a blocker. The blocker and the next lawful escalation route stay public. This is the accountable unresolved record.
 
-**Resolution records** are the plain archive of problems that reached `solved`, `closed` or `redirected`: the whole journey, kept for others to learn from. They are listed chronologically and by jurisdiction, never ranked, scored or rewarded, so they give nobody a reason to chase status.
+The **Archive** (CAN's second main goal, D-76; it supersedes the "Resolution records" naming of D-20) is the plain public record of every problem that ended: solved, closed, redirected, withdrawn after publication or stuck. Each archive record keeps the whole journey, including failed paths and challenges, with personal data stripped, for others to start from (`24-archive-reuse.md`). Records are listed chronologically and by jurisdiction, never ranked, scored or rewarded, so they give nobody a reason to chase status.
 
 ### Success principles
 

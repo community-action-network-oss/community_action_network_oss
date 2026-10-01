@@ -59,7 +59,7 @@ The problem states and the transition table (T00 to T22) live in [`01a-lifecycle
 
 ### 4.1 Preparation (private)
 
-The poster fills in the structured problem completely before anyone else sees it (`CRITERIA-1`): the **facts**; **trusted source URIs** that establish the issue is real (each a `source_ref`: `uri`, `category`, `establishes`, `authenticity_note`; `DP-SOURCE-TRUST`, `SOURCE-1`, `OQ-trusted-sources`); the **solved criteria** (the final acceptance criteria, measurable); and optionally **stages**, each with its own criteria and decision method (default template `classic-5`). AI may help fill fields; the poster confirms (`AI-ASSIST-1`). Sending it to review is T01.
+The poster fills in the structured problem completely before anyone else sees it (`CRITERIA-1`): the **facts**; **trusted source URIs** that establish the issue is real (each a `source_ref`: `uri`, `category`, `establishes`, `authenticity_note`; `DP-SOURCE-TRUST`, `SOURCE-1`, `OQ-trusted-sources`); the **solved criteria** (the final acceptance criteria, measurable); and optionally **stages**, each with its own criteria and decision method (default template `classic-5`). AI may help fill fields; the poster confirms (`AI-ASSIST-1`). While the poster fills in fields, suggested paths from the Archive appear (`24-archive-reuse.md`). Sending it to review is T01.
 
 ### 4.2 Volunteer review (private)
 
@@ -122,6 +122,10 @@ One enum for the whole platform (this replaces two earlier lists). A contributio
 
 Every contribution is labelled `impacted` or `guest` from where it was sent (`IMPACT-1`, `GUEST-LABEL-1`). Guest content is always labelled and every content list has an "Impacted only" filter. Slice-1 mechanism is option C: the device checks the area locally, the server issues a single-use challenge, and native builds add an App Attest or Play Integrity token. On web the result is self-asserted, so the label reads "Reported impacted" until the target proof `zk_cell_v1` (blinded H3 cell membership) passes its spike (`OQ-impacted-label-web`, `OQ-zk-setup`). Coordinates, cells and IP-derived location are never stored or logged, and the attestation never reaches moderation (`LOC-PRIV-1`). Doubt downgrades to guest and never sanctions (`LOC-DOUBT-1`). Design: `docs/design/location/attestation.md`.
 
+### The Archive and suggestions (D-76)
+
+Slice 1 includes the Archive and path suggestions (default). Seeds 1 and 2 produce the first archive records through the persona simulation, and suggestions in slice 1 use that simulation archive (`24-archive-reuse.md`, `SIM-LABEL-1`). Every ended problem is archived (`ARCHIVE-1`), suggestions show differences and local fit and are never auto-adopted (`REUSE-CONTEXT-1`), credit is always shown (`REUSE-CREDIT-1`), and at least one volunteer review is still required (`REUSE-NOBLOCK-1`).
+
 ## 7. What "solved" means
 
 The steward (the poster) **proposes** `solved`, or the system proposes it when the last required stage resolves. The **moderation run decides** (T15, `DP-VERIFICATION`) against the problem's **final acceptance criteria** and cites the policy version. For each criterion there must be evidence that meets it (an official page, a record, a dated observation by a named public role, or an independent statement; at least one URL) and an outcome statement. Every required stage must be `resolved` or `skipped`. A promise is not an achievement: a completed task alone does not make a problem solved. The final threshold is `OQ-solved-evidence-threshold`.
@@ -167,6 +171,8 @@ Persistence is in `can_server` (Drizzle, domain kept ORM-free behind repository 
 | `stage_evidence` | stage, URL, criteria it supports, submitted_by, tier (URL only, no files) |
 | `review_recommendation` | problem, reviewer (masked), `path` (field or metadata path), `recommendation`, `reason`, `status` (open, accepted, declined), `resolution_reason`, timestamps. Never public |
 | `source_ref` | problem or stage evidence, `uri`, `category` (official record, statistics body, court or legislature, reputable media, research, civil society, other), `establishes`, `authenticity_note`, `DP-SOURCE-TRUST` result |
+| `archive_record` | problem, `context_profile`, `executed_path`, options and choices, evidence refs, `challenge` list, costs and resources, outcome, terminal state, policy, schema and legal corpus versions, license and attribution; personal data stripped, public (`24-archive-reuse.md`) |
+| `path_suggestion` | problem in preparation, source archive records, per-dimension similarity, differences, legality and resource-fit results, draft stage plan, confidence, status (shown, used, dismissed) |
 | `moderation_decision` | section 5 fields, target problem or contribution |
 | `appeal` | decision, appellant, grounds, re-run id, label task, outcome, explanation |
 | `audit_event` | actor, action, object, time, policy_version; never raw personal data |

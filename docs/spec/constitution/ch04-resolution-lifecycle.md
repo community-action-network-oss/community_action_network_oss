@@ -77,12 +77,16 @@ Each layer's corpus (L1 to L6) is held in `can_policy` with source provenance: o
 
 Rules: LEGAL-GATE-1, LEGAL-SOURCE-1, LEGAL-CORPUS-1
 
-### IV.7 CONTEXTUAL-REUSE: Contextual reuse
-*Status: Drafted · Old: Art 16 · First phase: P4*
+### IV.7 CONTEXTUAL-REUSE: The Archive and contextual reuse
+*Status: Decided (D-76) · Old: Art 16 · First phase: S1, P4*
 
-Earlier resolution records are discoverable and reusable, but similarity does not prove applicability. Before reuse, compare geography, law, climate, culture, resources, affected populations, time, capacity, contraindications, and outcome quality. For high-stakes domains (medicine, agriculture, law, finance, mental health, engineering) communicate uncertainty plainly and use stronger expert review and escalation.
+Common problems should not be solved from scratch each time. The **Archive** is the public, permanent, unranked record of every problem that ended, solved or not, with its whole journey: the stage plan as run, the options and choices and why, the evidence, the failed paths and challenges, the costs and the outcome. Personal data is stripped. Failures are kept on purpose, since a path that failed teaches as much as one that worked. The Archive supersedes the "Resolution records" naming of D-20.
 
-Rules: none yet.
+New problems are matched to archived ones by context and offered as suggested paths, adapted to the new place. Similarity does not prove applicability. Every suggestion compares geography, law, climate, culture, resources, affected populations, time, capacity, contraindications and outcome quality, and shows the differences. It must pass the new problem's own legal stack and resource fit, and it is never adopted automatically. The source problems are always credited, in the suggestion and in any plan derived from it. For high-stakes domains (medicine, agriculture, law, finance, mental health, engineering) communicate uncertainty plainly and use stronger expert review and escalation.
+
+Suggestions and AI drafts speed work up. They never replace the volunteer review of a problem (V.4), and community input is invited without being a blocker. Contributed content is licensed for reuse with attribution so that reuse stays traceable (`OQ-contribution-license`).
+
+Rules: ARCHIVE-1, REUSE-CONTEXT-1, REUSE-CREDIT-1, REUSE-NOBLOCK-1
 
 ### IV.8 STEWARDSHIP-AUTHORITY: Stewardship and authority
 *Status: Drafted (Art 22, 46); Decided (Art 30) · Old: Art 22, 30, 46 · First phase: S1, P3*
