@@ -29,7 +29,7 @@ Gating engine, run in the same transaction as the stage change:
 2. A stage can be started only from `ready`. A person trying to start a `planned` stage gets `not_ready`; contributions to it are still accepted and kept (STAGE-PREP-1, [contribution-and-proposal.md](contribution-and-proposal.md)).
 3. Parallel branches are independent; one `blocked` branch does not block the others, but does block the stages after it.
 4. A `skipped` stage counts as resolved for gating, only through an accepted [plan-change.md](plan-change.md).
-5. When all required stages are resolved, request DP-VERIFICATION against the final criteria; `solved` on pass, with a resolution record.
+5. When all required stages are resolved, request DP-VERIFICATION against the final criteria; `solved` on pass, with a archive record.
 
 Problem-level labels: "Active: stage {name}", or "Active: {n} stages in progress".
 
@@ -39,7 +39,7 @@ Problem-level labels: "Active: stage {name}", or "Active: {n} stages in progress
 - Problem leaves `active` (paused, stuck, closed): stage states are kept; `paused` freezes starts, no stage resolves.
 
 ## Data written
-`stage.state`, `problem.state`, `problem_event`, resolution record, `moderation_run`.
+`stage.state`, `problem.state`, `problem_event`, archive record, `moderation_run`.
 
 ## Events emitted
 `stage.ready`, `stage.active`, `stage.resolved`, `stage.blocked`, `stage.skipped`, `problem.solved` (planned).

@@ -135,11 +135,6 @@ Form field labels, guidance, examples and hints-by-field come from the content s
 | tombstone.removed | It was taken out of public view on {date, date, medium} under {ruleId}, policy {version}. You can read the reason and the appeal route. |
 | tombstone.notFound | We could not find this. It may never have existed. |
 | tombstone.back | Back to the problem |
-| resolution.title | Resolution records |
-| resolution.body | A plain archive of problems that were solved or closed. It is not a leaderboard. |
-| resolution.filter | Resolved in |
-| resolution.item | {outcome}. Resolved {date, date, medium} in {place}. |
-| resolution.empty | Nothing has been resolved yet. |
 
 ## Forms (schema driven, D-58)
 | id | English |

@@ -14,6 +14,9 @@ Moderation model (D-51): humans legislate policy, AI agents apply it at every ev
 | [stage-advancement.md](stage-advancement.md) | A stage changes state | planned, W10 |
 | [stage-work.md](stage-work.md) | A stage is `active` | planned, W10 |
 | [plan-change.md](plan-change.md) | Proposal to change the stage plan | planned, W10 |
+| [archive-on-terminal.md](archive-on-terminal.md) | Problem reaches a terminal state (DP-ARCHIVE) | planned, W12 |
+| [path-suggestion.md](path-suggestion.md) | Preparation fields change (DP-REUSE-FIT) | planned, W12 |
+| [stage-draft.md](stage-draft.md) | Problem published (DP-STAGE-DRAFT) | planned, W12 |
 | [auth-signup-signin.md](auth-signup-signin.md) | Invite redeem, sign-in code | planned: 02-u04 to 02-u08, 02-u16 to 02-u18 |
 | [intake-submit.md](intake-submit.md) | Submit a draft problem | planned: 03-u05 to 03-u08, 03-u16 to 03-u19; AI parts plan 09 (pending) |
 | [content-update.md](content-update.md) | Edit or add content | planned: 03-u06, 04-u02, 04-u03; AI parts plan 09 (pending) |

@@ -161,4 +161,4 @@ Tab "Tasks".
 | [ Save draft ]  [ Submit update ]    |
 +--------------------------------------+
 ```
-Update and verification run DP-STAGE-RESOLUTION and DP-VERIFICATION. When all tasks are verified, the initiator may propose solved with the outcome statement (schema form); the moderation run decides (T15) and the page shows the policy version. A completed task alone is not solved. Final screens are WF-DETAIL-3 variants or the entry in WF-RESOLUTION-1.
+Update and verification run DP-STAGE-RESOLUTION and DP-VERIFICATION. When all tasks are verified, the initiator may propose solved with the outcome statement (schema form); the moderation run decides (T15) and the page shows the policy version. A completed task alone is not solved. Final screens are WF-DETAIL-3 variants or the entry in the Archive (WF-ARCHIVE-2).

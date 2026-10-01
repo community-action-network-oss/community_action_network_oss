@@ -18,6 +18,7 @@ flowchart LR
     mod["AI moderation runtime<br/>DP selector, run recorder,<br/>decision applier"]
     pol["policy module<br/>pack loader, version registry,<br/>content-schema registry"]
     gw["privacy gateway + router<br/>budgets, spend caps"]
+    arc["archive module<br/>records, pgvector index,<br/>retrieval, suggestions"]
     ports["Ports: identity, storage,<br/>signing, notification, jobs"]
   end
   pg[("Postgres 16<br/>host :5433, Drizzle")]
@@ -33,6 +34,9 @@ flowchart LR
   domain --> mod
   mod --> pol
   mod --> gw
+  domain --> arc
+  arc --> mod
+  arc --> pg
   gw -- "redacted inputs only" --> prov
   cp -- "pack by version + hash" --> pol
   domain --> pg
@@ -46,7 +50,7 @@ flowchart LR
   server -- "openapi/openapi.json" --> app
 ```
 
-D-55 to D-58: persona simulation is the slice-1 proof (CI uses FakeModel); services are portable ([components/cross-cutting.md](components/cross-cutting.md)); every content type is schema-structured, with `DP-COMPLETENESS` and `DP-ASSUMPTIONS` checking submissions. D-59 to D-61: rule changes trigger [re-resolution](flows/re-resolution.md) (never silent, appealable), and legality checks apply the legal stack L0 to L6 ([legal-corpus-update](flows/legal-corpus-update.md)). D-72: lifecycle v2, see [flows/](flows/README.md) (prepare, volunteer review, DP-PUBLISH, stage DAG).
+D-55 to D-58: persona simulation is the slice-1 proof (CI uses FakeModel); services are portable ([components/cross-cutting.md](components/cross-cutting.md)); every content type is schema-structured, with `DP-COMPLETENESS` and `DP-ASSUMPTIONS` checking submissions. D-59 to D-61: rule changes trigger [re-resolution](flows/re-resolution.md) (never silent, appealable), and legality checks apply the legal stack L0 to L6 ([legal-corpus-update](flows/legal-corpus-update.md)). D-72: lifecycle v2, see [flows/](flows/README.md) (prepare, volunteer review, DP-PUBLISH, stage DAG). D-76: the Archive and path suggestions, see [components/server.md](components/server.md#archive-module-d-76).
 
 Ports: API :4000, Expo web :8081, gallery :3000, Postgres :5433.
 
@@ -68,7 +72,8 @@ Layout inside `can_server/src`: each module has `domain/` (pure TS, no Nest or D
 | `policy` | pack loader, version registry, cache | platform | Loads `can_policy` packs by version and hash. Plan 09 (pending). |
 | `ai-gateway` | privacy gateway, provider adapters, router, budgets | policy, platform | FakeModel and OpenRouter adapters (Anthropic optional). Plan 09 (pending). |
 | `stages` | stage, stage_edge, acceptance_criterion, stage_option, stage_choice, stage_evidence, source_ref | problems, moderation | Stage DAG and gating engine (D-72, W10). |
-| `review` | review_recommendation, volunteer opt-in | problems, moderation, accounts | Private volunteer review, quorum (D-72, W10). |
+| `review` | review_recommendation, volunteer opt-in | problems, moderation, accounts | Private volunteer review (D-72, W10). |
+| `archive` | archive_record, context_profile, path_suggestion, attribution | problems, stages, moderation, ai-gateway | Public Archive, retrieval, suggestions (D-76, W12). |
 | `contributions` | contribution, evidence_ref (URL only) | problems, moderation | Typed contributions; the type list comes from the brief. |
 | `decisions` | decision_record | stages, problems | States who decided, under which authority, why. |
 | `tasks` | task | decisions, problems | Task status, verification evidence refs. |

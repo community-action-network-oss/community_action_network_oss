@@ -58,7 +58,7 @@ Feasibility defaults: the problem still exists, the jurisdiction is still enable
 ## Failure paths
 - Model or budget failure: that item is retried; nothing changes meanwhile. A run never reopens on low confidence: it annotates for audit.
 - Initiator unreachable: a steward is notified; if none, annotate only.
-- Reopened problem later resolved again: a new resolution record; the earlier one stays in history.
+- Reopened problem later resolved again: a new archive record; the earlier one stays in history.
 - Appeal: the initiator or any follower can appeal the re-resolution decision ([appeal.md](appeal.md)); an independent re-run, then a label task if disputed.
 - Emergency or legal signal during review: [emergency-legal-lane.md](emergency-legal-lane.md).
 

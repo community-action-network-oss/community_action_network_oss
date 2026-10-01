@@ -32,6 +32,9 @@ sequenceDiagram
 
 Stage plan is optional. A poster may pick the `classic-5` template, build a custom DAG, or send no stages (one implicit stage whose criteria are the final criteria).
 
+## Suggested paths (D-76)
+As context fields are filled, the app asks for suggested paths ([path-suggestion.md](path-suggestion.md), WF-SUGGEST-1). They are private to the poster, advisory, never block "Send for volunteer review", and are only copied into the stage plan after an explicit confirm, with attribution. Data written adds `path_suggestion` and `attribution`; DPs invoked adds DP-REUSE-FIT.
+
 ## Deterministic checks (no model call)
 - Final acceptance criteria present (CRITERIA-1), each with a measure text.
 - Stage graph: no cycles, no dangling edge, at least one start node, every stage has criteria, every required stage reaches the end.

@@ -64,6 +64,15 @@ Unit: ______  Wireframe IDs: ______  Branch: ______
 - [ ] Location permission is explained before the system dialog (WF-LOCPERM-1); denial never blocks contributing.
 - [ ] No exact location, coordinates or place name derived from them is shown, stored, logged or sent by the screen.
 
+## 3e. Suggestions and archive (any unit with suggested paths, archive views or AI-drafted plans)
+- [ ] A suggestion or AI draft is never applied automatically: the stages are copied only after an explicit confirm, and facts and criteria are never touched.
+- [ ] Attribution is visible on every suggestion, on the archive case, and on every stage taken from a source case (credit line, license, link to the source case).
+- [ ] Differences, legality per layer and resource fit are shown before the "use" action; a path that is not allowed has no "use" action and says why.
+- [ ] Badges and outcomes are text plus an icon, never colour alone and never red; failed and unresolved items are shown with the same weight as successes.
+- [ ] Suggestions never block sending for review; copy never says a path is approved, safe or recommended.
+- [ ] Panel refresh does not steal focus; a live region announces the result count; unavailable, empty, too-few-fields and offline states exist.
+- [ ] Archive views show no personal data, no uploaded files (links only), no counts as status.
+
 ## 4. Layout and RTL
 - [ ] Logical properties only: `start`/`end`, `marginStart`, `paddingEnd`, `textAlign: start`. No `left`, `right`, `marginLeft`, `marginRight` (lint grep `npm run lint:logical`).
 - [ ] Icons that imply direction are mirrored in RTL; the layout was viewed with `dir=rtl` once (pseudo-locale is enough in slice 1).

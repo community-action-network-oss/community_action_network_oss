@@ -11,7 +11,11 @@ Every screen has a wireframe ID. "State" refers to lifecycle state keys in [`doc
 | WF-DETAIL-2 | same | anyone | Tombstone for withdrawn or removed items | n/a |
 | WF-DETAIL-3 | same | anyone | Status variants (paused, stuck, withdrawn, closed, redirected) | n/a |
 | WF-DETAIL-4 | same | anyone | Reopened under policy vX (T20, T21): old conclusion, what changed, next step, appeal | n/a |
-| WF-RESOLUTION-1 | `/resolutions` | anyone | Resolution records | loading, empty, error |
+| WF-ARCHIVE-1 | `/archive` | anyone | Archive browse and search with filters (type, region, resource band, outcome incl. failures) | loading, empty, error, offline |
+| WF-ARCHIVE-2 | `/archive/{id}` | anyone | Archived case: journey, stage map as executed, challenges, outcome, costs, credit and license | loading, error, offline, tombstone |
+| WF-SUGGEST-1 | panel in `/me/problems/{id}` | poster | Suggested paths, live while fields fill | loading, empty, too few fields, unavailable, offline |
+| WF-SUGGEST-2 | `/me/problems/{id}/suggestions/{suggestionId}` | poster | Suggestion detail: similarity, differences, legality per layer, resource fit, credit, use as starting point | loading, error, not-permitted |
+| WF-STAGEDRAFT-1 | `/me/problems/{id}/stage-draft` | poster | AI-drafted stage plan, edit before applying, credit kept | loading, unavailable, validation, not-permitted |
 | WF-SIGNUP-1 | `/sign-up` | anyone | Redeem invite | validation, offline, error |
 | WF-SIGNIN-1, WF-SIGNIN-2 | `/sign-in`, `/sign-in/code` | anyone | Email code sign-in | validation, rate limited, offline |
 | WF-ONBOARD-1 | `/welcome` | new member | Public name | error |
@@ -79,9 +83,9 @@ Problem states and the labels in `copy-deck-lifecycle.md`. The old fixed-sequenc
 | withdrawn before publication | WF-MYACT-1 with deletion date | nothing |
 | active (Active: stage {name}, or Active: {n} stages in progress) | WF-DETAIL-1, WF-STAGEMAP-1, WF-STAGE-1, WF-STAGE-2, WF-STAGE-3 | same |
 | paused, stuck | WF-DETAIL-3 (reason and resume condition, or blocker and next route), WF-STAGEMAP-1 | same |
-| redirected, closed | WF-DETAIL-3 variants, WF-RESOLUTION-1 | same |
+| redirected, closed | WF-DETAIL-3 variants, WF-ARCHIVE-1, WF-ARCHIVE-2 | same |
 | withdrawn after publication | WF-DETAIL-3 withdrawn variant, text tombstoned (WF-DETAIL-2) | WF-DETAIL-3 |
-| solved (Solved) | WF-DETAIL-1, WF-STAGE-2 (final criteria), WF-RESOLUTION-1 | same; reopened: WF-DETAIL-4 |
+| solved (Solved) | WF-DETAIL-1, WF-STAGE-2 (final criteria), WF-ARCHIVE-2 | same; reopened: WF-DETAIL-4 |
 | any published state after a policy change flips the result | WF-REMOD-1 with explanation and appeal | WF-REMOD-1 public short form |
 
 | Stage state (chip) | Screens |
@@ -122,4 +126,4 @@ Appeals attach to decisions, not to a state (D-15), and cover T02, T05, T16 and 
 
 ## Navigation
 
-Primary areas: Discover (WF-LIST-1), Report (WF-PREP-1), My activity (WF-MYACT-1), Policy (WF-POLICY-2), and for auditors, labelers and volunteer reviewers Review (WF-AUDIT-1, WF-VREVIEW-1). The stage map (WF-STAGEMAP-1) and stage workspaces sit inside WF-DETAIL-1. Bottom tabs on mobile, a top bar on desktop. No badges with counts on nav items.
+Primary areas: Discover (WF-LIST-1), Archive (WF-ARCHIVE-1), Report (WF-PREP-1), My activity (WF-MYACT-1), Policy (WF-POLICY-2), and for auditors, labelers and volunteer reviewers Review (WF-AUDIT-1, WF-VREVIEW-1). The stage map (WF-STAGEMAP-1) and stage workspaces sit inside WF-DETAIL-1. Bottom tabs on mobile, a top bar on desktop. No badges with counts on nav items.

@@ -9,7 +9,7 @@ Track implementation tasks, collect verification evidence from someone other tha
 `PATCH /v1/tasks/{id}`, verification contribution, ST05, ST06, T15.
 
 ## Status
-planned: 05-u01 (tasks, CHOICE-GATE and ST05), 05-u02 (verification, ST06, T15, resolution records), 05-u05 (screens). Solved-evidence DP: plan 09 (pending).
+planned: 05-u01 (tasks, CHOICE-GATE and ST05), 05-u02 (verification, ST06, T15, the archive), 05-u05 (screens). Solved-evidence DP: plan 09 (pending).
 
 ## Sequence
 ```mermaid
@@ -31,7 +31,7 @@ sequenceDiagram
   Eng->>Mod: gate DP-VERIFICATION (evidence vs success metric)
   alt evidence sufficient
     Mod-->>Eng: publish
-    Eng->>DB: tx: state=solved, resolution record, event; email followers
+    Eng->>DB: tx: state=solved, archive record, event; email followers
   else insufficient
     Mod-->>Eng: needs_revision with hint (what evidence is missing)
   else check failed
@@ -46,10 +46,10 @@ sequenceDiagram
 - Solved flagged later by sampling: re-review notice, appeal ([post-publication-recheck.md](post-publication-recheck.md)).
 
 ## Data written
-`task`, `contribution` (verification_evidence), resolution record, `moderation_run`, `audit_event`.
+`task`, `contribution` (verification_evidence), archive record, `moderation_run`, `audit_event`.
 
 ## Events emitted
-`task.updated`, `problem.verification`, `problem.solved` (resolution record created), `stage.active` (ST06) (planned).
+`task.updated`, `problem.verification`, `problem.solved` (archive record created), `stage.active` (ST06) (planned).
 
 ## DPs invoked
 DP-VERIFICATION, DP-PRIVACY, DP-NAMING on task text; DP-COMPLETENESS and DP-ASSUMPTIONS on task and verification-evidence fields (schema-structured, D-58). See [../ai/decision-points.md](../ai/decision-points.md).

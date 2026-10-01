@@ -40,6 +40,9 @@ Outcome mapping:
 
 Aggregation rules (deterministic): any DP-PRIVACY, DP-LEGALITY or DP-ELIGIBILITY failure blocks publish; DP-SOURCE-TRUST, DP-CRITERIA, DP-STAGE-PLAN or DP-COMPLETENESS failing gives `needs_revision`; unresolved high-impact open recommendations lower confidence and push to `needs_revision`; unresolved low-impact ones are noted. DP-CRISIS runs first and short-circuits to [emergency-legal-lane.md](emergency-legal-lane.md).
 
+## Suggestions and stage draft (D-76)
+Accepted suggestions and their attribution are inputs to DP-STAGE-PLAN and are shown to volunteer reviewers as context. They never replace the review (REVIEW-1, REUSE-NOBLOCK-1). On `active`, the suggestion service starts DP-STAGE-DRAFT ([stage-draft.md](stage-draft.md)) and the poster is offered the draft in WF-STAGEDRAFT-1. When the problem later ends it is archived ([archive-on-terminal.md](archive-on-terminal.md)).
+
 ## Failure paths
 - Schema-invalid output: retried once on the other route, else `held`.
 - Source URI unreachable: DP-SOURCE-TRUST reports `unverifiable`, not `fail`; hint asks for another source.

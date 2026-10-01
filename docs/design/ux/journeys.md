@@ -39,7 +39,7 @@ Persona: "Ben", a member who knows the ward budget process.
 | 3 | WF-STAGE-3 | Contributes ahead to a planned stage: the contribution is kept for when that stage starts. |
 | 4 | WF-STAGE-1 | Sees how the choice is made for the stage, who chose, why, dissent and the policy badge. Takes a step and posts an update with verification by someone else (WF-TASK-2). |
 | 5 | WF-STAGE-2 | Reads the resolution per criterion, and may appeal. |
-| 6 | WF-DETAIL-3, WF-RESOLUTION-1 | Sees the problem Solved, or Paused or Stuck in neutral words, with a way to help. |
+| 6 | WF-DETAIL-3, WF-ARCHIVE-2 | Sees the problem Solved, or Paused or Stuck in neutral words, with a way to help. |
 
 Edge cases: withdrawn contribution becomes a tombstone (WF-DETAIL-2); session expires mid-write (WF-SESSION-1) and answers are kept.
 
@@ -113,3 +113,19 @@ Two people contribute to the same problem. The label depends on where the app is
 | 5 | WF-STAGE-2 | Sees the resolution per criterion; guest evidence still counts toward the criteria. | Same. |
 
 If the check fails, the contribution shows as Guest with a retry; it is never an accusation (D-73).
+
+## J9 Poster in a low-resource place starts from a Dutch path (D-76)
+
+Persona: "Tendai", a resident of a small, hot, dry town with a tiny budget and no collection trucks, who wants public waste fixed. The archive holds a solved Dutch case (fictional here) in a cold, wet, well-funded city.
+
+| Step | Screen | What happens |
+|---|---|---|
+| 1 | WF-PREP-1, WF-SUGGEST-1 | Fills in the problem type, place, scale and the resources the town really has. Paths appear and update. One is from the Netherlands, badged "Allowed where you are" and "Partly fits your resources". |
+| 2 | WF-SUGGEST-2 | Opens it. Reads the differences first: climate and budget. Sees the adaptations (shaded bins, volunteer rounds instead of trucks), legality per layer with one "Needs a legal check", the missing vehicle, and credit to the Dutch case. |
+| 3 | WF-ARCHIVE-2 | Follows the credit link to read the Dutch journey, including two challenges that failed there. Learns what to avoid. |
+| 4 | WF-SUGGEST-2 | Chooses "Use as starting point" and confirms. Draft stages land in the stage editor (WF-PREP-3); facts and criteria are untouched. |
+| 5 | WF-PREP-3, WF-VREVIEW-3 | Edits the stages. Sends for volunteer review. The review still happens; the archive evidence only helps reviewers. |
+| 6 | WF-STAGEDRAFT-1 | After publication, reviews the AI-drafted plan, edits one stage, applies it. Credit to the source case is visible on the public stage map. |
+| 7 | WF-ARCHIVE-1 | Months later the problem ends and is archived with its journey, including what failed in this town, for the next community. |
+
+Success: Tendai never applies something blindly, sees why the path differs, and the Dutch case is credited. If suggestions are unavailable, every step still works by hand.

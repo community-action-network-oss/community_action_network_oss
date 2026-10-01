@@ -41,7 +41,7 @@ flowchart TD
 | Auth and onboarding | WF-SIGNUP-1, WF-SIGNIN-1, WF-SIGNIN-2, WF-ONBOARD-1, WF-SESSION-1 | 02-u16 to 02-u18 |
 | Browse | WF-LIST-1, WF-DETAIL-1, WF-DETAIL-2, WF-DETAIL-3 | 02-u19, 02-u20, 05-u06 |
 | J1 submitter | WF-SUBMIT-1 to 4, WF-FORM-1 to 5, WF-PENDING-1, WF-HOLD-1, WF-DECISION-1, WF-DECISION-2, WF-REMOD-1, WF-APPEAL-1, WF-APPEAL-2, WF-MYACT-1, WF-EXTERNAL-1 | 03-u17 to 03-u22, 05-u07 |
-| J2 contributor | WF-CONTRIB-1, 2, WF-PROPOSAL-1, 2, WF-DECREC-1, WF-DECREC-2, WF-TASK-1, 2, WF-RESOLUTION-1 | 04-u08 to 04-u10, 05-u05, 05-u07 |
+| J2 contributor | WF-CONTRIB-1, 2, WF-PROPOSAL-1, 2, WF-DECREC-1, WF-DECREC-2, WF-TASK-1, 2, WF-ARCHIVE-1, WF-ARCHIVE-2 | 04-u08 to 04-u10, 05-u05, 05-u07 |
 | J3 audit, label, lane, policy (replaces moderator, D-51) | WF-AUDIT-1, WF-AUDIT-2, WF-LABEL-1, WF-LANE-1, WF-POLICY-1, WF-POLICY-2, WF-SIM-1, WF-MOD-INVITE-1 | plan 09 and 11 (pending); invite 03-u25 |
 
 Under D-51 the moderator screens became audit, label, lane and policy screens (see J3 row; wireframes in ux/wireframes/moderation.md and policy.md). Decision screens carry "Decided under policy vX" and the independent re-run status.

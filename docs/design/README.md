@@ -7,12 +7,13 @@ The system design, UX pack and decision records that let contributors and overni
 | Path | What it is |
 |---|---|
 | [system-design.md](system-design.md) | Overview: containers, module boundaries, ERD with sensitivity and retention, `/v1` API, auth flow, event log, contract flow, decentralization seams, test strategy, web-first verification |
-| [flows/](flows/README.md) | Execution flows, one file per flow (auth, intake, lifecycle v2: preparation, volunteer review, publication decision, stage advancement, stage work, plan change; updates, re-check, appeal, policy amendment, structured submission, schema change, persona simulation, seed bootstrap, lifecycle, jobs, contract, night run) with status built or planned |
+| [flows/](flows/README.md) | Execution flows, one file per flow (auth, intake, lifecycle v2: preparation, volunteer review, publication decision, stage advancement, stage work, plan change; updates, re-check, appeal, policy amendment, structured submission, schema change, persona simulation, seed bootstrap, lifecycle, jobs, contract, night run; Archive and reuse: archive-on-terminal, path-suggestion, stage-draft) with status built or planned |
 | [components/](components/README.md) | Component view per repo (server modules incl. AI moderation runtime, app, gallery, planned `can_policy`, cross-cutting) with plan units |
-| [ai/](ai/README.md) | AI moderation design: policy pack, decision points, runtime, triggers, amendment loop, appeals, safety, evaluation, structured content, persona simulation |
+| [ai/](ai/README.md) | AI moderation design: policy pack, decision points, runtime, triggers, amendment loop, appeals, safety, evaluation, structured content, persona simulation, archive and reuse ([archive-reuse.md](ai/archive-reuse.md)) |
 | [ux/journeys.md](ux/journeys.md) | Submitter, contributor, moderator journeys with screen IDs |
 | [ux/screens.md](ux/screens.md) | Screen inventory and the lifecycle state to screen map |
 | [ux/wireframes/](ux/wireframes/) | ASCII low-fi wireframes, every frame has an ID (`WF-AREA-n`) |
+| [ux/copy-deck-archive.md](ux/copy-deck-archive.md) | Strings for suggested paths, the Archive and the AI-drafted stage plan |
 | [ux/copy-deck.md](ux/copy-deck.md) | Every user-facing string with its ICU message id |
 | [ux/ui-unit-template.md](ux/ui-unit-template.md) | Acceptance checklist for any UI unit |
 | [ux/tokens.json](ux/tokens.json) | Semantic design tokens, light and dark, contrast verified |

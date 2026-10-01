@@ -14,7 +14,10 @@ flowchart TD
   http --> dec[decisions]
   http --> task[tasks]
   http --> stg[stages]
-  http --> rev[review]
+  http --> arc[archive]
+  arc --> modr
+  arc --> stg
+  arc --> prob
   stg --> modr
   rev --> modr
   stg --> prob
@@ -46,6 +49,7 @@ flowchart TD
 | `ai-gateway` | privacy gateway (redact, pseudonymize, zones), provider adapters (FakeModel, OpenRouter, optional Anthropic), router (small model first), budgets and spend caps, model register | policy, platform | plan 09 (pending) | plan 09 (pending) |
 | `stages` | stage plan DAG (`stage`, `stage_edge`, `acceptance_criterion`), gating engine, `stage_option`, `stage_choice`, `stage_evidence`, plan versions and plan-change proposals | problems, moderation, contributions | W10 (D-72) | planned |
 | `review` | volunteer opt-in, review queue with masked view, `review_recommendation`, poster resolution, quorum check that triggers DP-PUBLISH | problems, moderation, accounts, ai-gateway (masking) | W10 (D-72) | planned |
+| `archive` | `archive_record`, `context_profile`, `executed_path`, `challenge`, context index (pgvector), retrieval service, suggestion service, `path_suggestion`, `attribution`, stage drafts | problems, stages, moderation, ai-gateway, policy | W12 (D-76) | planned |
 | `contributions` | contribution, evidence_ref (URL only), allowed-per-state matrix | problems, moderation | 04-u01 to 04-u03 | planned |
 | `decisions` | decision_record, legal-gate record | stages, problems | 04-u05 | planned |
 | `tasks` | task, blockers, verification refs | decisions, problems | 05-u01, 05-u02 | planned |
@@ -152,6 +156,94 @@ erDiagram
   }
 ```
 Visibility: all of these are private until publish; `review_recommendation` stays private after publish (REVIEW-1). Stage rows, edges, criteria, options, choices, evidence and source refs become public with the problem. `task` gains `stage_id`, `contribution` gains nullable `stage_id`, `decision_record` records a `stage_choice`.
+
+## Archive module (D-76)
+Flows: [archive-on-terminal](../flows/archive-on-terminal.md), [path-suggestion](../flows/path-suggestion.md), [stage-draft](../flows/stage-draft.md). AI design: [../ai/archive-reuse.md](../ai/archive-reuse.md). Screens: [../ux/wireframes/archive.md](../ux/wireframes/archive.md).
+
+Parts of `archive` (layers as everywhere: `http/`, `app/`, `domain/`, `infra/`):
+- **Records** (`app/records`): builds an `archive_record` from stages, choices, evidence and outcome on a terminal transition (outbox job, idempotent per problem and end time); calls DP-ARCHIVE through `moderation`; publishes the record. Public read: `GET /v1/archive`, `GET /v1/archive/{id}`.
+- **Context index** (`infra/index`): Postgres with `tsvector` for full text, structured `context_profile` columns for filters, and pgvector (`hnsw`, cosine) for embeddings of the record, each stage and each challenge. Embeddings come from an `EmbeddingPort` (small multilingual model through OpenRouter, free or cheap per D-65, or a local adapter; `FakeEmbedding` in tests and night runs). Only public, personal-data-free text is embedded.
+- **Retrieval service** (`app/retrieval`): hybrid query (structured match, full text, vector), merge and rank, top k. Pure ranking in `domain/` (no Nest or Drizzle imports).
+- **Suggestion service** (`app/suggestions`): derives `context_profile` from draft fields, calls retrieval, then DP-REUSE-FIT, stores `path_suggestion` (private to the poster), and on accept copies draft stages and writes `attribution`. Also owns the post-publication stage draft (DP-STAGE-DRAFT, then DP-STAGE-PLAN through `stages`). It never adopts anything by itself (REUSE-CONTEXT-1).
+
+Endpoints (planned): `POST /v1/problems/{id}/suggestions`, `GET /v1/problems/{id}/suggestions/{sid}`, `POST .../suggestions/{sid}/accept|dismiss`, `GET|PUT /v1/problems/{id}/stage-draft`, `POST /v1/problems/{id}/stage-draft/apply`. Exact shapes in the OpenAPI contract; add them to system-design section 6 in the same PR.
+
+### Archive entities
+```mermaid
+erDiagram
+  problem ||--o| archive_record : "archived as"
+  archive_record ||--|| context_profile : has
+  archive_record ||--o{ executed_path : "stages as run"
+  archive_record ||--o{ challenge : records
+  problem ||--o{ path_suggestion : "receives"
+  path_suggestion }o--o{ archive_record : "draws on"
+  path_suggestion ||--o{ attribution : credits
+  archive_record ||--o{ attribution : "credited by"
+  archive_record {
+    uuid id PK
+    uuid problem_id FK "opaque in public reads"
+    jsonb snapshot "stripped"
+    text terminal_state "solved|closed|redirected|stuck"
+    jsonb outcome
+    jsonb costs
+    jsonb versions "policy, schema, legal corpus"
+    text license "CC BY 4.0 default"
+    text status "pending|public|needs_attention"
+    tsvector fts
+  }
+  context_profile {
+    uuid id PK
+    uuid owner_id "archive_record or problem"
+    text problem_type
+    text scale_band
+    text climate_class
+    text region
+    text resource_band
+    text[] institution_roles
+    text[] legal_layers
+    text language
+    vector embedding "pgvector"
+  }
+  executed_path {
+    uuid id PK
+    uuid archive_record_id FK
+    text stage_name
+    text outcome "resolved|skipped|blocked|abandoned"
+    text duration_band
+    text cost_band
+    uuid[] depends_on
+  }
+  challenge {
+    uuid id PK
+    uuid archive_record_id FK
+    text tried
+    text why_failed_or_blocked
+    text kind
+    text resolution "text or unresolved"
+  }
+  path_suggestion {
+    uuid id PK
+    uuid problem_id FK "private to the poster"
+    uuid[] source_ids
+    jsonb similarity "per dimension"
+    jsonb differences
+    jsonb adaptations
+    jsonb legality "per layer L0 to L6"
+    jsonb resource_fit
+    jsonb draft_stages
+    text confidence
+    text status "shown|dismissed|accepted"
+  }
+  attribution {
+    uuid id PK
+    uuid archive_record_id FK
+    uuid path_suggestion_id FK
+    uuid stage_id FK "stage taken from the case, nullable"
+    text credit_line
+    text license
+  }
+```
+Visibility: `archive_record`, `context_profile` (archived), `executed_path`, `challenge` and the `attribution` shown on public stages are public and contain no personal data. `path_suggestion` and unsaved stage drafts are private to the poster and removed with the draft after 30 days. Retention of the archive: kept, corrected through append-only revisions; takedown only through the normal removal rules, leaving a tombstone.
 
 ## Inside moderation, policy and ai-gateway
 ```mermaid
