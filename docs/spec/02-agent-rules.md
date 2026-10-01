@@ -81,7 +81,7 @@ Implementation may begin on reversible foundations while founder decisions remai
 
 Do not reopen the approved baselines unless evidence reveals a material blocker. The approved baselines are:
 
-- three submodule repositories: `can_server` (NestJS, owns domain, policy and the OpenAPI contract), `can_app` (Expo, owns design system, i18n and the generated client), `can_promo_site` (Next.js static export)
+- three submodule repositories: `can_server` (NestJS, owns domain, policy and the OpenAPI contract), `can_app` (Expo, owns design system, i18n and the generated client), `can_gallery` (Next.js static export)
 - Expo with gluestack v5 on UniWind, NestJS, PostgreSQL, Drizzle, npm, Node 24
 - a centralized, founder-hosted reference deployment first, with decentralization as a later track that keeps four seams now (D-22)
 - the Phase 0A public concept page as a Next.js static site

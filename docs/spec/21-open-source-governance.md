@@ -172,7 +172,7 @@ Evaluate at least:
 
 Do not finalize licensing without qualified legal advice and a documented compatibility analysis.
 
-**Current state (D-27):** there is no LICENSE file yet. The recommendation, to be confirmed, is AGPL-3.0 for `can_server` (network copyleft keeps hosted forks open) and Apache-2.0 for `can_app`, `can_promo_site`, documentation and protocol schemas. The license blocks publishing and broad promotion, not building. See `docs/open-questions/OQ-license.md`.
+**Current state (D-27):** there is no LICENSE file yet. The recommendation, to be confirmed, is AGPL-3.0 for `can_server` (network copyleft keeps hosted forks open) and Apache-2.0 for `can_app`, `can_gallery`, documentation and protocol schemas. The license blocks publishing and broad promotion, not building. See `docs/open-questions/OQ-license.md`.
 
 ### Outcome-led adoption
 

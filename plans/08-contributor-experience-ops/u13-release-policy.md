@@ -29,7 +29,7 @@ Define how the three repos and the superproject are versioned and released, usin
 2. Who may cut a release (maintainers), the pointer-bump rule (only maintainers merge, CONTRIBUTING.md), the order (server contract, then app client, then superproject), and that nothing is published to any registry, store or host without a founder gate.
 3. Release record template with the eight fields from docs/spec/21: what changed, which problem it addresses, evidence it works, known limitations, security and privacy implications, migration requirements, rollback procedure, contributors recognized.
 4. Rollback: revert pointer bump, redeploy previous tag; migrations are forward only unless a down path is documented in the record.
-5. Changelog source: commit history feeds the promo what is new page (plan 06 unit 07).
+5. Changelog source: commit history feeds the gallery what is new page (plan 06 unit 07).
 
 ## Acceptance
 

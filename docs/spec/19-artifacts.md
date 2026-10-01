@@ -8,7 +8,7 @@ An index of the documents and living records the project maintains, version-cont
 | Product requirements; scope and non-goals | `docs/spec/03-scope.md`, `01-slice-1-brief.md` | 0B | exists |
 | Open-questions register, assumptions and risk registers | `docs/open-questions/`; risks in `docs/design/` | 0B | exists |
 | Decision log | `DECISIONS.md` | 0B | exists |
-| Architecture decision records (Expo, gluestack on UniWind, NestJS, PostgreSQL, Drizzle, three submodules, server-owned OpenAPI, Next.js promo, email-code auth, web-first verification, no live AI in slice 1) | `docs/adr/` | 0B | exists |
+| Architecture decision records (Expo, gluestack on UniWind, NestJS, PostgreSQL, Drizzle, three submodules, server-owned OpenAPI, Next.js gallery, email-code auth, web-first verification, no live AI in slice 1) | `docs/adr/` | 0B | exists |
 | Architecture overview, diagrams, slice-1 ERD, API surface, auth flow, test strategy | `docs/design/` | 0B | exists |
 | Domain glossary and state machines | `00-index.md` (glossary), `01-slice-1-brief.md` (state table) | 0B | exists |
 | Data model and data classification | `10-data-model.md`, `docs/design/` | 1 | exists (model), planned (classification) |
@@ -25,7 +25,7 @@ An index of the documents and living records the project maintains, version-cont
 | Contributor guide, code of conduct, security policy | `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md` | 0A | planned |
 | Open-source license decision | `docs/open-questions/OQ-license.md` (no LICENSE file yet) | 0B | open |
 | AI-assisted contribution policy, disclosure template, reviewer checklist, merge gates, autonomous-agent rules, tool setup guide | `22-ai-contribution-policy.md`, `AI_CONTRIBUTIONS.md` | 0A to 1 | planned |
-| Concept-page brief, factual claims register, recruitment content, contribution calls, launch checklist | `can_promo_site/`, `18-phases-gates.md` (Phase 0A) | 0A | planned |
+| Concept-page brief, factual claims register, recruitment content, contribution calls, launch checklist | `can_gallery/`, `18-phases-gates.md` (Phase 0A) | 0A | planned |
 | Interest channel (form or list), if any | `docs/open-questions/OQ-promo-interest-channel.md` | 0A | open |
 | Gate X readiness standard and role-page templates | `18-phases-gates.md` (Gate X) | Gate X | later |
 | One-hour contribution catalog (role, risk, prerequisites, review, outcome, stopping point) | `plans/` task catalog | 0A | planned |

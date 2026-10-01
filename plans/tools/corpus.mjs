@@ -4,8 +4,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const REPOS = ['.', 'can_server', 'can_app', 'can_promo_site'];
-const AREAS = ['can-spec', 'can-root', 'can-server', 'can-app', 'can-promo-site'];
+const REPOS = ['.', 'can_server', 'can_app', 'can_gallery'];
+const AREAS = ['can-spec', 'can-root', 'can-server', 'can-app', 'can-gallery'];
 const USTATUS = ['todo', 'doing', 'done', 'blocked', 'skipped'];
 const PSTATUS = ['todo', 'doing', 'done'];
 const NEEDS = ['docker', 'db', 'mail'];

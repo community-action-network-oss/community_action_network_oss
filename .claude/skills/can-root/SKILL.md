@@ -8,7 +8,7 @@ description: Work on the CAN superproject wiring: submodules, .gitmodules, point
 Only the root owner writes `.gitmodules` and pointer bumps. Area agents commit inside their own submodule and never touch the gitlink.
 
 ## Layout
-- Submodules `can_server`, `can_app`, `can_promo_site`, with relative URLs `../<name>.git` in `.gitmodules`.
+- Submodules `can_server`, `can_app`, `can_gallery`, with relative URLs `../<name>.git` in `.gitmodules`.
 - Each URL resolves to a bare repo that is a sibling of the superproject directory: `<parent>/<name>.git`.
 - Root files: `README.md`, `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md`, `scripts/verify-all.sh`, `.claude/settings.proposed.json` (+ README). There is no LICENSE (D-27) and no active `settings.json`.
 

@@ -5,7 +5,7 @@
 
 ## Question
 
-What channel, if any, should the promo site offer for people who want updates or want to help?
+What channel, if any, should the gallery offer for people who want updates or want to help?
 
 ## Why it matters
 

@@ -5,7 +5,7 @@
 
 ## Question
 
-Which open-source license applies to `can_server`, `can_app`, `can_promo_site`, the documentation and the protocol schemas?
+Which open-source license applies to `can_server`, `can_app`, `can_gallery`, the documentation and the protocol schemas?
 
 ## Why it matters
 
@@ -13,7 +13,7 @@ It is very hard to change once outside contributions land. It decides whether ho
 
 ## Current default (what we built meanwhile)
 
-No LICENSE file exists in any repository (D-27). Nothing is published. Recommendation to be confirmed: AGPL-3.0 for `can_server` (network copyleft keeps hosted forks open), Apache-2.0 for `can_app`, `can_promo_site`, documentation and protocol schemas.
+No LICENSE file exists in any repository (D-27). Nothing is published. Recommendation to be confirmed: AGPL-3.0 for `can_server` (network copyleft keeps hosted forks open), Apache-2.0 for `can_app`, `can_gallery`, documentation and protocol schemas.
 
 ## Who can help
 

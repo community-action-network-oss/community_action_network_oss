@@ -17,7 +17,7 @@ Make the repositories ready for a stranger and for an overnight agent: issue and
 
 - A new contributor can go from clone to green verify with one command and a short tour.
 - Every repo has a CI workflow that runs its verify; none runs until a remote exists.
-- The corpus tool can emit a catalog that both the promo site and the good-first index consume.
+- The corpus tool can emit a catalog that both the gallery and the good-first index consume.
 - Nothing is applied to GitHub, no secret is referenced, nothing is pushed or deployed.
 
 ## Units
@@ -32,7 +32,7 @@ Total estimate: 14.5 hours across 14 units. Gated units are never selected by `c
 | 08-u04 | CI workflow for the superproject | . | 1 | 2, 3 | no |
 | 08-u05 | CI workflow for can_server | can_server | 1 | 4 | no |
 | 08-u06 | CI workflow for can_app | can_app | 0.75 | 4 | no |
-| 08-u07 | CI workflow for can_promo_site | can_promo_site | 0.75 | 4 | no |
+| 08-u07 | CI workflow for can_gallery | can_gallery | 0.75 | 4 | no |
 | 08-u08 | One-command bootstrap script | . | 1.5 | none | no |
 | 08-u09 | Devcontainer configuration | . | 0.75 | 8 | no |
 | 08-u10 | docs/onboarding tour for new contributors | . | 1.5 | 2, 3, 8 | no |

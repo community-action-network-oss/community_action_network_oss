@@ -14,7 +14,7 @@ Every default, deviation and judgment call made while building CAN. Each one can
    - 02-u22: real SMTP
    - 02-u23: native session and device checks
    - 05-u09: real emergency routes
-   - 06-u11: promo interest channel
+   - 06-u11: gallery interest channel
    - 06-u12: repo link
    - 06-u14: deploy
    - 07-u11: device smoke test
@@ -23,7 +23,7 @@ Every default, deviation and judgment call made while building CAN. Each one can
    - D-12 to D-18
    - D-30: constitution, incl. the founder stewardship sunset of quorum >= 5 or 24 months
    - D-34: timers and state renames
-5. **Promo hero copy (D-39).** Read the site at `can_promo_site`: `npm run dev` on port 3000.
+5. **Gallery hero copy (D-39).** Read the site at `can_gallery`: `npm run dev` on port 3000.
 6. **All 7 plans are `approved: true` (D-42).** This lets night 1 run without waiting. To hold a plan, set `approved: false` in its PLAN.md.
 7. **Starting night 1.** In Claude Code, from the superproject, run `/can-code-large night`. The dry run in `plans/00-ROOT.md` shows about 4 hours per lane across 4 lanes.
 
@@ -236,3 +236,4 @@ Every default, deviation and judgment call made while building CAN. Each one can
 - **D-46 · W1 · `can_promo_site` now gitignores `AGENTS.md` and `CLAUDE.md`.** Next 16 regenerates both files on every `next dev`, so deleting them only made the tree dirty again.
   - Their one useful hint, "read `node_modules/next/dist/docs` before writing Next code", now lives in the can-promo-site skill.
   - Reverse: remove the two lines from the gitignore and commit the files.
+- **D-47 · W2 · Renamed can_promo_site to can_gallery.** Founder: it is the public gallery of CAN, a read-only observation area showing what is happening inside the project and explaining what CAN is, not a promotional site. Area skill is now can-gallery; plan 06 folder is 06-gallery-phase-0a; bare repo ../can_gallery.git. Reverse: repeat the rename.

@@ -6,7 +6,7 @@ MADR-lite: context, decision, consequences, how to reverse. One decision per fil
 |---|---|---|
 | [0001](0001-submodule-layout.md) | Superproject with three submodules and bare sibling remotes | Accepted |
 | [0002](0002-server-owned-openapi.md) | The server owns the OpenAPI contract | Accepted |
-| [0003](0003-nextjs-static-promo-site.md) | Next.js static export for the promo site | Accepted |
+| [0003](0003-nextjs-static-gallery-site.md) | Next.js static export for the gallery | Accepted |
 | [0004](0004-email-code-auth.md) | Email 6-digit code sign-in | Accepted |
 | [0005](0005-web-first-verification.md) | Verify on web first; native only has to bundle | Accepted |
 | [0006](0006-no-live-ai-in-slice-1.md) | No live AI in slice 1 | Accepted |

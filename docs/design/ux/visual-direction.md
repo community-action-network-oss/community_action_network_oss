@@ -28,4 +28,4 @@ Little and short: 120 to 200 ms fades or height changes. All motion off under re
 Short sentences, concrete verbs, say what happens next. Explain waiting honestly. Never imply the person did something wrong when a rule asks for a change. See `copy-deck.md`.
 
 ## Shared use
-`tokens.json` is the single source. `can_app` turns it into the gluestack/UniWind theme; `can_promo_site` turns it into CSS variables (`--can-color-bg` and so on) with a `prefers-color-scheme` block. Neither repo may introduce a colour outside the tokens. The promo site is a visitor's first impression, so it uses the same calm palette with larger type and more white space, not a separate brand.
+`tokens.json` is the single source. `can_app` turns it into the gluestack/UniWind theme; `can_gallery` turns it into CSS variables (`--can-color-bg` and so on) with a `prefers-color-scheme` block. Neither repo may introduce a colour outside the tokens. The gallery is a visitor's first impression, so it uses the same calm palette with larger type and more white space, not a separate brand.

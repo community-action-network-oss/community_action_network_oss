@@ -6,7 +6,7 @@ This is the **canonical** phase list. The timing table is under "Indicative timi
 
 ### Phase 0A: Public concept and founding contributor page
 
-This is the first public build. Create a fast, accessible promotional and recruitment site before the full platform. It is the `can_promo_site` repository: a Next.js static export with plain CSS, no forms, no analytics and no third-party fetches. English at first, with locale-prefixed routes added later for other languages. It should explain:
+This is the first public build. Create a fast, accessible public site before the full platform: the public gallery of CAN, a read-only observation area where anyone can see what is going on inside the project and learn what CAN is, which also recruits founding contributors. It is the `can_gallery` repository: a Next.js static export with plain CSS, no forms, no analytics and no third-party fetches. English at first, with locale-prefixed routes added later for other languages. It should explain:
 
 - The public and structural problems the project addresses
 - Why existing protest, complaint, petition, social-media, and governance channels are insufficient by themselves
@@ -52,7 +52,7 @@ Phase 0A acceptance criteria:
 
 ### Phase 1: Foundation
 
-- Three repositories (`11-architecture.md`): `can_server`, `can_app`, `can_promo_site`
+- Three repositories (`11-architecture.md`): `can_server`, `can_app`, `can_gallery`
 - Expo Router universal application, with gluestack v5 on UniWind, project-owned civic components, semantic tokens, RTL, accessibility and responsive-layout tests. Verified on web; native builds must bundle (D-8)
 - NestJS modular-monolith service with framework-light domain modules
 - PostgreSQL schema through Drizzle, migrations, transaction strategy, and a typed persistence boundary

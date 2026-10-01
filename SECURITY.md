@@ -8,7 +8,7 @@ Please include what you found, how to reproduce it, and the impact. Reports must
 
 ## Scope
 
-In scope: the code and configuration in `can_server`, `can_app`, `can_promo_site`, the scripts, and the documented API contract.
+In scope: the code and configuration in `can_server`, `can_app`, `can_gallery`, the scripts, and the documented API contract.
 
 Out of scope: third-party services and dependencies (report those upstream), social engineering of maintainers, and denial-of-service testing against anything you do not run yourself.
 

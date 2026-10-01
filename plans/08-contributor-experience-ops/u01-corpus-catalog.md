@@ -21,7 +21,7 @@ actual_hours: null
 
 ## Objective
 
-Give promo and contributor tooling one stable machine-readable view of the corpus, so they never parse unit files themselves.
+Give gallery and contributor tooling one stable machine-readable view of the corpus, so they never parse unit files themselves.
 
 ## Steps
 

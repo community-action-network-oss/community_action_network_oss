@@ -10,7 +10,7 @@ Lifecycle states, transitions, actors, labels and next actions live only in [`do
 flowchart LR
   subgraph clients[Clients]
     app["can_app<br/>Expo SDK 57, web verified<br/>iOS/Android bundle only"]
-    promo["can_promo_site<br/>Next 16 static export<br/>no runtime, no API calls"]
+    gallery["can_gallery<br/>Next 16 static export<br/>no runtime, no API calls"]
   end
   subgraph server["can_server (NestJS modular monolith, :4000)"]
     api["HTTP adapter /v1<br/>validation, guards, OpenAPI"]
@@ -22,7 +22,7 @@ flowchart LR
   mail["Mailpit (dev SMTP :1025, UI :8025)<br/>real SMTP is founder-gated"]
   fed["Federation seams<br/>NOT BUILT: export, signing, AT Protocol"]
   app -- "REST JSON, httpOnly cookie (web)" --> api
-  promo -. "links only" .-> app
+  gallery -. "links only" .-> app
   api --> domain --> ports
   domain --> pg
   ports -- "SMTP" --> mail
@@ -31,10 +31,10 @@ flowchart LR
   server -- "openapi/openapi.json" --> app
 ```
 
-Ports: API :4000, Expo web :8081, promo :3000, Postgres :5433 (D-4, default 13).
+Ports: API :4000, Expo web :8081, gallery :3000, Postgres :5433 (D-4, default 13).
 
 Rules that follow from the diagram:
-- The promo site never calls the API. It is static HTML and links to the repository, docs and open questions.
+- The gallery never calls the API. It is static HTML and links to the repository, docs and open questions.
 - The app talks only to `/v1`. Its client is generated from `can_server/openapi/openapi.json` (ADR 0002).
 - The AI gateway is an interface with a `NoopAiGateway` bound when `AI_ENABLED=false`. Nothing in slice 1 sets it true (ADR 0006).
 - No object storage, Redis or queue in slice 1. Jobs run as Nest scheduled tasks calling job port methods, backed by Postgres rows (`SELECT ... FOR UPDATE SKIP LOCKED`).

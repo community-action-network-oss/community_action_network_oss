@@ -1,15 +1,15 @@
 ---
 id: "08-u07"
 plan: "08"
-title: "CI workflow for can_promo_site"
-repo: "can_promo_site"
+title: "CI workflow for can_gallery"
+repo: "can_gallery"
 area: "can-root"
 model: sonnet
 est_hours: 0.75
 priority: 70
 depends_on: ["08-u04"]
 writes: [".github/workflows/ci.yml"]
-spec: ["docs/adr/0003-nextjs-static-promo-site.md","docs/spec/18-phases-gates.md","docs/spec/02-agent-rules.md"]
+spec: ["docs/adr/0003-nextjs-static-gallery-site.md","docs/spec/18-phases-gates.md","docs/spec/02-agent-rules.md"]
 verify: ["node ../scripts/check-github.mjs .","npm run lint"]
 founder_gate: false
 defaults: "If package.json has no `verify` script, run `npm run lint && npm run build`."
@@ -21,7 +21,7 @@ actual_hours: null
 
 ## Objective
 
-Run can_promo_site verify in CI, plus the accessibility and budget checks once plan 06 adds them.
+Run can_gallery verify in CI, plus the accessibility and budget checks once plan 06 adds them.
 
 ## Steps
 

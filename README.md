@@ -4,7 +4,7 @@ CAN is an open-source platform where people surface a real public problem, bring
 
 ## Where we are
 
-Concept and scaffolding. The specification, the constitution, the design system and three repositories exist. Nothing handles real problems yet. The server has a health endpoint, an append-only event table and an OpenAPI contract. The app is a shell that shows whether the server is reachable. The promo site is a static page. Everything else is a plan, and we label it as planned.
+Concept and scaffolding. The specification, the constitution, the design system and three repositories exist. Nothing handles real problems yet. The server has a health endpoint, an append-only event table and an OpenAPI contract. The app is a shell that shows whether the server is reachable. The gallery, a read-only public window into the project, is a static site. Everything else is a plan, and we label it as planned.
 
 ## Repo map
 
@@ -12,7 +12,7 @@ Concept and scaffolding. The specification, the constitution, the design system 
 | --- | --- |
 | `can_server/` | Submodule. NestJS 12, Drizzle, Postgres. Owns the API contract (`openapi/openapi.json`). |
 | `can_app/` | Submodule. Expo (web, iOS, Android) app. Builds its typed client from the server contract. |
-| `can_promo_site/` | Submodule. Next.js static promo site. |
+| `can_gallery/` | Submodule. Next.js static public gallery: a read-only window into CAN (plans, decisions, open questions, progress) and an explainer. |
 | `docs/spec/` | The specification, split into files of 25KB or less. Start at `00-index.md`. |
 | `docs/spec/constitution/` | The constitution, chapters I to XI, with a rules list and checkers. |
 | `docs/design/` | Design system, UX tokens and screens, with a checker. |
@@ -53,10 +53,10 @@ npm install
 npm start
 ```
 
-Promo site (http://localhost:3000):
+Gallery (http://localhost:3000):
 
 ```sh
-cd can_promo_site
+cd can_gallery
 npm install
 npm run dev
 npm run verify   # lint, typecheck, build, output checks

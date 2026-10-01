@@ -13,7 +13,7 @@ It decides the policy rule set, emergency routing, legal reviewers, moderation l
 
 ## Current default (what we built meanwhile)
 
-One fictional jurisdiction and English only. No real jurisdiction is named anywhere, including the promo site.
+One fictional jurisdiction and English only. No real jurisdiction is named anywhere, including the gallery.
 
 ## Who can help
 

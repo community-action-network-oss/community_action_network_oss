@@ -9,7 +9,7 @@ run() { # name, command...
   if "$@"; then pass+=("$name"); else fail+=("$name"); fi
 }
 
-for sub in can_server can_app can_promo_site; do
+for sub in can_server can_app can_gallery; do
   dir="$ROOT/$sub"
   if [ ! -f "$dir/package.json" ]; then
     skip+=("$sub (missing, run: git submodule update --init)")

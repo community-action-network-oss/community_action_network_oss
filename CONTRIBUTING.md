@@ -4,7 +4,7 @@ Thank you for helping. CAN is at the concept and scaffolding stage, so careful s
 
 ## Ways to help
 
-- **Code:** server, app or promo site work units from `plans/`.
+- **Code:** server, app or gallery (the public read-only site) work units from `plans/`.
 - **Design:** tokens, screens and accessibility under `docs/design/`.
 - **Docs:** fix unclear or wrong text in `docs/spec/`, READMEs and ADRs.
 - **Open questions:** answer or sharpen an `OQ-*.md` in `docs/open-questions/`. Add evidence, options and trade-offs.
@@ -21,7 +21,7 @@ Each submodule has its own README and `npm run verify`. Run it before every comm
 
 ## Picking work from plans/
 
-Units in `plans/` are sized at about one hour. Read the unit file, follow its spec links, and load the matching area skill under `.claude/skills/` (`can-server`, `can-app`, `can-promo-site`, `can-spec`), which holds the rules for that area. The files in `.claude/skills/` are guides for AI agents and humans alike. Format is in `plans/FORMAT.md`; lint it with `node plans/tools/corpus.mjs lint`. Status is maintained by maintainers: do not edit it. Open a pull request that references the unit id (for example in the title) and the maintainers will update status.
+Units in `plans/` are sized at about one hour. Read the unit file, follow its spec links, and load the matching area skill under `.claude/skills/` (`can-server`, `can-app`, `can-gallery`, `can-spec`), which holds the rules for that area. The files in `.claude/skills/` are guides for AI agents and humans alike. Format is in `plans/FORMAT.md`; lint it with `node plans/tools/corpus.mjs lint`. Status is maintained by maintainers: do not edit it. Open a pull request that references the unit id (for example in the title) and the maintainers will update status.
 
 ## Commit conventions
 
@@ -35,7 +35,7 @@ Units in `plans/` are sized at about one hour. Read the unit file, follow its sp
 
 The three apps are separate git repositories mounted in this one.
 
-1. Make and commit your change inside the submodule (`can_server/`, `can_app/` or `can_promo_site/`).
+1. Make and commit your change inside the submodule (`can_server/`, `can_app/` or `can_gallery/`).
 2. Back in the root, `git add -- <submodule>` and commit the pointer bump. Only maintainers merge pointer bumps to `main`.
 3. Contract order: when the API changes, `can_server` regenerates `openapi/openapi.json` (`npm run openapi`) and commits it first. Then `can_app` runs `npm run gen:api` to rebuild its client.
 

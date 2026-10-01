@@ -26,7 +26,7 @@ Say how dependencies change so that pinned decisions (D-5, D-6, D-7, D-33) are n
 ## Steps
 
 1. Read each repo package.json and the pin decisions in DECISIONS.md. Write a dated snapshot table of current pinned majors per repo and why (Nest 12, TS 6, Drizzle 0.45, Expo 57, ESLint 9, Next 16).
-2. Policy sections: cadence (monthly, matching the release rhythm in docs/spec/21), security advisories (weekly npm audit, criticals out of band, reports follow SECURITY.md), major bumps need an ADR or an issue with a plan, lockfiles always committed, new dependency rule (justify, check license against the pending OQ-license, prefer stdlib; the promo site ships no third-party runtime code), grouping (one concern per pull request), AI-generated dependency changes need explicit human review (docs/spec/22), no auto-merge by bots or people, who approves (maintainers), rollback.
+2. Policy sections: cadence (monthly, matching the release rhythm in docs/spec/21), security advisories (weekly npm audit, criticals out of band, reports follow SECURITY.md), major bumps need an ADR or an issue with a plan, lockfiles always committed, new dependency rule (justify, check license against the pending OQ-license, prefer stdlib; the gallery ships no third-party runtime code), grouping (one concern per pull request), AI-generated dependency changes need explicit human review (docs/spec/22), no auto-merge by bots or people, who approves (maintainers), rollback.
 3. Mention Dependabot or Renovate configuration as an option left for the founder after the remote exists; do not add config files.
 
 ## Acceptance

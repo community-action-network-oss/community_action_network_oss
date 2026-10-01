@@ -8,7 +8,7 @@ The superproject holds the specification, plans and decisions. Code lives in thr
 |---|---|---|
 | `can_server` | NestJS 12 (ESM, Vitest, oxlint), Drizzle on Postgres 16, class-validator | domain and state machines (`src/domain/`, ORM-free behind repository interfaces), policy rules, protocol schemas, and the **OpenAPI contract**, generated from code with `@nestjs/swagger` into `openapi/openapi.json` |
 | `can_app` | Expo SDK 57, Expo Router, gluestack v5 on UniWind, zod | the design system and civic components, i18n messages, and the typed API client **generated** from `can_server`'s OpenAPI file |
-| `can_promo_site` | Next.js 16 static export, plain CSS | the Phase 0A public concept page. No forms, no analytics, no third-party fetches |
+| `can_gallery` | Next.js 16 static export, plain CSS | the public gallery: the Phase 0A public concept page plus a read-only window into the project. No forms, no analytics, no third-party fetches |
 
 Rules:
 
@@ -17,7 +17,7 @@ Rules:
 - Never import server secrets, persistence models, internal moderation signals, or private authorization logic into `can_app` or the client.
 - Server input is validated with class-validator and trimmed; the client validates with zod. The server is always final.
 - API responses that return lists use `{ items: [...] }`.
-- Tooling: npm only, Node 24 LTS (`engines.node >= 24`, no `.nvmrc`). Postgres and Mailpit run through docker compose for local development (Postgres on host port 5433). Ports: API 4000, Expo web 8081, promo site 3000.
+- Tooling: npm only, Node 24 LTS (`engines.node >= 24`, no `.nvmrc`). Postgres and Mailpit run through docker compose for local development (Postgres on host port 5433). Ports: API 4000, Expo web 8081, gallery 3000.
 
 ### Approved implementation baseline
 
