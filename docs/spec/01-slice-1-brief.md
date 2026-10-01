@@ -27,8 +27,8 @@ Pilot-ready (`18-phases-gates.md`, "Definition of pilot-ready") and Gate X (same
 6. **Moderation decisions:** carry explanation fields (section 5).
 7. **Drafts:** section 9.
 8. **Pending review screen:** section 9.
-12. **Decentralization seams only** (D-22): UUIDv7 ids, `origin_node_id`, `protocol_version`, an append-only events table with a nullable `prev_hash`. Signing, export and AT Protocol are deferred (`12-decentralization-ready.md`).
-14. **Accessibility and RTL baseline:** section 11.
+9. **Decentralization seams only** (D-22): UUIDv7 ids, `origin_node_id`, `protocol_version`, an append-only events table with a nullable `prev_hash`. Signing, export and AT Protocol are deferred (`12-decentralization-ready.md`).
+10. **Accessibility and RTL baseline:** section 11.
 
 Other defaults:
 
@@ -75,6 +75,7 @@ Notes on the model:
 
 | id | from | to | actor | required fields | side effects | public label | plain explanation | next action |
 |---|---|---|---|---|---|---|---|---|
+| T00 | (none) | draft | initiator | none | autosaved locally; saved to the server once signed in; event not written until T01 | Draft | "Only you can see this. Nothing is shared until you submit." | Submit when ready, or discard (T22). |
 | T01 | draft | submitted | initiator | title, structural statement, affected scope, coarse area, 1+ evidence URL or a "no evidence yet" note, no-identifiers confirmation; synchronous checks pass | checks run (identifiers and contact details, secrets, URL scheme, length, language script, repost fingerprint); version snapshot; event; fingerprint stored | Awaiting volunteer review | "Your problem is waiting for a volunteer to check it. Nothing is public yet." | Edit or withdraw while you wait. |
 | T02 | submitted | needs_revision | moderator | moderation decision (rule_ids, field refs, revision hints, appealable_until) | email to initiator; draft kept; hints shown beside fields | Changes requested | "A volunteer asked for changes before this can be published. Each note sits next to the part it is about." | Edit the marked fields and resubmit. |
 | T03 | needs_revision | submitted | initiator | at least one flagged field changed | new version snapshot; checks re-run; hints marked addressed | Awaiting volunteer review | "Your changes are back with a volunteer." | Wait for the decision email. |

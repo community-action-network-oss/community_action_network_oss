@@ -51,6 +51,7 @@ Copy any existing file. Keep the same headings. Night or agent runs add question
 | [OQ-guest-read-search-indexing](OQ-guest-read-search-indexing.md) | Can guests read problems, and may search engines index them? |
 | [OQ-age-default](OQ-age-default.md) | What is the minimum age? |
 | [OQ-cooldown-lengths](OQ-cooldown-lengths.md) | How long should the reflection delays be? |
+| [OQ-security-and-conduct-contact](OQ-security-and-conduct-contact.md) | Where do security and conduct reports go? |
 | [OQ-solved-evidence-threshold](OQ-solved-evidence-threshold.md) | What evidence is enough to call a problem solved? |
 | [OQ-handle-scope](OQ-handle-scope.md) | One handle per account, or a different pseudonym per problem? |
 | [OQ-human-presence](OQ-human-presence.md) | How do we limit bots and fake accounts without collecting identity? |
