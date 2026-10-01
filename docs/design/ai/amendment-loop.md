@@ -46,6 +46,20 @@ Method is an open question (`docs/open-questions/OQ-policy-ratification-method.m
 
 **How the founder ratifies v1**: the founder reviews the slice-1 pack (rules from `rules.md`, one prompt per DP, fictional examples, FakeModel eval results), signs `ratifications/base-1.0.0.md` with scope, date, `expires_at` and the list of rule ids, and the log entry is published. Nothing about v1 is hidden: the pack is public and the record states it is founder-stewarded and interim until a panel exists.
 
+### Ratification checklist (every PR)
+
+A PR cannot be ratified until each item is recorded in `ratifications/`:
+
+1. Rule ids, DPs, and schemas touched are listed; protected-core check passed.
+2. Eval gates met on the touched and neighbouring DPs.
+3. Replay diff reported, unintended flips explained, flip limit respected.
+4. **Rollback plan:** the previous version and hash, the trigger metrics and thresholds for auto-rollback, who may trigger a manual rollback, how affected items are re-moderated, and the notice text for people affected. A PR with no rollback plan is not ratified.
+5. **Adversarial-test gate:** the `adversarial` and `regression` sets pass, and the persona suite (`simulation.md`) was run deterministically on the PR; for any change to a harmful-class DP, privacy, naming, crisis, tone or injection defenses, a live persona attack run is required once the live gate exists, with 0 leaks and 0 injection successes.
+6. For schema changes: form snapshots, in-flight draft migration plan, content replay count.
+7. Dissent recorded; `approved_by` and `expires_at` present (FOUNDER-TRANS-1).
+
+Failures found by persona runs enter this loop as labeled examples and draft PRs (`simulation.md` section 7).
+
 ## 5. Staged rollout
 
 | Stage | What runs | Visible to people | Exit criteria |

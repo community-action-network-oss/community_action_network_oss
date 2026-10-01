@@ -14,6 +14,9 @@ can_policy/
     jurisdictions/<id>/        layer 3: law overlays, e.g. fiktiva-city
       rules.yaml  pack.yaml    plus source, effective dates, reviewer record
     local/<id>/                layer 4: local rules (optional)
+  content-schemas/<type>/      schema.json (JSON Schema + x-ui, x-guidance, x-checks), examples/
+  limits.yaml                  caps, field bounds, cooldowns per layer (decision-points.md)
+  simulation/                  personas, seeds, graduation thresholds (simulation.md)
   decision-points/<DP-id>/
     prompt.md                  one prompt template per DP
     schema.json                output JSON schema
@@ -46,6 +49,10 @@ Resolution for an item selects the effective layers for its jurisdiction and dat
 | `examples/` | Labeled cases, each `{input, expected_outcome, rule_ids, note, provenance, jurisdiction}`. Included in the prompt as few-shot only if tagged `shot`; all are used in eval. |
 | `eval/` | Held-out set (never in prompts) plus `thresholds.yaml`: minimum recall for harmful classes, maximum false-reject rate, calibration bound, and per-jurisdiction parity bound. Thresholds are ratification gates (`evaluation.md`). |
 | thresholds | Also holds the runtime confidence floors per outcome (below the floor, escalate to a stronger model, then `hold`). |
+
+## Content schemas
+
+Every content type has a schema in the pack (D-58): problem, each contribution type, proposal, decision record, task, verification, appeal, policy proposal. A schema is JSON Schema plus `x-ui`, `x-guidance` and `x-checks`, and is hashed into `pack_hash` like any file, so the form a person saw is always recoverable. The server serves the active schema per type and jurisdiction; the app renders forms from it; submissions record `schema_id`, `schema_version` and `schema_hash`. A schema change is a pack change under the normal semver rules (major for added or removed required fields) and the extra gates in `structured-content.md`. Schema validity is part of pack CI: every `x-checks` DP exists, every message id exists in the copy deck, every `x-guidance` example is fictional and also in an eval set. DP-ASSUMPTIONS and DP-COMPLETENESS prompts live under `decision-points/` like the others.
 
 ## Version and hash
 

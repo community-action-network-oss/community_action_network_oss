@@ -9,9 +9,11 @@ MADR-lite: context, decision, consequences, how to reverse. One decision per fil
 | [0003](0003-nextjs-static-gallery-site.md) | Next.js static export for the gallery | Accepted |
 | [0004](0004-email-code-auth.md) | Email 6-digit code sign-in | Accepted |
 | [0005](0005-web-first-verification.md) | Verify on web first; native only has to bundle | Accepted |
-| [0006](0006-no-live-ai-in-slice-1.md) | No live AI in slice 1 | Superseded by 0008 |
+| [0006](0006-no-live-ai-in-slice-1.md) | No live AI in slice 1 | Superseded by 0008 (2026-10-01) |
 | [0007](0007-gluestack-design-system.md) | gluestack-ui is the design system for all surfaces | Accepted |
 | [0008](0008-ai-executed-community-policy.md) | AI-executed, community-legislated policy | Accepted |
 | [0009](0009-can-policy-repo.md) | `can_policy` is the fifth repository | Accepted |
+| [0010](0010-structured-content-everywhere.md) | Structured content everywhere, no free-form posting | Accepted |
+| [0011](0011-persona-simulation-proof.md) | Persona simulation is the slice-1 proof | Accepted |
 
 To propose a new ADR: copy an existing file, use the next number, state context and how to reverse, and open it as a pull request. Keep each file under 25KB.

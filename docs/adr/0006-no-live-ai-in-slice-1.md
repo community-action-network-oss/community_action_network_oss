@@ -1,6 +1,6 @@
 # ADR 0006: No live AI in slice 1
 
-- Status: Accepted, 2026-10-01 (D-13)
+- Status: Superseded by 0008 (2026-10-01)
 
 ## Context
 The manifesto describes AI-assisted moderation, but spec section 14 gates any public-facing AI behind a data protection impact assessment, privacy gateway, evaluations and founder approval. None exist yet. Slice 1 data is fictional but the design must not teach contributors that raw text goes to a provider.

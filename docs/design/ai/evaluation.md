@@ -13,6 +13,7 @@ Each `decision-points/<DP>/eval/` holds:
 | `privacy` | Synthetic-PII cases across scripts and languages | Used for redaction recall and over-redaction |
 | `parity` | Matched cases across jurisdictions, languages and groups | Used for parity bounds |
 | `regression` | Every past failure (an overturned appeal, a flip found by audit) | Never removed; a fixed case can only be retired by its own ratified PR |
+| `simulation` | Cases from persona runs (`simulation.md`): misses become labeled candidates, provenance `simulation` | Fictional and publishable; confirmed by an auditor-labeler before entering `core`, `adversarial` or `regression` |
 | `sampled` (later) | Redacted real cases admitted through the approved process | Provenance, minimization, retention, deletion path |
 
 Each case is `{id, input, expected_outcome, rule_ids, field_ref, jurisdiction, language, tags, provenance}`.
@@ -30,6 +31,10 @@ Each case is `{id, input, expected_outcome, rule_ids, field_ref, jurisdiction, l
 - per-model eligibility: a model is eligible for a DP only if it passes that DP's thresholds; passing one DP does not carry over
 
 A PR cannot be ratified with a failing gate. A threshold change is a separate, stricter-reviewed PR and never loosens in the same PR that depends on it.
+
+## Persona runs as an eval source
+
+Persona simulation (`simulation.md`) is both an eval source and the slice-1 proof. Deterministic runs on `FakeModel` are part of the regression suite on every pack change. Live runs measure end-to-end metrics (leaks, injection success, recall per DP on attack personas, false rejects on good personas, revise effectiveness, appeal loop success) that feed the graduation criteria. Schema checks (DP-ASSUMPTIONS, DP-COMPLETENESS) get their own `core` cases from the `x-guidance` examples and from `sub-wellmeaning-wrong`, `sub-vague` and `adv-assumption-smuggle`.
 
 ## Replay diff method
 
