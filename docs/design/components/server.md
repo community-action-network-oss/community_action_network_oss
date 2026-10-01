@@ -53,9 +53,11 @@ Added by D-55 to D-58 (all pending plans 09, 10, 11):
 | Content-schema registry (inside `policy`) | serves schema JSON by content type and version from the active pack; validates submissions against the pinned `schema_version`; refuses hash mismatch; `GET /v1/content-schemas/{type}?version=` | policy loader | plan 10 (pending) |
 | Fill-assist endpoint | `POST /v1/content-schemas/{type}/assist`: notes through the privacy gateway, schema-constrained per-field suggestions, nothing stored as content | ai-gateway, registry | plan 10 (pending) |
 | DP-COMPLETENESS, DP-ASSUMPTIONS | two more DPs in the selector, run on every structured content type; own prompts, schemas and eval sets in the pack | moderation | plan 09 (pending) |
-| Notices read model | per-account "re-reviewed under policy vX" and "Decided under policy vX" notices built from decisions; `GET /v1/me/notices` | moderation | plan 10 (pending) |
-| `label_task` module | randomized, context-masked appeal and eval label pools, disagreement tracking, label export as pack PR input | moderation, accounts (labeler role) | plan 10 (pending) |
-| `lane` module | emergency and legal lane cases, logged actions by lane members; the only per-case human decision | moderation, audit | plan 11 (pending) |
+| Notices read model | per-account "re-reviewed under policy vX", "Decided under policy vX" and re-resolution notices built from decisions; `GET /v1/me/notices` | moderation | plan 09 (pending) |
+| `label_task` module | randomized, context-masked appeal and eval label pools, disagreement tracking, label export as pack PR input | moderation, accounts (labeler role) | plan 09 (pending) |
+| `lane` module | emergency and legal lane cases, logged actions by lane members; the only per-case human decision | moderation, audit | plan 09 (pending) |
+| Legal corpora registry, topic index, article retrieval (inside `policy`) | loads versioned legal corpora per layer L0 to L6 and jurisdiction with source provenance and hash; topic index maps problem topics to the articles that apply; retrieval returns the exact article text and source for a legality DP (the model never recalls law from memory); `GET /v1/legal/{jurisdiction}/layers` | policy loader | plan 09/10 (pending) |
+| Re-resolution review job | on policy or corpus change, replays past resolutions through DP-RERESOLUTION and applies keep, annotate or reopen | moderation, problems, jobs | plan 09/10 (pending) |
 | Simulation harness | persona runner driving the public API; see below | none in-process | plan 11 (pending) |
 
 ### Where the simulation harness lives

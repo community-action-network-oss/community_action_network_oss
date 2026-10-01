@@ -5,7 +5,7 @@ Published content is re-moderated asynchronously when the policy changes, when i
 
 ## Trigger
 1. Policy rollout reaches full (see [policy-amendment.md](policy-amendment.md)).
-2. Context change: a new related problem, a jurisdiction law update, a new contribution that alters an item's evidence tier.
+2. Context change: a new related problem, a legal-corpus update at any layer L0 to L6 ([legal-corpus-update.md](legal-corpus-update.md)), a new contribution that alters an item's evidence tier.
 3. Periodic sampling job (auditors review the sample).
 
 ## Status
@@ -47,8 +47,10 @@ sequenceDiagram
 
 Screen: WF-REMOD-1. Auditors use WF-AUDIT-1 and WF-AUDIT-2.
 
+Every legality re-check applies the full legal layer stack L0 to L6 for the item's jurisdiction (D-61). A policy or corpus change also starts [re-resolution.md](re-resolution.md) for solved, closed, redirected and stuck problems.
+
 ## Notices
-A flipped item shows "re-reviewed under policy vX" (notices read model, plan 10 pending) with explanation and appeal path; unchanged items show "Decided under policy vX". Auditors sample unflipped items. A schema version bump (see [policy-schema-change.md](policy-schema-change.md)) is not a re-review trigger by itself: published content keeps its schema version.
+A flipped item shows "re-reviewed under policy vX" (notices read model, plan 09 pending) with explanation and appeal path; unchanged items show "Decided under policy vX". Auditors sample unflipped items. A schema version bump (see [policy-schema-change.md](policy-schema-change.md)) is not a re-review trigger by itself: published content keeps its schema version.
 
 ## DPs invoked
 All DPs applicable to the item type, with the new policy version. Mode: async. See [../ai/triggers.md](../ai/triggers.md) and [../ai/decision-points.md](../ai/decision-points.md).

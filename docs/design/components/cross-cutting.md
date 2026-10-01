@@ -27,7 +27,7 @@ flowchart LR
 | Sensitivity | secret, restricted, internal, public enforced in use cases | planned |
 
 ## Portability (D-57)
-Hosting is undecided, so every service must run anywhere. All plan 11 (pending).
+Hosting is undecided, so every service must run anywhere. All plan 07/08 (pending).
 
 - **Images:** a production Dockerfile per service (`can_server`; `can_gallery` static files behind any static server; `can_app` web export), multi-stage, non-root, pinned base, no dev dependencies, no secrets baked in.
 - **Env contract:** every variable is in the table below and in `.env.example`; config is zod-validated and fails at boot.

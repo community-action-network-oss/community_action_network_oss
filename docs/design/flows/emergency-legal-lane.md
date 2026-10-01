@@ -47,7 +47,7 @@ sequenceDiagram
 ## DPs invoked
 DP-CRISIS. See [../ai/safety-and-privacy.md](../ai/safety-and-privacy.md) and [../ai/decision-points.md](../ai/decision-points.md).
 
-The lane is a small human role served by the `lane` module (plan 11, pending); every case and action is logged. It is the only place a person decides a single item.
+The lane is a small human role served by the `lane` module (plan 09, pending); every case and action is logged. It is the only place a person decides a single item.
 
 Screen: WF-LANE-1.
 

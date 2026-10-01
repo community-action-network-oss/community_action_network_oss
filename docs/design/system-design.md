@@ -46,7 +46,7 @@ flowchart LR
   server -- "openapi/openapi.json" --> app
 ```
 
-D-55 to D-58 in one paragraph: persona simulation is the slice-1 proof (harness above; CI uses FakeModel, live runs are founder-gated, graduation criteria open participation); seeds 1 and 2 use real framings with synthetic evidence and the Amsterdam overlay; every service is portable (Dockerfile per service, env contract, health and readiness, backup and restore, see [components/cross-cutting.md](components/cross-cutting.md)); every content type is schema-structured, schemas live in the policy pack, `DP-COMPLETENESS` and `DP-ASSUMPTIONS` check submissions, and the app renders forms from the schema version. Flows: [structured-submission](flows/structured-submission.md), [persona-simulation-run](flows/persona-simulation-run.md), [seed-bootstrap](flows/seed-bootstrap.md), [policy-schema-change](flows/policy-schema-change.md).
+D-55 to D-58 in one paragraph: persona simulation is the slice-1 proof (harness above; CI uses FakeModel, live runs are founder-gated, graduation criteria open participation); seeds 1 and 2 use real framings with synthetic evidence and the Amsterdam overlay; every service is portable (Dockerfile per service, env contract, health and readiness, backup and restore, see [components/cross-cutting.md](components/cross-cutting.md)); every content type is schema-structured, schemas live in the policy pack, `DP-COMPLETENESS` and `DP-ASSUMPTIONS` check submissions, and the app renders forms from the schema version. D-59 to D-61: policy or legal-corpus changes trigger [re-resolution](flows/re-resolution.md) of past resolutions (never silent, appealable), and every legality check applies the cumulative legal stack L0 to L6 from versioned corpora in `can_policy` ([legal-corpus-update](flows/legal-corpus-update.md)). Other new flows are indexed in [flows/](flows/README.md).
 
 Ports: API :4000, Expo web :8081, gallery :3000, Postgres :5433 (D-4).
 
@@ -80,7 +80,7 @@ Per-module detail and build status: [components/server.md](components/server.md)
 
 ## 3. Slice 1 ERD
 
-Conventions: ids are UUIDv7 (`uuid` column, generated in the app by `platform.IdGenerator`). Every public-capable row carries `origin_node_id` (text, default the single node id) and `protocol_version` (int). Timestamps are `timestamptz`. Sensitivity: public / internal / restricted / secret. Retention is stated per entity in the table after the diagram.
+Conventions: ids are UUIDv7 (generated in the app by `platform.IdGenerator`). Every public-capable row carries `origin_node_id` (text, default the single node id) and `protocol_version` (int). Timestamps are `timestamptz`. Sensitivity: public / internal / restricted / secret. Retention is stated per entity in the table after the diagram.
 
 ```mermaid
 erDiagram
@@ -275,7 +275,7 @@ erDiagram
   }
 ```
 
-`draft_fingerprint` has no foreign key on purpose: it must not link back to an account or problem once the draft is purged. It therefore has no relationship line in the diagram. AI entities are expanded in [components/server.md](components/server.md). Sign-in codes live in `login_code` (account_id, code_hash secret, expires_at 10 min, attempts, consumed_at), an auxiliary table owned by `accounts`.
+`draft_fingerprint` has no foreign key on purpose: it must not link back to an account or problem once the draft is purged. AI entities are expanded in [components/server.md](components/server.md). Sign-in codes live in `login_code` (account_id, code_hash secret, expires_at 10 min, attempts, consumed_at), an auxiliary table owned by `accounts`.
 
 ### Retention and deletion
 
@@ -287,7 +287,7 @@ erDiagram
 | moderation_run, moderation_decision, appeal, label_task | Kept with the problem (runs keep hashes and outputs, not raw prompts); `revision_hint` and spans cleared at purge for rejected drafts. |
 | session | Deleted 30 days after expiry or revoke. |
 | login_code | Deleted 24 hours after expiry or consumption. |
-| invite | Kept 1 year after redeem (abuse tracing); `code_hash` only. |
+| invite | Kept 1 year after redeem; `code_hash` only. |
 | audit_event | 2 years; no secrets inside. |
 | account | Delete request: email fields erased immediately, handle kept as `deleted-member`, public contributions stay under that handle. |
 

@@ -23,6 +23,8 @@ Moderation model (D-51): humans legislate policy, AI agents apply it at every ev
 | [persona-simulation-run.md](persona-simulation-run.md) | CI, night or founder-gated live run | plan 11 (pending) |
 | [seed-bootstrap.md](seed-bootstrap.md) | Maintainer loads seeds 1 and 2 | plan 11 (pending) |
 | [policy-schema-change.md](policy-schema-change.md) | PR changing a content schema | plan 10 (pending) |
+| [re-resolution.md](re-resolution.md) | Policy or legal-corpus change over past resolutions | plan 09/10 (pending) |
+| [legal-corpus-update.md](legal-corpus-update.md) | PR changing a legal corpus in `can_policy` | plan 09/10 (pending) |
 | [contract-flow.md](contract-flow.md) | Server API change | partly built (openapi.json exists) |
 | [night-run.md](night-run.md) | `/can-code-large night` | built (skill and corpus tool), activation 08-u14 |
 
@@ -32,7 +34,7 @@ Human roles in flows: legislator (writes and ratifies policy), auditor (samples 
 - **built**: code exists in the repo today.
 - **partly built**: some steps exist; the diagram marks which.
 - **planned (ids)**: specified by those plan units, no code yet.
-- **plan 09 (pending)**: depends on the AI plan; unit ids unknown. **plan 10 (pending)**: structured content (schemas, form renderer, notices, label tasks). **plan 11 (pending)**: simulation harness, seeds, lane module.
+- **plan 09 (pending)**: depends on the AI plan; unit ids unknown. **plan 09 (pending)** also covers lane, notices, label tasks, re-resolution and legal corpora. **plan 10 (pending)**: structured content (schemas, form renderer). **plan 11 (pending)**: simulation harness and seeds. Portability: plan 07/08 (pending).
 
 Today's code is scaffold only (D-25): `can_server` has `health`, the `events` table and `domain/{ids,event,protocol}`; `can_app` has theme, i18n, API client and five civic components; `can_gallery` has static pages. Everything else in a flow is planned.
 

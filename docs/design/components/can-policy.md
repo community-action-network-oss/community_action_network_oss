@@ -13,6 +13,7 @@ flowchart TD
   repo --> cl[CHANGELOG.md]
   dps --> pr[prompt.md]
   dps --> sc[schema.json]
+  repo --> lg[packs/legal/layer/jurisdiction]
   repo --> cs[content-schemas/type/version]
   repo --> sp[simulation/personas, seeds, thresholds]
   dps --> ex[examples/]
@@ -24,7 +25,8 @@ flowchart TD
 | Path | Holds |
 |---|---|
 | `packs/base/` | platform rules, thresholds |
-| `packs/jurisdictions/<id>/` | jurisdiction law overlay |
+| `packs/jurisdictions/<id>/` | jurisdiction rules overlay (local platform rules, enabled languages) |
+| `packs/legal/<layer>/<jurisdiction>/` | versioned legal corpora with source provenance, one per layer of the cumulative stack (D-61): L1 UN human rights (UDHR, ICCPR, ICESCR), L2 supranational where binding (NL: EU Charter, EU law, ECHR), L3 national constitution, L4 national law, L5 regional, L6 city; L0 is the base platform pack. Each article has source URL, retrieval date, hash and a topic index entry (legal-source integrity, constitution IV.6). Maintained by lawyers and rights experts through PRs: [../flows/legal-corpus-update.md](../flows/legal-corpus-update.md) |
 | `decision-points/<DP-id>/prompt.md` | one prompt template per DP |
 | `decision-points/<DP-id>/schema.json` | output schema |
 | `decision-points/<DP-id>/examples/` | labeled examples (appeal labels land here) |

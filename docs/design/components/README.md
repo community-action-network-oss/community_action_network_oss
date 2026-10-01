@@ -13,7 +13,7 @@ What the system is made of, per repo, and which plan unit builds each part. Beha
 | [cross-cutting.md](cross-cutting.md) | ids, events, errors, config, logging, ports | ids and event model built; rest planned |
 
 ## Legend
-- **built**: files exist. **planned (unit)**: a plan unit specifies it. **plan 09 (pending)**: AI plan. **plan 10 (pending)**: structured content. **plan 11 (pending)**: simulation, seeds, lane. **not yet planned**: no unit exists; a gap to close.
+- **built**: files exist. **planned (unit)**: a plan unit specifies it. **plan 09 (pending)**: AI plan, lane, notices, label tasks, re-resolution, legal corpora. **plan 10 (pending)**: structured content. **plan 11 (pending)**: simulation, seeds. **plan 07/08 (pending)**: portability. **not yet planned**: no unit exists; a gap to close.
 - Repos are four submodules plus the superproject; `can_policy` would be the fifth (D-52).
 
 ## Conventions
