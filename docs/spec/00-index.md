@@ -70,6 +70,7 @@ The Community Action Network (CAN) is an open-source platform where people turn 
 - **Acceptance criteria:** measurable statements of when something is done. A problem has final criteria (what "solved" means) and each stage has its own (`CRITERIA-1`).
 - **Volunteer review:** the private step before publication where opted-in members, with personal data masked, check a problem and recommend changes. Nothing from it is public (`REVIEW-1`).
 - **Recommendation:** one volunteer suggestion on a field or metadata path. The poster accepts or declines it with a reason (`RECO-1`).
+- **Impacted and guest:** a per-message label. Impacted means sent from inside the problem's affected area at that moment, proved privately. Guest means anything else, always labelled, and hidden by the "Impacted only" filter (D-73, `IMPACT-1`, `GUEST-LABEL-1`).
 - **Contribution:** a typed piece of participation (one value of the enum in `01`).
 - **Evidence tier:** how well a claim is supported (Constitution III.4). **`investigation_needed`** is a flag derived from the tier, not a state.
 - **Decision record:** the public record of how a solution was chosen and why.

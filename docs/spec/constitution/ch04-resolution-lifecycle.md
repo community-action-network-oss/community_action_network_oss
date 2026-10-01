@@ -27,7 +27,9 @@ Impact is not only geographic. A problem distinguishes subject, direct-impact, i
 - Open contribution may be broad, but decision influence reflects impact, rights, evidence, expertise, and implementation responsibility, not headcount. Selection may be delayed while a materially affected group is unrepresented, except for temporary action against urgent harm.
 - Numerical support alone never validates a solution. Examine rights, necessity, severity and distribution of harm, consent, alternatives, proportionality, and effects on people who did not or could not participate. A smaller group is not expendable. Residual harms stay visible, owned, mitigated, monitored, and, when distinct, tracked as linked problems.
 
-Rules: none yet.
+- **Impacted and guest (D-73).** Each problem has a versioned affected area. A contribution is labelled **impacted** if it was sent from inside that area at the moment of sending, and **guest** otherwise. The label belongs to the message, not to a profile. Anyone anywhere may contribute as a guest. Guest content is always visibly labelled, and every content list has an "Impacted only" filter that hides guest content from the view without deleting it. The label never changes whether a message is lawful, safe or accepted, and never lowers its standing with moderation. Geography is the main test of impact today. Other material-connection claims (working in, using a service, being affected) may be added later through the same label. Doubtful attestation downgrades to guest and is never an accusation.
+
+Rules: IMPACT-1, GUEST-LABEL-1
 
 ### IV.3 PROPOSAL-HYPOTHESIS: Proposals as hypotheses
 *Status: Decided (Art 7); Position (Art 8) · Old: Art 7, 8 · First phase: P3*

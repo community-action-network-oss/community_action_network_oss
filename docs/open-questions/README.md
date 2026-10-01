@@ -91,5 +91,10 @@ Copy any existing file. Keep the same headings. Night or agent runs add question
 | [OQ-stage-decision-method](OQ-stage-decision-method.md) | How is the choice inside a stage made, and who may override the default? |
 | [OQ-trusted-sources](OQ-trusted-sources.md) | What makes a cited URI a trusted source? |
 | [OQ-reviewer-eligibility](OQ-reviewer-eligibility.md) | Who may be a volunteer reviewer, and what conflict rules apply? |
+| [OQ-impacted-label-web](OQ-impacted-label-web.md) | What should the impacted label say on web while the check is self-asserted? |
+| [OQ-h3-resolution](OQ-h3-resolution.md) | What cell size and minimum area size protect people? |
+| [OQ-boundary-data](OQ-boundary-data.md) | Which boundary data and licence define affected areas? |
+| [OQ-impact-decision-weight](OQ-impact-decision-weight.md) | May the impacted label ever carry decision weight? |
+| [OQ-zk-setup](OQ-zk-setup.md) | Which proof system setup suits a contributor-run project? |
 
 Related: [spec index](../spec/00-index.md), [constitution](../spec/constitution/README.md), [decision log](../../DECISIONS.md), [design](../design/), [ADRs](../adr/).

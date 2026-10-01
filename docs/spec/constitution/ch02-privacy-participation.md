@@ -44,7 +44,9 @@ Principles:
 - No single provider, face model, device identifier, government credential, or reputation score becomes the universal gatekeeper. False rejection, demographic performance, accessibility, provider concentration, and coercion are measured before any identity signal gains weight.
 - A clear alternative exists for people who cannot or will not use facial verification.
 
-Rules: ACCT-REQ-1, DEVICE-0
+- **Private location attestation (D-73, D-75).** Whether a message was sent from inside a problem's affected area is checked on the device. Exact coordinates, cells and location derived from an IP address never leave the device or reach a log. The server learns only "inside area X (version v) at time T", verifies the proof and discards it. The result is a per-message label (IV.2). Location signals are signals about a message, never a verdict about a person: any doubt downgrades the message to guest, and no sanction ever rests on a location signal alone. The attestation never enters a moderation input (`LOC-PRIV-1`, `LOC-DOUBT-1`).
+
+Rules: ACCT-REQ-1, DEVICE-0, LOC-PRIV-1, LOC-DOUBT-1
 
 ### II.3 RECOVERY-USER: Recovery
 *Status: Decided · Old: Art 63 · First phase: S1*

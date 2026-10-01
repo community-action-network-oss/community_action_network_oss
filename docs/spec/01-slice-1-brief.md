@@ -118,6 +118,10 @@ One enum for the whole platform (this replaces two earlier lists). A contributio
 - Contributions are shown grouped by type, never ranked by popularity.
 - Each contribution is checked on submit by the deterministic checks, then by a moderation run before it is shown (pending-review behaviour: section 9).
 
+### Impacted and guest labels (D-73, D-75)
+
+Every contribution is labelled `impacted` or `guest` from where it was sent (`IMPACT-1`, `GUEST-LABEL-1`). Guest content is always labelled and every content list has an "Impacted only" filter. Slice-1 mechanism is option C: the device checks the area locally, the server issues a single-use challenge, and native builds add an App Attest or Play Integrity token. On web the result is self-asserted, so the label reads "Reported impacted" until the target proof `zk_cell_v1` (blinded H3 cell membership) passes its spike (`OQ-impacted-label-web`, `OQ-zk-setup`). Coordinates, cells and IP-derived location are never stored or logged, and the attestation never reaches moderation (`LOC-PRIV-1`). Doubt downgrades to guest and never sanctions (`LOC-DOUBT-1`). Design: `docs/design/location/attestation.md`.
+
 ## 7. What "solved" means
 
 The steward (the poster) **proposes** `solved`, or the system proposes it when the last required stage resolves. The **moderation run decides** (T15, `DP-VERIFICATION`) against the problem's **final acceptance criteria** and cites the policy version. For each criterion there must be evidence that meets it (an official page, a record, a dated observation by a named public role, or an independent statement; at least one URL) and an outcome statement. Every required stage must be `resolved` or `skipped`. A promise is not an achievement: a completed task alone does not make a problem solved. The final threshold is `OQ-solved-evidence-threshold`.
@@ -149,9 +153,9 @@ Persistence is in `can_server` (Drizzle, domain kept ORM-free behind repository 
 | `session` | account, token hash, expires, client kind |
 | `invite` | code hash, issued_by, redeemed_by, expires |
 | `jurisdiction` | id, name, synthetic-evidence flag, emergency notice text, rule set version |
-| `problem` | state, jurisdiction, coarse area, title, structural statement, facts, affected scope, desired outcome, `plan_version`, investigation_needed, pending_transition, resume_state, duplicate_of, initiator, published_at, tombstoned_at (no owner field). Final criteria are `acceptance_criterion` rows and sources are `source_ref` rows |
+| `problem` | state, jurisdiction, coarse area, title, structural statement, facts, affected scope, desired outcome, `plan_version`, `affected_area` (versioned: polygon, H3 cell set and root, `area_version`), investigation_needed, pending_transition, resume_state, duplicate_of, initiator, published_at, tombstoned_at (no owner field). Final criteria are `acceptance_criterion` rows and sources are `source_ref` rows |
 | `problem_event` | append-only: problem, type, actor, from, to, reason, evidence ids, `prev_hash` (nullable) |
-| `contribution` | problem, author, type (section 6 enum), body, status, answers_contribution_id |
+| `contribution` | problem, author, type (section 6 enum), body, status, answers_contribution_id, `impact_label` (`impacted` or `guest`), `attestation_result`, `area_version`, `proof_type` (`none`, `client_assertion`, `device_attested`, `zk_cell_v1`). No location data is stored (`LOC-PRIV-1`) |
 | `evidence_ref` | URL, kind, claim text, tier, submitted_by (URL only, no files) |
 | `stage_option` | an option contributed to a stage (replaces the old `proposal`): stage, author, mechanism, success metric, risks, verification plan, status |
 | `decision_record` | problem, stage, `stage_choice` (chosen option or steps), method, rationale, decider, authority, dissent, interim |

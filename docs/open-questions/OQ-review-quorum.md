@@ -13,7 +13,7 @@ Too strict a quorum leaves problems waiting with nobody to review them. Too loos
 
 ## Current default (what we built meanwhile)
 
-The quorum is 3 distinct volunteers who finished a review (at least one recommendation, or an explicit "no changes") and no recommendation left open more than 7 days. After 14 days with at least 1 finished review the poster may send it anyway. `DP-PUBLISH` weighs every recommendation still open. The numbers are pack values, not code.
+The quorum is 3 distinct volunteers who finished a review (at least one recommendation, or an explicit "no changes") and no recommendation left open more than 7 days. After 14 days with at least 1 finished review the poster may send it anyway. `DP-PUBLISH` weighs every recommendation still open. At least one completed review is always required (D-74): with none, the problem stays `in_review` and shows a visible "needs reviewers" call. The numbers are pack values, not code.
 
 ## Who can help
 

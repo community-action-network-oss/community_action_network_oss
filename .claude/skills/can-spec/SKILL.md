@@ -34,6 +34,10 @@ Community-legislated, AI-executed moderation. The community never judges single 
 
 Prepare privately (facts, trusted sources, final acceptance criteria, optional stages), volunteer review (opt-in, masked, never public), the AI publication decision (`DP-PUBLISH`), then a per-problem stage plan (a DAG) where each stage runs options, a choice, steps, evidence and `DP-STAGE-RESOLUTION`. Problem states: `draft`, `in_review`, `needs_revision`, `held`, `rejected`, `active`, `paused`, `stuck`, `redirected`, `closed`, `withdrawn`, `solved` (T00 to T22, with an old to new map in `01a-lifecycle.md` section 4.3). Stage states: `planned`, `ready`, `active`, `resolving`, `resolved`, `blocked`, `skipped` (ST01 to ST11). Old states `eligible`, `solution_development`, `solution_selection`, `implementation`, `verification` are gone as problem states; they survive only as the stages of the optional `classic-5` template. Rules: `CRITERIA-1`, `REVIEW-1`, `RECO-1`, `SOURCE-1`, `STAGE-GATE-1`, `STAGE-PREP-1`, `STAGE-RESOLVE-1`, `PLAN-CHANGE-1`. Open questions: `OQ-review-quorum`, `OQ-stage-decision-method`, `OQ-trusted-sources`, `OQ-reviewer-eligibility`.
 
+## Impacted and guest (D-73 to D-75)
+
+Each contribution is labelled `impacted` or `guest` by a private location attestation (`IMPACT-1`, `GUEST-LABEL-1`, `LOC-PRIV-1`, `LOC-DOUBT-1`, in `constitution/rules-legal-sim.md`). Constitution IV.2 and II.2. No location is ever stored or logged; doubt downgrades to guest. Web label "Reported impacted" until `zk_cell_v1` passes its spike. Open questions: `OQ-impacted-label-web`, `OQ-h3-resolution`, `OQ-boundary-data`, `OQ-impact-decision-weight`, `OQ-zk-setup`.
+
 ## Simulation, seeds and structured content (D-55 to D-58)
 
 - **Persona simulation is the slice-1 proof.** AI personas drive lifecycles through the real pipeline on seeds 1 and 2 and red-team the pack. Graduation criteria G1 to G13 (`docs/design/ai/simulation.md` section 8; link, never restate) gate public participation (`SIM-GATE-1`). CI uses `FakeModel`; live persona runs are founder-gated.
