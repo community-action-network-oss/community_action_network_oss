@@ -191,7 +191,7 @@ Chip labels (exact text from the brief): Awaiting volunteer review, Changes requ
 | decision.appealUntil | You can appeal until {date, date, medium}. |
 | decision.withdraw | Withdraw |
 | decision.notPublished.title | Not accepted |
-| decision.notPublished.body | {reason} |
+| decision.notPublished.body | This was not accepted because of {rule}. {hint} |
 | decision.deleteNow | Delete now |
 | appeal.title | Appeal this decision |
 | appeal.body | A different volunteer will look at this whenever more than one is available. |

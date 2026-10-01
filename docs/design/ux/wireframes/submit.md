@@ -196,22 +196,42 @@ Route `/me/problems/{id}/decision`. Outcome "needs changes" or "not published".
 Hints are anchored to the fields and use the span reference to mark the text. Fields without hints are shown plain. "Revise and resubmit" returns to the staged form at the first field with a hint, keeping all content.
 
 ## WF-DECISION-2  Decision: not accepted (rejected)
+Route `/me/problems/{id}/decision`. Shows everything WF-DECISION-1 shows: rules, trigger field or span, hint, appeal date, interim banner, deletion date.
 ```
 +--------------------------------------+
-| (Not accepted)                       |
-| {decision.notPublished.title}        |
+| (Not accepted) {decision.notPublished.title} |
 | {decision.notPublished.body}         |
-| Reason: RULE-SCOPE-INDIV (v1)        |
-| It describes one person's case. A    |
-| public problem needs a shared        |
-| condition.                           |
+| This was not accepted because of     |
+| RULE-SCOPE-INDIV. Hint: describe the |
+| shared condition, not one person.    |
+| {decision.interim}                   |
+| Interim decision, will be re-reviewed|
+| (shown only when interim)            |
+| {decision.rules}                     |
+| Reviewed under: RULE-SCOPE-INDIV (v1)|
+|                                      |
+| Condition  <- field the rule applies |
+| [ My landlord refused to fix MY flat]|
+|   Hint: describe the shared          |
+|   condition. (RULE-SCOPE-INDIV)      |
+|   (slot is empty only for a          |
+|    safety-sensitive decision)        |
+| Observed                             |
+| [ ...                              ] |
+|   (no hint)                          |
+|                                      |
 | Places that can help (fictional):    |
 |  * Legal aid line  * Ward office     |
+| {decision.deleteDate}                |
 | Deleted on 31 Oct 2026               |
+| {decision.appealUntil}               |
+| You can appeal until 15 Oct 2026.    |
 | [ Revise as a shared condition ]     |
-| [ Appeal ]  [ Delete now ]           |
+| [ Appeal this decision ]             |
+| [ Delete now ]                       |
 +--------------------------------------+
 ```
+Revise keeps the draft and opens the staged form at the first hinted field. Appeal opens WF-APPEAL-1.
 
 ## WF-APPEAL-1  Appeal
 ```
