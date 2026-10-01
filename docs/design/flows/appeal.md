@@ -39,7 +39,7 @@ sequenceDiagram
 ## Failure paths
 - Window closed: `appeal_window_closed`, no row.
 - Independent run cannot complete: appeal stays open, retried; never auto-upheld.
-- Labelers split: recorded as disagreement; goes to the amendment loop as an ambiguous-rule signal, instance stays decided as is with an explanation.
+- Labelers (a human role, masked and randomized) split: recorded as disagreement; goes to the amendment loop as an ambiguous-rule signal, instance stays decided as is with an explanation.
 - Appeal on an emergency or legal item: routed to [emergency-legal-lane.md](emergency-legal-lane.md).
 
 ## Data written

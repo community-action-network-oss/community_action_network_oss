@@ -48,7 +48,10 @@ New content version row, `moderation_run`, `moderation_decision`, `audit_event`.
 `content.updated`, `moderation.run.completed`, `content.published` or `content.held` (planned).
 
 ## DPs invoked
-DP-PRIVACY, DP-NAMING, DP-RELEVANCE (contribution relevance and solution-only), DP-TONE (tone and escalation risk), DP-DUPLICATE for contributions; DP-LAWFULNESS for proposals; DP-DECISION-RECORD for decision records. See [../ai/decision-points.md](../ai/decision-points.md). Blocking.
+DP-COMPLETENESS and DP-ASSUMPTIONS on every changed structured field (schema version of the original content, see [policy-schema-change.md](policy-schema-change.md)), DP-PRIVACY, DP-NAMING, DP-CONTRIB-RELEVANCE (contribution relevance and solution-only), DP-TONE (tone and escalation risk), DP-DUPLICATE for contributions; DP-LEGALITY for proposals; DP-DECISION-RECORD for decision records. See [../ai/decision-points.md](../ai/decision-points.md). Blocking.
+
+## Labels
+The pending version shows "Awaiting review"; the visible version keeps its "Decided under policy vX" line until the new decision lands.
 
 ## Related
 [contribution-and-proposal.md](contribution-and-proposal.md), [post-publication-recheck.md](post-publication-recheck.md).

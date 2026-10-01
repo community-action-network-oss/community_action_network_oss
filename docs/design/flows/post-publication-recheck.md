@@ -45,6 +45,9 @@ sequenceDiagram
 ## Events emitted
 `moderation.recheck.started`, `moderation.recheck.flipped`, `content.rereviewed` (planned).
 
+## Notices
+A flipped item shows "re-reviewed under policy vX" (notices read model, plan 10 pending) with explanation and appeal path; unchanged items show "Decided under policy vX". Auditors sample unflipped items. A schema version bump (see [policy-schema-change.md](policy-schema-change.md)) is not a re-review trigger by itself: published content keeps its schema version.
+
 ## DPs invoked
 All DPs applicable to the item type, with the new policy version. Mode: async. See [../ai/triggers.md](../ai/triggers.md) and [../ai/decision-points.md](../ai/decision-points.md).
 

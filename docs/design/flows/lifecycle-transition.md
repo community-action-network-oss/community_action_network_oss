@@ -32,7 +32,7 @@ sequenceDiagram
   API-->>App: new state, allowed next actions
 ```
 
-Which transitions have a gate: T01 (intake DPs), T08 and T09 (DP-FRAMING and DP-LAWFULNESS on stage summaries and proposals), T11 (DP-LAWFULNESS dual legality gate, DP-DECISION-RECORD), T14 (DP-SOLVED), T15 (stuck needs a lawful route), T19 and T20 (closure and redirect reasons). The table owning these rows is the brief; this list only says where a DP applies.
+Which transitions have a gate: T01 (intake DPs), T08 and T09 (DP-FRAMING and DP-LEGALITY on stage summaries and proposals), T11 (DP-LEGALITY dual legality gate, DP-DECISION-RECORD), T14 (DP-VERIFICATION), T15 (stuck needs a lawful route), T19 and T20 (closure and redirect reasons). The table owning these rows is the brief; this list only says where a DP applies.
 
 ## Failure paths
 - Concurrent transition: row lock plus expected-state check; loser gets `conflict`.
@@ -47,7 +47,7 @@ Which transitions have a gate: T01 (intake DPs), T08 and T09 (DP-FRAMING and DP-
 One per transition, typed from the brief (planned): `problem.<to_state>` with `from_state`, `to_state`, `reason`.
 
 ## DPs invoked
-See gate list above and [../ai/decision-points.md](../ai/decision-points.md).
+Every text-bearing gate also runs DP-COMPLETENESS and DP-ASSUMPTIONS on the structured fields (D-58). See gate list above and [../ai/decision-points.md](../ai/decision-points.md).
 
 ## Related
 [`docs/spec/01-slice-1-brief.md#4-lifecycle`](../../spec/01-slice-1-brief.md#4-lifecycle), [intake-submit.md](intake-submit.md).

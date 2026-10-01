@@ -26,4 +26,25 @@ flowchart LR
 | Rate limits | Postgres-backed on every write path | planned 07-u02 |
 | Sensitivity | secret, restricted, internal, public enforced in use cases | planned |
 
+## Portability (D-57)
+Hosting is undecided, so every service must run anywhere. All plan 11 (pending).
+
+- **Images:** a production Dockerfile per service (`can_server`; `can_gallery` static files behind any static server; `can_app` web export), multi-stage, non-root, pinned base, no dev dependencies, no secrets baked in.
+- **Env contract:** every variable is in the table below and in `.env.example`; config is zod-validated and fails at boot.
+- **Health:** `GET /v1/health` (liveness, no dependencies) and `GET /v1/ready` (DB reachable, migrations current, active policy pack loaded and hash-checked).
+- **Backup and restore:** documented Postgres dump and restore with a tested restore script; the pack is rebuilt from `can_policy` tags, so only the database needs backup.
+- **No host-specific assumptions:** no cloud SDK in domain code; email, storage and jobs behind ports; migrations are an explicit step; graceful shutdown on SIGTERM; logs to stdout.
+
+| Variable | Service | Purpose |
+|---|---|---|
+| `DATABASE_URL` | server | Postgres connection |
+| `PORT`, `PUBLIC_BASE_URL` | server | listen port, links in email |
+| `EMAIL_ENC_KEY`, `EMAIL_INDEX_KEY` | server | email encryption and blind index |
+| `MAIL_TRANSPORT`, `SMTP_URL`, `MAIL_FROM` | server | notification port |
+| `POLICY_PACK_SOURCE`, `POLICY_PACK_VERSION`, `POLICY_PACK_HASH` | server | which pack to load, hash check |
+| `AI_PROVIDER` (`fake` default, `anthropic`), `ANTHROPIC_API_KEY`, `AI_SPEND_CAP_DAILY` | server | live AI stays off unless all are set (founder-gated) |
+| `COOKIE_SECURE`, `ALLOWED_ORIGINS` | server | web session and CSRF |
+| `EXPO_PUBLIC_API_BASE_URL` | app | API location at build |
+| `NEXT_PUBLIC_APP_URL` | gallery | link target at build |
+
 Related: [server.md](server.md), [../flows/background-jobs.md](../flows/background-jobs.md), [../system-design.md](../system-design.md).

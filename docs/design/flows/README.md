@@ -19,14 +19,20 @@ Moderation model (D-51): humans legislate policy, AI agents apply it at every ev
 | [task-and-verification.md](task-and-verification.md) | Task update, verification, solved | planned: 05-u01 to 05-u04 |
 | [emergency-legal-lane.md](emergency-legal-lane.md) | Crisis or legal signal | plan 09 (pending); real routes founder-gated (05-u09) |
 | [background-jobs.md](background-jobs.md) | Schedule tick | planned: 03-u14; batches plan 09 (pending) |
+| [structured-submission.md](structured-submission.md) | Open any form, submit content | plan 10 (pending) |
+| [persona-simulation-run.md](persona-simulation-run.md) | CI, night or founder-gated live run | plan 11 (pending) |
+| [seed-bootstrap.md](seed-bootstrap.md) | Maintainer loads seeds 1 and 2 | plan 11 (pending) |
+| [policy-schema-change.md](policy-schema-change.md) | PR changing a content schema | plan 10 (pending) |
 | [contract-flow.md](contract-flow.md) | Server API change | partly built (openapi.json exists) |
 | [night-run.md](night-run.md) | `/can-code-large night` | built (skill and corpus tool), activation 08-u14 |
+
+Human roles in flows: legislator (writes and ratifies policy), auditor (samples decisions), labeler (masked appeal and eval labels), lane (emergency and legal cases), maintainer (repo, invites, releases). Labels shown to people: "Awaiting review", "Changes requested", "Decided under policy vX" (with "Policy v1, transitional stewardship" while `transitional`).
 
 ## Status values
 - **built**: code exists in the repo today.
 - **partly built**: some steps exist; the diagram marks which.
 - **planned (ids)**: specified by those plan units, no code yet.
-- **plan 09 (pending)**: depends on the AI plan that is being written; unit ids unknown.
+- **plan 09 (pending)**: depends on the AI plan; unit ids unknown. **plan 10 (pending)**: structured content (schemas, form renderer, notices, label tasks). **plan 11 (pending)**: simulation harness, seeds, lane module.
 
 Today's code is scaffold only (D-25): `can_server` has `health`, the `events` table and `domain/{ids,event,protocol}`; `can_app` has theme, i18n, API client and five civic components; `can_gallery` has static pages. Everything else in a flow is planned.
 
@@ -48,10 +54,11 @@ Participant names (use exactly these, one alias per box):
 | `Jobs` | job runner |
 | `Mail` | notification port |
 | `PolicyRepo` | can_policy |
+| `H` | simulation harness (persona runner) |
 
 Rules for every flow file:
 1. Sections in order: Purpose, Trigger, Status, Sequence, Failure paths, Data written, Events emitted, DPs invoked, Related.
-2. Link DPs to [../ai/decision-points.md](../ai/decision-points.md). DP ids in these files follow the AI brief and are provisional until that file lands; it wins on any difference.
+2. Link DPs to [../ai/decision-points.md](../ai/decision-points.md). DP ids are the canonical ids of that file (19 ids, including DP-ASSUMPTIONS and DP-COMPLETENESS, D-58); it wins on any difference.
 3. Any flow that publishes or changes public content must show the moderation gate and what happens when it fails closed (hold).
 4. Name events by the `events.eventType` string you expect; mark `planned`.
 5. Use mermaid `sequenceDiagram` for interactions and `flowchart` for branching. No em or en dashes.

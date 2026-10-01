@@ -42,6 +42,8 @@ sequenceDiagram
   App->>API: poll or open WF-PENDING-1 / WF-DECISION-1
 ```
 
+Labels shown to the initiator come from the brief: "Awaiting review" while the run is pending or held, "Changes requested" on `needs_revision`, and on any decision the line "Decided under policy vX" with "Policy v1, transitional stewardship" while `transitional` is true (founder-approved pack, INTERIM-1). Auditors sample these decisions later; a labeler only sees them if appealed.
+
 Outcome mapping (transition ids from the brief): `publish` T04, `needs_revision` T02, `reject` T05, `route_external` T20 style external route shown on WF-EXTERNAL-1, `hold` stays `submitted` with an honest wait, `escalate_human` only via [emergency-legal-lane.md](emergency-legal-lane.md).
 
 ```mermaid
@@ -70,7 +72,7 @@ flowchart TD
 `problem.submitted`, `moderation.run.completed`, then one of `problem.published`, `problem.needs_revision`, `problem.rejected`, `problem.routed_external`, `moderation.held` (all planned, same transaction as the state change).
 
 ## DPs invoked
-Per [../ai/decision-points.md](../ai/decision-points.md), run in this order: DP-ELIGIBILITY (public vs individual), DP-PRIVACY (personal data), DP-FRAMING (structural), DP-DUPLICATE (related), DP-NAMING (NAME-1), DP-EVIDENCE-TIER; DP-EMERGENCY runs first and short-circuits to the lane. Mode: blocking.
+Per [../ai/decision-points.md](../ai/decision-points.md), run in this order: DP-ELIGIBILITY (public vs individual), DP-PRIVACY (personal data), DP-FRAMING (structural), DP-DUPLICATE (related), DP-NAMING (NAME-1), DP-EVIDENCE-TIER, plus DP-COMPLETENESS (every required schema field meaningfully answered) and DP-ASSUMPTIONS (incorrect factual, causal, legal or scope assumptions held back with field hints), D-58; DP-CRISIS runs first and short-circuits to the lane. Mode: blocking. The form itself is schema-driven: see [structured-submission.md](structured-submission.md).
 
 ## Related
 [lifecycle-transition.md](lifecycle-transition.md), [appeal.md](appeal.md), [ux/journeys.md](../ux/journeys.md) J1, [../ai/runtime.md](../ai/runtime.md).

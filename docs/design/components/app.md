@@ -26,7 +26,9 @@ flowchart TD
 | Query layer | per-endpoint hooks, e.g. `useHealth` | scaffold, then each feature unit | partly built |
 | Generated client | `src/api/schema.d.ts` via `npm run gen:api`; `client.ts` binds fetch late; CSRF and error envelope | 02-u13 | partly built |
 | Civic layer | `Screen`, `CivicHeading`, `CivicText`, `CivicButton`, `StatusMessage` today; wrappers over gluestack primitives (D-50, ADR 0007) | 02-u24, 02-u25 | built (RN core), gluestack migration planned |
-| Form kit | fields, inline validation, focus first error | 02-u14 | planned |
+| Form kit | primitives: fields, inline validation, focus first error | 02-u14 | planned |
+| Schema-driven form renderer | builds every submit and edit form from the content schema fetched by type and version (field kinds: text, choice, list, evidence URL, assumption statement, uncertainty); on gluestack primitives (D-50) via the civic layer; replaces hard-coded forms (03-u16 to 03-u19, 04-u08 to 04-u10); shows `needs_revision` hints beside fields; optional "Suggest answers" with per-field confirm; draft pinned to its `schemaVersion` | plan 10 (pending) | plan 10 (pending) |
+| Notices view | "Awaiting review", "Decided under policy vX", "re-reviewed under policy vX" | plan 10 (pending) | plan 10 (pending) |
 | Nav shell | tabs or top bar, skip link, emergency notice | 02-u15 | planned |
 | Session provider | guard, session-expired sheet | 02-u16 | planned |
 | Local draft store | autosave before sign-in | 03-u16 | planned |
@@ -42,7 +44,7 @@ flowchart TD
 | J2 contributor | WF-CONTRIB-1, 2, WF-PROPOSAL-1, 2, WF-DECREC-1, WF-TASK-1, 2, WF-RESOLUTION-1 | 04-u08 to 04-u10, 05-u05, 05-u07 |
 | J3 moderator (obsolete under D-51) | WF-MOD-QUEUE-1, WF-MOD-REVIEW-1, WF-MOD-APPEAL-1, WF-MOD-INVITE-1 | 03-u23 to 03-u25 |
 
-Under D-51 the moderator screens change role: invite issuing stays; review and appeal screens become auditor and labeler screens (sampled decisions, masked label tasks) plus the policy change history view. These screens and their wireframes are not yet planned; see [../ux/journeys.md](../ux/journeys.md) J3 for what they replace. The user-facing decision screens gain a "re-reviewed under policy vX" notice and the independent re-run status.
+Under D-51 the moderator screens change role: invite issuing stays; review and appeal screens become auditor and labeler screens (sampled decisions, masked label tasks) plus the policy change history view. Lane and labeler roles get minimal screens too. These screens and their wireframes are not yet planned; see [../ux/journeys.md](../ux/journeys.md) J3 for what they replace. The user-facing decision screens gain a "re-reviewed under policy vX" notice and the independent re-run status.
 
 ## Rules that matter for design
 Feature code imports UI only from `src/components/civic`; API access only through `src/api/client.ts`; every string through `useT()`; logical properties only; colours from tokens. Details: skill `can-app`.

@@ -1,6 +1,6 @@
 # CAN slice 1 system design
 
-Status: design baseline for plan units. Binding inputs: `DECISIONS.md` (including D-50 to D-53), `docs/spec/01-slice-1-brief.md` (scope, defaults, lifecycle table). `can_server` and `can_app` are scaffolds (D-25); this document is the overview, and details are split out: [flows/](flows/README.md) (execution flows), [components/](components/README.md) (modules per repo, built vs planned), [ai/](ai/README.md) (AI moderation design). Where this file and the brief disagree about lifecycle, the brief wins. Moderation follows D-51: the community legislates policy, AI agents apply it at every event, humans audit and label, and only the emergency and legal lane acts per case. Older wording about a moderator confirming publication is superseded.
+Status: design baseline for plan units. Binding inputs: `DECISIONS.md` (including D-50 to D-53), `docs/spec/01-slice-1-brief.md` (scope, defaults, lifecycle table). `can_server` and `can_app` are scaffolds (D-25); this document is the overview, and details are split out: [flows/](flows/README.md) (execution flows), [components/](components/README.md) (modules per repo, built vs planned), [ai/](ai/README.md) (AI moderation design). Where this file and the brief disagree about lifecycle, the brief wins. Moderation follows D-51: the community legislates policy, AI agents apply it at every event, humans audit and label, and only the emergency and legal lane acts per case.
 
 Lifecycle states, transitions, actors, labels and next actions live only in [`docs/spec/01-slice-1-brief.md#4-lifecycle`](../spec/01-slice-1-brief.md#4-lifecycle). This file never restates them.
 
@@ -16,14 +16,15 @@ flowchart LR
     api["HTTP adapter /v1<br/>validation, guards, OpenAPI"]
     domain["Domain modules<br/>framework-light TS"]
     mod["AI moderation runtime<br/>DP selector, run recorder,<br/>decision applier"]
-    pol["policy module<br/>pack loader, version registry"]
+    pol["policy module<br/>pack loader, version registry,<br/>content-schema registry"]
     gw["privacy gateway + router<br/>budgets, spend caps"]
     ports["Ports: identity, storage,<br/>signing, notification, jobs"]
   end
   pg[("Postgres 16<br/>host :5433, Drizzle")]
   mail["Mailpit (dev SMTP :1025, UI :8025)<br/>real SMTP is founder-gated"]
   prov["Model provider via adapter<br/>FakeModel (tests, night runs)<br/>Anthropic (founder-gated)"]
-  cp["can_policy repo (planned)<br/>policy packs, ratified by PR"]
+  cp["can_policy repo (planned)<br/>policy packs, content schemas,<br/>seed packs, ratified by PR"]
+  sim["Simulation harness<br/>can_server/test/simulation<br/>persona agents, public API only"]
   humans["Human lanes<br/>legislators, auditors, labelers,<br/>emergency and legal lane"]
   fed["Federation seams<br/>NOT BUILT: export, signing, AT Protocol"]
   app -- "REST JSON, httpOnly cookie (web)" --> api
@@ -37,11 +38,15 @@ flowchart LR
   domain --> pg
   mod --> pg
   ports -- "SMTP" --> mail
+  sim -- "HTTP /v1 only" --> api
+  sim -. "failures become examples and PRs" .-> cp
   humans -- "PRs, labels, audits" --> cp
   humans -. "emergency and legal cases" .-> api
   ports -. "future adapters" .-> fed
   server -- "openapi/openapi.json" --> app
 ```
+
+D-55 to D-58 in one paragraph: persona simulation is the slice-1 proof (harness above; CI uses FakeModel, live runs are founder-gated, graduation criteria open participation); seeds 1 and 2 use real framings with synthetic evidence and the Amsterdam overlay; every service is portable (Dockerfile per service, env contract, health and readiness, backup and restore, see [components/cross-cutting.md](components/cross-cutting.md)); every content type is schema-structured, schemas live in the policy pack, `DP-COMPLETENESS` and `DP-ASSUMPTIONS` check submissions, and the app renders forms from the schema version. Flows: [structured-submission](flows/structured-submission.md), [persona-simulation-run](flows/persona-simulation-run.md), [seed-bootstrap](flows/seed-bootstrap.md), [policy-schema-change](flows/policy-schema-change.md).
 
 Ports: API :4000, Expo web :8081, gallery :3000, Postgres :5433 (D-4, default 13).
 
@@ -71,7 +76,7 @@ Layout inside `can_server/src`: each module has `domain/` (pure TS, no Nest or D
 
 Dependency direction is one way (arrows above go from left column to "Depends on"). `audit` and `platform` depend on nothing. Cross-module calls go through exported use-case interfaces, never through another module's tables.
 
-Per-module detail and build status: [components/server.md](components/server.md). Domain rules unit-tested without Nest: transition guard (actor, required fields), eligibility and privacy checks, appeal re-run selection, retention date computation, handle generation, fingerprinting.
+Per-module detail and build status: [components/server.md](components/server.md). Domain rules are unit-tested without Nest.
 
 ## 3. Slice 1 ERD
 
@@ -310,8 +315,8 @@ erDiagram
 3. Session: on success the server issues an opaque 256-bit token, stores its SHA-256 hash, and sets a cookie `can_session` with `HttpOnly; Secure (not in dev); SameSite=Lax; Path=/v1`. Web CSRF: state-changing calls require header `X-CAN-CSRF` equal to a non-HttpOnly `can_csrf` cookie (double submit). Native: same endpoints return the token in the body only when header `X-CAN-Client: native` is present; stored in SecureStore. The native path is founder-gated for device verification.
 4. Handle: generated from curated word lists (adjective + noun + 2 digits). One `POST /v1/me/handle/regenerate` allowed while the account has no published problem or contribution. Onboarding copy: "Your public name is {handle}. Your email is never shown."
 5. Dev: SMTP to Mailpit (`localhost:1025`); the e2e tests read codes from the Mailpit HTTP API. A `MAIL_TRANSPORT=smtp` config is the only switch; real providers are founder-gated.
-6. Session end: `POST /v1/auth/logout`; idle expiry 30 days sliding, absolute 90 days; a 401 with code `session_expired` makes the app show WF-SESSION-1 and keep the local draft.
-7. Drafts autosave locally (app storage) before sign-in; they are uploaded on the first authenticated save.
+6. Session end: `POST /v1/auth/logout`; idle expiry 30 days sliding, absolute 90 days; a 401 `session_expired` shows WF-SESSION-1 and keeps the local draft.
+7. Drafts autosave locally before sign-in and upload on the first authenticated save.
 
 ## 6. API surface (`/v1`)
 
@@ -352,13 +357,14 @@ Conventions: JSON; list responses are `{items: [...], nextCursor: string | null}
 | GET | /v1/audit/samples | auditor | Sampled decisions for audit. |
 | POST | /v1/label-tasks/{id}/labels | labeler | Submit a masked label. |
 | GET | /v1/rules | anon | Published rule ids and plain texts (for hints and the appeal screen). |
+| GET | /v1/content-schemas/{type} | member | Content schema by type and `?version=` (plan 10, pending). |
 | POST | /v1/invites | maintainer or admin | Issue an invite code (shown once). |
 
-Under D-51 the moderator queue and per-item decision and appeal-resolve endpoints no longer exist; exact audit and label paths are settled by plan 09 (pending). Deliberate omissions: no email on any response, no DELETE on public records, no upload endpoints, no search beyond `q` (Postgres full text), no endpoint that lets a person overrule a single decision (the emergency and legal lane is internal).
+Under D-51 moderator-queue and per-item decision endpoints no longer exist; audit and label paths: plan 09 (pending). Deliberate omissions: no email on any response, no DELETE on public records, no uploads, no search beyond `q`, no endpoint that lets a person overrule a single decision (the lane is internal).
 
 ## 7. Contract flow
 
-Server code (Nest DTO schemas via zod, one source for validation and OpenAPI) generates `can_server/openapi/openapi.json` with `npm run openapi`. `can_app` runs `npm run gen:api`, which reads `../can_server/openapi/openapi.json` and writes `src/api/schema.d.ts`. Flow: [flows/contract-flow.md](flows/contract-flow.md). CI in each repo: server fails if `openapi.json` is stale versus code; app fails if generated output differs from committed. Breaking changes need a `/v2` or an additive field. Spec rule: protocol meaning (event types, rule ids) is documented in `docs/spec`, not only in DTOs.
+Server code (Nest DTO schemas via zod, one source for validation and OpenAPI) generates `can_server/openapi/openapi.json` with `npm run openapi`. `can_app` runs `npm run gen:api`, which reads `../can_server/openapi/openapi.json` and writes `src/api/schema.d.ts`. Flow: [flows/contract-flow.md](flows/contract-flow.md). CI in each repo: server fails if `openapi.json` is stale versus code; app fails if generated output differs from committed. Breaking changes need a `/v2` or an additive field. Protocol meaning (event types, rule ids) lives in `docs/spec`.
 
 ## 8. Decentralization seams (interfaces only)
 
@@ -384,15 +390,15 @@ Structural escapes already in the schema: UUIDv7, `origin_node_id`, `protocol_ve
 | Contract | Script | `openapi.json` is current; generated client compiles. |
 | App unit | Jest with mocked generated client | Screens for all UI-unit template states (loading, empty, error, offline, session-expired, not-permitted, tombstone, validation). |
 | App e2e | Playwright on Expo web, mocked or real API | Three journeys from `ux/journeys.md`, 200 percent zoom check, keyboard-only path, axe-core scan per screen. |
-| Fixture corpora | Plain JSON files, versioned, in `can_server/test/fixtures/` | `privacy-flags.json` (synthetic names, addresses, phones, emails, plates, mixed-direction text, indirect identifiers; each with expected flag and span), `eligibility.json` (individual-case vs structural statements, emergency language routed to external routes), `reposts.json` (near-duplicate drafts for fingerprint). All fictional. Rules cite `RULE-ID` from `docs/spec/constitution/rules.md`; every corpus row names the rule it tests. |
+| Fixture corpora | Plain JSON files, versioned, in `can_server/test/fixtures/` | `privacy-flags.json`, `eligibility.json`, `reposts.json`; persona scenarios under `test/simulation`. All fictional. Rules cite `RULE-ID` from `docs/spec/constitution/rules.md`; every corpus row names the rule it tests. |
 | Lint gates | oxlint, eslint-plugin-react-native-a11y, grep | Logical start/end only, no string concatenation in UI copy, no em or en dashes in copy, no hex colours outside tokens. |
 
 Moderation tests use `FakeModel` with recorded responses and no paid calls. Eval sets and replay fixtures live with the policy pack ([ai/evaluation.md](ai/evaluation.md)); they start small and hand-written, and measured precision and recall come later.
 
 ## 10. Web-first verification
 
-No simulators or devices exist (D-8). Done means: verify script green; server e2e green against compose; Playwright green on Expo web at 360 px and 1280 px; `expo export -p ios` and `-p android` bundle successfully. Native session storage, push, deep links and screen reader behaviour on devices are founder-gated and recorded in open questions, not claimed as verified.
+No simulators or devices exist (D-8). Done means: verify script green; server e2e green against compose; Playwright green on Expo web at 360 px and 1280 px; `expo export -p ios` and `-p android` bundle successfully. Native session storage, push, deep links and device screen readers are founder-gated, not claimed as verified.
 
 ## 11. Operations notes
 
-Structured JSON logs with request id; email, codes, tokens and body text are never logged (redaction list in config, tested). `/v1/health` reports DB reachability and migration version. Secrets only from env; `.env.example` lists names. Backups, real mail, TLS and hosting are outside slice 1.
+Structured JSON logs with request id; email, codes, tokens and body text are never logged (tested redaction list). `/v1/health` reports DB reachability and migration version. Secrets only from env (`.env.example` lists names). Portability contract (D-57): [components/cross-cutting.md](components/cross-cutting.md). Real mail, TLS and hosting are outside slice 1.

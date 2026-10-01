@@ -26,7 +26,7 @@ sequenceDiagram
   API->>UC: verifier must differ from implementer
   Verifier->>API: T14 propose solved
   API->>Eng: T14 request
-  Eng->>Mod: gate DP-SOLVED (evidence vs success metric)
+  Eng->>Mod: gate DP-VERIFICATION (evidence vs success metric)
   alt evidence sufficient
     Mod-->>Eng: publish
     Eng->>DB: tx: state=solved, resolution record, event; email followers
@@ -50,7 +50,7 @@ sequenceDiagram
 `task.updated`, `problem.verification`, `problem.solved` (resolution record created), `problem.implementation` (T13) (planned).
 
 ## DPs invoked
-DP-SOLVED, DP-PRIVACY, DP-NAMING on task text. See [../ai/decision-points.md](../ai/decision-points.md).
+DP-VERIFICATION, DP-PRIVACY, DP-NAMING on task text; DP-COMPLETENESS and DP-ASSUMPTIONS on task and verification-evidence fields (schema-structured, D-58). See [../ai/decision-points.md](../ai/decision-points.md).
 
 ## Related
 [lifecycle-transition.md](lifecycle-transition.md), [ux/journeys.md](../ux/journeys.md) J2 steps 6 and 7.

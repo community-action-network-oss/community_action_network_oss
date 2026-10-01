@@ -4,7 +4,7 @@
 The only place a person acts on a single case. Crisis or immediate-danger content is routed to external emergency services and shown a route at once; legal or law-enforcement requests (takedown orders, court orders, data requests) are handled by a small, named, logged lane.
 
 ## Trigger
-1. DP-EMERGENCY returns `route_external` or `escalate_human` during any run.
+1. DP-CRISIS returns `route_external` or `escalate_human` during any run.
 2. A legal request arrives through the documented channel and an authorized person opens a lane case.
 
 ## Status
@@ -20,7 +20,7 @@ sequenceDiagram
   participant Lane as emergency and legal lane (people)
   participant Mail
   User->>Mod: content (any flow)
-  Mod->>GW: DP-EMERGENCY runs first, small model plus deterministic keywords
+  Mod->>GW: DP-CRISIS runs first, small model plus deterministic keywords
   GW-->>Mod: crisis signal, confidence
   alt clear crisis
     Mod->>DB: decision route_external, content not published
@@ -45,7 +45,9 @@ sequenceDiagram
 `moderation.routed_external`, `lane.case.opened`, `lane.case.resolved` (planned). Lane events are append-only and exempt from nothing.
 
 ## DPs invoked
-DP-EMERGENCY. See [../ai/safety-and-privacy.md](../ai/safety-and-privacy.md) and [../ai/decision-points.md](../ai/decision-points.md).
+DP-CRISIS. See [../ai/safety-and-privacy.md](../ai/safety-and-privacy.md) and [../ai/decision-points.md](../ai/decision-points.md).
+
+The lane is a small human role served by the `lane` module (plan 11, pending); every case and action is logged. It is the only place a person decides a single item.
 
 ## Related
 [intake-submit.md](intake-submit.md), [appeal.md](appeal.md).

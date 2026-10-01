@@ -46,7 +46,20 @@ flowchart TD
 | `tasks` | task, blockers, verification refs | decisions, problems | 05-u01, 05-u02 | planned |
 | `audit` | audit_event, write-only API for others | none | 02-u04 | planned |
 
-Not yet planned: `label_task` module (appeal and eval labeling, randomized masked pools), `lane` (emergency and legal lane cases), notices read model for "re-reviewed under policy vX". Plan 09 should cover them or file units.
+Added by D-55 to D-58 (all pending plans 09, 10, 11):
+
+| Part | Responsibility | Depends on | Status |
+|---|---|---|---|
+| Content-schema registry (inside `policy`) | serves schema JSON by content type and version from the active pack; validates submissions against the pinned `schema_version`; refuses hash mismatch; `GET /v1/content-schemas/{type}?version=` | policy loader | plan 10 (pending) |
+| Fill-assist endpoint | `POST /v1/content-schemas/{type}/assist`: notes through the privacy gateway, schema-constrained per-field suggestions, nothing stored as content | ai-gateway, registry | plan 10 (pending) |
+| DP-COMPLETENESS, DP-ASSUMPTIONS | two more DPs in the selector, run on every structured content type; own prompts, schemas and eval sets in the pack | moderation | plan 09 (pending) |
+| Notices read model | per-account "re-reviewed under policy vX" and "Decided under policy vX" notices built from decisions; `GET /v1/me/notices` | moderation | plan 10 (pending) |
+| `label_task` module | randomized, context-masked appeal and eval label pools, disagreement tracking, label export as pack PR input | moderation, accounts (labeler role) | plan 10 (pending) |
+| `lane` module | emergency and legal lane cases, logged actions by lane members; the only per-case human decision | moderation, audit | plan 11 (pending) |
+| Simulation harness | persona runner driving the public API; see below | none in-process | plan 11 (pending) |
+
+### Where the simulation harness lives
+Decision: `can_server/test/simulation`, a plain TypeScript runner (Vitest-launched in CI, a `node` script for night runs) that talks to a running server over HTTP only. Why: it needs the public API, FakeModel bindings, fixtures and the test database that already live in `can_server`; a separate package adds a repo, versioning and duplicated fixtures for no gain. The HTTP-only rule (the runner imports no server internals) keeps moving it out cheap later. It runs against its own database, never production. Detail: [../flows/persona-simulation-run.md](../flows/persona-simulation-run.md), [../ai/simulation.md](../ai/simulation.md).
 
 ## Inside moderation, policy and ai-gateway
 ```mermaid

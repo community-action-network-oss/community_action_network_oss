@@ -9,11 +9,11 @@ What the system is made of, per repo, and which plan unit builds each part. Beha
 | [server.md](server.md) | `can_server` modules, layers, AI moderation runtime, AI entities | scaffold: health, `events` table, `domain/{ids,event,protocol}`, config, OpenAPI export |
 | [app.md](app.md) | `can_app` providers, query layer, generated client, civic layer, screens, i18n, tokens | scaffold: theme, i18n, typed client, `useHealth`, 5 civic components |
 | [gallery.md](gallery.md) | `can_gallery` static pages and synced content | built (Phase 0a in plan 06 continues) |
-| [can-policy.md](can-policy.md) | planned 5th repo with policy packs | not created (founder-gated, D-52) |
+| [can-policy.md](can-policy.md) | planned 5th repo with policy packs, content schemas, seed packs | not created (founder-gated, D-52) |
 | [cross-cutting.md](cross-cutting.md) | ids, events, errors, config, logging, ports | ids and event model built; rest planned |
 
 ## Legend
-- **built**: files exist. **planned (unit)**: a plan unit specifies it. **plan 09 (pending)**: AI plan not yet written. **not yet planned**: no unit exists; a gap to close.
+- **built**: files exist. **planned (unit)**: a plan unit specifies it. **plan 09 (pending)**: AI plan. **plan 10 (pending)**: structured content. **plan 11 (pending)**: simulation, seeds, lane. **not yet planned**: no unit exists; a gap to close.
 - Repos are four submodules plus the superproject; `can_policy` would be the fifth (D-52).
 
 ## Conventions

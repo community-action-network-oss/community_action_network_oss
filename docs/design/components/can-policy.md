@@ -13,6 +13,8 @@ flowchart TD
   repo --> cl[CHANGELOG.md]
   dps --> pr[prompt.md]
   dps --> sc[schema.json]
+  repo --> cs[content-schemas/type/version]
+  repo --> sp[simulation/personas, seeds, thresholds]
   dps --> ex[examples/]
   dps --> ev[eval/]
   repo -->|tag: semver + content hash| server[can_server policy module]
@@ -27,16 +29,18 @@ flowchart TD
 | `decision-points/<DP-id>/schema.json` | output schema |
 | `decision-points/<DP-id>/examples/` | labeled examples (appeal labels land here) |
 | `decision-points/<DP-id>/eval/` | eval sets |
+| `content-schemas/<type>/schema.json` | one versioned schema per content type (D-58): fields, `x-ui`, `x-guidance`, `x-checks`; the app renders forms from it and DP-COMPLETENESS reads it. See [../ai/structured-content.md](../ai/structured-content.md) |
+| `simulation/` | persona definitions, seed scenarios 1 and 2 (real framings, synthetic evidence, D-56) and `thresholds.yaml` graduation values; data only, the harness code lives in `can_server/test/simulation`. See [../ai/simulation.md](../ai/simulation.md). The Amsterdam overlay lives in `packs/jurisdictions/nl-amsterdam/` |
 | `ratifications/` | ratification records |
 | `CHANGELOG.md` | human-readable version history |
 
 Layer order when composed: base platform, constitution, jurisdiction law, local rules (constitution I.2). RULE-IDs currently in `docs/spec/constitution/rules.md` move here over time.
 
 ## CI
-Schema lint, eval against labeled sets with per-DP thresholds, replay diff against fixtures (what would flip). See [../flows/policy-amendment.md](../flows/policy-amendment.md). Releases are tags; the content hash is checked by `can_server` at load.
+Schema lint (including content-schema compatibility and migration maps), eval against labeled sets with per-DP thresholds, replay diff against fixtures (what would flip). See [../flows/policy-amendment.md](../flows/policy-amendment.md). Releases are tags; the content hash is checked by `can_server` at load.
 
 ## Consumers
-`can_server` policy module (pack loader), `can_gallery` (rules shown publicly, via sync, planned), `can_app` (`GET /v1/rules` reads server-side copy of the active pack).
+`can_server` policy module (pack loader, content-schema registry, seed loader); the simulation harness reads `simulation/`, `can_gallery` (rules shown publicly, via sync, planned), `can_app` (`GET /v1/rules` reads server-side copy of the active pack).
 
 ## Gaps (not yet planned)
 Repo creation unit, can-root submodule wiring (`.gitmodules`, verify-all, skill `can-root`), CI workflow, ratification panel tooling, ADR superseding 0001 (three submodules) and 0006.

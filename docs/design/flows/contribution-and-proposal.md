@@ -24,10 +24,10 @@ sequenceDiagram
   Mod-->>UC: publish or hint or hold
   UC->>DB: contribution visible or pending, evidence tier recomputed
   User->>API: proposal (mechanism, metric, risks, verification plan)
-  API->>UC: store, run DP-LAWFULNESS
+  API->>UC: store, run DP-LEGALITY
   User->>API: POST decision {proposalId, authority, rationale, dissent}
   API->>Eng: T11 with decision record and legal-gate record
-  Eng->>Mod: gate DP-LAWFULNESS dual legality, DP-DECISION-RECORD completeness
+  Eng->>Mod: gate DP-LEGALITY dual legality, DP-DECISION-RECORD completeness
   Eng->>DB: tx: decision_record, state=implementation, event, tasks
 ```
 
@@ -44,7 +44,7 @@ sequenceDiagram
 `contribution.added`, `contribution.published`, `proposal.created`, `decision.recorded`, `problem.implementation` (planned).
 
 ## DPs invoked
-DP-RELEVANCE, DP-TONE, DP-PRIVACY, DP-NAMING, DP-LAWFULNESS, DP-DECISION-RECORD, DP-EVIDENCE-TIER, DP-DUPLICATE. See [../ai/decision-points.md](../ai/decision-points.md).
+DP-COMPLETENESS and DP-ASSUMPTIONS (every contribution, proposal and decision record is schema-structured, [structured-submission.md](structured-submission.md)), DP-CONTRIB-RELEVANCE, DP-TONE, DP-PRIVACY, DP-NAMING, DP-LEGALITY, DP-DECISION-RECORD, DP-EVIDENCE-TIER, DP-DUPLICATE. See [../ai/decision-points.md](../ai/decision-points.md).
 
 ## Related
 [content-update.md](content-update.md), [lifecycle-transition.md](lifecycle-transition.md), [ux/journeys.md](../ux/journeys.md) J2.

@@ -38,6 +38,8 @@ flowchart LR
   S -->|disagreement above limit| X
 ```
 
+Roles: legislators author and ratify; maintainers run the repo and tag releases; auditors supply sampled-decision findings; labelers supply appeal and eval labels. Changes to content schemas follow the same loop with extra steps: [policy-schema-change.md](policy-schema-change.md).
+
 ## Failure paths
 - Eval below threshold or lint failure: PR blocked.
 - Shadow or canary shows excess disagreement: rollout halted, previous version stays active; rollback is selecting the prior version.
