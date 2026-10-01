@@ -4,12 +4,15 @@ title: "can_policy and structured content"
 approved: true
 status: todo
 depends_on_plans: ["02","03"]
-spec: ["docs/design/ai/structured-content.md","docs/design/ai/policy-pack.md","docs/design/ai/decision-points.md","docs/design/ai/amendment-loop.md","docs/design/ai/evaluation.md","docs/design/components/can-policy.md","docs/design/components/server.md","docs/design/components/app.md","docs/spec/constitution/rules.md","docs/spec/01-slice-1-brief.md","docs/design/ux/wireframes/forms.md","docs/design/ux/wireframes/policy.md","docs/design/ux/ui-unit-template.md","docs/adr/0009-can-policy-repo.md","docs/adr/0010-structured-content-everywhere.md"]
+spec: ["docs/design/ai/structured-content.md","docs/design/ai/policy-pack.md","docs/design/ai/decision-points.md","docs/design/ai/legal-stack.md","docs/design/flows/legal-corpus-update.md","docs/design/ai/amendment-loop.md","docs/design/ai/evaluation.md","docs/design/components/can-policy.md","docs/design/components/server.md","docs/design/components/app.md","docs/spec/constitution/rules.md","docs/spec/01-slice-1-brief.md","docs/design/ux/wireframes/forms.md","docs/design/ux/wireframes/policy.md","docs/design/ux/ui-unit-template.md","docs/adr/0009-can-policy-repo.md","docs/adr/0010-structured-content-everywhere.md"]
 ---
 # Plan 10: can_policy and structured content
 
 ## Goal
 The fifth repository, `can_policy`, exists and holds the first community-legislated policy pack: base rules, v1 content schemas for every content type (D-58), one prompt, output schema, labeled examples and eval set for each of the 19 decision points, limits, a fictional test overlay and an Amsterdam overlay skeleton (D-56). can_server loads packs by version and hash and serves schemas. can_app renders every form from the schema version, optionally helped by AI fill-assist with per-field confirmation. CI evaluates proposals and reports a replay diff. Policy proposals have a UI. The pack is ratified by transitional founder stewardship.
+
+## Legal corpora (D-61)
+Units 10-u41 to 10-u59 add the legal layer stack to can_policy under `packs/legal/<layer>/<jurisdiction>/`: the corpus format with source provenance (10-u41), an offline ingest tool (10-u42), L1 UN instruments (10-u43, 10-u44), L2 EU Charter, ECHR and an EU-law index stub (10-u45 to 10-u47), L3 Grondwet (10-u48, 10-u49), L4 to L6 stubs (10-u50), stack config and pins (10-u53), ratification checks (10-u54), the server loader and retrieval (10-u55, 10-u56), corpus activation jobs that trigger re-moderation and re-resolution (10-u57, consumed by 09-u60), and DP content for the stack and for DP-RERESOLUTION (10-u58, 10-u59). Every unit that fetches an official text or asserts law is founder-gated (10-u43, 10-u45, 10-u48 vendor with provenance because night runs may not fetch; 10-u51 and 10-u52 need lawyer review records, LEGAL-CORPUS-1). Corpora stay `draft` and unreviewed until a qualified reviewer signs.
 
 ## Spec refs
 - docs/design/ai/structured-content.md (all sections), policy-pack.md, decision-points.md, amendment-loop.md, evaluation.md
@@ -65,6 +68,25 @@ From the repo roots with no network: `npm run verify` is green in can_policy, ca
 | [10-u38](u38-policy-proposal-form.md) | Policy proposal form on the schema renderer (WF-POLICY-1) | can_app | 1.5 | 38 | 10-u32, 10-u05, 10-u12 | - |
 | [10-u39](u39-policy-proposal-view.md) | Policy proposal view: eval results, replay diff, ratification, rollout (WF-POLICY-2) | can_app | 1.5 | 39 | 10-u38, 10-u32 | - |
 | [10-u40](u40-server-fixture-refresh.md) | Refresh the server fixture pack from can_policy v1.0.0 and pin it in test config | can_server | 0.8 | 40 | 10-u27, 10-u29 | - |
+| [10-u41](u41-legal-corpus-format-layout-corpus-yaml-provenance.md) | Legal corpus format: layout, corpus.yaml provenance, schemas and lint (LEGAL-SOURCE-1) | can_policy | 1.5 | 41 | 10-u03, 10-u06 | - |
+| [10-u42](u42-legal-ingest-tool-deterministic-article-split-from.md) | Legal ingest tool: deterministic article split from a vendored official source | can_policy | 1.5 | 42 | 10-u41 | - |
+| [10-u43](u43-vendor-l1-official-sources-udhr-iccpr-icescr.md) | Vendor L1 official sources: UDHR, ICCPR, ICESCR (founder or interactive, network) | can_policy | 0.8 | 43 | 10-u42 | yes |
+| [10-u44](u44-build-l1-un-human-rights-corpora-udhr.md) | Build L1 UN human-rights corpora: UDHR, ICCPR, ICESCR articles and draft topic index | can_policy | 1.5 | 44 | 10-u43 | - |
+| [10-u45](u45-vendor-l2-official-sources-eu-charter-of.md) | Vendor L2 official sources: EU Charter of Fundamental Rights and ECHR (founder or interactive, network) | can_policy | 0.8 | 45 | 10-u42 | yes |
+| [10-u46](u46-build-l2-corpora-eu-charter-and-echr.md) | Build L2 corpora: EU Charter and ECHR articles and draft topic index | can_policy | 1.5 | 46 | 10-u45 | - |
+| [10-u47](u47-eu-law-index-stub-for-the-seed.md) | EU-law index stub for the seed topics (index only, no text) | can_policy | 1.0 | 47 | 10-u41 | - |
+| [10-u48](u48-vendor-l3-official-source-constitution-of-the.md) | Vendor L3 official source: Constitution of the Kingdom of the Netherlands (founder or interactive, network) | can_policy | 0.8 | 48 | 10-u42 | yes |
+| [10-u49](u49-build-l3-dutch-constitution-corpus-grondwet-dutch.md) | Build L3 Dutch constitution corpus (Grondwet, Dutch authoritative) and draft topic index | can_policy | 1.5 | 49 | 10-u48 | - |
+| [10-u50](u50-l4-dutch-national-law-index-l5-noord.md) | L4 Dutch national-law index, L5 Noord-Holland and L6 Amsterdam stubs (no legal assertion) | can_policy | 1.2 | 50 | 10-u41, 10-u21 | - |
+| [10-u51](u51-l4-to-l6-legal-content-selected-national.md) | L4 to L6 legal content: selected national statute, province and Amsterdam bylaw articles with lawyer review (founder action) | can_policy | 1.5 | 51 | 10-u50, 10-u42 | yes |
+| [10-u52](u52-lawyer-review-records-for-l1-to-l3.md) | Lawyer review records for L1 to L3 corpora and topic indexes (LEGAL-CORPUS-1, founder action) | can_policy | 1.0 | 52 | 10-u44, 10-u46, 10-u49, 10-u54 | yes |
+| [10-u53](u53-legal-stack-config-jurisdiction-pins-binding-or.md) | Legal stack config: jurisdiction pins, binding or reference per layer, retrieval limits | can_policy | 1.0 | 53 | 10-u41, 10-u21, 10-u07 | - |
+| [10-u54](u54-legal-corpus-ratification-and-eval-checks-in.md) | Legal corpus ratification and eval checks in CI (review record, citations resolve, replay) | can_policy | 1.5 | 54 | 10-u41, 10-u26, 10-u25 | - |
+| [10-u55](u55-legal-corpus-loader-and-registry-in-the.md) | Legal corpus loader and registry in the policy module, with synthetic fixture corpora | can_server | 1.5 | 55 | 10-u04, 10-u41 | - |
+| [10-u56](u56-topic-index-and-article-retrieval-only-relevant.md) | Topic index and article retrieval: only relevant articles enter a prompt, within context budgets | can_server | 1.5 | 56 | 10-u55 | - |
+| [10-u57](u57-corpus-activation-events-re-moderation-and-re.md) | Corpus activation events: re-moderation and re-resolution jobs on a legal corpus version change | can_server | 1.5 | 57 | 10-u55, 09-u27 | - |
+| [10-u58](u58-policy-content-legal-stack-examples-and-eval.md) | Policy content: legal-stack examples and eval for DP-LEGALITY, DP-ELIGIBILITY, DP-LEGAL (layered citation, topic ban, conflict hold) | can_policy | 1.5 | 58 | 10-u17, 10-u15, 10-u41 | - |
+| [10-u59](u59-policy-content-dp-reresolution-prompt-output-schema.md) | Policy content: DP-RERESOLUTION prompt, output schema, examples and eval | can_policy | 1.5 | 59 | 10-u14, 10-u06, 10-u07, 10-u41 | - |
 
 Decisions taken as reversible defaults (report in the morning): (1) one repo-wide semver per tag, each pack in the tag carries it; (2) label and help messages for schema fields live in the pack beside each schema (`content-schemas/<type>/messages.en.json`) and are served with it, the UX copy deck stays the review source; (3) can_policy dependencies are exactly pinned `ajv` and `yaml`; (4) cross-repo data: can_policy never reads `../docs` except in tests that skip with a reason, and can_server ships its own fixture pack.
 

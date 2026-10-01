@@ -38,6 +38,7 @@ Author the policy content for DP-LEGALITY, DP-LEGAL, DP-DECISION-RECORD, DP-VERI
 - `npm run verify` is green.
 
 ## Out of scope
+- Legal-stack examples, layered citations, topic ban and conflict cases: 10-u58.
 - Running models: scoring uses recorded responses (10-u23).
 - Server-side deterministic layers (keyword crisis detector, regex redaction).
 - Live-model tuning of thresholds (plan 11, founder-gated).
