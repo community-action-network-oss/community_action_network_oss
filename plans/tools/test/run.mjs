@@ -113,3 +113,17 @@ test('next lists a same-lane dependency before its dependent even when the depen
   const j = JSON.parse(run(d, 'next', '--hours', '6', '--json').stdout);
   assert.deepEqual(j.lanes.can_server.units.map((u) => u.id), ['01-u01', '01-u02']);
 });
+
+test('lint warns (exit 0) when a plan dependency has no unit-level edge', () => {
+  const d = mutant(sub('02-beta/u01-unapproved.md', 'depends_on: ["01-u03"]', 'depends_on: []'));
+  const r = run(d, 'lint');
+  assert.equal(r.status, 0);
+  assert.match(r.stderr, /WARN plan 02 depends_on_plans 01 but no unit of 02 depends on a unit of 01/);
+  assert.match(r.stdout, /1 warning/);
+});
+
+test('lint does not warn when a unit edge backs the plan dependency', () => {
+  const r = run(valid, 'lint');
+  assert.equal(r.status, 0);
+  assert.doesNotMatch(r.stderr, /WARN/);
+});

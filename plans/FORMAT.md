@@ -26,10 +26,12 @@ A block between two `---` lines at the top of the file. Each line is `key: value
 | title | string | |
 | approved | bool | units are only eligible when their plan is `true` |
 | status | todo/doing/done | |
-| depends_on_plans | [plan ids] | no cycles |
+| depends_on_plans | [plan ids] | informational only (ordering and the graph); `next` never enforces it. No dangling ids, no cycles. `lint` warns (not an error) when no unit of the plan depends on a unit of the named plan |
 | spec | [paths] | must exist |
 
 Body: goal, acceptance, unit table, risks.
+
+Unit-level `depends_on` is the only enforced dependency constraint. Keep `depends_on_plans` in sync by giving each plan dependency at least one cross-plan unit edge.
 
 ## Unit
 

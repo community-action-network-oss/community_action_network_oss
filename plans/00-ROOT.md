@@ -38,7 +38,7 @@ Generated from the corpus (snapshot; recompute with the tool). Lanes are repos; 
 
 ## Plan dependencies
 
-Plan level only. For unit level run `node plans/tools/corpus.mjs graph`.
+Informational: plan-level edges show intended ordering but are not enforced. Only unit-level `depends_on` gates selection, and `lint` warns if a plan edge has no unit edge behind it. Plan level only here; for unit level run `node plans/tools/corpus.mjs graph`.
 
 ```mermaid
 flowchart LR

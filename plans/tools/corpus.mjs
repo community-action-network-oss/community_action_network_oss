@@ -135,15 +135,23 @@ function lint(root) {
   }
   const uc = findCycle(uedges);
   if (uc) errors.push(`unit dependency cycle: ${uc.join(' -> ')}`);
-  return { errors, plans, units };
+  // informational plan deps: warn when no unit-level edge backs them
+  const warnings = [];
+  const planOf = Object.fromEntries(units.map((u) => [u.data.id, u.data.plan]));
+  for (const p of plans) for (const dep of p.data.depends_on_plans || []) {
+    const backed = units.some((u) => u.data.plan === p.data.id && (u.data.depends_on || []).some((x) => planOf[x] === dep));
+    if (pids.has(dep) && !backed) warnings.push(`plan ${p.data.id} depends_on_plans ${dep} but no unit of ${p.data.id} depends on a unit of ${dep}`);
+  }
+  return { errors, warnings, plans, units };
 }
 
 function cmdLint(root) {
-  const { errors, plans, units } = lint(root);
+  const { errors, warnings, plans, units } = lint(root);
   if (errors.length) { console.error(errors.map((e) => `ERROR ${e}`).join('\n')); console.error(`lint FAILED: ${errors.length} error(s)`); return 1; }
   const by = {};
   for (const u of units) by[u.data.status] = (by[u.data.status] || 0) + 1;
-  console.log(`lint OK: ${plans.length} plans, ${units.length} units`);
+  for (const w of warnings) console.error(`WARN ${w}`);
+  console.log(`lint OK: ${plans.length} plans, ${units.length} units${warnings.length ? `, ${warnings.length} warning(s)` : ''}`);
   console.log(`status: ${Object.entries(by).sort().map(([k, v]) => `${k}=${v}`).join(' ') || 'none'}`);
   for (const l of lanes(units)) {
     const us = units.filter((u) => u.data.repo === l);
