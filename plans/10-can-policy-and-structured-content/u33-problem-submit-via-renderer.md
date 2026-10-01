@@ -7,7 +7,7 @@ area: can-app
 model: sonnet
 est_hours: 1.5
 priority: 33
-depends_on: ["10-u05","10-u29","03-u19","03-u16"]
+depends_on: ["10-u05","10-u29","03-u16","03-u08"]
 writes: ["src/features/submit/**","app/submit/**","src/forms/schema/**","src/i18n/en.json","__tests__/submit/**","src/api/schema.d.ts"]
 reads: ["src/**","app/**"]
 spec: ["docs/design/ux/wireframes/forms.md#WF-FORM-1","docs/design/ux/wireframes/submit.md#WF-SUBMIT-1","docs/design/flows/structured-submission.md","docs/spec/constitution/rules.md#SCHEMA-1","docs/spec/constitution/rules.md#STRUCT-ONLY-1"]
