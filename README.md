@@ -47,6 +47,18 @@ git clone --recurse-submodules https://github.com/community-action-network-oss/c
 
 The `protocol.file.allow` git setting is only needed when cloning from a local mirror.
 
+Everything at once, from the repository root (Docker provides the database):
+
+```sh
+npm --prefix can_server ci && npm --prefix can_app ci && npm --prefix can_gallery ci
+cp can_server/.env.example can_server/.env
+npm start
+```
+
+`npm start` starts Postgres and Mailpit with Docker (if running) and migrates, then runs the server (http://localhost:4000/docs), the gallery (http://localhost:3000) and the app (http://localhost:8081) with prefixed logs. Ctrl+C stops the three servers; the database keeps running (`docker compose -f can_server/docker-compose.yml --project-directory can_server down` stops it). Without Docker the API reports the database down.
+
+Or run each service by hand:
+
 Server (http://localhost:4000/health, Swagger at /docs):
 
 ```sh

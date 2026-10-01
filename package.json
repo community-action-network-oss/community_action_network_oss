@@ -1,0 +1,10 @@
+{
+  "name": "community-action-network",
+  "private": true,
+  "license": "MIT",
+  "engines": { "node": ">=24" },
+  "scripts": {
+    "start": "node scripts/dev.mjs",
+    "verify": "bash scripts/verify-all.sh"
+  }
+}

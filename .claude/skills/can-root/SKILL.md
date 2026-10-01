@@ -32,6 +32,9 @@ git -C <root> submodule foreach git status --porcelain   # must be empty
 ```
 The clone path works because submodule URLs are relative to the superproject URL.
 
+## Dev
+`npm start` at the root runs `scripts/dev.mjs` (Node stdlib only): Docker DB, then server, gallery and app with prefixed logs.
+
 ## Verify
 `scripts/verify-all.sh` runs `npm run verify` in each submodule that has `node_modules`, plus the plans, spec, constitution and design checkers. Exit is non-zero on any failure.
 
