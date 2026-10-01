@@ -16,6 +16,10 @@ flowchart TD
   RAT --> RD[5 Instance re-decided by AI under the new version]
 ```
 
+## Stage resolution appeals
+
+A stage resolution by DP-STAGE-RESOLUTION is a moderation decision and is appealable (STAGE-RESOLVE-1), by the stage's poster or the contributor who submitted the evidence, within `appealable_until`. Grounds are typed: which criterion was misread, or which evidence was not considered (new evidence refs only, never new personal data). The independent re-run (DP-APPEAL) re-judges the stage against the same criteria. If overturned, the stage is re-decided through the normal pipeline: `resolved` if the evidence now meets the criteria, otherwise unchanged with the new explanation. While an appeal on a `resolving` or `blocked` stage is open, successor stages stay `planned`; an appeal on a stage that was already `resolved` and has live successors does not pause them (nothing is rolled back unless the overturn flips the result, which then follows the re-resolution notice path). A rejected plan-change proposal is appealable the same way. Volunteer recommendations are advice, not decisions, and are not appealable; a poster declining one needs only a reason (RECO-1). Publication refusals (DP-PUBLISH `reject`) use the ordinary loop below.
+
 ## Steps
 
 1. **Appeal.** One appeal per decision (brief section 5), with grounds in plain words. Allowed until `appealable_until` (default 14 days). A rejected good-faith appeal has zero penalty (APPEAL-2).

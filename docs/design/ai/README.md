@@ -1,6 +1,6 @@
 # AI design: community-legislated, AI-executed moderation
 
-Status: design (W3, D-51 to D-53). No code exists yet. Slice 1 builds the whole pipeline with a deterministic `FakeModel`; the first live provider is founder-gated. Binding vocabulary comes from the founder model; this folder is the design that implements it.
+Status: design (W3, D-51 to D-53). No code exists yet. Lifecycle v2 (D-72): volunteer review and AI publication, then a per-problem stage plan. Slice 1 builds the whole pipeline with a deterministic `FakeModel`; the first live provider is founder-gated. Binding vocabulary comes from the founder model; this folder is the design that implements it.
 
 ## The idea in plain words
 
@@ -62,7 +62,7 @@ Per-item moderators no longer exist. Humans do not override single instances by 
 | File | Contents |
 |---|---|
 | [policy-pack.md](policy-pack.md) | `can_policy` layout, pack format, layers, versioning, loading, example |
-| [decision-points.md](decision-points.md) | Catalog of every `DP-*`: triggers, gates, outcomes, fail-closed behaviour |
+| [decision-points.md](decision-points.md) | Catalog of every `DP-*`: triggers, gates, outcomes, fail-closed behaviour; lifecycle v2 DPs (source trust, criteria, stage plan, publish, stage resolution) |
 | [runtime.md](runtime.md) | The moderation run: bus, selector, agent DAG, run record, cache, routing, budgets, providers |
 | [triggers.md](triggers.md) | Pre-publication, on-update, post-publication; re-moderation semantics; ordering and backpressure |
 | [amendment-loop.md](amendment-loop.md) | Proposal to ratification to staged rollout to rollback; anti-capture |
@@ -73,7 +73,7 @@ Per-item moderators no longer exist. Humans do not override single instances by 
 | [simulation.md](simulation.md) | Persona simulation harness: catalog, seeds 1 and 2, modes, metrics, graduation criteria (D-55) |
 | [evaluation.md](evaluation.md) | Eval sets, thresholds as gates, replay diff, slice-1 fixtures |
 
-Decisions: [ADR 0008](../../adr/0008-ai-executed-community-policy.md) (supersedes 0006), [ADR 0009](../../adr/0009-can-policy-repo.md), [ADR 0010](../../adr/0010-structured-content-everywhere.md), [ADR 0011](../../adr/0011-persona-simulation-proof.md), [ADR 0012](../../adr/0012-legal-layer-stack.md), [ADR 0013](../../adr/0013-retroactive-re-resolution.md). Specs this builds on: `docs/spec/14-ai-privacy-gateway.md`, `docs/spec/15-ai-inference.md`, `docs/spec/06-moderation-geo-governance.md`, lifecycle table in `docs/spec/01-slice-1-brief.md#4-lifecycle`.
+Decisions: [ADR 0008](../../adr/0008-ai-executed-community-policy.md) (supersedes 0006), [ADR 0009](../../adr/0009-can-policy-repo.md), [ADR 0010](../../adr/0010-structured-content-everywhere.md), [ADR 0011](../../adr/0011-persona-simulation-proof.md), [ADR 0012](../../adr/0012-legal-layer-stack.md), [ADR 0013](../../adr/0013-retroactive-re-resolution.md), [ADR 0015](../../adr/0015-stage-plans-and-volunteer-review.md) (stage plans and volunteer review, D-72). Specs this builds on: `docs/spec/14-ai-privacy-gateway.md`, `docs/spec/15-ai-inference.md`, `docs/spec/06-moderation-geo-governance.md`, lifecycle table in `docs/spec/01-slice-1-brief.md#4-lifecycle`.
 
 ## Words used exactly
 

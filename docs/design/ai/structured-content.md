@@ -2,6 +2,8 @@
 
 Nothing a person posts is a blank text box. Every content type has a **schema** the community decided in advance. The schema is part of the policy pack, so it is versioned, ratified and replayable like any rule. The poster is led through the aspects of the problem that most posts leave out: facts, causes, who is affected, scope, lawful options, uncertainty and assumptions.
 
+Lifecycle v2 adds `CRITERIA-1`, `REVIEW-1`, `RECO-1`, `STAGE-GATE-1`, `STAGE-PREP-1`, `STAGE-RESOLVE-1`, `PLAN-CHANGE-1` (D-72); DPs for them are in `decision-points.md`. Review recommendations are private content: never public, personal data masked.
+
 Proposed rule ids (the spec owner adds them): `STRUCT-ONLY-1` (no free-form content type exists), `SCHEMA-1` (the app renders only from a pack schema version), `ASSUMP-1` (stated and detected assumptions are checked before publication), `COMPLETE-1` (required fields are meaningfully answered), `AI-ASSIST-1` (AI-suggested values need poster confirmation and are flagged).
 
 ## 1. Content types and their schemas
@@ -10,12 +12,16 @@ Each type has one `schema.json` under `content-schemas/<type>/` in `can_policy`.
 
 | Type | Schema `id` | Core fields (all required unless marked optional) |
 |---|---|---|
-| Problem | `problem` | condition, affected, place, since, observed facts, uncertain claims, evidence refs, causal hypothesis, scope, responsible roles, desired public outcome, assumptions, out of scope, lawful options |
+| Problem | `problem` | condition, affected, place, since, observed facts, uncertain claims, sources, evidence refs, causal hypothesis, scope, responsible roles, desired public outcome, final acceptance criteria, assumptions, out of scope, lawful options; optional `stage_plan` |
 | Contribution | `contribution.<type>` | common: `type`, `target` (problem, task or contribution id), `claim`, `basis` (`firsthand`, `cited`, `inferred`), `evidence_refs`, `uncertainty`, `assumptions`. Plus the per-type fields below |
 | Proposal | `proposal` | mechanism, responsible role, authority and legal basis, cost estimate and funding, success metric, risks and rights impact, dependencies, verification plan, lawful alternatives considered, assumptions |
 | Decision record | `decision_record` | chosen proposal, method, rationale, decider role, authority, dissent notes, legal-gate record, assumptions, review date |
 | Task and verification | `task`, `verification` | task: question answered, deliverable, done criteria, owner role. Verification: success metric restated, evidence refs with tier, outcome statement, what the evidence does not show |
 | Appeal | `appeal` | decision ref, rule ids disputed, which fact or reading is wrong, what outcome is sought, new evidence refs (never new personal data) |
+| Stage option | `stage_option` | stage ref, option statement, mechanism, responsible role, authority and legal basis, cost, how it would meet the stage criteria, risks, lawful alternatives, assumptions |
+| Stage choice | `stage_choice` | stage ref, chosen option ids or steps, decision method, decider role and authority, rationale, dissent notes, legal-gate record, steps (each: step, owner role, done criterion) |
+| Stage evidence | `stage_evidence` | stage ref, criterion ref each item addresses, evidence refs with tier, observation date, outcome statement, what the evidence does not show |
+| Review recommendation | `review_recommendation` | problem ref, `path` (field or metadata path, including stage, stage criteria and final criteria), `recommendation` (change asked), `reason`, `status` (`open`, `accepted`, `declined`), poster `resolution_reason` (required on accept or decline, RECO-1) |
 | Policy proposal | `policy_proposal` | rule ids and DPs touched, reason, motivating labeled examples, expected flips, protected-core check, rollback plan |
 
 Per-type contribution fields (on top of the common ones):
@@ -79,14 +85,20 @@ Order is the order of the form. The rationale is shown to the poster as the fiel
 | 4 | `since` | When it started or was first noticed, and whether it is recurring, worsening or stable | Trend matters for causes and for success metrics |
 | 5 | `observed_facts[]` | Each: statement, source ref or `firsthand`, date | Separates what is known from what is believed |
 | 6 | `uncertain_claims[]` | Each: statement, why uncertain, what would settle it | Makes uncertainty a normal, required part of a post |
+| 6a | `sources[]` | Each: `source_ref` (URI), `category`, what it establishes about the issue | A trusted source shows the issue is real (DP-SOURCE-TRUST); needs at least one |
 | 7 | `evidence_refs[]` | URLs with a short description and which fact each supports | Evidence tier (DP-EVIDENCE-TIER); a link is not proof of the fact |
 | 8 | `causal_hypothesis` | Statement and status (`untested`, `partly_supported`, `supported`) | Causes stay hypotheses until supported (brief section 6) |
 | 9 | `scope` | Boundaries in place, time, sector; what is a child problem | Stops one thread from becoming "everything" (seeds 3 and 4 later) |
 | 10 | `responsible_roles[]` | Offices and institutions, never named people (NAME-1) | Who could act; accountability without targeting a person |
 | 11 | `desired_outcome` | The public outcome and how anyone could tell it happened | Becomes the success metric that DP-VERIFICATION checks |
+| 11a | `final_acceptance_criteria[]` | Each: a measurable statement of what "solved" means, how it is observed, optional deadline | Required (CRITERIA-1); DP-CRITERIA checks it, DP-VERIFICATION judges against it |
 | 12 | `assumptions[]` | Each: statement, kind (`factual`, `causal`, `legal`, `scope`), confidence | The poster states what they are taking for granted; DP-ASSUMPTIONS then checks it |
 | 13 | `out_of_scope[]` | What this problem does not cover | Prevents scope creep and duplicate overlap |
 | 14 | `lawful_options` | Options the poster knows of that are lawful, or `unknown`; and acknowledgement that unlawful action is not part of the problem | Awareness of the legal frame early, so proposals later are not blocked by surprise (DP-LEGALITY) |
+
+Optional: `stage_plan`, a DAG of stage nodes. Each node: `name`, `goal`, `acceptance_criteria[]` (at least one), `decision_method` (`poster_after_input` default, `community_vote`, `steward`, `other_named`), `depends_on[]` (stage names; empty means ready at publication). A missing plan means the `classic-5` template or one stage, offered at preparation. DP-STAGE-PLAN checks it; volunteers may recommend changes to it; after publication it changes only by proposal (PLAN-CHANGE-1).
+
+Schema ids for `sources[]` items: `source_ref` = `{uri, category, establishes, authenticity_note}`; the server stamps the DP-SOURCE-TRUST result per item.
 
 Optional: `existing_efforts` (what institutions already do or spend). Strongly encouraged by guidance because it fixes the "nothing is being done" assumption, but a missing value is `none_stated`, not a block.
 
@@ -135,7 +147,7 @@ Schemas change only by the amendment loop (`amendment-loop.md`): a PR touching `
 
 - **Form test:** the PR includes rendered-form snapshots from the schema (accessibility and RTL baseline), so a schema cannot ship a form that cannot be completed.
 - **Replay on content:** old published content is re-validated against the new schema as a dry run to count what would be incomplete. Published content is not edited by this.
-- **In-flight drafts** (`draft`, `submitted`, `needs_revision`): keep their schema version until submit. A minor bump auto-migrates a draft: new optional fields appear empty, changed bounds apply at next submit. A major bump keeps the draft on the old version for a grace window set in the pack (default 30 days); the app offers a migration screen that maps old fields to new ones, the poster confirms each mapping, and unmapped required fields are asked fresh. After the window the draft must migrate before submit.
+- **In-flight drafts** (`draft`, `in_review`, `needs_revision`): keep their schema version until submit. A minor bump auto-migrates a draft: new optional fields appear empty, changed bounds apply at next submit. A major bump keeps the draft on the old version for a grace window set in the pack (default 30 days); the app offers a migration screen that maps old fields to new ones, the poster confirms each mapping, and unmapped required fields are asked fresh. After the window the draft must migrate before submit.
 - **Published content keeps its schema version.** It is never rewritten. An edit by the owner opens the current version and passes through DP-ASSUMPTIONS and DP-COMPLETENESS on the diff. If the change is only newly required fields, the page shows "updated to schema vX" and the old version stays in history.
 - **Re-moderation:** when a new schema version adds a required field, existing published items are not removed. They get a non-blocking "this problem predates field Y" marker and a gentle prompt to the owner; they are never taken down for missing a field added later.
 - Rollback follows the pack: the previous schema version is one config change away.
