@@ -12,7 +12,7 @@ Thank you for helping. CAN is at the concept and scaffolding stage, so careful s
 
 ## Setup
 
-1. Clone with submodules. The repository is not hosted yet, and submodule URLs are relative (`../<name>.git`), so they resolve once all four repos are pushed under one host. Today you clone from a local copy: `git clone --recurse-submodules /path/to/community_action_network_oss` (or `git submodule update --init` afterwards).
+1. Clone with submodules. The repository is not hosted yet, and submodule URLs are relative (`../<name>.git`), so they resolve once all four repos are pushed under one host. Today you clone from a local copy: `git -c protocol.file.allow=always clone --recurse-submodules /path/to/community_action_network_oss` (or `git -c protocol.file.allow=always submodule update --init` afterwards). The setting is needed only for local-path clones, because git blocks the file transport for submodules by default.
 2. Install Node 24 or newer, Docker and Python 3.
 3. Follow the Quick start in [README.md](README.md).
 4. Run `scripts/verify-all.sh`. It should be green before you change anything.

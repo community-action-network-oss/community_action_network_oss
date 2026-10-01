@@ -29,9 +29,11 @@ Prerequisites: Node 24 or newer, Docker, Python 3.
 The repository is not hosted yet. Submodule URLs are relative (`../<name>.git`) and resolve once all four repos (this one and the three submodules) are pushed under one host. Today you clone from a local copy:
 
 ```sh
-git clone --recurse-submodules /path/to/community_action_network_oss
-# already cloned without submodules? git submodule update --init
+git -c protocol.file.allow=always clone --recurse-submodules /path/to/community_action_network_oss
+# already cloned without submodules? git -c protocol.file.allow=always submodule update --init
 ```
+
+The `protocol.file.allow` setting is needed only for local-path clones: git blocks the file transport for submodules by default.
 
 Server (http://localhost:4000/health, Swagger at /docs):
 
