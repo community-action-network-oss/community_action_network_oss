@@ -41,5 +41,5 @@ Implement the account domain flows as use cases behind repository interfaces (do
 
 ## Out of scope
 - HTTP controllers, cookies, CSRF (next unit).
-- Moderator-issued invites endpoint (plan 03).
+- Steward-issued invites endpoint (03-u15).
 - Rate limiting beyond the simple in-memory limiter added in the HTTP unit.

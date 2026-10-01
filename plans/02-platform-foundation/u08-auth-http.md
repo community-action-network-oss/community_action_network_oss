@@ -42,6 +42,6 @@ Expose the auth flow over HTTP with web-safe sessions: httpOnly cookie, CSRF dou
 - `npm run verify` is green.
 
 ## Out of scope
-- Moderator sign-in specifics (OQ-moderator-signin).
+- Steward sign-in specifics (OQ-moderator-signin).
 - Postgres-backed limits (plan 07).
 - Native device storage.

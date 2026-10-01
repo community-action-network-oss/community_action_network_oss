@@ -37,4 +37,4 @@ Build WF-SIGNIN-1 (email for returning members) and WF-SIGNIN-2 (enter the 6 dig
 - `npm run verify` is green (tsc, lint, prettier, logical-properties check, jest, web export).
 
 ## Out of scope
-- Moderator-specific sign-in (OQ-moderator-signin).
+- Steward-specific sign-in (OQ-moderator-signin).

@@ -9,7 +9,7 @@ spec: ["docs/spec/01-slice-1-brief.md","docs/design/system-design.md","docs/desi
 # Plan 02: Platform foundation
 
 ## Goal
-Everything later plans stand on: hardened server config, shared kernel (error envelope, ids, clock, pagination, audit), invite-only accounts with 6-digit email codes through Mailpit, cookie sessions with CSRF, encrypted email, generated handles, fictional seed data, the app's session handling and auth screens, and the thin read slice D-25 deferred: a problems read model with list and detail endpoints and the matching app screens, so the app shows real data early. Also the Playwright web smoke harness and a root local verify script.
+Everything later plans stand on: hardened server config (AI gateway config with the FakeModel default, live provider founder-gated), shared kernel (error envelope, ids, clock, pagination, audit), invite-only accounts with 6-digit email codes through Mailpit, cookie sessions with CSRF, encrypted email, generated handles, a dev seed (accounts, Amsterdam and fiktiva-city jurisdictions, invites, a tiny fictional test fixture; the real seed problems enter through the pipeline, D-56), the app's session handling and auth screens, and the thin read slice D-25 deferred: a problems read model with list and detail endpoints and the matching app screens, so the app shows real data early. Also the Playwright web smoke harness and a root local verify script.
 
 ## Spec refs
 - docs/spec/01-slice-1-brief.md (sections 4, 8, 10)
@@ -17,7 +17,7 @@ Everything later plans stand on: hardened server config, shared kernel (error en
 - docs/design/ux/screens.md, wireframes auth.md and browse.md
 
 ## Acceptance for the whole plan
-With compose up and `npm run seed`, a developer can: open Expo web, see the seeded fictional problems in WF-LIST-1, open one in WF-DETAIL-1, sign up with a seeded invite code (code read from Mailpit), see the generated handle once in WF-ONBOARD-1, regenerate it once, sign out, sign in again with a new code, and see WF-SESSION-1 when a session is revoked. No API response contains an email (contract test). `npm run verify` is green in can_server and can_app, the Playwright smoke passes, and `bash scripts/verify-all.sh` is green from the superproject root.
+With compose up and `npm run seed`, a developer can: open Expo web, see the fixture problems (`npm run seed -- --fixture`, labelled fictional) in WF-LIST-1, open one in WF-DETAIL-1, sign up with a seeded invite code (code read from Mailpit), see the generated handle once in WF-ONBOARD-1, regenerate it once, sign out, sign in again with a new code, and see WF-SESSION-1 when a session is revoked. No API response contains an email (contract test). `npm run verify` is green in can_server and can_app, the Playwright smoke passes, and `bash scripts/verify-all.sh` is green from the superproject root.
 
 ## Units
 | Unit | Title | Lane | Hours | Pri | Depends on | Founder gate |
@@ -33,7 +33,7 @@ With compose up and `npm run seed`, a developer can: open Expo web, see the seed
 | [02-u09](u09-lifecycle-vocabulary.md) | Lifecycle state vocabulary from the brief | can_server | 0.8 | 9 | - | - |
 | [02-u10](u10-problems-read-model.md) | Problems schema, jurisdictions and list endpoint | can_server | 1.5 | 18 | 02-u08, 02-u09, 02-u04 | - |
 | [02-u11](u11-problem-detail.md) | Problem detail, visibility rules and public timeline | can_server | 1.2 | 19 | 02-u10 | - |
-| [02-u12](u12-seed-fictional.md) | Fictional seed data and npm run seed | can_server | 1.2 | 20 | 02-u11 | - |
+| [02-u12](u12-seed-fictional.md) | Dev seed: accounts, jurisdictions, invites and a tiny fictional test fixture | can_server | 1.2 | 20 | 02-u11 | - |
 | [02-u13](u13-api-client-infra.md) | API client infrastructure: CSRF, error envelope, session events | can_app | 1 | 21 | - | - |
 | [02-u14](u14-form-kit.md) | Form kit: fields, inline validation, focus-first-error | can_app | 1.2 | 22 | 02-u24, 02-u25 | - |
 | [02-u15](u15-nav-shell.md) | Navigation shell, skip link and emergency notice | can_app | 0.8 | 23 | 02-u14, 02-u24, 02-u25 | - |
