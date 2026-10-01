@@ -308,3 +308,16 @@ Every default, deviation and judgment call made while building CAN. Each one can
   - DP-LEGALITY and the other legal checks read the layers from versioned, source-verified legal corpora in `can_policy`.
   - **Default, not founder-stated:** where a binding supranational layer exists, it sits between UN human rights and the national constitution. For the Netherlands that means the EU Charter of Fundamental Rights and EU law, plus the ECHR.
   - **Default:** if local law forbids discussing a topic at all, the problem is not published in that jurisdiction and the refusal is logged with its legal basis. If only a solution is illegal, the problem goes to `stuck` (legally blocked) rather than being rejected.
+- **D-62 · W6 · How the legal stack and re-resolution landed in the spec and design.**
+  - **Legal stack:** layers L0 to L6 are set out in Constitution I.2, IV.5 and IV.6.
+  - **Rules:** LEGAL-STACK-1, LEGAL-SOURCE-1, LEGAL-CITE-1, LEGAL-CORPUS-1, TOPIC-FORBIDDEN-1 and RERESOLVE-1.
+  - **Decision point:** new DP-RERESOLUTION. Its outcomes are keep, annotate, reopen or hold. It never rejects or deletes.
+  - **Reopen transitions:**
+    - T23 reopens solved, closed, redirected or stuck problems to `solution_development`, or to `eligible` if eligibility changed.
+    - T24 reopens a solved problem to `verification` when an evidence rule changes.
+  - **Defaults:**
+    - When legal layers disagree on interpretation, the outcome is hold with a conflict note.
+    - Re-resolution starts when a rollout reaches canary and covers only resolutions that cite the changed rules.
+    - Legal-corpus changes need a lawyer review record before ratification.
+  - **Rule text trimmed** to keep `rules.md` under 25KB. The cut clauses still hold elsewhere in the constitution.
+  - **Open questions:** OQ-legal-corpus-sourcing, OQ-legal-layer-conflicts, OQ-supranational-default, OQ-reresolution-feasibility.
