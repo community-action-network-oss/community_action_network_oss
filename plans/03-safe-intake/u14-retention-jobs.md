@@ -7,7 +7,7 @@ area: can-server
 model: sonnet
 est_hours: 1.5
 priority: 51
-depends_on: ["09-u05", "03-u04", "03-u11"]
+depends_on: ["09-u05", "03-u04", "03-u11", "12-u03"]
 writes: ["src/problems/app/retention.ts", "src/accounts/app/retention.ts", "src/retention/**", "src/app.module.ts", "test/retention.e2e-spec.ts"]
 reads: ["src/**"]
 spec: ["docs/spec/01-slice-1-brief.md#9-drafts-fingerprints-and-the-pending-screen","docs/design/system-design.md#3-slice-1-erd","docs/spec/constitution/rules.md#DRAFT-TTL-1","docs/open-questions/OQ-draft-ttl.md"]

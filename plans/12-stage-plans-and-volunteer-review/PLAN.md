@@ -38,8 +38,8 @@ On a seeded problem with the FakeModel: a poster prepares facts, sources and fin
 | [12-u19](u19-stage-result-screen.md) | Stage resolution result (WF-STAGE-2) and the final solved result | can_app | 1.2 | 44 | 12-u07, 12-u18, 09-u51, 05-u02, 02-u24, 02-u25 | - |
 | [12-u20](u20-stage-ahead-screen.md) | Contribute ahead to a planned stage (WF-STAGE-3) | can_app | 1.2 | 45 | 12-u18, 04-u08, 12-u10, 02-u24, 02-u25 | - |
 | [12-u21](u21-plan-change-screen.md) | Propose a plan change (WF-STAGEMAP-1 action): form, status and plan history | can_app | 1.5 | 46 | 12-u09, 12-u14, 12-u05, 02-u24, 02-u25 | - |
-| [12-u22](u22-guest-badge-components.md) | Guest badge and explanation sheet (WF-GUEST-1), wired into every content list | can_app | 1.2 | 47 | 12-u11, 04-u08, 12-u18, 02-u24, 02-u25 | - |
-| [12-u23](u23-impacted-filter-component.md) | Impacted only filter (WF-FILTER-1) on every content list | can_app | 1.2 | 48 | 12-u22, 12-u11, 02-u24, 02-u25 | - |
+| [12-u22](u22-guest-badge-components.md) | Guest badge and explanation sheet (WF-GUEST-1), wired into every content list | can_app | 1.2 | 47 | 12-u11, 04-u08, 12-u18, 02-u24, 02-u25, 14-u02 | - |
+| [12-u23](u23-impacted-filter-component.md) | Impacted only filter (WF-FILTER-1) on every content list | can_app | 1.2 | 48 | 12-u22, 12-u11, 02-u24, 02-u25, 14-u02 | - |
 | [12-u24](u24-location-permission-screen.md) | Location permission pre-prompt (WF-LOCPERM-1) wired to the attestation challenge | can_app | 1.5 | 49 | 12-u22, 14-u02, 04-u08, 02-u24, 02-u25 | - |
 | [12-u25](u25-journey-server-v2.md) | Server e2e on FakeModel: prepare, review, publish, parallel stages, plan change, solved | can_server | 1.5 | 55 | 12-u07, 12-u08, 12-u09, 12-u10, 12-u11, 04-u05, 09-u44 | - |
 | [12-u26](u26-journey-app-v2.md) | Playwright journey: prepare, volunteer review, publish, stages in parallel, plan change, solved (FakeModel) | can_app | 1.5 | 60 | 12-u12, 12-u13, 12-u14, 12-u15, 12-u16, 12-u17, 12-u18, 12-u19, 12-u20, 12-u21, 12-u23, 12-u25, 02-u21, 09-u48, 09-u49, 11-u18, 10-u33, 10-u34, 10-u35 | - |

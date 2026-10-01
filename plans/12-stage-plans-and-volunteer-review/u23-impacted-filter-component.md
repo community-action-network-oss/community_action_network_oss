@@ -7,7 +7,7 @@ area: can-app
 model: sonnet
 est_hours: 1.2
 priority: 48
-depends_on: ["12-u22", "12-u11", "02-u24", "02-u25"]
+depends_on: ["12-u22", "12-u11", "02-u24", "02-u25", "14-u02"]
 writes: ["src/location/filter/**", "src/contributions/**", "src/stages/**", "src/review/**", "src/i18n/en.json", "__tests__/impacted-filter-*.test.tsx", "src/api/schema.d.ts"]
 reads: ["src/**"]
 spec: ["docs/design/ux/wireframes/guest.md#WF-FILTER-1", "docs/spec/constitution/rules-legal-sim.md#GUEST-LABEL-1", "docs/design/ux/copy-deck-lifecycle.md", "docs/design/ux/ui-unit-template.md"]

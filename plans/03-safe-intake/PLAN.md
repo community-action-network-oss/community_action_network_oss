@@ -36,7 +36,7 @@ Against the dev seed: a member signs in, writes a draft (local autosave survives
 | [03-u11](u11-decision-emails.md) | Decision and reminder emails via Mailpit | can_server | 1 | 48 | 03-u05, 03-u09, 02-u06 | - |
 | [03-u12](u12-appeals-file.md) | Appeals: schema, reviewer selection and filing (skipped: superseded by 09-u33) | can_server | 1.5 | 49 | 03-u10 | - |
 | [03-u13](u13-appeals-resolve.md) | Appeals: resolve with uphold or overturn effects (skipped: superseded by 09-u34, 09-u37) | can_server | 1.5 | 50 | 03-u12, 03-u11 | - |
-| [03-u14](u14-retention-jobs.md) | Retention jobs on the job queue: draft purge, fingerprints, idle revisions | can_server | 1.5 | 51 | 09-u05, 03-u04, 03-u11 | - |
+| [03-u14](u14-retention-jobs.md) | Retention jobs on the job queue: draft purge, fingerprints, idle revisions | can_server | 1.5 | 51 | 09-u05, 03-u04, 03-u11, 12-u03 | - |
 | [03-u15](u15-invites-endpoint.md) | Steward-issued invites endpoint | can_server | 0.8 | 52 | 02-u08 | - |
 | [03-u16](u16-draft-store.md) | Local draft store with autosave | can_app | 1 | 24 | - | - |
 | [03-u17](u17-submit-steps-1-3.md) | Submit steps 1 to 3: condition, affected, where (skipped: superseded by 10-u33) | can_app | 1.5 | 53 | 03-u16, 03-u06, 02-u14, 02-u16, 02-u24, 02-u25 | - |
