@@ -9,7 +9,7 @@ Superseded by `OQ-dp-confidence-thresholds`: AI decides single items (D-51), so 
 
 ## Why it matters
 
-Too low a threshold lets errors through; too high swamps volunteers.
+Too low a threshold lets errors through; too high holds too much.
 
 ## Current default (what we built meanwhile)
 

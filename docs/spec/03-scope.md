@@ -52,7 +52,7 @@ Two further states are not terminal:
 The first release should prove one complete, safe workflow in one agreed jurisdiction and language. **Slice 1** (`01-slice-1-brief.md`) is the narrowest version of this and owns the exact scope. The long-term workflow:
 
 1. A person creates a pseudonymous account and submits a non-identifying, geoscoped public problem or systemic hypothesis.
-2. The platform checks evidence tier, structural framing, affected scope, duplication, privacy, safety, legality, and routing. In slice 1 these are deterministic checks plus human review.
+2. The platform checks evidence tier, structural framing, affected scope, duplication, privacy, safety, legality, and routing. In slice 1 these are deterministic checks plus a moderation run under the policy pack (`06-moderation-geo-governance.md`).
 3. A report with weak evidence is flagged `investigation_needed`, a flag derived from its evidence tier, rather than being presented as established fact.
 4. An eligible public problem becomes visible across the appropriate platform and jurisdiction surfaces.
 5. Participants contribute through structured contribution types rather than a generic feed.

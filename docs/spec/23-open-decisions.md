@@ -15,7 +15,7 @@ Questions are not founder blockers. For each, the build continues on the stated 
 | Which records are public, limited, moderator-only or transient | `OQ-visibility-classes`, `OQ-guest-read-search-indexing` |
 | Location verification | `OQ-location-verification` |
 | Legal and safety experts | `OQ-legal-policy-reviewers` |
-| Actions that need human moderation before publication | slice 1: all of them (`01-slice-1-brief.md`); later `OQ-moderation-confidence-threshold` |
+| Actions that need human moderation before publication | slice 1: all of them are decided by a moderation run, never by a person per item (`01-slice-1-brief.md`); thresholds in `OQ-dp-confidence-thresholds` |
 | Hosting region, budget | `OQ-hosting-region` |
 | Open-source license: resolved, MIT (D-49) | `OQ-license` |
 | Production actions the agent may perform | `02-agent-rules.md` |

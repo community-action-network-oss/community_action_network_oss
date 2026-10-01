@@ -13,7 +13,7 @@ Honest correction matters, and so does the right to remove personal information 
 
 ## Current default (what we built meanwhile)
 
-Published text is not edited. An author can add a visible correction note or tombstone their own text. Moderators can hide text with a decision. Originals stay in history unless personal data must be removed.
+Published text is not edited. An author can add a visible correction note or tombstone their own text. The moderation run can hide text with a decision, and a flip is shown with a notice (`REMOD-NOTICE-1`). Originals stay in history unless personal data must be removed.
 
 ## Who can help
 

@@ -8,7 +8,7 @@ An index of the documents and living records the project maintains, version-cont
 | Product requirements; scope and non-goals | `docs/spec/03-scope.md`, `01-slice-1-brief.md` | 0B | exists |
 | Open-questions register, assumptions and risk registers | `docs/open-questions/`; risks in `docs/design/` | 0B | exists |
 | Decision log | `DECISIONS.md` | 0B | exists |
-| Architecture decision records (Expo, gluestack on UniWind, NestJS, PostgreSQL, Drizzle, three submodules, server-owned OpenAPI, Next.js gallery, email-code auth, web-first verification, no live AI in slice 1) | `docs/adr/` | 0B | exists |
+| Architecture decision records (Expo, gluestack on UniWind, NestJS, PostgreSQL, Drizzle, three submodules, server-owned OpenAPI, Next.js gallery, email-code auth, web-first verification, live AI only behind the founder gate) | `docs/adr/` | 0B | exists |
 | Architecture overview, diagrams, slice-1 ERD, API surface, auth flow, test strategy | `docs/design/` | 0B | exists |
 | Domain glossary and state machines | `00-index.md` (glossary), `01-slice-1-brief.md` (state table) | 0B | exists |
 | Data model and data classification | `10-data-model.md`, `docs/design/` | 1 | exists (model), planned (classification) |
