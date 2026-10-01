@@ -12,7 +12,7 @@ writes: ["src/stages/app/options/**","src/stages/infra/options/**","src/contribu
 reads: ["src/**"]
 spec: ["docs/spec/01-slice-1-brief.md#6-contributions","docs/spec/01b-stages.md","docs/design/components/server.md#lifecycle-v2-entities","docs/design/system-design.md#6-api-surface-v1","docs/design/ux/wireframes/stages.md#WF-STAGE-1","docs/design/ux/wireframes/participate.md#WF-PROPOSAL-2","docs/design/flows/stage-work.md"]
 needs: ["docker","db"]
-verify: ["npm run verify","npx vitest run --config ./vitest.config.e2e.ts test/proposals.e2e-spec.ts"]
+verify: ["npm run verify","npx vitest run --config ./vitest.config.e2e.ts test/stage-options.e2e-spec.ts"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
 status: todo

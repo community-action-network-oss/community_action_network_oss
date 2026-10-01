@@ -7,7 +7,7 @@ area: can-server
 model: sonnet
 est_hours: 1.5
 priority: 48
-depends_on: ["12-u04", "12-u02", "09-u09", "09-u22", "02-u04"]
+depends_on: ["12-u04","12-u02","09-u09","02-u04"]
 writes: ["src/review/**", "src/db/schema.ts", "drizzle/**", "src/app.module.ts", "test/review.e2e-spec.ts", "openapi/openapi.json"]
 reads: ["src/**"]
 spec: ["docs/spec/01-slice-1-brief.md#42-volunteer-review-private", "docs/spec/01a-lifecycle.md", "docs/design/flows/volunteer-review.md", "docs/design/components/server.md#lifecycle-v2-modules-d-72", "docs/spec/constitution/rules.md#REVIEW-1", "docs/spec/constitution/rules.md#RECO-1", "docs/open-questions/OQ-review-quorum.md", "docs/open-questions/OQ-reviewer-eligibility.md"]

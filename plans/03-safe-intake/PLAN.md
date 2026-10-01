@@ -15,7 +15,7 @@ A signed-in member can turn a frustration into a private draft, pass the determi
 - docs/spec/01-slice-1-brief.md sections 4, 5, 9, docs/spec/01a-lifecycle.md and 01b-stages.md (state tables T00 to T22 and ST01 to ST11)
 - docs/design/system-design.md sections 2, 4, 6, 9 (modules, events, API, fixtures)
 - docs/spec/constitution/rules.md: PRIV-GATE-1, NAME-1, SCOPE-1, PUB-FAILCLOSED-1, MOD-EXPLAIN-1, NO-INSTANCE-OVERRIDE-1, INTERIM-1 (transitional stewardship), DRAFT-TTL-1, CRISIS-STATIC-1
-- wireframes submit.md (WF-SUBMIT-1 to 4, WF-PENDING-1, WF-MYACT-1) and moderation.md (WF-MOD-INVITE-1)
+- wireframes prepare.md (WF-PREP-1), submit.md (WF-SUBMIT-2 to 4 kept, WF-PENDING-1, WF-MYACT-1) and moderation.md (WF-MOD-INVITE-1)
 
 ## Acceptance for the whole plan
 Against the dev seed: a member signs in, writes a draft (local autosave survives a reload and a session expiry, the draft pins its schema version), a flagged name blocks sending with a field hint, and a clean draft passes the synchronous checks and moves to volunteer review (T01, in_review). From there plan 12 (review) and plan 09 (the publication decision) take over: with the FakeModel the blocking run publishes, requests changes (hints beside fields, email in Mailpit) or rejects with a deletion date 30 days out, and the member can appeal (09-u33 on). The lifecycle table has exhaustive table-driven tests including T20 and T21, the privacy and eligibility fixture corpora pass, the retention job deletes expired drafts under a fake clock through the shared queue, a steward can issue an invite that is shown once, and `npm run verify` is green in both repos. Units 03-u10, 03-u12, 03-u13, 03-u17 to 03-u22, 03-u24 and 03-u25 are skipped (superseded by plans 09 and 10).

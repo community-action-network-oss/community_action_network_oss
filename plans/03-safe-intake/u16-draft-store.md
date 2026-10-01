@@ -38,5 +38,5 @@ The preparation workspace (WF-PREP-1 to WF-PREP-3) must never lose text: a local
 - `npm run verify` is green (tsc, lint, prettier, logical-properties check, jest, web export).
 
 ## Out of scope
-- Server sync (the preparation screens, 12-u11 to 12-u13).
+- Server sync (the preparation screens, 12-u12 to 12-u14).
 - Multiple drafts.
