@@ -375,3 +375,9 @@ Every default, deviation and judgment call made while building CAN. Each one can
   - **Safety:** all fetched content passes through the same sanitizer as the build.
   - **Privacy trade-off, accepted by the founder:** every visitor's IP reaches GitHub. A visible privacy note says so. This relaxes the Phase 0A "no third-party requests" rule for exactly `raw.githubusercontent.com` and `api.github.com`.
   - **Reverse:** go back to build-time only plus a rebuild on every push.
+- **D-68 · W9 · The gallery never shows a stale copy of a document (founder). Amends D-67.**
+  - A document page shows a loading state, then the live file from GitHub `main`.
+  - If GitHub is unreachable, the page says so plainly ("GitHub is unreachable right now"), with a retry button and a direct link. It never falls back to a bundled copy.
+  - Without JavaScript, the page explains that documents load live and links to GitHub.
+  - The build ships the document manifest and navigation only, not document text.
+  - Reverse: restore the build copy as a fallback.
