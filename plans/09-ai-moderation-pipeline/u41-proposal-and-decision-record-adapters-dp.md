@@ -37,4 +37,5 @@ Gate T08 to T11 stage moves and the decision record on runs. Proposal marked rea
 - openapi/openapi.json regenerated; `npm run verify` is green.
 
 ## Out of scope
+- Layered legal citations, the stuck payload with layer and article, topic refusals and conflict holds: 09-u56 to 09-u59.
 - Task and verification (next).

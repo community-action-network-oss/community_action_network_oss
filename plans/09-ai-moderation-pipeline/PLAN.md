@@ -4,7 +4,7 @@ title: "AI moderation pipeline"
 approved: true
 status: todo
 depends_on_plans: ["02", "03", "04", "05", "10"]
-spec: ["docs/design/ai/README.md", "docs/design/ai/runtime.md", "docs/design/ai/decision-points.md", "docs/design/ai/triggers.md", "docs/design/ai/appeals.md", "docs/design/ai/safety-and-privacy.md", "docs/design/ai/evaluation.md", "docs/design/ai/structured-content.md", "docs/design/ai/policy-pack.md", "docs/design/components/server.md", "docs/spec/01-slice-1-brief.md", "docs/spec/01a-lifecycle.md", "docs/spec/14-ai-privacy-gateway.md", "docs/spec/15-ai-inference.md", "docs/spec/constitution/rules.md", "docs/design/ux/ui-unit-template.md"]
+spec: ["docs/design/ai/README.md", "docs/design/ai/runtime.md", "docs/design/ai/decision-points.md", "docs/design/ai/triggers.md", "docs/design/ai/legal-stack.md", "docs/design/flows/re-resolution.md", "docs/design/flows/legal-corpus-update.md", "docs/design/ai/appeals.md", "docs/design/ai/safety-and-privacy.md", "docs/design/ai/evaluation.md", "docs/design/ai/structured-content.md", "docs/design/ai/policy-pack.md", "docs/design/components/server.md", "docs/spec/01-slice-1-brief.md", "docs/spec/01a-lifecycle.md", "docs/spec/14-ai-privacy-gateway.md", "docs/spec/15-ai-inference.md", "docs/spec/constitution/rules.md", "docs/design/ux/ui-unit-template.md"]
 ---
 # Plan 09: AI moderation pipeline
 
@@ -16,7 +16,9 @@ Build CAN's core: community-legislated, AI-executed moderation (D-51). An AI mod
 - docs/design/flows: intake-submit, content-update, post-publication-recheck, appeal, emergency-legal-lane, policy-amendment, background-jobs
 - docs/design/ux/wireframes: WF-PENDING-1, WF-HOLD-1, WF-DECISION-1, WF-DECISION-2, WF-REMOD-1, WF-APPEAL-1, WF-APPEAL-2, WF-MYACT-1, WF-AUDIT-1, WF-AUDIT-2, WF-LABEL-1, WF-LANE-1
 - Rules: PRIV-GATEWAY-1, PUB-FAILCLOSED-1, MOD-EXPLAIN-1, REMOD-NOTICE-1, APPEAL-1, APPEAL-2, NO-INSTANCE-OVERRIDE-1, CRISIS-STATIC-1, PREC-1
-- Decisions D-51 to D-58
+- docs/design/ai/legal-stack.md, docs/design/flows: re-resolution, legal-corpus-update
+- Rules: LEGAL-STACK-1, LEGAL-CITE-1, LEGAL-SOURCE-1, LEGAL-CORPUS-1, TOPIC-FORBIDDEN-1, RERESOLVE-1; lifecycle transitions T23 and T24
+- Decisions D-51 to D-61 (D-59 re-resolution, D-61 legal layer stack)
 
 ## Contracts with other plans
 - Plan 10 (policy and forms): 10-u01 creates the can_policy repo, 10-u02 scaffolds it, 10-u03 pack format and CI, 10-u04 policy module in can_server (pack loader by version and hash, version registry, content-schema registry, PII-safe cache, fixture pack under test/fixtures/policy), 10-u05 schema-driven form renderer in can_app. Every server unit here that reads policy depends on 10-u04; app units that render structured forms depend on 10-u05.
@@ -26,6 +28,9 @@ Build CAN's core: community-legislated, AI-executed moderation (D-51). An AI mod
 - Plan 11 (simulation harness) depends on this plan; nothing here plans simulation.
 - Supersession: plan 09 replaces the human-moderator model of plans 03 to 05. Each affected unit carries a "supersession guard" step that deletes the older moderator path if it exists, so the result is correct whichever ran first.
 
+- Legal stack (D-61) and re-resolution (D-59): units 09-u56 to 09-u59 apply the cumulative stack (LEGAL-STACK-1), store citations (LEGAL-CITE-1), refuse forbidden topics with a logged basis and send solution-only illegality to stuck (TOPIC-FORBIDDEN-1), and hold layer conflicts. 09-u60 to 09-u64 select, run, decide and reopen (T23, T24) past resolutions with notices; 09-u65 is the app notice and reopened state; 09-u66 and 09-u67 are the e2e extensions. They read the corpora of plan 10 (10-u55 loader, 10-u56 retrieval, 10-u57 corpus activation jobs, 10-u59 DP-RERESOLUTION content) and use only the synthetic fiktiva fixtures in tests.
+- Real legal corpora (10-u43 to 10-u52) are largely founder-gated (vendoring from official sources needs network and licence confirmation, lawyer review). Plan 09 never waits for them.
+
 ## Acceptance for the whole plan
 With FakeModel only (no network, provider counter asserted):
 1. A seeded problem (D-56 framing 1, synthetic evidence) is submitted; the first vague draft gets needs_revision with a hint per field; after revision a blocking pre-publication run publishes it; nothing is public before a complete run; a provider timeout produces a visible hold that never becomes publish.
@@ -33,7 +38,9 @@ With FakeModel only (no network, provider counter asserted):
 3. Activating a second pack version flips one documented item; the author sees a re-reviewed notice with rules, version and an appeal path; nothing is removed silently.
 4. The author appeals; an independent re-run with a different model and prompt variant upholds; the author disputes; a label task with a fixed quorum is created and answered by labelers; the fake PolicyProposalPort writes a redacted proposal; a later version is activated and the instance is re-decided under it.
 5. Crisis content never publishes and opens a lane case; every lane action is logged with a reason and second-member review; a route-table test proves no endpoint edits a single decision.
-Units 09-u44 and 09-u45 (the two e2e files) prove this in CI; the app screens cite their wireframes and the UI unit template.
+6. A seeded solved problem is reopened by a policy change or a legal-corpus change with a visible "Reopened under policy vX" notice, history intact, appealable; an infeasible case is annotated with no state change (09-u66).
+7. Legality decisions always cite layer, article and corpus version; a forbidden topic is refused with a logged basis; an illegal-only proposal reaches stuck; a layer conflict holds (09-u67).
+Units 09-u44, 09-u45, 09-u66 and 09-u67 (the e2e files) prove this in CI; the app screens cite their wireframes and the UI unit template.
 
 ## Units
 | Unit | Title | Lane | Hours | Pri | Depends on | Founder gate |
@@ -93,6 +100,18 @@ Units 09-u44 and 09-u45 (the two e2e files) prove this in CI; the app screens ci
 | [09-u53](u53-review-work-list-and-auditor-sample.md) | Review work list and auditor sample review | can_app | 1.5 | 282 | 09-u32, 02-u25, 02-u16 | - |
 | [09-u54](u54-label-task-screen.md) | Label task screen | can_app | 1 | 283 | 09-u35, 09-u53 | - |
 | [09-u55](u55-emergency-and-legal-lane-console.md) | Emergency and legal lane console | can_app | 1.2 | 284 | 09-u38, 09-u53 | - |
+| [09-u56](u56-legal-stack-step-in-the-run-dag.md) | Legal-stack step in the run DAG: layers, retrieval, cumulative evaluation (LEGAL-STACK-1) | can_server | 1.5 | 285 | 09-u41, 10-u56, 09-u19 | - |
+| [09-u57](u57-legal-cite-1-legal-finding-store-db.md) | LEGAL-CITE-1: legal_finding store, DB constraint, output schema and citation in every explanation | can_server | 1.3 | 286 | 09-u56 | - |
+| [09-u58](u58-topic-forbidden-1-refuse-a-locally-forbidden.md) | TOPIC-FORBIDDEN-1: refuse a locally forbidden topic with a logged legal basis, per jurisdiction | can_server | 1.5 | 287 | 09-u57, 09-u24, 09-u25 | - |
+| [09-u59](u59-dp-legality-outcomes-solution-only-illegal-goes.md) | DP-LEGALITY outcomes: solution-only illegal goes to stuck with layered payload; layer interpretation conflict holds with a conflict note | can_server | 1.3 | 288 | 09-u57, 09-u36, 09-u41 | - |
+| [09-u60](u60-re-resolution-scan-rule-and-corpus-diff.md) | Re-resolution scan: rule and corpus diff, candidate selection, triggers (RERESOLVE-1) | can_server | 1.5 | 289 | 09-u27, 09-u57, 10-u57 | - |
+| [09-u61](u61-re-resolution-review-job-run-dp-reresolution.md) | Re-resolution review job: run DP-RERESOLUTION through the DAG with retries and budgets | can_server | 1.5 | 290 | 09-u60, 09-u22, 09-u05, 10-u59 | - |
+| [09-u62](u62-re-resolution-decision-feasibility-checks-keep-or.md) | Re-resolution decision: feasibility checks, keep or annotate or reopen, target state | can_server | 1.5 | 291 | 09-u61, 04-u07, 05-u04 | - |
+| [09-u63](u63-t23-and-t24-reopen-transitions-in-the.md) | T23 and T24 reopen transitions in the transition engine, system-only, with history kept | can_server | 1.5 | 292 | 09-u62, 03-u05, 09-u23, 05-u04 | - |
+| [09-u64](u64-reopen-and-annotation-notices-to-initiator-and.md) | Reopen and annotation notices to initiator and followers: extend the notices read model | can_server | 1.5 | 293 | 09-u63, 09-u29, 04-u07 | - |
+| [09-u65](u65-reopened-under-policy-vx-notice-screen-and.md) | Reopened under policy vX: notice screen and reopened detail state | can_app | 1.5 | 294 | 09-u64, 09-u50, 05-u06 | - |
+| [09-u66](u66-e2e-extension-a-policy-change-reopens-a.md) | E2E extension: a policy change reopens a solved seed problem, with notice, history, infeasible and appeal cases | can_server | 1.5 | 295 | 09-u45, 09-u64, 09-u63 | - |
+| [09-u67](u67-e2e-the-legal-stack-end-to-end.md) | E2E: the legal stack end to end (cumulative layers, topic refusal versus stuck, conflict hold, citations) | can_server | 1.5 | 296 | 09-u59, 09-u58, 09-u45 | - |
 
 ## Risks
 - Heavy shared files (src/db/schema.ts, drizzle/**, openapi/openapi.json) are single-owner paths: lane ordering and unit dependencies keep migrations sequential. Never hand-edit them.
@@ -100,4 +119,4 @@ Units 09-u44 and 09-u45 (the two e2e files) prove this in CI; the app screens ci
 - Superseded human-moderation units in plans 03 to 05 stay selectable until reworked; the supersession guards make order irrelevant but the rework planner should retire them.
 - 03-u14 owns src/platform/jobs/** (cron lock table); this plan adds a payload queue under src/platform/queue/**. A single runner is intended later: 03-u14 should rebase onto the queue port.
 - Prompts, thresholds and real rules live in can_policy; units use only fixtures. FakeModel can hide prompt quality problems: live record runs (founder-gated) and plan 11 personas cover that.
-- A large unit list: 55 units, about 76 agent-hours. Run order is by priority and dependencies only.
+- A large unit list: 67 units, about 94 agent-hours. Run order is by priority and dependencies only.

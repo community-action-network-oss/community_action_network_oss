@@ -37,5 +37,6 @@ DP-CRISIS runs first on every text-bearing event and must never depend on a mode
 - `npm run verify` is green.
 
 ## Out of scope
+- The cumulative legal stack and LEGAL-CITE-1 findings: 09-u56 and 09-u57 (DP-LEGAL here cites the instrument that makes the text a legal matter using that finding shape once they land).
 - The lane module (09 lane unit).
 - Real emergency routes and legal text (05-u09, founder-gated).
