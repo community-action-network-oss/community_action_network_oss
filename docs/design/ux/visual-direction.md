@@ -11,7 +11,7 @@ Tokens live in `tokens.json` (light and dark, all text pairs at 4.5:1 or better,
 
 - Base: warm off white (`#FAFAF7`) with ink text (`#1D2428`). Warm neutrals feel like paper, which suits records and decisions, and avoid the clinical blue-white of enterprise tools.
 - Primary: a deep teal (`#1F5F6B`). Teal reads as steady and municipal without the partisan weight of red or blue.
-- Status palette is deliberately neutral and distinct by hue family, not by alarm: Waiting (slate blue), In discovery or active (teal-green), Paused (sand), Stuck for now (muted violet), Withdrawn and Closed (grey), Solved (soft green), Redirected (indigo), Interim (parchment). **No red for stuck, paused, withdrawn, closed or any disagreement.** Stuck and paused are ordinary parts of real civic work and must not read as failure or blame.
+- Status palette is deliberately neutral and distinct by hue family, not by alarm: Awaiting volunteer review (slate blue), Open and In progress (teal-green), Paused (sand), Stuck (muted violet), Withdrawn and Closed (grey), Solved (soft green), Redirected (indigo), Interim (parchment). **No red for stuck, paused, withdrawn, closed or any disagreement.** Stuck and paused are ordinary parts of real civic work and must not read as failure or blame.
 - `urgent` (rust red) exists only for genuine safety or deadline conditions and validation errors that block saving. It always appears with an icon and text.
 - Dark mode is a first-class theme, not an inversion: lighter tints for text, desaturated deep backgrounds, same hue families.
 

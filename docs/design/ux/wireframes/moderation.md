@@ -39,18 +39,18 @@ No gamified counts. The wait column helps keep the honest wait statement true.
 |                      | Written for the person|
 |                      | not for the rulebook. |
 |                      | Appealable until      |
-|                      |  [ 8 Oct 2026 ] (7 d) |
+|                      |  [ 15 Oct 2026 ] (14 d) |
 |                      | [x] Interim decision  |
 |                      |  (auto when pool < 2) |
 |                      | [ Record decision ]   |
 +----------------------+-----------------------+
 ```
-Record decision requires at least one rule id; "Ask for changes" and "Not eligible" also require a field or span reference and a hint. Publish needs no hint. The server rejects an incomplete decision (`decision_incomplete`).
+Appeal window defaults to 14 days and must end before the draft deletion date. Record decision requires at least one rule id; "Ask for changes" and "Not eligible" also require a field or span reference and a hint. Publish needs no hint. The server rejects an incomplete decision (`decision_incomplete`).
 
 ## WF-MOD-APPEAL-1  Review an appeal
 ```
 +--------------------------------------+
-| Appeal on: Bus shelter (Needs changes)|
+| Appeal on: Bus shelter (Changes requested)|
 | Original: RULE-PRIV-NAME by Moderator A|
 | Reviewer: you (differs: yes)         |
 | {mod.appeal.same} shown if the same  |

@@ -9,7 +9,7 @@ Every screen has a wireframe ID. "State" refers to lifecycle state keys defined 
 | WF-LIST-1, WF-LIST-2 | `/` | anyone | Browse and filter published problems | loading, empty, error, offline |
 | WF-DETAIL-1 | `/problems/{id}` | anyone | Problem workspace and status panel | loading, error, offline, tombstone |
 | WF-DETAIL-2 | same | anyone | Tombstone for withdrawn or removed items | n/a (is the state) |
-| WF-DETAIL-3 | same | anyone | Status panel variants (paused, stuck, closed, redirected) | n/a |
+| WF-DETAIL-3 | same | anyone | Status panel variants (paused, stuck, withdrawn, closed, redirected) | n/a |
 | WF-RESOLUTION-1 | `/resolutions` | anyone | Resolution records archive | loading, empty, error |
 | WF-SIGNUP-1 | `/sign-up` | anyone | Redeem invite, email | validation, offline, error |
 | WF-SIGNIN-1, WF-SIGNIN-2 | `/sign-in`, `/sign-in/code` | anyone | Email code sign-in | validation, rate limited, offline |
@@ -17,7 +17,7 @@ Every screen has a wireframe ID. "State" refers to lifecycle state keys defined 
 | WF-SESSION-1 | overlay | member | Session expired | n/a |
 | WF-SUBMIT-1 to WF-SUBMIT-7 | `/report/{step}` | anyone, sign-in at submit | Staged intake and preview | validation, offline (local autosave), session-expired |
 | WF-EXTERNAL-1 | overlay | anyone | External routes | n/a |
-| WF-PENDING-1 | `/me/problems/{id}` | initiator | Waiting for review | loading, error, not-permitted |
+| WF-PENDING-1 | `/me/problems/{id}` | initiator | Awaiting volunteer review | loading, error, not-permitted |
 | WF-DECISION-1, WF-DECISION-2 | `/me/problems/{id}/decision` | initiator | Moderation decision, hints, deletion date | loading, error, not-permitted |
 | WF-APPEAL-1 | `/me/problems/{id}/appeal` | initiator | File appeal | validation, window closed |
 | WF-MYACT-1 | `/me` | member | Drafts, submissions, purge dates | loading, empty, error |
@@ -37,9 +37,10 @@ Every screen has a wireframe ID. "State" refers to lifecycle state keys defined 
 | draft | WF-SUBMIT-1..7, WF-MYACT-1 | nothing |
 | submitted | WF-PENDING-1 | nothing (private) |
 | needs_revision | WF-DECISION-1 (hints beside fields, deletion date, appeal entry) | nothing (private) |
-| rejected | WF-DECISION-2, WF-APPEAL-1, WF-EXTERNAL-1 (deletion date shown) | nothing (never published) |
-| withdrawn | WF-MYACT-1 with deletion date; the draft is deleted at 30 days | nothing (never published) |
-| eligible (includes discovery in slice 1) | WF-DETAIL-1, WF-CONTRIB-1 | same |
+| rejected (label: Not accepted) | WF-DECISION-2, WF-APPEAL-1, WF-EXTERNAL-1 (deletion date shown) | nothing (never published) |
+| withdrawn (before publication, T06 T07) | WF-MYACT-1 with deletion date; the draft is deleted at 30 days | nothing (never published) |
+| withdrawn (after publication, T21) | WF-DETAIL-3 withdrawn variant | WF-DETAIL-3 withdrawn variant; initiator text tombstoned (WF-DETAIL-2) |
+| eligible (label: Open: gathering facts; discovery and root_cause_analysis fold into it in slice 1) | WF-DETAIL-1, WF-CONTRIB-1 | same |
 | solution_development, solution_selection | WF-PROPOSAL-1, WF-PROPOSAL-2, WF-DECREC-1 | same |
 | implementation, verification | WF-TASK-1, WF-TASK-2 | same |
 | paused | WF-DETAIL-3 (reason and resume condition) | WF-DETAIL-3 |
@@ -48,9 +49,9 @@ Every screen has a wireframe ID. "State" refers to lifecycle state keys defined 
 | closed | WF-DETAIL-3 variant, WF-RESOLUTION-1 | same |
 | redirected | WF-DETAIL-3 variant with routes, WF-RESOLUTION-1 | same |
 
-Pre-publication states (draft, submitted, needs_revision, rejected, withdrawn) are visible only to the initiator and moderators. WF-DETAIL-2 (tombstone) covers withdrawn contributions and removed public items, not private drafts.
+Pre-publication states (draft, submitted, needs_revision, rejected, and withdrawn before publication) are visible only to the initiator and moderators. WF-DETAIL-2 (tombstone) covers withdrawn contributions and removed public items, not private drafts. Solved, closed and redirected show "Interim decision, will be re-reviewed" while the interim rule applies.
 
-Appeals attach to moderation decisions, not to a problem state (D-15); WF-APPEAL-1 hangs off WF-DECISION-1 and WF-DECISION-2.
+Appeals attach to moderation decisions, not to a problem state (D-15), and cover T02, T05, T19 and T20 (a closed or redirected problem shows an appeal entry on WF-DETAIL-3); WF-APPEAL-1 hangs off WF-DECISION-1 and WF-DECISION-2.
 
 ## Navigation
 

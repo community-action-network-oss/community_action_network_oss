@@ -33,7 +33,7 @@ Persona: "Ben" (fictional), a member who knows the ward budget process.
 
 | Step | Screen | What happens |
 |---|---|---|
-| 1 | WF-LIST-1, WF-DETAIL-1 | Finds a problem in discovery with "needed next: a source". |
+| 1 | WF-LIST-1, WF-DETAIL-1 | Finds a problem that is "Open: gathering facts" with "needed next: a source". |
 | 2 | WF-CONTRIB-1 | Reads contributions grouped by type, sees an unanswered question. |
 | 3 | WF-CONTRIB-2 | Answers with a typed contribution and a source link. Inline privacy flags apply. A calm prompt asks him to read it once more. |
 | 4 | WF-PROPOSAL-1, WF-PROPOSAL-2 | When the problem reaches solution development, drafts a proposal with mechanism, outcome measure and risks, and compares it to another. |

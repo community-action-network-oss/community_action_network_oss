@@ -149,7 +149,7 @@ The Submit button is the only way to leave the flow forward; the preview cannot 
 Route `/me/problems/{id}`.
 ```
 +--------------------------------------+
-| (Waiting) {pending.title}            |
+| (Awaiting volunteer review) {pending.title}            |
 | Submitted, awaiting volunteer review |
 | {pending.wait}                       |
 | Volunteers review in the order they  |
@@ -170,7 +170,7 @@ Withdraw opens a confirm (`pending.withdraw.confirm`) that states the deletion d
 Route `/me/problems/{id}/decision`. Outcome "needs changes" or "not published".
 ```
 +--------------------------------------+
-| (Needs changes) {decision.title}     |
+| (Changes requested) {decision.title}     |
 | A volunteer asked for changes        |
 | {decision.interim}                   |
 | Interim decision, will be re-reviewed|
@@ -195,11 +195,11 @@ Route `/me/problems/{id}/decision`. Outcome "needs changes" or "not published".
 ```
 Hints are anchored to the fields and use the span reference to mark the text. Fields without hints are shown plain. "Revise and resubmit" returns to the staged form at the first field with a hint, keeping all content.
 
-## WF-DECISION-2  Decision: not published (redirect or ineligible)
+## WF-DECISION-2  Decision: not accepted (rejected)
 ```
 +--------------------------------------+
+| (Not accepted)                       |
 | {decision.notPublished.title}        |
-| This was not published as a problem  |
 | {decision.notPublished.body}         |
 | Reason: RULE-SCOPE-INDIV (v1)        |
 | It describes one person's case. A    |
@@ -240,9 +240,9 @@ Route `/me`. Lists drafts, submitted, decisions, with purge dates.
 | Drafts                               |
 |  Bus shelter...  Draft  [Continue]   |
 | Submitted                            |
-|  Water fountain...  (Waiting) [Open] |
+|  Water fountain...  (Awaiting review) [Open] |
 | Needs your attention                 |
-|  Library hours...  (Needs changes)   |
+|  Library hours...  (Changes requested)|
 |    Deleted on 31 Oct 2026  [Open]    |
 | [ Sign out ]                         |
 +--------------------------------------+

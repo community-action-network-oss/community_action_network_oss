@@ -2,7 +2,7 @@
 
 All user-facing strings. Source of truth for `can_app` message files (`en.json`, ICU MessageFormat). Rules: calm, plain, non-shaming; reading level about grade 8; say what happens and what the person can do; no blame for stuck, paused or withdrawn; no exclamation marks; zero em dashes and en dashes (a lint grep enforces this); no string concatenation, use placeholders; plurals via ICU `plural`. Examples in the product are labelled fictional. Anything not built is labelled "planned". Placeholders in braces are ICU arguments, not message ids.
 
-Status wording (neutral, matches `tokens.json` status keys): Waiting for review, In discovery, Needs changes, Paused, Stuck for now, Withdrawn, Closed, Redirected, Solved, Interim decision. State labels, plain explanations and next actions for every lifecycle state come from `docs/spec/01-slice-1-brief.md#4-lifecycle`; this deck holds the surrounding UI strings only.
+Chip labels (exact text from the brief): Awaiting volunteer review, Changes requested, Open: gathering facts, Open: developing solutions, Open: choosing a solution, In progress, Checking the result, Paused, Stuck, Solved, Closed, Redirected, Withdrawn, Not accepted. Plus the badge "Interim decision, will be re-reviewed". The app reads labels from the brief's table data; this deck must not redefine them. State labels, plain explanations and next actions for every lifecycle state come from `docs/spec/01-slice-1-brief.md#4-lifecycle`; this deck holds the surrounding UI strings only.
 
 ## Common
 | id | English |
@@ -99,10 +99,12 @@ Status wording (neutral, matches `tokens.json` status keys): Waiting for review,
 | status.paused.reason | Reason: {reason} |
 | status.paused.resumes | Picks up again when: {condition} |
 | status.paused.help | I can help with this |
-| status.stuck.title | Stuck for now |
+| status.stuck.title | Stuck |
 | status.stuck.body | There has been no recent progress. This is not a judgement of anyone. |
 | status.stuck.next | Here is what would help move it forward. |
 | status.stuck.help | See what would help |
+| status.withdrawn.title | Withdrawn |
+| status.withdrawn.body | The person who raised this withdrew it before anyone else took part. |
 | status.closed.title | Closed |
 | status.redirected.title | Redirected |
 | status.redirected.body | This is better handled by another group. Routes that can help are listed below. |
@@ -188,7 +190,7 @@ Status wording (neutral, matches `tokens.json` status keys): Waiting for review,
 | decision.appeal | Appeal this decision |
 | decision.appealUntil | You can appeal until {date, date, medium}. |
 | decision.withdraw | Withdraw |
-| decision.notPublished.title | This was not published as a problem |
+| decision.notPublished.title | Not accepted |
 | decision.notPublished.body | {reason} |
 | decision.deleteNow | Delete now |
 | appeal.title | Appeal this decision |
@@ -200,6 +202,7 @@ Status wording (neutral, matches `tokens.json` status keys): Waiting for review,
 | appeal.received | Appeal received. We will email you when there is an answer. |
 | appeal.outcome.upheld | The earlier decision stands. Reason: {note} |
 | appeal.outcome.overturned | The earlier decision was changed. Reason: {note} |
+| me.reminder | This draft will be withdrawn on {date, date, medium} if there are no changes. |
 | me.title | My activity |
 | me.drafts | Drafts |
 | me.submitted | Submitted |

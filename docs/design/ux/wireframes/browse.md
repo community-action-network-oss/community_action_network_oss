@@ -14,7 +14,7 @@ Route `/`. Tab "Discover".
 |                                      |
 | +----------------------------------+ |
 | | Bus stop shelter missing on...   | |
-| | (Needs evidence) (In discovery)  | |
+| | (Needs evidence) (Open: gathering facts)|
 | | Northfield, 12 contributions     | |
 | | Next: share a source             | |
 | +----------------------------------+ |
@@ -47,10 +47,11 @@ Route `/problems/{id}`. Sections are tabs on mobile, a two column layout on desk
 | < Problems                           |
 | Bus stop shelter missing on Route 9  |
 | Northfield (fictional)  by QuietHeron|
-| (In discovery) (Needs evidence)      |
+| (Open: gathering facts)              |
+| (Needs evidence)                     |
 |--------------------------------------|
 | STATUS PANEL                         |
-| Stage: Discovery                     |
+| Stage: Open: gathering facts         |
 | {detail.stage.explain} plain words   |
 | Known: 3 contributions               |
 | Uncertain: how many riders affected  |
@@ -85,7 +86,7 @@ Shown for withdrawn contributions and for public items a volunteer removed. Prob
 ```
 Variants: `tombstone.removed` (removed by a volunteer under a rule id, linking the rule text), `tombstone.notFound` only for ids that never existed.
 
-## WF-DETAIL-3  Status panel variants: paused, stuck, closed, redirected
+## WF-DETAIL-3  Status panel variants: paused, stuck, withdrawn, closed, redirected
 Neutral wording from the copy deck. Same panel position as WF-DETAIL-1.
 ```
 +--------------------------------------+
@@ -97,18 +98,25 @@ Neutral wording from the copy deck. Same panel position as WF-DETAIL-1.
 | [ I can help with this ]             |
 +--------------------------------------+
 | (Stuck)                              |
-| {status.stuck.title}  Stuck for now  |
+| {status.stuck.title}  Stuck          |
 | No recent progress. This is not a    |
 | judgement. {status.stuck.next}       |
 | [ See what would help ]              |
 +--------------------------------------+
-| (Redirected)                        |
+| (Withdrawn)                          |
+| {status.withdrawn.title}  Withdrawn  |
+| {status.withdrawn.body}              |
+| (shown only before anyone else took  |
+|  part; later the author can only     |
+|  tombstone their own text)           |
++--------------------------------------+
+| (Redirected)                         |
 | {status.redirected.title}  Redirected|
 | {status.redirected.body}             |
 | Routes that can help (fictional)     |
 +--------------------------------------+
 ```
-Closed shows the reason code and plain explanation, and `duplicate_of` as a link when it applies. Redirected lists the destination and route text. Panel text for every state comes from the brief's table.
+Closed shows the reason code and plain explanation, and `duplicate_of` as a link when it applies. Redirected lists the destination and route text. Panel text for every state comes from the brief's table. Solved, closed and redirected carry the "Interim decision, will be re-reviewed" badge while it applies. Closed and redirected also show "Appeal this decision" to the initiator until `appealable_until`.
 
 ## WF-RESOLUTION-1  Resolution records
 Route `/resolutions`. A plain archive of solved or closed problems. No ranking, no counts, sorted by date resolved, newest first, with a date filter.
