@@ -241,3 +241,15 @@ Every default, deviation and judgment call made while building CAN. Each one can
 - **D-48 · W2 · Hosted on GitHub (public) under community-action-network-oss.** Four repos; .gitmodules stays relative; submodule remotes: origin = GitHub, local = old bare mirror. Fresh recursive clone from GitHub verified. Gallery REPO_URL set (unit 06-u12 done). Still pending: LICENSE (D-27), enabling GitHub private vulnerability reporting on each repo. Reverse: make repos private in GitHub settings.
 - **D-49 · W2 · License: MIT for all four repos (code and docs).** Founder: the most permissive license, so anyone can copy and use CAN. Copyright "Community Action Network contributors"; inbound = outbound, no CLA; OQ-license resolved. Reverse: relicensing later needs agreement of contributors, so this is effectively one-way once outside contributions land.
 - **D-50 · W2 · Design system: gluestack-ui for all surfaces (can_app and can_gallery).** Founder decision; supersedes D-33's RN-core fallback and D-9's plain CSS. Adopted through plan units 02-u24, 02-u25 (can_app) and 06-u15, 06-u16 (can_gallery) that run before any other UI unit; civic wrappers keep their props so feature code is unaffected; tokens.json stays the single source. Version: newest stable major supporting Expo 57 / React 19.2, else pin the exact pre-release and log it. ADR 0007. Reverse: swap the civic wrapper internals back to RN core.
+- **D-51 · W3 · Core model: community-legislated, AI-executed moderation (founder).** The community never judges individual items. It legislates policy (prompts, rules, labeled examples, thresholds, jurisdiction overlays) either before the fact or after it, and AI agents apply that policy at every event:
+  - before publication (blocking, fails closed),
+  - on every update,
+  - after publication (re-checks on policy change, context change, or sampling).
+  - Appeals produce labeled examples that amend the policy, and the AI re-decides the instance. A human lane remains only for emergency/crisis and legal cases.
+  - Supersedes: D-13 (no live AI in slice 1), D-16 (moderator confirms publish), the interim-moderator clause, ADR 0006, AI-OFF-1, and the manifesto line "people make every decision" (now "people make every rule").
+  - Reverse: restore human per-item review.
+- **D-52 · W3 · Policy lives in a new 5th repo, `can_policy` (founder).** The community changes moderation through PRs to it. Ratification combines an eval, a replay diff of past decisions that would change, a ratifying panel, and a staged rollout. Creating the repo is a founder-gated plan unit, because the GitHub repo has to exist first.
+  - Reverse: move the policy into a folder in the superproject.
+- **D-53 · W3 · Slice 1 builds the full AI pipeline (founder), but this wave changes plans and design only.**
+  - Tests and night runs use a deterministic FakeModel with recorded responses.
+  - The first live provider is Claude via the Anthropic API. It stays founder-gated until there is an API key and a spend cap.
