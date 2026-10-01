@@ -4,6 +4,6 @@
 [submodule "can_app"]
 	path = can_app
 	url = ../can_app.git
-[submodule "can_promo_site"]
-	path = can_promo_site
-	url = ../can_promo_site.git
+[submodule "can_gallery"]
+	path = can_gallery
+	url = ../can_gallery.git
