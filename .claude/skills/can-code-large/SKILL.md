@@ -160,7 +160,7 @@ At P4, resume with a short message — do **not** re-send the brief, that is the
 `P4 EXECUTE: build your approved plan. Wave token <x>, your P-number <n>. Commit cadence as briefed.
 Capture requests come to me.`
 
-Briefs may live in files to avoid re-sending; a shared common-rules brief is encouraged and each
+Briefs may live in files to avoid re-sending; the shared common-rules brief lives at `.claude/skills/can-code-large/briefs/common-rules.md` (never in a temp scratchpad, which gets wiped) and each
 brief points to it. Scaffold first, then `git init`; delete template `AGENTS.md`/`CLAUDE.md`/`LICENSE`
 files scaffolders add.
 
