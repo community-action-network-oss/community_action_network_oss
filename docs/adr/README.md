@@ -19,5 +19,6 @@ MADR-lite: context, decision, consequences, how to reverse. One decision per fil
 | [0013](0013-retroactive-re-resolution.md) | Retroactive re-resolution of past resolutions | Accepted |
 | [0014](0014-openrouter-free-first-models.md) | OpenRouter with free-first, eval-chosen models | Accepted (supersedes the Anthropic-first part of 0008) |
 | [0015](0015-stage-plans-and-volunteer-review.md) | Stage plans and volunteer review | Accepted (supersedes the fixed-sequence parts of the lifecycle) |
+| [0016](0016-private-location-attestation.md) | Private location attestation for impacted versus guest | Accepted |
 
 To propose a new ADR: copy an existing file, use the next number, state context and how to reverse, and open it as a pull request. Keep each file under 25KB.

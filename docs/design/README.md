@@ -17,6 +17,7 @@ The system design, UX pack and decision records that let contributors and overni
 | [ux/ui-unit-template.md](ux/ui-unit-template.md) | Acceptance checklist for any UI unit |
 | [ux/tokens.json](ux/tokens.json) | Semantic design tokens, light and dark, contrast verified |
 | [ux/visual-direction.md](ux/visual-direction.md) | Calm, civic direction and why |
+| [location/](location/README.md) | Private location attestation (D-73): impacted versus guest per message, area model, candidates, staged path, spike plan (planned) |
 | [../adr/](../adr/README.md) | Architecture decision records 0001 to 0007 |
 
 ## Ground rules
