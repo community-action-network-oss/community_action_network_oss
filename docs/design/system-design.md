@@ -1,6 +1,6 @@
 # CAN slice 1 system design
 
-Status: design baseline for plan units. Binding inputs: `DECISIONS.md` (D-1 to D-28), `docs/spec/01-slice-1-brief.md` (scope, defaults, lifecycle table). Tonight `can_server` and `can_app` are scaffolds (D-25); this document specifies the slice so later plan units can build it without inventing architecture. Where this file and the brief disagree about lifecycle, the brief wins.
+Status: design baseline for plan units. Binding inputs: `DECISIONS.md` (including D-50 to D-53), `docs/spec/01-slice-1-brief.md` (scope, defaults, lifecycle table). `can_server` and `can_app` are scaffolds (D-25); this document is the overview, and details are split out: [flows/](flows/README.md) (execution flows), [components/](components/README.md) (modules per repo, built vs planned), [ai/](ai/README.md) (AI moderation design). Where this file and the brief disagree about lifecycle, the brief wins. Moderation follows D-51: the community legislates policy, AI agents apply it at every event, humans audit and label, and only the emergency and legal lane acts per case. Older wording about a moderator confirming publication is superseded.
 
 Lifecycle states, transitions, actors, labels and next actions live only in [`docs/spec/01-slice-1-brief.md#4-lifecycle`](../spec/01-slice-1-brief.md#4-lifecycle). This file never restates them.
 
@@ -15,18 +15,30 @@ flowchart LR
   subgraph server["can_server (NestJS modular monolith, :4000)"]
     api["HTTP adapter /v1<br/>validation, guards, OpenAPI"]
     domain["Domain modules<br/>framework-light TS"]
+    mod["AI moderation runtime<br/>DP selector, run recorder,<br/>decision applier"]
+    pol["policy module<br/>pack loader, version registry"]
+    gw["privacy gateway + router<br/>budgets, spend caps"]
     ports["Ports: identity, storage,<br/>signing, notification, jobs"]
-    ai["AI gateway port<br/>flag AI_ENABLED=false"]
   end
   pg[("Postgres 16<br/>host :5433, Drizzle")]
   mail["Mailpit (dev SMTP :1025, UI :8025)<br/>real SMTP is founder-gated"]
+  prov["Model provider via adapter<br/>FakeModel (tests, night runs)<br/>Anthropic (founder-gated)"]
+  cp["can_policy repo (planned)<br/>policy packs, ratified by PR"]
+  humans["Human lanes<br/>legislators, auditors, labelers,<br/>emergency and legal lane"]
   fed["Federation seams<br/>NOT BUILT: export, signing, AT Protocol"]
   app -- "REST JSON, httpOnly cookie (web)" --> api
   gallery -. "links only" .-> app
   api --> domain --> ports
+  domain --> mod
+  mod --> pol
+  mod --> gw
+  gw -- "redacted inputs only" --> prov
+  cp -- "pack by version + hash" --> pol
   domain --> pg
+  mod --> pg
   ports -- "SMTP" --> mail
-  domain -. "off" .-> ai
+  humans -- "PRs, labels, audits" --> cp
+  humans -. "emergency and legal cases" .-> api
   ports -. "future adapters" .-> fed
   server -- "openapi/openapi.json" --> app
 ```
@@ -36,7 +48,7 @@ Ports: API :4000, Expo web :8081, gallery :3000, Postgres :5433 (D-4, default 13
 Rules that follow from the diagram:
 - The gallery never calls the API. It is static HTML and links to the repository, docs and open questions.
 - The app talks only to `/v1`. Its client is generated from `can_server/openapi/openapi.json` (ADR 0002).
-- The AI gateway is an interface with a `NoopAiGateway` bound when `AI_ENABLED=false`. Nothing in slice 1 sets it true (ADR 0006).
+- Moderation is AI-executed under a ratified policy pack (D-51, D-53). Every model call goes through the privacy gateway; the provider sits behind an adapter. Tests and night runs bind `FakeModel` with recorded responses; the Anthropic adapter needs an API key and spend cap and is founder-gated. Publication fails closed (`hold`). ADR 0006 is superseded. Policy lives in `can_policy` (D-52), see [components/can-policy.md](components/can-policy.md).
 - No object storage, Redis or queue in slice 1. Jobs run as Nest scheduled tasks calling job port methods, backed by Postgres rows (`SELECT ... FOR UPDATE SKIP LOCKED`).
 
 ## 2. can_server module boundaries
@@ -47,17 +59,19 @@ Layout inside `can_server/src`: each module has `domain/` (pure TS, no Nest or D
 |---|---|---|---|
 | `accounts` | account, session, invite, handle generation, email encryption, sign-in codes | audit, notification port | Only module that sees plaintext email, and only at send time. |
 | `problems` | problem, problem_event, lifecycle transition engine, jurisdiction, draft_fingerprint, deterministic submission checks | accounts, moderation, audit | The transition engine executes the brief's table as data. Invalid transitions fail atomically. |
-| `moderation` | moderation_decision, appeal, review queue, interim flag, reviewer-selection rule | problems, accounts, audit | Emits decisions with `rule_ids[]`, span ref, `revision_hint`, `appealable_until`. |
+| `moderation` | AI moderation runtime: DP selector, run recorder, decision applier; moderation_run, moderation_decision, appeal, label_task | problems, policy, ai-gateway, audit | Decisions carry `rule_ids[]`, span ref, `revision_hint`, `appealable_until`, `policy_version`, `prompt_hash`, `model_id`. Plan 09 (pending). |
+| `policy` | pack loader, version registry, cache | platform | Loads `can_policy` packs by version and hash. Plan 09 (pending). |
+| `ai-gateway` | privacy gateway, provider adapters, router, budgets | policy, platform | FakeModel and Anthropic adapters. Plan 09 (pending). |
 | `contributions` | contribution, evidence_ref (URL only) | problems, moderation | Typed contributions; the type list comes from the brief. |
 | `proposals` | proposal | problems, contributions | Comparison data only; no voting rule (decision rule is a recorded text, not a score). |
 | `decisions` | decision_record | proposals, problems | States who decided, under which authority, why. |
 | `tasks` | task | decisions, problems | Task status, verification evidence refs. |
-| `audit` | audit_event | none | Write-only API for other modules; read for moderators. |
+| `audit` | audit_event | none | Write-only API for other modules; read for auditors and maintainers. |
 | `platform` (not domain) | config, health, event log writer, clock, id generator (UUIDv7), retention jobs | none | Shared kernel; keep tiny. |
 
 Dependency direction is one way (arrows above go from left column to "Depends on"). `audit` and `platform` depend on nothing. Cross-module calls go through exported use-case interfaces, never through another module's tables.
 
-Domain rules unit-tested without Nest: transition guard (actor, required fields), eligibility and privacy checks, reviewer selection, retention date computation, handle generation, fingerprinting.
+Per-module detail and build status: [components/server.md](components/server.md). Domain rules unit-tested without Nest: transition guard (actor, required fields), eligibility and privacy checks, appeal re-run selection, retention date computation, handle generation, fingerprinting.
 
 ## 3. Slice 1 ERD
 
@@ -76,9 +90,11 @@ erDiagram
   problem ||--o{ proposal : has
   proposal ||--o| decision_record : "decided by"
   decision_record ||--o{ task : spawns
-  problem ||--o{ moderation_decision : "reviewed by"
+  problem ||--o{ moderation_run : "checked by"
+  policy_pack_version ||--o{ moderation_run : "applied in"
+  moderation_run ||--o{ moderation_decision : produces
   moderation_decision ||--o{ appeal : "appealed via"
-  account ||--o{ moderation_decision : decides
+  appeal ||--o{ label_task : "may spawn"
   problem ||--o{ audit_event : "subject"
   problem ||--o| problem : "duplicate_of"
   account {
@@ -87,7 +103,7 @@ erDiagram
     bytea email_hmac "secret, unique, blind index"
     text handle "public, generated"
     int handle_regenerations
-    text role "internal: member|moderator|admin"
+    text role "internal: member|auditor|labeler|maintainer|admin"
     timestamptz created_at
     timestamptz deleted_at
   }
@@ -190,29 +206,51 @@ erDiagram
     text verification_note "public"
     uuid verification_ref FK
   }
+  moderation_run {
+    uuid id PK
+    text subject_type
+    uuid subject_id
+    text trigger "submit, update, recheck, sample, appeal"
+    bytea inputs_hash "internal"
+    text policy_version
+    text prompt_hash
+    text model_id
+    jsonb outputs "internal"
+    numeric cost "internal"
+  }
+  policy_pack_version {
+    text version PK "semver"
+    bytea content_hash
+    text state "shadow, canary, active, retired"
+  }
   moderation_decision {
     uuid id PK
-    uuid problem_id FK
-    uuid decided_by FK
-    text outcome "public to submitter, summary public after publish"
+    uuid run_id FK
+    text outcome "publish, needs_revision, reject, route_external, hold, escalate_human"
     text[] rule_ids "public"
     text policy_version "public"
+    text prompt_hash "internal"
+    text model_id "internal"
+    numeric confidence "internal"
     text field_ref "public to submitter: field name"
     int span_start "restricted, submitter only"
     int span_end "restricted, submitter only"
     text revision_hint "submitter only"
     timestamptz appealable_until "public to submitter"
-    bool interim "public"
-    text reviewer_disclosure "public"
+  }
+  label_task {
+    uuid id PK
+    uuid appeal_id FK
+    jsonb masked_input "restricted"
+    text label "restricted"
   }
   appeal {
     uuid id PK
     uuid moderation_decision_id FK
     uuid appellant_id FK
-    uuid reviewer_id FK
+    uuid rerun_id FK "independent run, different model or prompt variant"
     text statement "restricted"
     text outcome "public to appellant"
-    bool same_moderator_disclosed "public"
     timestamptz resolved_at
   }
   audit_event {
@@ -232,7 +270,7 @@ erDiagram
   }
 ```
 
-`draft_fingerprint` has no foreign key on purpose: it must not link back to an account or problem once the draft is purged. It therefore has no relationship line in the diagram. Sign-in codes live in `login_code` (account_id, code_hash secret, expires_at 10 min, attempts, consumed_at), an auxiliary table owned by `accounts`.
+`draft_fingerprint` has no foreign key on purpose: it must not link back to an account or problem once the draft is purged. It therefore has no relationship line in the diagram. AI entities are expanded in [components/server.md](components/server.md). Sign-in codes live in `login_code` (account_id, code_hash secret, expires_at 10 min, attempts, consumed_at), an auxiliary table owned by `accounts`.
 
 ### Retention and deletion
 
@@ -241,7 +279,7 @@ erDiagram
 | draft or rejected or withdrawn problem body | Hard-deleted 30 days after the state change (`purge_after`); UI shows the date. Event rows keep only type, states and timestamps, no body text. |
 | draft_fingerprint | Deleted 90 days after creation, or at publish (T04) if the problem is published. Salt rotated yearly; old fingerprints expire, never re-hashed. |
 | published problem, contribution, proposal, decision_record, task, problem_event | Kept; public record. Withdrawn contributions become tombstones (see UX). |
-| moderation_decision, appeal | Kept with the problem; `revision_hint` and spans cleared at purge for rejected drafts. |
+| moderation_run, moderation_decision, appeal, label_task | Kept with the problem (runs keep hashes and outputs, not raw prompts); `revision_hint` and spans cleared at purge for rejected drafts. |
 | session | Deleted 30 days after expiry or revoke. |
 | login_code | Deleted 24 hours after expiry or consumption. |
 | invite | Kept 1 year after redeem (abuse tracing); `code_hash` only. |
@@ -251,14 +289,14 @@ erDiagram
 ### Sensitivity rules enforced in code
 
 - `secret`: never leaves the server, never logged, never in OpenAPI responses (email, hashes, ciphertext).
-- `restricted`: returned only to the owner or a moderator, role checked in the use case.
-- `internal`: moderators and admins only.
-- `public`: only after the problem is published. Before publish, the initiator and moderators see drafts; everyone else gets a tombstone, never 404 for withdrawn published items.
+- `restricted`: returned only to the owner or, for masked data, to auditors and labelers; role checked in the use case.
+- `internal`: auditors, maintainers and admins only.
+- `public`: only after the problem is published. Before publish, only the initiator sees drafts (auditors see sampled, masked runs); everyone else gets a tombstone, never 404 for withdrawn published items.
 - Email: AES-256-GCM with a key from `EMAIL_ENC_KEY` env (never committed); lookup via HMAC-SHA256 blind index with `EMAIL_INDEX_KEY`.
 
 ## 4. Event log
 
-`problem_event` is the append-only history for lifecycle and consequential changes; `audit_event` records operational and security actions (sign-in, role changes, moderator reads). Both are insert-only: the app DB role has no UPDATE or DELETE on them (migration grants), and a test asserts that.
+`problem_event` is the append-only history for lifecycle and consequential changes; `audit_event` records operational and security actions (sign-in, role changes, auditor reads, emergency lane actions). Both are insert-only: the app DB role has no UPDATE or DELETE on them (migration grants), and a test asserts that.
 
 - Id: UUIDv7. `origin_node_id` and `protocol_version` on every row. `prev_hash` nullable bytea, always null in slice 1 (reserved for the later chain; no hashing code now).
 - Same-transaction write: the state change and its `problem_event` row commit together or not at all. The transition engine takes a Drizzle transaction and writes both; a unit test injects a failing insert and asserts the state did not change.
@@ -277,7 +315,7 @@ erDiagram
 
 ## 6. API surface (`/v1`)
 
-Conventions: JSON; list responses are `{items: [...], nextCursor: string | null}`; query `?cursor=&limit=` (limit default 20, max 50); the server trims all string input; errors are `{error: {code, message, fieldErrors?}}` with stable codes; mutations accept `Idempotency-Key`; times are ISO 8601 UTC. Actors: anon, member, initiator (owner of the problem), moderator, admin.
+Conventions: JSON; list responses are `{items: [...], nextCursor: string | null}`; query `?cursor=&limit=` (limit default 20, max 50); the server trims all string input; errors are `{error: {code, message, fieldErrors?}}` with stable codes; mutations accept `Idempotency-Key`; times are ISO 8601 UTC. Actors: anon, member, initiator (owner of the problem), auditor, labeler, maintainer, admin.
 
 | Method | Path | Actor | Purpose |
 |---|---|---|---|
@@ -290,7 +328,7 @@ Conventions: JSON; list responses are `{items: [...], nextCursor: string | null}
 | POST | /v1/me/handle/regenerate | member | One regenerate before first publish. |
 | GET | /v1/jurisdictions | anon | Picker list (fictional). |
 | GET | /v1/problems | anon | Published problems; filters `state`, `jurisdictionId`, `q`. |
-| GET | /v1/problems/{id} | anon | Problem detail or tombstone. Draft body only for initiator and moderators. |
+| GET | /v1/problems/{id} | anon | Problem detail or tombstone. Draft body only for the initiator. |
 | GET | /v1/problems/{id}/events | anon | Public timeline, cursor paged. |
 | POST | /v1/problems | member | Create draft. |
 | PATCH | /v1/problems/{id} | initiator | Edit draft or needs-revision fields. |
@@ -303,25 +341,24 @@ Conventions: JSON; list responses are `{items: [...], nextCursor: string | null}
 | GET | /v1/problems/{id}/proposals | anon | List proposals. |
 | POST | /v1/problems/{id}/proposals | member | Create proposal. |
 | PATCH | /v1/proposals/{id} | author | Edit proposal. |
-| POST | /v1/problems/{id}/decision | initiator or moderator | Record decision for a proposal (authority text required). |
+| POST | /v1/problems/{id}/decision | initiator | Record decision for a proposal (authority text required). |
 | GET | /v1/problems/{id}/tasks | anon | List tasks. |
 | POST | /v1/problems/{id}/tasks | initiator | Create task from decision. |
 | PATCH | /v1/tasks/{id} | assignee or initiator | Update status and verification note. |
 | GET | /v1/me/problems | member | My drafts and submissions, with purge dates. |
-| GET | /v1/problems/{id}/moderation | initiator or moderator | Decisions for this problem (hints beside fields). |
-| GET | /v1/moderation/queue | moderator | Items awaiting review; cursor paged, oldest first. |
-| POST | /v1/moderation/decisions | moderator | Decide: publish, ask clarification, reject, redirect; includes `ruleIds`, `fieldRef`, `revisionHint`. |
-| POST | /v1/moderation/decisions/{id}/appeals | initiator | File appeal before `appealableUntil`. |
-| GET | /v1/moderation/appeals | moderator | Appeals queue (reviewer differs from decider when pool has 2 or more). |
-| POST | /v1/moderation/appeals/{id}/resolve | moderator | Uphold or overturn with rule ids and note. |
+| GET | /v1/problems/{id}/moderation | initiator | Runs summary and decisions for this problem (hints beside fields, policy version). |
+| POST | /v1/moderation/decisions/{id}/appeals | initiator | File appeal before `appealableUntil`; starts the independent re-run. |
+| GET | /v1/me/notices | member | "Re-reviewed under policy vX" notices. |
+| GET | /v1/audit/samples | auditor | Sampled decisions for audit. |
+| POST | /v1/label-tasks/{id}/labels | labeler | Submit a masked label. |
 | GET | /v1/rules | anon | Published rule ids and plain texts (for hints and the appeal screen). |
-| POST | /v1/invites | moderator or admin | Issue an invite code (shown once). |
+| POST | /v1/invites | maintainer or admin | Issue an invite code (shown once). |
 
-Deliberate omissions: no email on any response, no DELETE on public records, no upload endpoints, no search beyond `q` (Postgres full text), no AI endpoint.
+Under D-51 the moderator queue and per-item decision and appeal-resolve endpoints no longer exist; exact audit and label paths are settled by plan 09 (pending). Deliberate omissions: no email on any response, no DELETE on public records, no upload endpoints, no search beyond `q` (Postgres full text), no endpoint that lets a person overrule a single decision (the emergency and legal lane is internal).
 
 ## 7. Contract flow
 
-Server code (Nest DTO schemas via zod, one source for validation and OpenAPI) generates `can_server/openapi/openapi.json` with `npm run gen:openapi`. `can_app` runs `npm run gen:api` which reads that file (path set by `CAN_OPENAPI_PATH`, default the sibling checkout) and writes `src/api/generated/`. CI in each repo: server fails if `openapi.json` is stale versus code; app fails if generated output differs from committed. Breaking changes need a `/v2` or an additive field. Spec rule: protocol meaning (event types, rule ids) is documented in `docs/spec`, not only in DTOs.
+Server code (Nest DTO schemas via zod, one source for validation and OpenAPI) generates `can_server/openapi/openapi.json` with `npm run openapi`. `can_app` runs `npm run gen:api`, which reads `../can_server/openapi/openapi.json` and writes `src/api/schema.d.ts`. Flow: [flows/contract-flow.md](flows/contract-flow.md). CI in each repo: server fails if `openapi.json` is stale versus code; app fails if generated output differs from committed. Breaking changes need a `/v2` or an additive field. Spec rule: protocol meaning (event types, rule ids) is documented in `docs/spec`, not only in DTOs.
 
 ## 8. Decentralization seams (interfaces only)
 
@@ -334,6 +371,7 @@ Defined as TypeScript interfaces in `platform/ports`, with one in-process implem
 | `SigningPort` (sign event bytes, verify) | `NoSigner` returns null | Node key, user key |
 | `NotificationPort` (send email) | SMTP via Mailpit | Real provider, push |
 | `JobPort` (schedule, run) | Nest schedule plus Postgres rows | Queue |
+| `AiGatewayPort` (privacy gateway, model call) | `FakeModel` in tests; Anthropic adapter founder-gated | Other providers, self-hosted models |
 
 Structural escapes already in the schema: UUIDv7, `origin_node_id`, `protocol_version`, append-only events, nullable `prev_hash`, no hostname stored in ids or rows.
 
@@ -341,7 +379,7 @@ Structural escapes already in the schema: UUIDv7, `origin_node_id`, `protocol_ve
 
 | Layer | Tooling | Scope |
 |---|---|---|
-| Domain unit | Vitest, no Nest | Transition table driven tests (generated from the brief's table data), privacy and eligibility rules, reviewer selection, retention math, handle generator. Property tests (fast-check) for "invalid transitions never change state". |
+| Domain unit | Vitest, no Nest | Transition table driven tests (generated from the brief's table data), privacy and eligibility rules, appeal re-run selection, retention math, handle generator. Property tests (fast-check) for "invalid transitions never change state". |
 | Server e2e | Vitest + supertest against `docker compose` Postgres and Mailpit | Auth flow reading codes from Mailpit, full lifecycle, cookie and CSRF behaviour, append-only grants, same-transaction rollback, pagination, authorization matrix per endpoint. |
 | Contract | Script | `openapi.json` is current; generated client compiles. |
 | App unit | Jest with mocked generated client | Screens for all UI-unit template states (loading, empty, error, offline, session-expired, not-permitted, tombstone, validation). |
@@ -349,7 +387,7 @@ Structural escapes already in the schema: UUIDv7, `origin_node_id`, `protocol_ve
 | Fixture corpora | Plain JSON files, versioned, in `can_server/test/fixtures/` | `privacy-flags.json` (synthetic names, addresses, phones, emails, plates, mixed-direction text, indirect identifiers; each with expected flag and span), `eligibility.json` (individual-case vs structural statements, emergency language routed to external routes), `reposts.json` (near-duplicate drafts for fingerprint). All fictional. Rules cite `RULE-ID` from `docs/spec/constitution/rules.md`; every corpus row names the rule it tests. |
 | Lint gates | oxlint, eslint-plugin-react-native-a11y, grep | Logical start/end only, no string concatenation in UI copy, no em or en dashes in copy, no hex colours outside tokens. |
 
-Moderation evaluation sets are deliberately small and hand-written in slice 1; measured precision and recall come later with real data.
+Moderation tests use `FakeModel` with recorded responses and no paid calls. Eval sets and replay fixtures live with the policy pack ([ai/evaluation.md](ai/evaluation.md)); they start small and hand-written, and measured precision and recall come later.
 
 ## 10. Web-first verification
 

@@ -6,7 +6,10 @@ The system design, UX pack and decision records that let contributors and overni
 
 | Path | What it is |
 |---|---|
-| [system-design.md](system-design.md) | Containers, module boundaries, ERD with sensitivity and retention, `/v1` API, auth flow, event log, contract flow, decentralization seams, test strategy, web-first verification |
+| [system-design.md](system-design.md) | Overview: containers, module boundaries, ERD with sensitivity and retention, `/v1` API, auth flow, event log, contract flow, decentralization seams, test strategy, web-first verification |
+| [flows/](flows/README.md) | Execution flows, one file per flow (auth, intake, updates, re-check, appeal, policy amendment, lifecycle, jobs, contract, night run) with status built or planned |
+| [components/](components/README.md) | Component view per repo (server modules incl. AI moderation runtime, app, gallery, planned `can_policy`, cross-cutting) with plan units |
+| [ai/](ai/README.md) | AI moderation design: policy pack, decision points, runtime, triggers, amendment loop, appeals, safety, evaluation (written in parallel) |
 | [ux/journeys.md](ux/journeys.md) | Submitter, contributor, moderator journeys with screen IDs |
 | [ux/screens.md](ux/screens.md) | Screen inventory and the lifecycle state to screen map |
 | [ux/wireframes/](ux/wireframes/) | ASCII low-fi wireframes, every frame has an ID (`WF-AREA-n`) |
@@ -14,7 +17,7 @@ The system design, UX pack and decision records that let contributors and overni
 | [ux/ui-unit-template.md](ux/ui-unit-template.md) | Acceptance checklist for any UI unit |
 | [ux/tokens.json](ux/tokens.json) | Semantic design tokens, light and dark, contrast verified |
 | [ux/visual-direction.md](ux/visual-direction.md) | Calm, civic direction and why |
-| [../adr/](../adr/README.md) | Architecture decision records 0001 to 0006 |
+| [../adr/](../adr/README.md) | Architecture decision records 0001 to 0007 |
 
 ## Ground rules
 - Lifecycle states, transitions, actors, public labels, plain explanations and next actions live **only** in [`docs/spec/01-slice-1-brief.md#4-lifecycle`](../spec/01-slice-1-brief.md#4-lifecycle). Link to it, never copy it.
