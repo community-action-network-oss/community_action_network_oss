@@ -96,6 +96,8 @@ Order is the order of the form. The rationale is shown to the poster as the fiel
 | 13 | `out_of_scope[]` | What this problem does not cover | Prevents scope creep and duplicate overlap |
 | 14 | `lawful_options` | Options the poster knows of that are lawful, or `unknown`; and acknowledgement that unlawful action is not part of the problem | Awareness of the legal frame early, so proposals later are not blocked by surprise (DP-LEGALITY) |
 
+Field 15, `context_profile` (D-76): problem type and category, `population_scale` band, `geography` (country, region, settlement and climate class), `resource_band`, `budget_band` (both user-declared, private until publication), `institutions[]` (roles), `legal_stack` (resolved layers), `language`, `constraints[]`. Mostly derived from fields 1 to 14 and the jurisdiction resolver; AI fill-assist proposes, the poster confirms; unknown is allowed. Used for archive matching; detail in `archive-reuse.md`.
+
 Optional: `stage_plan`, a DAG of stage nodes. Each node: `name`, `goal`, `acceptance_criteria[]` (at least one), `decision_method` (`poster_after_input` default, `community_vote`, `steward`, `other_named`), `depends_on[]` (stage names; empty means ready at publication). A missing plan means the `classic-5` template or one stage, offered at preparation. DP-STAGE-PLAN checks it; volunteers may recommend changes to it; after publication it changes only by proposal (PLAN-CHANGE-1).
 
 Schema ids for `sources[]` items: `source_ref` = `{uri, category, establishes, authenticity_note}`; the server stamps the DP-SOURCE-TRUST result per item.

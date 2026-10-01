@@ -78,6 +78,8 @@ Seeds use a stage plan (lifecycle v2). Seed 1 plan: `understand-incidents` (para
 
 Seed 2 plan: `measure-baseline` then, in parallel, `collection-design` and `enforcement-and-comms`, then `pilot`, then `measure-result`. Scripted lifecycle: a bounded city problem with synthetic cleanliness measurements and cost figures; `existing_efforts` is filled; `adv-individual` pleads about one named street neighbor's trash (routed); `adv-spam` floods duplicates; `con-institution` supplies an operational constraint; the stage choices combine collection design, enforcement and communications; `con-implementer` completes steps; final verification uses a synthetic before and after cleanliness index tied to the outcome metric.
 
+Archive (D-76): each seed run that reaches a terminal state (solved, `stuck`, closed) produces an `archive_record` marked `source: simulation`; these cold-start the archive (`archive-reuse.md` section 11). A reuse persona (`prop-reuser`) prepares a new problem in another context (for example a low-budget town), sees suggested paths, accepts one with adaptations and receives a DP-STAGE-DRAFT plan; its expected outcomes are the retrieval, fit and attribution checks of the archive eval. An attacker persona plants instruction text in a draft to test that archive content stays data.
+
 Both seeds must be run with each persona family, in at least these variants: happy path, one revise loop, one appeal (including a stage resolution appeal), one `stuck` or `blocked` stage, one plan-change proposal, one attack wave, one parallel-stage run.
 
 ## 4. Lifecycle driving

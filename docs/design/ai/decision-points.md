@@ -43,6 +43,9 @@ Canonical ids follow the slice-1 brief. Names seen elsewhere that map here: DP-E
 | DP-RERESOLUTION | policy or legal-corpus change (async job over past resolutions) | reopen transition (spec owner assigns T-id), annotate | async, bounded | keep, reopen, annotate (plus hold) | RERESOLVE-1 (proposed), LEGAL-STACK-1 (proposed) |
 | DP-ASSUMPTIONS | every content type at submit and update | every gated transition and contribution accept | blocking | publish, needs_revision, hold | ASSUMP-1 (proposed) |
 | DP-COMPLETENESS | every content type at submit and update | every gated transition and contribution accept | blocking | publish, needs_revision, hold | COMPLETE-1 (proposed), STRUCT-ONLY-1 (proposed) |
+| DP-ARCHIVE | problem reaches a terminal state | archive record publication | blocking for the record | publish, needs_revision, hold | ARCHIVE-1 |
+| DP-REUSE-FIT | path suggestion computed | suggestion display | blocking for display | publish, needs_revision, hold | REUSE-CONTEXT-1, REUSE-CREDIT-1 |
+| DP-STAGE-DRAFT | problem `active`, suggestion accepted | stage plan draft offered | blocking for the draft | publish, needs_revision, hold | REUSE-CREDIT-1, REUSE-NOBLOCK-1 |
 
 In the transition table, the "moderator confirms" actors (T02, T04, T05, T15, T16, T17) become the moderation run; the table's required fields and side effects are unchanged. A `publish` from all blocking DPs completes T04 automatically. `needs_revision` completes T02. `reject` completes T05. The contribution accept step uses the same DPs on the contribution instead of the problem.
 
@@ -70,6 +73,9 @@ Content is structured (D-58, `structured-content.md`): DPs read typed fields wit
 | DP-RERESOLUTION | past resolutions (all types) | | | decision record rechecked | | | | resolved stages (re-resolution) | | | | |
 | DP-ASSUMPTIONS | x | x | x | x | x | x | x | x | x | x | x | x |
 | DP-COMPLETENESS | x | x | x | x | x | x | x | x | x | x | x | x |
+| DP-ARCHIVE, DP-REUSE-FIT, DP-STAGE-DRAFT | x (terminal state, `context_profile`) | | | | | | | f (draft plan) | | | | |
+
+Archive DPs (D-76) work on `archive_record` and `path_suggestion`; see `archive-reuse.md`.
 
 Review recommendations (`review_recommendation`) are private volunteer content. They are only checked by the always-on DPs (privacy, naming, tone, crisis) so a volunteer cannot leak or abuse through them; they are never published and never moderated for merit. The DPs that judge a recommendation's target (DP-CRITERIA, DP-STAGE-PLAN) run on the poster's accepted edit, not on the recommendation.
 

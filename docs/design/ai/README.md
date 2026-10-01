@@ -70,10 +70,11 @@ Per-item moderators no longer exist. Humans do not override single instances by 
 | [safety-and-privacy.md](safety-and-privacy.md) | Gateway, zones, fail-closed matrix, bias, spend caps, abuse of the process |
 | [legal-stack.md](legal-stack.md) | Cumulative legal layers L0 to L6, legal corpora, retrieval, citations, topic-forbidden versus solution-illegal (D-61) |
 | [structured-content.md](structured-content.md) | No free-form posting: content schemas, problem schema, DP-ASSUMPTIONS, DP-COMPLETENESS, AI fill-assist, schema changes (D-58) |
+| [archive-reuse.md](archive-reuse.md) | Archive records, context profile, hybrid retrieval, reuse fit, path suggestions, stage drafts, attribution, eval, abuse (D-76) |
 | [simulation.md](simulation.md) | Persona simulation harness: catalog, seeds 1 and 2, modes, metrics, graduation criteria (D-55) |
 | [evaluation.md](evaluation.md) | Eval sets, thresholds as gates, replay diff, slice-1 fixtures |
 
-Decisions: [ADR 0008](../../adr/0008-ai-executed-community-policy.md) (supersedes 0006), [ADR 0009](../../adr/0009-can-policy-repo.md), [ADR 0010](../../adr/0010-structured-content-everywhere.md), [ADR 0011](../../adr/0011-persona-simulation-proof.md), [ADR 0012](../../adr/0012-legal-layer-stack.md), [ADR 0013](../../adr/0013-retroactive-re-resolution.md), [ADR 0015](../../adr/0015-stage-plans-and-volunteer-review.md) (stage plans and volunteer review, D-72). Specs this builds on: `docs/spec/14-ai-privacy-gateway.md`, `docs/spec/15-ai-inference.md`, `docs/spec/06-moderation-geo-governance.md`, lifecycle table in `docs/spec/01-slice-1-brief.md#4-lifecycle`.
+Decisions: [ADR 0008](../../adr/0008-ai-executed-community-policy.md) (supersedes 0006), [ADR 0009](../../adr/0009-can-policy-repo.md), [ADR 0010](../../adr/0010-structured-content-everywhere.md), [ADR 0011](../../adr/0011-persona-simulation-proof.md), [ADR 0012](../../adr/0012-legal-layer-stack.md), [ADR 0013](../../adr/0013-retroactive-re-resolution.md), [ADR 0015](../../adr/0015-stage-plans-and-volunteer-review.md) (stage plans and volunteer review, D-72), [ADR 0017](../../adr/0017-archive-and-path-reuse.md) (archive and path reuse, D-76). Specs this builds on: `docs/spec/14-ai-privacy-gateway.md`, `docs/spec/15-ai-inference.md`, `docs/spec/06-moderation-geo-governance.md`, lifecycle table in `docs/spec/01-slice-1-brief.md#4-lifecycle`.
 
 ## Words used exactly
 
