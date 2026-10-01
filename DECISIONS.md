@@ -393,3 +393,28 @@ Every default, deviation and judgment call made while building CAN. Each one can
   - **Live behaviour:** each page fetches from GitHub `main`. If that fails it shows "GitHub is unreachable" with Retry. Both repos are pinned. The fetch origin is a single config value (D-70).
   - **Known issue:** home-page base JS is 172 KB gzipped, over the 130 KB budget. The overrun predates this work. Fix it through the gluestack units 06-u15/16 or a budget revisit in 06-u09.
   - **Mermaid:** about 650 KB, loaded only on pages that contain diagrams.
+- **D-72 · W10 · Lifecycle redesign: preparation, volunteer review, AI publication, then a per-problem stage plan (founder).** This replaces the fixed sequence of public stages.
+  - **1. Prepare (private).** The poster fills in the structured problem completely:
+    - facts
+    - trusted source URIs that establish the issue is real
+    - the solved state, with final acceptance criteria
+    - optionally, stages with their own acceptance criteria
+  - **2. Volunteer review (private, not public).** Any volunteer can check the problem. Many volunteers recommend changes to the data and metadata, including stages, stage criteria and the solved criteria.
+  - **3. AI approval to publish.** The AI decides, based on the metadata and the community's guidelines. The problem is then published.
+  - **4. Stages.** The stage plan is a graph: stages run in series, in parallel, or mixed. In each stage:
+    - people contribute options;
+    - the community or the poster chooses the steps;
+    - the steps are done;
+    - evidence is posted;
+    - the stage resolves against its acceptance criteria.
+    - A stage cannot start until the stages before it are resolved.
+    - People can contribute to future stages ahead of time, ready for when those stages start.
+  - **5. Repeat** until the final solved criteria are met.
+  - **Defaults (orchestrator):**
+    - The decision method is set per stage in its metadata. By default the poster chooses, after community input.
+    - The poster accepts or declines each volunteer recommendation, with a reason. The AI publication decision weighs any recommendations still unresolved.
+    - Stage and final resolution are AI decisions on evidence against the criteria, and can be appealed.
+    - Volunteers are signed-in members who opt in. Personal data stays masked through the privacy gateway.
+    - The stage plan can change after publication through a proposal, checked by the AI.
+    - The old fixed sequence (gathering facts, developing solutions, choosing, in progress, checking) becomes an optional default stage template.
+  - **Reverse:** restore the fixed lifecycle.
