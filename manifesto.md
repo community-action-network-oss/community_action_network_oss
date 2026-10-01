@@ -20,6 +20,8 @@ That is how an open platform can reach any scale without an army of moderators: 
 
 **Everything on CAN is structured, so every poster sees the whole situation before posting.** There is no blank box. Each kind of post is a short, guided form that the community designed in advance: what is happening, why, who is affected, how far it reaches, which lawful options exist, what is still uncertain, and what you are assuming. If a post rests on a wrong assumption, it is held with a note beside the field, so you can fix it before anyone else reads it. AI can help you fill the form in, and you always confirm it.
 
+**The path from a problem to a solution is a plan, not a script.** You prepare first, privately: the facts, the sources you trust that show the problem is real, and what solved will mean. Volunteers then help sharpen it, privately, with personal data hidden from them, and you accept or decline each suggestion and say why. Then AI checks it against the community's rules and publishes it. The work runs in stages, one after another or side by side, whichever fits the problem. Each stage moves on only when its evidence meets its own criteria, and the problem is solved only when the final criteria are met. Anyone can prepare work for the stages that come later, so it is ready when they start.
+
 **The law of every place, all the way down.** CAN follows the law at every level that applies to a problem: universal human rights first, then the rules that bind a whole region such as the European Union, then the national constitution and national law, then the region and the city. Every post and every proposed fix has to satisfy all of them at once. So CAN never asks anyone to do something illegal, and it stays lawful everywhere it goes. If a fix is not lawful yet, the problem is not hidden. It is marked stuck, the blocking law is named, and the lawful route to change it stays in view.
 
 **Every rule change looks back.** When the rules or the law change, CAN re-examines every past resolution under the new rule. If the conclusion would be different and it is practical to reopen, the problem reopens with a plain notice, the whole history stays, and you can appeal. Nothing changes quietly, and every improvement helps every past problem, not just the next one.
@@ -30,7 +32,7 @@ Today this is a design and a first build. The rulebook for the first version is 
 
 ## What this is
 
-A public, open-source problem-resolution platform. People surface civic and structural problems. Eligible submissions are checked against the community's published rules, and the community works through structured stages until the problem is solved, closed, redirected, or honestly marked stuck.
+A public, open-source problem-resolution platform. People surface civic and structural problems. Submissions are prepared privately, sharpened by volunteers, checked against the community's published rules and then published. The community works through the problem's own stages until the problem is solved, closed, redirected, or honestly marked stuck.
 
 The unit of work is the shared condition: an institutional failure, a recurring pattern, a geographic issue, a structural root cause. A single personal experience can reveal, evidence or corroborate it. It does not become a personal service request.
 
@@ -68,14 +70,16 @@ Surface a public problem. Say who and where it affects. Contribute evidence and 
 1. **Public problem submission**
     - A person posts a non-identifying civic, institutional, geographic, recurring or structural problem.
     - A personal experience may be submitted as evidence of the wider condition, not as a request for individual help.
-    - The submission gets an evidence tier and an affected area. The person who raises it is the initiator. The initiator does not own the problem and decides for no one else.
+    - The poster prepares it privately first: the facts, trusted sources that show the problem is real, what solved means, and optionally the stages. The submission gets an evidence tier and an affected area. The person who raises it is the initiator. The initiator does not own the problem and decides for no one else.
     - Automatic checks and a moderation run under the community's rules test the framing, evidence, privacy, legality, duplication and scope.
-2. **Eligibility review**
+2. **Volunteer review and publication**
+    - Volunteers who opted in check the problem privately, with personal data hidden, and recommend changes to its facts, sources, stages and criteria. The poster accepts or declines each one, with a reason. Nothing from review is public.
+    - The AI then checks the problem against the community's rules and publishes it, or asks for changes.
     - Ineligible, abusive, duplicate, unsafe or irrelevant submissions are filtered out, with reasons and a path to revise and resubmit.
-    - Eligible problems join the public list.
+    - Published problems join the public list.
     - A problem that needs party-political, electoral or legislative debate can be redirected to a more suitable project or institution.
 3. **Structured discussion**
-    - The conversation moves through defined stages instead of an endless thread.
+    - The work runs through the problem's stages instead of an endless thread. Stages run one after another or side by side, a stage starts only when the stages before it are done, and anyone can prepare contributions for later stages.
     - Roles follow relevance, not status:
         - **Core participants** have a material connection to the problem: they live there, work there, use the service, or are affected by it. Geography is one signal of that.
         - **Visitors** have no such connection. They can read and contribute, but they do not steer the main direction.
@@ -94,9 +98,9 @@ Surface a public problem. Say who and where it affects. Contribute evidence and 
     - The initiator, affected participants, experts and the community keep progress up to date. Decisions are recorded with the reason and the authority.
     - Solutions must be safe, lawful, realistic and tied to the actual problem.
 6. **Resolution tracking**
-    - A problem moves stage by stage until it is solved, closed, redirected, or withdrawn.
+    - A problem moves through its stages until it is solved, closed, redirected, or withdrawn. Each stage moves on only when its evidence meets its criteria.
     - Some problems stall. They are marked **paused** (with a reason and a condition to resume) or **stuck** (documented effort hit a blocker). The blocker and the next lawful route stay public. An honest unresolved record is better than a quiet disappearance.
-    - **Solved** means a steward proposes it with verification evidence and the moderation run decides it under the rules for evidence, with its reasons shown. A promise is not an achievement.
+    - **Solved** means the criteria set at the start are met: a steward proposes it with evidence and the moderation run decides it under the rules for evidence, with its reasons shown. A promise is not an achievement.
 7. **Resolution records**
     - Every problem that reaches an end keeps its whole journey in a plain archive of resolution records. No ranking, no scores, no rewards. Solved problems become examples others can learn from, and later reusable civic playbooks.
 8. **Preparation and adaptation**
