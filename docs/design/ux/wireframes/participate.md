@@ -3,6 +3,7 @@
 Available to signed-in members on published problems. Every form here is rendered from its content schema (forms.md). Contributions are grouped by declared type (never one comment stream). Signed-out visitors see these read-only with a sign-in prompt in place of the action buttons.
 
 ## WF-CONTRIB-1  Contributions grouped by type
+**Retired (D-72):** per-type contributions move into stages: options in WF-STAGE-1, ahead of time in WF-STAGE-3. The schema forms still apply.
 Tab "Contributions" of WF-DETAIL-1.
 ```
 +--------------------------------------+
@@ -49,6 +50,7 @@ Renders WF-FORM-1 from the contribution schema for the chosen type. The type lis
 Post runs the moderation run (`pending.checking`); the contribution shows to others only on `publish`. A held contribution uses the WF-HOLD-1 copy.
 
 ## WF-PROPOSAL-1  Proposals and comparison
+**Retired (D-72):** replaced by Options in WF-STAGE-1. Comparison stays as a view inside it.
 Tab "Proposals".
 ```
 +--------------------------------------+
@@ -90,6 +92,7 @@ No vote counts and no ranking. Mobile shows one proposal at a time with a "Next 
 Publish runs DP-LEGALITY, DP-COMPLETENESS and DP-ASSUMPTIONS. A blocked proposal returns hints beside fields; a legality block shows the constraint, its source and version, and what could be done instead.
 
 ## WF-DECREC-1  Decision record
+**Retired (D-72):** replaced by Choice in WF-STAGE-1. The record, dissent and policy badge are kept there.
 Tab "Decision". Empty until a decision is recorded: `decrec.empty`.
 ```
 +--------------------------------------+
@@ -128,6 +131,7 @@ Tab "Decision". Empty until a decision is recorded: `decrec.empty`.
 Record runs DP-DECISION-RECORD and DP-LEGALITY (gate T11). The check is for completeness and consistency, never whether the decision is good.
 
 ## WF-TASK-1  Tasks
+**Retired (D-72):** replaced by Steps in WF-STAGE-1. WF-TASK-2 stays as the step detail and verification form.
 Tab "Tasks".
 ```
 +--------------------------------------+

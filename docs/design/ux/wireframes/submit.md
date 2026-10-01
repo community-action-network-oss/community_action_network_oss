@@ -7,6 +7,7 @@ Signed-out visitors can start. Sign-in is requested only at submit, and the draf
 Inline privacy flags: every text field runs the deterministic checks (names, addresses, phone, email, plates, identifiers, "I" narrative about a named person). A flag appears under the field in a neutral note with the offending text marked, never blocking typing: `submit.flag.name`, `.address`, `.contact`, `.individual`. Each flag offers [ Generalise it ] (manual edit hint) and [ Keep as is ] (kept flags go to the automated review, which may still ask for a change). Assumption and completeness hints (WF-FORM-3) appear in the same place.
 
 ## WF-SUBMIT-1  Problem form sections
+**Retired (D-72):** replaced by WF-PREP-1. The sections stay as the facts form inside it.
 Route `/report/{section}`. Renders WF-FORM-1 per section of the schema.
 ```
 +--------------------------------------+
@@ -94,6 +95,7 @@ Zero flags shows `submit.privacy.none` and the confirmation. Next stays disabled
 The Submit button is the only way to leave forward; the route guard sends deep links back to the first section with a missing field. If duplicates are found they list with links and the choice "This is different" or "Add to that problem instead".
 
 ## WF-PENDING-1  Awaiting review
+**Retired (D-72):** "Awaiting review" is replaced by "In volunteer review" (WF-VREVIEW-3 for the poster). This frame is kept only for the publication check running after review.
 Route `/me/problems/{id}`. An AI moderation run is in progress. Nothing is public.
 ```
 +--------------------------------------+

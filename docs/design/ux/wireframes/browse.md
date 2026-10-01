@@ -43,6 +43,7 @@ Card parts: title (condition), seed label when it applies, stage badge, flag bad
 Error variant uses the shared error pattern (`common.error.title`, retry button). Offline shows cached items with `common.offline.banner`.
 
 ## WF-DETAIL-1  Problem workspace (published)
+**Retired (D-72):** the single "Stage:" line and "Open: ..." chips in the status panel are replaced by the stage map, WF-STAGEMAP-1. Tabs for proposals, decision and tasks are replaced by the stage workspace, WF-STAGE-1.
 Route `/problems/{id}`. Sections are tabs on mobile, a two column layout on desktop (main plus a sticky status panel at the end side).
 ```
 +--------------------------------------+

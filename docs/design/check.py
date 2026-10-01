@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Design pack checks. Run: python3 docs/design/check.py  (exit 1 on any failure)
-- every message id used in wireframes exists in copy-deck.md
+- every message id used in wireframes exists in copy-deck*.md
 - no em or en dashes in docs/design or docs/adr
 - every file is 25KB or less
 - every WF id referenced in journeys.md/screens.md is defined in wireframes/
@@ -10,7 +10,7 @@ import re, glob, json, os, sys
 d = os.path.dirname(os.path.abspath(__file__)); adr = os.path.join(d, '..', 'adr')
 ux = os.path.join(d, 'ux'); bad = []
 rd = lambda p: open(p, encoding='utf-8').read()
-deck = set(re.findall(r'^\| ([a-z]+\.[A-Za-z.]+) \|', rd(ux + '/copy-deck.md'), re.M))
+deck = set(re.findall(r'^\| ([a-z]+\.[A-Za-z.]+) \|', ''.join(rd(f) for f in glob.glob(ux + '/copy-deck*.md')), re.M))
 defined, used_wf = set(), set()
 for f in glob.glob(ux + '/wireframes/*.md'):
     t = rd(f)

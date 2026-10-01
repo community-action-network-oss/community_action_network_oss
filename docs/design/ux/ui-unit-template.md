@@ -49,6 +49,14 @@ Unit: ______  Wireframe IDs: ______  Branch: ______
 - [ ] Progress is text, save draft works offline (device first), server re-validates against the stamped schema version.
 - [ ] No unstructured free text box: every long answer sits in a schema field.
 
+## 3c. Graph views (stage map, stage plan editor)
+- [ ] Every graph (nodes and edges) has an equivalent list view with the same data, in dependency order, stating each edge in words ("Starts after: ..."). The toggle is always visible and the list is the default for screen readers.
+- [ ] Nodes show a text state label, never colour alone; current nodes carry the word "Current".
+- [ ] Keyboard: Tab and arrow keys move between nodes, Enter opens one; no drag-only editing (dependencies are edited with checkboxes or selects).
+- [ ] The graph is not the only way to complete a task: everything done in the graph can be done from the list.
+- [ ] Graph reflows or scrolls inside its own region at 360 px and 200 percent text without page level horizontal scroll.
+- [ ] Cycles and unreachable stages are explained in text beside the stage, with an icon.
+
 ## 4. Layout and RTL
 - [ ] Logical properties only: `start`/`end`, `marginStart`, `paddingEnd`, `textAlign: start`. No `left`, `right`, `marginLeft`, `marginRight` (lint grep `npm run lint:logical`).
 - [ ] Icons that imply direction are mirrored in RTL; the layout was viewed with `dir=rtl` once (pseudo-locale is enough in slice 1).
