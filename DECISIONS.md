@@ -287,3 +287,24 @@ Every default, deviation and judgment call made while building CAN. Each one can
   - A decision point holds back any post built on an incorrect assumption (factual, causal, legal or scope) and returns it as `needs_revision` with hints.
   - AI may help fill the fields, and the poster confirms the result.
   - This replaces the Notion "conflict-resolution questionnaire" idea with a broader rule: everything is structured.
+- **D-59 · W6 · Retroactive re-resolution (founder).**
+  - When a policy or rule changes, earlier resolutions are re-examined under the new rule straight away. This covers solved, closed, redirected and stuck problems and their decision records, not only moderation decisions on content.
+  - Where the new rule changes the conclusion and reopening is feasible, the problem reopens for re-resolution, with a visible notice and the full history kept.
+  - Feasibility criteria are an open question.
+  - Each appeal or rule change improves the rules for every past and future case, not just one verdict.
+- **D-60 · W6 · The gallery asks everyone to contribute (founder).**
+  - Every profession is welcome.
+  - Engineers, designers and other technical contributors are the most urgent today, because the platform is still being built.
+  - Lawyers, activists, policy and rights experts are needed now as well, because they understand the rules of engagement and can draft the platform's rules and policy packs in `can_policy`.
+- **D-61 · W6 · Every moderation run applies a legal layer stack (founder).**
+  - The layers, from the base upwards:
+    1. CAN platform rules
+    2. UN human rights instruments (UDHR, ICCPR, ICESCR)
+    3. the national constitution of the problem's country
+    4. national law
+    5. regional law and rules
+    6. city rules
+  - The layers are cumulative constraints: content and solutions must satisfy all of them, so CAN never asks for anything illegal in any jurisdiction. This keeps the platform legally defensible everywhere, including against regimes hostile to citizen coordination.
+  - DP-LEGALITY and the other legal checks read the layers from versioned, source-verified legal corpora in `can_policy`.
+  - **Default, not founder-stated:** where a binding supranational layer exists, it sits between UN human rights and the national constitution. For the Netherlands that means the EU Charter of Fundamental Rights and EU law, plus the ECHR.
+  - **Default:** if local law forbids discussing a topic at all, the problem is not published in that jurisdiction and the refusal is logged with its legal basis. If only a solution is illegal, the problem goes to `stuck` (legally blocked) rather than being rejected.
