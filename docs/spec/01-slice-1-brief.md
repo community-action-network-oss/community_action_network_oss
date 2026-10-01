@@ -23,7 +23,7 @@ Pilot-ready (`18-phases-gates.md`, "Definition of pilot-ready") and Gate X (same
 2. **AI:** deterministic checks plus human review of everything published. The AI gateway interface exists behind a flag that stays off. Public wording: "Rules-based checks and human review today. AI assistance is planned; people make and answer for every decision."
 3. **Accounts:** see section 8.
 4. **Lifecycle:** see section 4. Status styling is neutral, never red.
-5. **Authority:** the initiator is provisional steward. A `moderator` confirms publish, solved, closed and redirected. Interim-moderator clause (Constitution V.4, rule `INTERIM-1`): every such decision is audited and shown as "Interim decision, will be re-reviewed". The appeal reviewer must differ from the original decider when the moderator pool has two or more people; otherwise the page discloses that the same interim moderator reviewed it.
+5. **Authority:** the initiator is provisional steward. A `moderator` confirms publish, solved, closed and redirected. Interim-moderator clause (Constitution V.4, rule `INTERIM-1`): every such decision is audited and shown as "Interim decision, will be re-reviewed". The appeal reviewer must differ from the original decider (and the appellant) when the moderator pool has two or more people; otherwise the page discloses that the same interim moderator reviewed it.
 6. **Moderation decisions:** carry explanation fields (section 5).
 7. **Drafts:** section 9.
 8. **Pending review screen:** section 9.
@@ -123,7 +123,7 @@ Every moderation decision (including decisions on a contribution) stores:
 
 The UI offers "revise and resubmit", which keeps the draft. It never asks the person to retype.
 
-**Appeals** attach to a decision. Fields: appellant, grounds, reviewer, outcome (upheld or overturned), outcome explanation, decided time. One appeal per decision. The reviewer differs from the decider when the pool has two or more moderators; otherwise disclosed.
+**Appeals** attach to a decision. Fields: appellant, grounds, reviewer, outcome (upheld or overturned), outcome explanation, decided time. One appeal per decision. The reviewer differs from the appellant and from the decider when the pool has two or more moderators; otherwise the page discloses "same interim moderator" (`APPEAL-1`).
 
 | Overturned decision | Effect |
 |---|---|

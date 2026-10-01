@@ -16,7 +16,7 @@ The unit of work is the shared condition: an institutional failure, a recurring 
 
 ## What this is not
 
-- Not an individual advice, therapy, medical, legal, consulting or personal case-management service.
+- Not an individual advice, therapy, medical, legal, consulting or personal matter-management service.
 - Not an emergency service. If someone is in danger, contact your local emergency number. No part of this platform replaces that.
 - Not a social feed, a debate forum, a petition site, or a complaint board.
 - Not a platform that endorses candidates or parties.
