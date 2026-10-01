@@ -28,6 +28,7 @@ Two precise legal outcomes. Only the solution is illegal: the problem is lawful 
 3. Queue: write a `proposal_candidate` through `PolicyProposalPort` (09-u36, fake adapter) of kind `policy_question` with a redacted conflict note (OQ-legal-layer-conflicts default); an unresolvable PREC-1 conflict that touches rights or crisis tier also goes to the lane queue (09-u38) and never to a per-item moderator.
 4. Never silent: the poster sees a held notice with the plain conflict summary and the policy-question id.
 5. Tests: solution-only illegal reaches stuck with layered payload; L1 vs L3 conflict holds with note and creates exactly one candidate; a later corpus version activation retries the held run (uses 10-u55 activation); no endpoint overrides the decision.
+6. Terminology (D-74): a stage option that is illegal only in its solution sends the stage to `blocked` (ST07, DP-BLOCKER) and, when every remaining required stage is blocked or behind a blocked stage, the problem to `stuck` (T13); where this unit says proposal read `stage_option`.
 
 ## Acceptance
 - An illegal-only proposal reaches stuck with layer, article and corpus version (TOPIC-FORBIDDEN-1 fixture).

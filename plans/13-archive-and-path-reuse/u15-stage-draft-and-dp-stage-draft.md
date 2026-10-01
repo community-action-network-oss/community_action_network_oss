@@ -30,12 +30,14 @@ After publication (problem `active`) with at least one accepted suggestion, DP-S
 4. Attribution: every drafted stage carries `derived_from` with the source archive records and their license (REUSE-CREDIT-1); the field survives edits (13-u16).
 5. API: `GET /v1/problems/{id}/stage-draft`, `PATCH /v1/problems/{id}/stage-draft` (poster edits stages with the same validation; a stage keeps its source and gets `editedByPoster = true`), `DELETE` discards. Operation ids `getStageDraft`, `requestStageDraft`, `patchStageDraft`, `discardStageDraft`. Run `npm run openapi` and `git add -- openapi/openapi.json` so the verify diff gate passes. Never hand-edit it.
 6. Tests with FakeModel: an accepted suggestion yields a draft that passes `validatePlan` and covers all final criteria; a draft that does not cover a criterion goes needs_revision then hold; expiry job deletes at 30 days; the draft is invisible to anyone but the poster (403/404 matrix including a volunteer); the draft never touches the live plan; no suggestion accepted means no automatic run.
+7. Rate limits: do not edit the central rate-limit table `src/platform/security/limits.ts` owned by 07-u02 in this unit (that table is single-owner and a row added here would conflict). The routes of this unit are listed in the acceptance as a follow-up for 07-u02, with proposed limits.
 
 ## Acceptance
 - A draft is a valid plan with `derived_from` on every stage.
 - The draft is private and expires after 30 days.
 - It never changes the live stage plan.
 - `npm run verify` is green with openapi regenerated.
+- Follow-up for 07-u02 (not done here, never edit the limits table in this unit): add rows for `getStageDraft` (GET /v1/problems/{id}/stage-draft): 60 per hour per account; `requestStageDraft` (POST /v1/problems/{id}/stage-draft): 5 per day per problem (it may call a model); `patchStageDraft` (PATCH /v1/problems/{id}/stage-draft): 120 per hour per account; `discardStageDraft` (DELETE /v1/problems/{id}/stage-draft): 20 per day per account.
 
 ## Out of scope
 - Applying the draft (13-u16).

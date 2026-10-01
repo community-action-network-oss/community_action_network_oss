@@ -30,12 +30,14 @@ The archive module of can_server: the tables of the archive record, the hook tha
 4. Public read API with no authentication: `GET /v1/archive` (cursor pagination, newest first; filters `country`, `region`, `terminal_state`, `problem_type`, `language`, `q` reserved), `GET /v1/archive/{id}`. Only `status = published` rows are returned; others are 404. Responses never include `problem_ref` as a link to a poster or any contributor handle unless opted in. Operation ids `listArchive` and `getArchiveRecord`; DTOs carry explicit key sets. Add an ETag.
 5. Run `npm run openapi` and `git add -- openapi/openapi.json` so the verify diff gate passes. Never hand-edit it.
 6. Tests (db): enum CHECKs, idempotent enqueue for a duplicate event, T14 and pre-publication exits do not enqueue, a throwing job insert rolls the transition back, the list never returns pending rows, the schema scan.
+7. Rate limits: do not edit the central rate-limit table `src/platform/security/limits.ts` owned by 07-u02 in this unit (that table is single-owner and a row added here would conflict). The routes of this unit are listed in the acceptance as a follow-up for 07-u02, with proposed limits.
 
 ## Acceptance
 - A terminal or stuck transition in a seeded problem creates exactly one `pending` archive_record and one queued job in the same transaction, and a repeat creates none.
 - GET /v1/archive and GET /v1/archive/{id} are public and return published records only.
 - The schema scan finds no person or location column.
 - `npm run verify` is green with openapi regenerated.
+- Follow-up for 07-u02 (not done here, never edit the limits table in this unit): add rows for `listArchive` (GET /v1/archive): public, 120 per minute per IP; `getArchiveRecord` (GET /v1/archive/{id}): public, 120 per minute per IP.
 
 ## Out of scope
 - Record assembly (13-u02).

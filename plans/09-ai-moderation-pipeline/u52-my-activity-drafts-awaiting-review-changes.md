@@ -31,6 +31,7 @@ WF-MYACT-1 at /me: drafts, submitted items (Awaiting review, held shown as await
 5. Tests: grouping; held item appears as Awaiting review; deletion date shown; notice row appears; empty state offers the next action; sign out works.
 6. Supersession guard: if the older human-moderator version of this screen from plan 03 (03-u20 to 03-u25) exists, delete the files it wrote for it and their tests, and note the deletions in the commit message. Keep route paths stable.
 7. Every required state of ui-unit-template section 1 has a test or a stated reason it does not apply; strings only through useT() ids added to src/i18n/en.json and docs/design/ux/copy-deck.md ids; no em or en dashes (npm run lint:copy).
+8. Lifecycle v2 wording: the groups are Drafts, In volunteer review (link to WF-VREVIEW-3), Checking before publication (the WF-PENDING-1 states of 09-u48), Changes requested (T02, with the real deletion date), and Published. Replace any "Submitted" or "Awaiting review" group heading by these (copy-deck ids from docs/design/ux/copy-deck-lifecycle.md).
 
 ## Acceptance
 - Acceptance: meets docs/design/ux/ui-unit-template.md (sections 1 to 6, and 3b where the unit renders a schema form; mark items not applicable with a reason in the commit message).

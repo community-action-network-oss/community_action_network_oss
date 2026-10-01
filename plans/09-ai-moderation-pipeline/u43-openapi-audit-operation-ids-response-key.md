@@ -29,6 +29,7 @@ One test that guards the whole moderation contract the app consumes: every plan 
 3. Leak scan: run a full fixture flow with a seeded canary string in the input and assert it appears in no response except the initiator own decision spans (offsets only) and own draft reads.
 4. Fix any DTO that fails (small edits only), run `npm run openapi` and commit the regenerated contract.
 5. Assert that no route can edit a decision (duplicate of the lane test, cheap, keeps the contract guard self-contained).
+6. Plan extension (W13): add to the audited route table the routes of lifecycle v2 and archive that touch moderation shapes: the publication decision (`GET /v1/me/problems/{id}/decision`, 12-u08), stage result (12-u07), review recommendation responses (never public), suggestion and archive routes are audited by 13-u21 (do not duplicate). Forbidden key scan adds `attestation`, `impactLabel` in any moderation-facing shape (LOC-PRIV-1).
 
 ## Acceptance
 - All plan 09 routes have operation ids and exact key-set tests.

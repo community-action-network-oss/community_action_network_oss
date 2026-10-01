@@ -30,6 +30,7 @@ Plug contributions into the pipeline. A contribution is public only after a comp
 4. Appeal on a hidden contribution restores it (re-run overturn path of the appeal unit uses the adapter `restore`).
 5. Tests: each outcome maps; a clean fixture contribution becomes visible only after a run; hold keeps it private; appeal overturn restores.
 6. Run `npm run openapi`, then `git add -- openapi/openapi.json` so the verify diff gate passes. Never hand-edit the file.
+7. Lifecycle v2: a contribution may target a stage (`stage_id`, 04-u01) and carries `for_later_stage` when the stage is `planned` or `ready` (STAGE-PREP-1): it is checked on submit like any contribution (deterministic checks, then DP-CONTRIB-RELEVANCE before it is shown) and kept ready. `verification_evidence` and `progress_update` are never accepted ahead. A `proposed_solution` contribution is the input to a `stage_option` (04-u04 converts it after acceptance). The `attestation` field of a contribution is never a run input (LOC-PRIV-1).
 
 ## Acceptance
 - No contribution is visible without a complete run.

@@ -20,7 +20,7 @@ commits: []
 actual_hours: null
 ---
 ## Objective
-Extend the 09-u29 notice model so a reopen or an annotation is never silent: the initiator and followers see "Reopened under policy vX" with the rule or law that changed, what it means, the history link and the appeal path.
+Extend the 09-u29 notice model so a reopen (T20 or T21) or an annotation is never silent: the initiator and followers see "Reopened under policy vX" with the rule or law that changed, what it means, the history link and the appeal path.
 
 ## Steps
 1. Add notice kinds `reopened` and `re_resolution_annotated` to `moderation_notice` (extend the enum migration; unique per (review_id, kind, account_id)). Recipients: the initiator, all followers with consent (04-u07), and the steward when the initiator is unreachable; email through the NotificationPort (04-u07) with rule ids, versions and appeal path, no problem text.

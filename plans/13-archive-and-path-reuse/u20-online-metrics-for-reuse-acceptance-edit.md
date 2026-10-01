@@ -29,11 +29,13 @@ After graduation, measure whether reuse helps, as aggregates that are never used
 3. Outcome comparison joins only on problem ids inside the job and stores only the aggregate; `source = simulation` records and problems are excluded from outcome statistics (13-u05 view).
 4. Endpoint `GET /v1/archive/metrics` (steward and the public aggregate subset): only aggregates; no per-person or per-problem rows. Run `npm run openapi` and `git add -- openapi/openapi.json` so the verify diff gate passes. Never hand-edit it.
 5. Tests: small cells are dropped; edit distance fixtures; simulation excluded; the endpoint exposes no identifier; key-set test.
+6. Rate limits: do not edit the central rate-limit table `src/platform/security/limits.ts` owned by 07-u02 in this unit (that table is single-owner and a row added here would conflict). The routes of this unit are listed in the acceptance as a follow-up for 07-u02, with proposed limits.
 
 ## Acceptance
 - Only aggregates above the minimum cell size are exposed.
 - Nothing here ranks or scores a person.
 - `npm run verify` is green with openapi regenerated.
+- Follow-up for 07-u02 (not done here, never edit the limits table in this unit): add rows for `getArchiveMetrics` (GET /v1/archive/metrics): public aggregate, 60 per minute per IP.
 
 ## Out of scope
 - Dashboards.

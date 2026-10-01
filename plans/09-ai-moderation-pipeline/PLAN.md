@@ -9,7 +9,7 @@ spec: ["docs/design/ai/README.md", "docs/design/ai/runtime.md", "docs/design/ai/
 # Plan 09: AI moderation pipeline
 
 ## Goal
-Build CAN's core: community-legislated, AI-executed moderation (D-51). An AI moderation run applies the policy pack before anything becomes public, on every update, and after publication when policy or context changes or a sample is drawn. Appeals flow through an independent re-run and a community label task into a policy proposal and an AI re-decision. Auditors sample decisions. A small logged emergency and legal lane is the only place a person acts on a single case. Everything is verified deterministically with FakeModel first; the OpenRouter adapter and live runs follow D-65: free and cheap models chosen by eval, synthetic data only, budget-capped, not founder-gated within the caps; real member data to a live provider stays founder-gated.
+Build CAN's core: community-legislated, AI-executed moderation (D-51). An AI moderation run applies the policy pack before anything becomes public, on every update, and after publication when policy or context changes or a sample is drawn. Appeals flow through an independent re-run and a community label task into a policy proposal and an AI re-decision. Auditors sample decisions. A small logged emergency and legal lane is the only place a person acts on a single case. Lifecycle v2 (D-72, D-74) changed what is moderated and when: the poster prepares privately, a submit gate runs cheap checks (T01), volunteers review, then one publication run (DP-PUBLISH, aggregating DP-SOURCE-TRUST, DP-CRITERIA, DP-STAGE-PLAN and the rest) decides T04; stages resolve through DP-STAGE-RESOLUTION on evidence; stage plans change only through a checked proposal; ended problems are re-resolved from their archive record (D-76). Everything is verified deterministically with FakeModel first; the OpenRouter adapter and live runs follow D-65: free and cheap models chosen by eval, synthetic data only, budget-capped, not founder-gated within the caps; real member data to a live provider stays founder-gated.
 
 ## Spec refs
 - docs/design/ai/runtime.md, decision-points.md, triggers.md, appeals.md, safety-and-privacy.md, evaluation.md, structured-content.md, policy-pack.md
@@ -18,7 +18,7 @@ Build CAN's core: community-legislated, AI-executed moderation (D-51). An AI mod
 - Rules: PRIV-GATEWAY-1, PUB-FAILCLOSED-1, MOD-EXPLAIN-1, REMOD-NOTICE-1, APPEAL-1, APPEAL-2, NO-INSTANCE-OVERRIDE-1, CRISIS-STATIC-1, PREC-1
 - docs/design/ai/legal-stack.md, docs/design/flows: re-resolution, legal-corpus-update
 - Rules: LEGAL-STACK-1, LEGAL-CITE-1, LEGAL-SOURCE-1, LEGAL-CORPUS-1, TOPIC-FORBIDDEN-1, RERESOLVE-1; lifecycle transitions T23 and T24
-- Decisions D-51 to D-61 (D-59 re-resolution, D-61 legal layer stack)
+- Decisions D-51 to D-61 (D-59 re-resolution, D-61 legal layer stack), D-65 (model register), D-72 and D-74 (lifecycle v2), D-76 (archive); lifecycle ids per docs/spec/01a-lifecycle.md (T00 to T22, map in 4.3) and docs/spec/01b-stages.md (ST01 to ST11)
 
 ## Contracts with other plans
 - Plan 10 (policy and forms): 10-u01 creates the can_policy repo, 10-u02 scaffolds it, 10-u03 pack format and CI, 10-u04 policy module in can_server (pack loader by version and hash, version registry, content-schema registry, PII-safe cache, fixture pack under test/fixtures/policy), 10-u05 schema-driven form renderer in can_app. Every server unit here that reads policy depends on 10-u04; app units that render structured forms depend on 10-u05.
@@ -29,16 +29,19 @@ Build CAN's core: community-legislated, AI-executed moderation (D-51). An AI mod
 - Supersession: plan 09 replaces the human-moderator model of plans 03 to 05. Each affected unit carries a "supersession guard" step that deletes the older moderator path if it exists, so the result is correct whichever ran first.
 
 - Legal stack (D-61) and re-resolution (D-59): units 09-u56 to 09-u59 apply the cumulative stack (LEGAL-STACK-1), store citations (LEGAL-CITE-1), refuse forbidden topics with a logged basis and send solution-only illegality to stuck (TOPIC-FORBIDDEN-1), and hold layer conflicts. 09-u60 to 09-u64 select, run, decide and reopen (T23, T24) past resolutions with notices; 09-u65 is the app notice and reopened state; 09-u66 and 09-u67 are the e2e extensions. They read the corpora of plan 10 (10-u55 loader, 10-u56 retrieval, 10-u57 corpus activation jobs, 10-u59 DP-RERESOLUTION content) and use only the synthetic fiktiva fixtures in tests.
+- Lifecycle v2 (W13): plan 12 owns the stage engine, the review module, the publication target (12-u08), the stage resolution target (12-u07), the plan change target (12-u09) and the preparation API; this plan supplies the decision points they call. New units: 09-u69 DP-SOURCE-TRUST, 09-u70 DP-CRITERIA, 09-u71 DP-STAGE-PLAN, 09-u72 DP-PUBLISH, 09-u73 DP-STAGE-RESOLUTION, 09-u74 the review content guard. DP-STAGE is retired (its meaning is DP-STAGE-RESOLUTION and DP-STAGE-PLAN); old T-ids are mapped in 01a-lifecycle.md 4.3 and reworked units say which new id they implement (09-u25, 09-u41, 09-u42, 09-u63 and the re-resolution units).
+- Plan-level edges are one-directional on purpose: unit edges run both ways between plans 09 and 12 (and 09 to 13), so `depends_on_plans` lists neither (it would be a cycle). The unit table below is the truth.
+- Archive (D-76): re-resolution reads the `archive_record` (13-u01, 13-u04) and the resolved stages; the code lives in `src/archive/review/**` (there is no `src/resolutions`). Attestation (D-73) is never a moderation input (LOC-PRIV-1, tested by 14-u12).
 - Real legal corpora (10-u43 to 10-u52) are largely founder-gated (vendoring from official sources needs network and licence confirmation, lawyer review). Plan 09 never waits for them.
 
 ## Acceptance for the whole plan
 With FakeModel only (no network, provider counter asserted):
-1. A seeded problem (D-56 framing 1, synthetic evidence) is submitted; the first vague draft gets needs_revision with a hint per field; after revision a blocking pre-publication run publishes it; nothing is public before a complete run; a provider timeout produces a visible hold that never becomes publish.
+1. A seeded problem (D-56 framing 1, synthetic evidence) is prepared and sent to volunteer review (T01 gate); a seeded volunteer completes a review; the first vague draft gets needs_revision with a hint per field from the publication run; after revision the publication run publishes it (T04) and zero completed reviews can never publish; nothing is public before a complete run; a provider timeout produces a visible hold that never becomes publish.
 2. An edit of the published problem runs a diff-aware re-check; the previous version stays visible until the new run publishes it; a bad edit is rejected and the old version stays.
 3. Activating a second pack version flips one documented item; the author sees a re-reviewed notice with rules, version and an appeal path; nothing is removed silently.
 4. The author appeals; an independent re-run with a different model and prompt variant upholds; the author disputes; a label task with a fixed quorum is created and answered by labelers; the fake PolicyProposalPort writes a redacted proposal; a later version is activated and the instance is re-decided under it.
 5. Crisis content never publishes and opens a lane case; every lane action is logged with a reason and second-member review; a route-table test proves no endpoint edits a single decision.
-6. A seeded solved problem is reopened by a policy change or a legal-corpus change with a visible "Reopened under policy vX" notice, history intact, appealable; an infeasible case is annotated with no state change (09-u66).
+6. A seeded solved problem (its stage plan run to `solved`, its archive record built) is reopened (T20, T21) by a policy change or a legal-corpus change with a visible "Reopened under policy vX" notice, the affected stages back to `active` (ST10), history and the old archive record intact, appealable; an infeasible case is annotated with no state change (09-u66). A stage resolution decision is appealable and an overturn returns the stage through ST10.
 7. Legality decisions always cite layer, article and corpus version; a forbidden topic is refused with a logged basis; an illegal-only proposal reaches stuck; a layer conflict holds (09-u67).
 Units 09-u44, 09-u45, 09-u66 and 09-u67 (the e2e files) prove this in CI; the app screens cite their wireframes and the UI unit template.
 
@@ -59,8 +62,7 @@ Units 09-u44, 09-u45, 09-u66 and 09-u67 (the e2e files) prove this in CI; the ap
 | [09-u12](u12-fakemodel-provider-with-scripted-failures-and.md) | FakeModel provider with scripted failures and record/replay fixtures | can_server | 1.5 | 241 | 09-u08 | - |
 | [09-u13](u13-openrouterprovider-behind-config.md) | OpenRouterProvider behind config (OpenAI-compatible endpoint) | can_server | 1.2 | 242 | 09-u12, 09-u08 | - |
 | [09-u14](u14-budgets-and-spend-caps-ledger-guard.md) | Budgets and spend caps: ledger, guard and alerts | can_server | 1.5 | 243 | 09-u08 | - |
-| [09-u68](u68-model-register-and-eval-driven-selection.md) | Model register and eval-driven per-DP model selection | can_server | 1.5 | 243 | 09-u13, 09-u12, 09-u06 | - |
-| [09-u15](u15-multi-model-router-small-first-escalation.md) | Multi-model router: small first, escalation, independent verifier | can_server | 1.5 | 244 | 09-u12, 09-u14, 09-u68 | - |
+| [09-u15](u15-multi-model-router-small-first-escalation.md) | Multi-model router: register-driven, fallback chain, escalation, independent verifier | can_server | 1.5 | 244 | 09-u12, 09-u14, 09-u68 | - |
 | [09-u16](u16-bounded-agent-dag-executor-classify-rule.md) | Bounded agent DAG executor: classify, rule checks, explain | can_server | 1.5 | 245 | 09-u15, 09-u10, 09-u06, 09-u04 | - |
 | [09-u17](u17-prompt-injection-defenses-canary-checks-and.md) | Prompt-injection defenses, canary checks and deterministic vetoes | can_server | 1.5 | 246 | 09-u16, 09-u11 | - |
 | [09-u18](u18-deterministic-aggregation-prec-1-precedence-and.md) | Deterministic aggregation: PREC-1 precedence and confidence floors | can_server | 1.2 | 247 | 09-u06 | - |
@@ -70,8 +72,8 @@ Units 09-u44, 09-u45, 09-u66 and 09-u67 (the e2e files) prove this in CI; the ap
 | [09-u22](u22-run-orchestrator-event-and-dp-to.md) | Run orchestrator: event and DP to a recorded, aggregated result | can_server | 1.5 | 251 | 09-u16, 09-u18, 09-u19, 09-u04, 09-u17, 09-u11, 09-u21, 09-u09, 09-u14 | - |
 | [09-u23](u23-outcome-applier-moderationtarget-port-and-decision.md) | Outcome applier: ModerationTarget port and decision write in the transition engine | can_server | 1.5 | 252 | 09-u22, 03-u05 | - |
 | [09-u24](u24-problem-as-the-first-moderationtarget-with.md) | Problem as the first ModerationTarget with checks gate and decisions read | can_server | 1.5 | 253 | 09-u23, 03-u08, 02-u10 | - |
-| [09-u25](u25-pre-publication-blocking-path-on-t01.md) | Pre-publication blocking path on T01 and T03, edit cancel and withdraw | can_server | 1.5 | 254 | 09-u24, 09-u07, 03-u07 | - |
-| [09-u26](u26-on-update-path-diff-aware-runs.md) | On-update path: diff-aware runs and pending versions of published items | can_server | 1.5 | 255 | 09-u25 | - |
+| [09-u25](u25-pre-publication-blocking-path-on-t01.md) | Submit gate and publication run paths: T01, T03, T04, T02, T05, edit cancel and withdraw | can_server | 1.5 | 254 | 09-u24, 09-u07, 03-u07, 12-u04, 12-u03 | - |
+| [09-u26](u26-on-update-path-diff-aware-runs.md) | On-update path: diff-aware runs and pending versions of published items | can_server | 1.5 | 255 | 09-u25, 12-u09 | - |
 | [09-u27](u27-post-publication-re-check-on-policy.md) | Post-publication re-check on policy change: rollout state, batches, flips | can_server | 1.5 | 256 | 09-u07, 09-u24, 09-u26 | - |
 | [09-u28](u28-context-change-triggers-related-problem-law.md) | Context-change triggers: related problem, law update, evidence tier | can_server | 1.2 | 257 | 09-u27 | - |
 | [09-u29](u29-re-moderation-notices-read-model-remod.md) | Re-moderation notices read model (REMOD-NOTICE-1) and Decided-under notices | can_server | 1.5 | 258 | 09-u27 | - |
@@ -79,21 +81,21 @@ Units 09-u44, 09-u45, 09-u66 and 09-u67 (the e2e files) prove this in CI; the ap
 | [09-u31](u31-auditor-sampling-service-stratified-near-threshold.md) | Auditor sampling service: stratified, near-threshold, sample_tick | can_server | 1.5 | 260 | 09-u30, 09-u07 | - |
 | [09-u32](u32-auditor-review-endpoints-with-independent-before.md) | Auditor review endpoints with independent-before-aggregate and disagreement tracking | can_server | 1.5 | 261 | 09-u31, 09-u02 | - |
 | [09-u33](u33-appeals-schema-and-filing-replacing-the.md) | Appeals: schema and filing, replacing the human appeal queue | can_server | 1.5 | 262 | 09-u24, 09-u02 | - |
-| [09-u34](u34-dp-appeal-independent-re-run-with.md) | DP-APPEAL: independent re-run with a different model and prompt variant | can_server | 1.5 | 263 | 09-u33, 09-u22, 09-u15 | - |
+| [09-u34](u34-dp-appeal-independent-re-run-with.md) | DP-APPEAL: independent re-run with a different model and prompt variant | can_server | 1.5 | 263 | 09-u33, 09-u22, 09-u15, 12-u07 | - |
 | [09-u35](u35-label-task-module-randomized-context-masked.md) | label_task module: randomized, context-masked, quorum fixed up front | can_server | 1.5 | 264 | 09-u34, 09-u30, 09-u02 | - |
 | [09-u36](u36-policyproposalport-with-a-fake-adapter-label.md) | PolicyProposalPort with a fake adapter: label and audit seed to a proposal candidate file | can_server | 1.2 | 265 | 09-u35, 09-u32 | - |
 | [09-u37](u37-re-decide-appealed-instances-under-the.md) | Re-decide appealed instances under the new policy version | can_server | 1.3 | 266 | 09-u36, 09-u27 | - |
 | [09-u38](u38-emergency-and-legal-lane-module-with.md) | Emergency and legal lane module with NO-INSTANCE-OVERRIDE-1 route test | can_server | 1.5 | 267 | 09-u23, 09-u02, 09-u11 | - |
 | [09-u39](u39-observability-metrics-without-content-alerts-and.md) | Observability: metrics without content, alerts and cost per accepted result | can_server | 1.3 | 268 | 09-u22 | - |
 | [09-u40](u40-contribution-adapter-moderation-on-contribution-submit.md) | Contribution adapter: moderation on contribution submit and accept | can_server | 1.5 | 269 | 09-u24, 04-u02 | - |
-| [09-u41](u41-proposal-and-decision-record-adapters-dp.md) | Proposal and decision-record adapters (DP-LEGALITY, DP-DECISION-RECORD, DP-STAGE) | can_server | 1.5 | 270 | 09-u40, 04-u04, 04-u05 | - |
-| [09-u42](u42-task-and-verification-adapters-dp-verification.md) | Task and verification adapters (DP-VERIFICATION, DP-BLOCKER, DP-CLOSURE) | can_server | 1.5 | 271 | 09-u41, 05-u01, 05-u02 | - |
+| [09-u41](u41-proposal-and-decision-record-adapters-dp.md) | Stage option and stage choice adapters (DP-LEGALITY, DP-DECISION-RECORD at the CHOICE-GATE) | can_server | 1.5 | 270 | 09-u40, 04-u04, 04-u05 | - |
+| [09-u42](u42-task-and-verification-adapters-dp-verification.md) | Task, final verification and terminal adapters (DP-VERIFICATION on final criteria, DP-BLOCKER, DP-CLOSURE) | can_server | 1.5 | 271 | 09-u41, 05-u01, 05-u02 | - |
 | [09-u43](u43-openapi-audit-operation-ids-response-key.md) | OpenAPI audit: operation ids, response key sets and no content leaks | can_server | 1.2 | 272 | 09-u25, 09-u29, 09-u34, 09-u35, 09-u32, 09-u38, 09-u37, 09-u39 | - |
-| [09-u44](u44-e2e-with-fakemodel-part-1-seeded.md) | E2E with FakeModel part 1: seeded problem, pre-publication, update re-check | can_server | 1.5 | 273 | 09-u25, 09-u26, 09-u43, 02-u12 | - |
-| [09-u45](u45-e2e-with-fakemodel-part-2-policy.md) | E2E with FakeModel part 2: policy change with notice, appeal, label task, re-decision | can_server | 1.5 | 274 | 09-u44, 09-u29, 09-u37, 09-u38 | - |
+| [09-u44](u44-e2e-with-fakemodel-part-1-seeded.md) | E2E with FakeModel part 1: seeded problem, pre-publication, update re-check | can_server | 1.5 | 273 | 09-u25, 09-u26, 09-u43, 02-u12, 12-u08, 12-u03 | - |
+| [09-u45](u45-e2e-with-fakemodel-part-2-policy.md) | E2E with FakeModel part 2: policy change with notice, appeal, label task, re-decision | can_server | 1.5 | 274 | 09-u44, 09-u29, 09-u37, 09-u38, 12-u07, 12-u09 | - |
 | [09-u46](u46-github-adapter-for-policyproposalport-founder-gated.md) | GitHub adapter for PolicyProposalPort (founder-gated) | can_server | 1.2 | 275 | 09-u36 | yes |
 | [09-u47](u47-live-record-mode-run-of-the.md) | Live record-mode run of the pipeline (OpenRouter, free models, synthetic data) | can_server | 1 | 276 | 09-u13, 09-u68, 09-u44 | - |
-| [09-u48](u48-awaiting-review-and-held-screens-fail.md) | Awaiting review and held screens (fail closed) | can_app | 1.5 | 277 | 09-u25, 02-u25, 02-u24, 02-u16 | - |
+| [09-u48](u48-awaiting-review-and-held-screens-fail.md) | Awaiting review and held screens (fail closed) | can_app | 1.5 | 277 | 09-u25, 02-u25, 02-u24, 02-u16, 12-u12 | - |
 | [09-u49](u49-decision-screens-hints-beside-fields-rules.md) | Decision screens: hints beside fields, rules, policy version | can_app | 1.5 | 278 | 09-u48, 09-u24, 10-u05, 02-u25 | - |
 | [09-u50](u50-re-reviewed-under-a-new-policy.md) | Re-reviewed under a new policy version: notice, list and public short form | can_app | 1.5 | 279 | 09-u29, 09-u48, 02-u25 | - |
 | [09-u51](u51-appeal-form-and-status-timeline.md) | Appeal form and status timeline | can_app | 1.5 | 280 | 09-u49, 09-u34, 09-u35, 09-u37, 10-u05 | - |
@@ -105,14 +107,21 @@ Units 09-u44, 09-u45, 09-u66 and 09-u67 (the e2e files) prove this in CI; the ap
 | [09-u57](u57-legal-cite-1-legal-finding-store-db.md) | LEGAL-CITE-1: legal_finding store, DB constraint, output schema and citation in every explanation | can_server | 1.3 | 286 | 09-u56 | - |
 | [09-u58](u58-topic-forbidden-1-refuse-a-locally-forbidden.md) | TOPIC-FORBIDDEN-1: refuse a locally forbidden topic with a logged legal basis, per jurisdiction | can_server | 1.5 | 287 | 09-u57, 09-u24, 09-u25 | - |
 | [09-u59](u59-dp-legality-outcomes-solution-only-illegal-goes.md) | DP-LEGALITY outcomes: solution-only illegal goes to stuck with layered payload; layer interpretation conflict holds with a conflict note | can_server | 1.3 | 288 | 09-u57, 09-u36, 09-u41 | - |
-| [09-u60](u60-re-resolution-scan-rule-and-corpus-diff.md) | Re-resolution scan: rule and corpus diff, candidate selection, triggers (RERESOLVE-1) | can_server | 1.5 | 289 | 09-u27, 09-u57, 10-u57 | - |
+| [09-u60](u60-re-resolution-scan-rule-and-corpus-diff.md) | Re-resolution scan: rule and corpus diff, candidate selection, triggers (RERESOLVE-1) | can_server | 1.5 | 289 | 09-u27, 09-u57, 10-u57, 13-u01, 13-u04 | - |
 | [09-u61](u61-re-resolution-review-job-run-dp-reresolution.md) | Re-resolution review job: run DP-RERESOLUTION through the DAG with retries and budgets | can_server | 1.5 | 290 | 09-u60, 09-u22, 09-u05, 10-u59 | - |
-| [09-u62](u62-re-resolution-decision-feasibility-checks-keep-or.md) | Re-resolution decision: feasibility checks, keep or annotate or reopen, target state | can_server | 1.5 | 291 | 09-u61, 04-u07, 05-u04 | - |
-| [09-u63](u63-t23-and-t24-reopen-transitions-in-the.md) | T23 and T24 reopen transitions in the transition engine, system-only, with history kept | can_server | 1.5 | 292 | 09-u62, 03-u05, 09-u23, 05-u04 | - |
+| [09-u62](u62-re-resolution-decision-feasibility-checks-keep-or.md) | Re-resolution decision: feasibility checks, keep or annotate or reopen, target state | can_server | 1.5 | 291 | 09-u61, 04-u07, 05-u04, 13-u05 | - |
+| [09-u63](u63-t20-and-t21-reopen-transitions-in-the.md) | T20 REOPEN-RULE and T21 REOPEN-EVIDENCE reopen transitions in the transition engine, system-only, with history kept | can_server | 1.5 | 292 | 09-u62, 03-u05, 09-u23, 05-u04, 12-u07 | - |
 | [09-u64](u64-reopen-and-annotation-notices-to-initiator-and.md) | Reopen and annotation notices to initiator and followers: extend the notices read model | can_server | 1.5 | 293 | 09-u63, 09-u29, 04-u07 | - |
 | [09-u65](u65-reopened-under-policy-vx-notice-screen-and.md) | Reopened under policy vX: notice screen and reopened detail state | can_app | 1.5 | 294 | 09-u64, 09-u50, 05-u06 | - |
-| [09-u66](u66-e2e-extension-a-policy-change-reopens-a.md) | E2E extension: a policy change reopens a solved seed problem, with notice, history, infeasible and appeal cases | can_server | 1.5 | 295 | 09-u45, 09-u64, 09-u63 | - |
+| [09-u66](u66-e2e-extension-a-policy-change-reopens-a.md) | E2E extension: a policy change reopens a solved seed problem, with notice, history, infeasible and appeal cases | can_server | 1.5 | 295 | 09-u45, 09-u64, 09-u63, 13-u04, 12-u07 | - |
 | [09-u67](u67-e2e-the-legal-stack-end-to-end.md) | E2E: the legal stack end to end (cumulative layers, topic refusal versus stuck, conflict hold, citations) | can_server | 1.5 | 296 | 09-u59, 09-u58, 09-u45 | - |
+| [09-u68](u68-model-register-and-eval-driven-selection.md) | Model register and eval-driven per-DP model selection | can_server | 1.5 | 243 | 09-u13, 09-u12, 09-u06 | - |
+| [09-u69](u69-dp-source-trust-handler-category-allowlist.md) | DP-SOURCE-TRUST handler: category allowlist, corroboration, authenticity (SOURCE-1) | can_server | 1.5 | 297 | 09-u20, 09-u16, 09-u01, 09-u09, 03-u03, 10-u62 | - |
+| [09-u70](u70-dp-criteria-handler-measurable-lawful-and.md) | DP-CRITERIA handler: measurable, lawful and fitting acceptance criteria (CRITERIA-1) | can_server | 1.5 | 298 | 09-u20, 09-u16, 09-u01, 09-u56, 10-u62 | - |
+| [09-u71](u71-dp-stage-plan-handler-coverage-and.md) | DP-STAGE-PLAN handler: coverage and coherence on top of the server DAG validation | can_server | 1.5 | 299 | 09-u20, 09-u16, 09-u01, 12-u01, 10-u63 | - |
+| [09-u72](u72-dp-publish-handler-weigh-unresolved-recommendations.md) | DP-PUBLISH handler: weigh unresolved recommendations and the review summary into the publication run | can_server | 1.5 | 300 | 09-u22, 09-u18, 12-u08, 10-u63 | - |
+| [09-u73](u73-dp-stage-resolution-handler-evidence-against.md) | DP-STAGE-RESOLUTION handler: evidence against criteria, per-criterion results | can_server | 1.5 | 301 | 09-u20, 09-u16, 09-u01, 12-u07, 10-u64 | - |
+| [09-u74](u74-review-content-guard-recommendations-are-checked.md) | Review content guard: recommendations are checked by the always-on DPs only, never published | can_server | 1.2 | 302 | 09-u22, 09-u30, 12-u03 | - |
 
 ## Risks
 - Heavy shared files (src/db/schema.ts, drizzle/**, openapi/openapi.json) are single-owner paths: lane ordering and unit dependencies keep migrations sequential. Never hand-edit them.

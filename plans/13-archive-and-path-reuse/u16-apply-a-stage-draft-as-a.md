@@ -30,11 +30,13 @@ Acceptance of a draft, in whole or edited, is a plan-change proposal (T22, PLAN-
 4. License change: records already published keep the license they were published under; a later CC0 default changes no stored row (OQ-contribution-license); attribution display stays.
 5. Mark the suggestions the draft came from as `used`. Run `npm run openapi` and `git add -- openapi/openapi.json` so the verify diff gate passes. Never hand-edit it.
 6. Tests: apply with a valid draft creates one plan-change proposal and a DP-STAGE-PLAN run; a draft failing DP-STAGE-PLAN keeps the draft and returns the stage; credit appears on derived stages after acceptance; after a split and a merge the credit rows are intact; a removed stage keeps its credit row; non-poster is 403.
+7. Rate limits: do not edit the central rate-limit table `src/platform/security/limits.ts` owned by 07-u02 in this unit (that table is single-owner and a row added here would conflict). The routes of this unit are listed in the acceptance as a follow-up for 07-u02, with proposed limits.
 
 ## Acceptance
 - No stage plan change happens except through DP-STAGE-PLAN (route and DB test).
 - Credit survives rename, split, merge and removal (tests).
 - `npm run verify` is green with openapi regenerated.
+- Follow-up for 07-u02 (not done here, never edit the limits table in this unit): add rows for `applyStageDraft` (POST /v1/problems/{id}/stage-draft/apply): 5 per day per problem (it starts a moderation run).
 
 ## Out of scope
 - The review and edit UI (13-u27).

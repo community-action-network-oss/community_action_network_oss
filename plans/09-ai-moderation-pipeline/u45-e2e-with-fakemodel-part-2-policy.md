@@ -7,7 +7,7 @@ area: can-server
 model: sonnet
 est_hours: 1.5
 priority: 274
-depends_on: ["09-u44","09-u29","09-u37","09-u38"]
+depends_on: ["09-u44", "09-u29", "09-u37", "09-u38", "12-u07", "12-u09"]
 writes: ["test/e2e-moderation-policy-appeal.e2e-spec.ts","test/support/moderation-flow.ts","test/fixtures/moderation/flow/**"]
 reads: ["src/**","test/**"]
 spec: ["docs/design/ai/README.md","docs/design/ai/amendment-loop.md","docs/design/ai/appeals.md","docs/design/flows/post-publication-recheck.md","docs/design/flows/appeal.md","docs/design/flows/policy-amendment.md"]
@@ -29,6 +29,7 @@ Second half of the plan 09 acceptance. Activate pack v2 (fixtures unit) and a pu
 3. Scenario 7: re-decision. Activate a v3 fixture (extend the fixtures pack through test/fixtures/moderation/flow/ only, never the policy fixtures of 10-u04) that contains the proposal example; assert the instance is re-decided under v3, the appeal outcome and timeline show v3, and the appellant gets a decided_under notice. Assert APPEAL-1: no grounding rows written except through the proposal path.
 4. Scenario 8: lane. A crisis-imminent fixture opens a lane case, a lane member records a logged action with a reason, a second member reviews; no route publishes or overturns.
 5. Final assertions: provider counter shows only FakeModel calls; every run has policy_version and prompt_hash; the metrics endpoint shows a flip and an overturn.
+6. Lifecycle v2 additions: a stage evidence submission runs DP-STAGE-RESOLUTION (met resolves and readies successors, not met returns with hints) and the resolution decision is appealed through the same loop (target_kind `stage_resolution`); an overturn returns the stage through ST10 with a notice. A plan-change proposal after publication runs DP-STAGE-PLAN and DP-CRITERIA and is never silent.
 
 ## Acceptance
 - The plan 09 acceptance runs end to end on FakeModel in CI.

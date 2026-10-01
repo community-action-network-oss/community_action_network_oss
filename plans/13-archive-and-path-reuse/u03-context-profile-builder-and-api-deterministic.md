@@ -29,12 +29,14 @@ The same `context_profile` for new problems and archived ones. Never typed freeh
 3. Table use: `context_profile` rows of owner kind `problem` are private to the poster until publication; only the band values are public afterwards (declared resources and exact budgets stay private). Declared resources are a poster answer checked like any other field (gaming is flagged by fit checks and volunteer review).
 4. API: `GET /v1/problems/{id}/context-profile` (poster, and volunteers during review with the same masking as the review view), `PUT /v1/problems/{id}/context-profile` (poster; accepts confirmations per dimension; validates against the taxonomy; bumps a `profile_version` that later marks suggestions stale), `POST /v1/problems/{id}/context-profile/derive` (poster; runs the mapping and the proposer and returns proposals only). Operation ids `getContextProfile`, `putContextProfile`, `deriveContextProfile`. Run `npm run openapi` and `git add -- openapi/openapi.json` so the verify diff gate passes. Never hand-edit it.
 5. Tests: mapping fixtures for each dimension including `unknown`, a place string never leaves the country, region and class level, AI-proposed values are flagged unconfirmed until PUT, a PUT with an unknown taxonomy id is 422, the public archive profile shows bands only, no field contains an account id.
+6. Rate limits: do not edit the central rate-limit table `src/platform/security/limits.ts` owned by 07-u02 in this unit (that table is single-owner and a row added here would conflict). The routes of this unit are listed in the acceptance as a follow-up for 07-u02, with proposed limits.
 
 ## Acceptance
 - The mapping is deterministic and complete for every dimension of the context_profile section of the design doc.
 - Nothing AI-proposed is stored as confirmed without the poster.
 - Geography is never finer than settlement class and region.
 - `npm run verify` is green with openapi regenerated.
+- Follow-up for 07-u02 (not done here, never edit the limits table in this unit): add rows for `getContextProfile` (GET /v1/problems/{id}/context-profile): 120 per hour per account; `putContextProfile` (PUT /v1/problems/{id}/context-profile): 60 per hour per account; `deriveContextProfile` (POST /v1/problems/{id}/context-profile/derive): 20 per hour per account (it may call a model).
 
 ## Out of scope
 - Retrieval and ranking (13-u09, 13-u10).

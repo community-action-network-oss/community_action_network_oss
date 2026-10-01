@@ -28,6 +28,7 @@ Every run of a DP that judges legality (DP-LEGALITY, DP-ELIGIBILITY, DP-DECISION
 3. Fail closed: `LegalLayerMissing`, a hash-verification failure, or `escalate` from retrieval with a failed escalation yields `hold` (FAIL-CLOSED-AI-1), never publish.
 4. Cache and record: the stage-output cache key (09-u19) includes `legalCacheKeyPart`, and the run record stores article ids, corpus versions and hashes, so a corpus change invalidates cached decisions and replays can resolve exact text.
 5. Tests on the 10-u55 fiktiva fixtures with FakeModel scripted answers: fixture failing only at L2, only at L4, only at L6 is blocked; a lower layer cannot relax a higher; missing L3 corpus holds; low retrieval confidence on a risky topic escalates then holds; run record lists article ids and versions.
+6. Terminology (D-74): where this unit says proposal read `stage_option` (and `stage_choice` at the CHOICE-GATE); the legal-stack step is also invoked by DP-CRITERIA (09-u70) for criteria and by DP-REUSE-FIT (13-u11) for archived paths, so expose it as a service with a stable input/output type and keep it free of problem-specific wiring.
 
 ## Acceptance
 - A fixture failing at exactly one layer is blocked for each of L1 to L6 (table-driven test).

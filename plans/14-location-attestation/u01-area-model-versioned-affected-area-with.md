@@ -31,12 +31,14 @@ The versioned affected area of a problem (D-73): one canonical polygon, a derive
 5. API: `PUT /v1/problems/{id}/area` (poster, creates a version, returns version metadata), `GET /v1/problems/{id}/area?version=n` (public, version defaults to latest, returns polygon, `h3Resolution`, a pointer or the cell list, `cellCount`, roots, `polygonHash`, versioned ETag and `Cache-Control: public, max-age=300, immutable` for an explicit version). Operation ids `putProblemArea`, `getProblemArea`. Areas are public data about problems, never about people.
 6. Tests: a 25-cell minimum rejects a one-building polygon with the neighbourhood hint, version numbers increment without gaps under two concurrent creates, an old version is unchanged after a new one, the public GET works without a session, ETag changes with the version, a country-sized polygon returns the review flag.
 7. Run `npm run openapi` and `git add -- openapi/openapi.json`.
+8. Rate limits: do not edit the central rate-limit table `src/platform/security/limits.ts` owned by 07-u02 in this unit (that table is single-owner and a row added here would conflict). The routes of this unit are listed in the acceptance as a follow-up for 07-u02, with proposed limits.
 
 ## Acceptance
 - Versions are immutable and monotonically increasing per problem.
 - No area below K_MIN_CELLS can be stored (DB and domain).
 - The fetch API is public, cacheable and returns the cell set for a given version.
 - `npm run verify` is green.
+- Follow-up for 07-u02 (not done here, never edit the limits table in this unit): add rows for `putProblemArea` (PUT /v1/problems/{id}/area): 20 per day per problem and 40 per day per account; `getProblemArea` (GET /v1/problems/{id}/area): public, cacheable, 120 per minute per IP.
 
 ## Out of scope
 - The client check and permission flow (14-u04, 12-u24).

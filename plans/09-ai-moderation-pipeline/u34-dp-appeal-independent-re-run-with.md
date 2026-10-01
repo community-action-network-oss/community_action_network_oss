@@ -7,7 +7,7 @@ area: can-server
 model: sonnet
 est_hours: 1.5
 priority: 263
-depends_on: ["09-u33","09-u22","09-u15"]
+depends_on: ["09-u33", "09-u22", "09-u15", "12-u07"]
 writes: ["src/appeals/app/rerun.ts","src/appeals/http/**","src/moderation/app/handlers/**","src/db/schema.ts","drizzle/**","src/app.module.ts","openapi/openapi.json","test/appeals-rerun.e2e-spec.ts"]
 reads: ["src/**"]
 spec: ["docs/design/ai/appeals.md#steps","docs/spec/01-slice-1-brief.md#5-moderation-decisions-and-appeals","docs/design/flows/appeal.md","docs/design/ux/wireframes/submit.md#WF-APPEAL-2","docs/design/ai/runtime.md#multi-model-routing-and-escalation","docs/spec/constitution/rules.md#APPEAL-1"]
@@ -25,7 +25,7 @@ Re-run the appealed DP set with a model and prompt variant different from the or
 
 ## Steps
 1. Handler for the appeal job: read the original run (models and prompt hash), ask the router for a variant plan (different model AND `prompt.alt.md`), run the DP set with trigger appeal; the grounds appear only inside the quoted data block. Stage outputs record route_reason variant.
-2. Agrees with appellant: status overturned, the decision is superseded, the instance is re-decided by the normal pipeline with the variant result recorded, and effects follow the brief: T02 back to submitted with hints struck through, T05 back to submitted with the draft restored and deletion cancelled if still held (else the person resubmits), T19 and T20 back to the prior state with the reason, contribution restored. Candidate example flag through the sampler (appeal_candidate).
+2. Agrees with appellant: status overturned, the decision is superseded, the instance is re-decided by the normal pipeline with the variant result recorded, and effects follow the brief: T02 back to `in_review` with hints struck through, T05 back to `in_review` with the draft restored and deletion cancelled if still held (else the person resubmits), T15, T16 and T17 back to the prior state with the reason, contribution restored; an overturned stage resolution is re-decided under the version and returns the stage through ST10 (resolved back to `active` with its unstarted `ready` successors back to `planned`, the old result kept, a visible notice), a live successor already started keeps running (12-u07). Candidate example flag through the sampler (appeal_candidate).
 3. Upholds: status rerun then awaits the appellant: `POST /v1/appeals/{id}/accept` closes as upheld, `POST /v1/appeals/{id}/dispute` moves to label (label unit). The appeal never closes silently by timeout; delays show as a status.
 4. Re-run cannot complete: appeal stays open and is retried with backoff, never auto-upheld (test with provider timeout script).
 5. GET /v1/appeals/{id} timeline (appellant only): steps filed, rerun (result and that a different model was used, model class family and prompt variant label, never restricted prompt text), label (open, counts only), policy proposed (link if privacy safe), re-decision; real queue age; `noPersonOverrode: true` disclosure.

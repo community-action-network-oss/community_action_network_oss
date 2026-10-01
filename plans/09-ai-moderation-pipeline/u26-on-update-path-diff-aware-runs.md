@@ -7,7 +7,7 @@ area: can-server
 model: sonnet
 est_hours: 1.5
 priority: 255
-depends_on: ["09-u25"]
+depends_on: ["09-u25", "12-u09"]
 writes: ["src/moderation/app/on-update.ts","src/problems/app/**","src/db/schema.ts","drizzle/**","src/app.module.ts","openapi/openapi.json","test/moderation-update.e2e-spec.ts"]
 reads: ["src/**"]
 spec: ["docs/design/ai/triggers.md#2-on-every-update-blocking-if-public","docs/design/flows/content-update.md","docs/open-questions/OQ-edit-after-publication.md","docs/spec/constitution/rules.md#PUB-FAILCLOSED-1"]
@@ -31,6 +31,7 @@ An edit to a published item is a pending version: the previous approved version 
 5. Private drafts: no blocking run and nothing queued on PATCH (test). Advisory check on request: POST /v1/problems/{id}/moderation/advisory (initiator) runs DP-ASSUMPTIONS and DP-COMPLETENESS (layer 1 plus model read) synchronously under a short timeout with trigger advisory, returns `{hints: HintDto[], status: "ok" | "unavailable"}`, records a run (never a decision, never a state change, never public), and on any hold returns unavailable with no hints (the form still works). This is the "Check my draft" contract that 10-u36 consumes. Per-account advisory cap from a pack value.
 6. Tests: advisory returns hints per field and changes no state; advisory with a provider timeout script returns unavailable; edit of `scope` runs the narrowed DP set; old version stays visible while pending; publish swaps; reject keeps old; supersede by a second edit; unchanged policy reuses prior run (zero model calls for unchanged field DPs).
 7. Run `npm run openapi`, then `git add -- openapi/openapi.json` so the verify diff gate passes. Never hand-edit the file.
+8. Lifecycle v2: this unit covers edits of the published problem's facts and metadata (revisions, `edits.allowed_fields`). Changes to the stage plan or its criteria after publication are never revisions: they go through the plan-change proposal (T22, PLAN-CHANGE-1, 12-u09; DP-STAGE-PLAN and DP-CRITERIA). A PATCH that touches `stage_plan` or `final_acceptance_criteria` of an `active` problem is refused with the code `use_plan_change` and a pointer to the proposal endpoint (test).
 
 ## Acceptance
 - A public item never shows unreviewed text (test).

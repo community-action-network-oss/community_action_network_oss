@@ -15,7 +15,7 @@ Placeholder, rewritten in full by this planner.
 | Unit | Title | Lane | Hours | Pri | Depends on | Founder gate |
 |---|---|---|---|---|---|---|
 | [14-u01](u01-area-model-versioned-affected-area-with.md) | Area model: versioned affected_area with H3 cell set and fetch API | can_server | 1.5 | 450 | 02-u03, 02-u10 | - |
-| [14-u02](u02-attestation-option-c-single-use-challenge.md) | Attestation option C: single-use challenge, verification, label on contributions | can_server | 1.5 | 451 | 14-u01, 02-u04, 04-u01 | - |
+| [14-u02](u02-attestation-option-c-single-use-challenge.md) | Attestation option C: single-use challenge, verification, label on contributions | can_server | 1.5 | 451 | 14-u01, 02-u04, 04-u01, 04-u02 | - |
 | [14-u03](u03-downgrade-rules-rate-limits-and-per.md) | Downgrade rules, rate limits and per-area surge caps (LOC-DOUBT-1) | can_server | 1.5 | 452 | 14-u02 | - |
 | [14-u04](u04-client-area-check-library-cached-cell.md) | Client area check library: cached cell set, plausibility history, assertion prover (consolidates 12-u24) | can_app | 1.5 | 453 | 14-u01, 14-u02, 12-u24, 02-u13 | - |
 | [14-u06](u06-impact-label-wording-by-proof-type.md) | Impact label wording by proof type: "Reported impacted" while self-asserted (D-75) | can_app | 1 | 455 | 12-u22, 14-u04 | - |
