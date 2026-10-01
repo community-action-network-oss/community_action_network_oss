@@ -1,0 +1,6 @@
+[submodule "can_server"]
+	path = can_server
+	url = ../can_server.git
+[submodule "can_app"]
+	path = can_app
+	url = ../can_app.git
