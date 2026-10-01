@@ -1,6 +1,6 @@
 # Chapter IV. Resolution and lifecycle
 
-Binds slice 1 in part. Rewritten from Arts 4-14, 16-17, 21-22, 24, 30, 37, 46. The state and transition table is owned by `01a-lifecycle.md`. This chapter holds principles only.
+Binds slice 1 in part. Rewritten from Arts 4-14, 16-17, 21-22, 24, 30, 37, 46. The problem state and transition table is owned by `01a-lifecycle.md` and the stage plan by `01b-stages.md`. This chapter holds principles only.
 
 ### IV.1 CONTRIBUTION-FRAMING: Contributions and contestable framing
 *Status: Position · Old: Art 4, 5 · First phase: S1*
@@ -13,7 +13,9 @@ A submitter may define the initial problem but not permanently define reality, c
 
 **Structured content (D-58).** CAN has no free-form posting. Every content type (problem, contribution, proposal, decision record, task and verification, appeal, policy proposal) is a structured response to a schema the community decided in advance and ratified in the policy pack. A schema makes the poster confront the whole situation before posting: facts, causes, affected people, scope, lawful options, uncertainty and explicit assumptions. The decision points `DP-COMPLETENESS` and `DP-ASSUMPTIONS` check that every required field is meaningfully answered and hold back posts built on incorrect factual, causal, legal or scope assumptions, returning `needs_revision` with hints beside fields. AI may help fill fields; the poster confirms. Schemas change only through a policy proposal.
 
-Rules: STRUCT-ONLY-1, SCHEMA-1, AI-ASSIST-1, ASSUMP-1, COMPLETE-1, FRAME-1, DUP-1, RELEVANCE-1, SOLUTION-ONLY-1
+**Preparation and review (D-72).** A problem is prepared privately before anyone else sees it: facts, trusted sources, what solved means and, optionally, stages. Volunteers who opted in then help sharpen it, privately and with personal data masked (V.4). People can also prepare contributions for stages that have not started yet (`STAGE-PREP-1`): a contribution to a later stage is kept ready and never counts as evidence until that stage is active.
+
+Rules: STRUCT-ONLY-1, SCHEMA-1, AI-ASSIST-1, ASSUMP-1, COMPLETE-1, FRAME-1, DUP-1, RELEVANCE-1, SOLUTION-ONLY-1, STAGE-PREP-1
 
 ### IV.2 SCOPE-AFFECTED: Scope, affected people, anti-gerrymandering, minorities
 *Status: Decided (Art 11); Drafted (Art 12, 13); Position (Art 14) · Old: Art 11, 12, 13, 14 · First phase: S1-min, P3*
@@ -41,13 +43,13 @@ Rules: DECISION-REC-1
 
 The platform optimizes for lawful resolution and minimizes unresolved harm. A fast fix for immediate harm may close the current problem while a linked problem tracks the root cause. Short-term success must not conceal structural causes, recurrence, or transferred harm. A linked problem is created only when evidence shows a materially distinct cause, consequence, population, authority, jurisdiction, or intervention. AI-generated causal claims stay hypotheses.
 
-Status is multidimensional, never one `solved` label. Record separately: immediate harm; requested outcome; implementation; evidence strength; outcome verification; root cause; recurrence risk; residual and transferred harm; linked structural problems; unexpected consequences. Slice 1 states add `stuck` and `withdrawn`. `paused` is non-terminal and needs a reason and a resume condition. There is no `appealed` state, since appeals attach to decisions.
+Status is multidimensional, never one `solved` label. Record separately: immediate harm; requested outcome; implementation; evidence strength; outcome verification; root cause; recurrence risk; residual and transferred harm; linked structural problems; unexpected consequences. Slice 1 states add `stuck` and `withdrawn`. The path to a resolved problem is a per-problem **stage plan**: stages (a graph, in series, in parallel or mixed), each with its own acceptance criteria. A stage does not start until the stages before it are resolved (`STAGE-GATE-1`), and it resolves only when its evidence meets its criteria (`STAGE-RESOLVE-1`). A problem is `solved` only when its final acceptance criteria are met, which every problem must define before it leaves draft (`CRITERIA-1`). `paused` is non-terminal and needs a reason and a resume condition. There is no `appealed` state, since appeals attach to decisions.
 
 Work does not end at generated guidance. The platform tracks, with the participants' consent, the proposal chosen, implementation start, progress and blockers, reported outcome, independent verification, recurrence, and unknown or abandoned outcomes. A generated answer is not a solved problem.
 
 **Re-resolution (D-59).** A resolution is never final against better rules. When a policy pack or legal corpus changes, a re-resolution review (`DP-RERESOLUTION`; outcomes `keep`, `annotate`, `reopen`, `hold`, never reject or delete) replays the new rule over past solved, closed, redirected and stuck problems and their decision records. Where the conclusion changes and reopening is feasible, the problem reopens with a visible notice and its full history; the decision can be appealed. Nothing is reopened or changed silently, and the old record is never deleted. Each rule change and appeal therefore improves the rules for every past and future problem.
 
-Rules: VERIFY-1, STAGE-1, BLOCKER-1, CLOSE-1, RERESOLVE-1
+Rules: VERIFY-1, STAGE-1, STAGE-GATE-1, STAGE-RESOLVE-1, CRITERIA-1, BLOCKER-1, CLOSE-1, RERESOLVE-1
 
 ### IV.5 LAW-GATE-STUCK: Law and reform tracks, the legality gate, and stuck
 *Status: Decided · Old: Art 10, 21 · First phase: P4, S1*
@@ -87,8 +89,9 @@ No submitter owns a public problem or chooses for all affected people. The data 
 
 - **Slice 1:** the initiator acts as provisional steward and may clarify the original report. The moderation run decides publish, solved, closed, and redirected under the ratified policy pack, and shows the policy version. Before a ratifying quorum exists the pack is under transitional stewardship (V.4).
 - **Later:** stewardship belongs to a decentralized, capability-balanced group (phase 3). The group represents the capabilities the problem needs (affected geography, lived experience, domain expertise, implementation responsibility, rights and safety knowledge) and acts only by a defined consent threshold. The platform records how stewards were chosen, who they represent, conflicts, decision and quorum rules, scope and duration of authority, actions needing wider consent, dissent, and replacement and removal. Stewardship never transfers private information automatically and gives no authority over others' rights. Avoid single-person dependency through multiple members per critical capability, diversity, independent conflict checks, alternates and succession, no unilateral access to sensitive data, and limited auditable permissions.
+- **Choosing and changing the plan (D-72).** Each stage sets its decision method; by default the poster chooses after community input, and the method is recorded with the choice. Volunteer recommendations are accepted or declined by the poster with a reason, never silently (`RECO-1`). After publication the stage plan changes only through a proposal checked by the moderation run, with the change shown publicly (`PLAN-CHANGE-1`).
 - **Implementation authority** stays with the people, communities, institutions, or public bodies legally and practically responsible for the action.
 
 The record separates: proposal created; community support; affected-party support or objection; expert assessment; authorized decision; implementation started; outcome reported; independently observed; supported by evidence; verified. Dissent stays visible. The platform records legitimacy and authority and does not manufacture them.
 
-Rules: OWN-1
+Rules: OWN-1, RECO-1, PLAN-CHANGE-1

@@ -4,7 +4,7 @@ The charter for the Community Action Network, restructured from the original 99 
 
 - Old article numbers resolve to new IDs in [`map.tsv`](map.tsv). Every old article appears exactly once.
 - Each article carries a status line: `Status · Old: Art N · First phase`.
-- Machine-testable rules are in [`rules.md`](rules.md). Chapters cite them on a `Rules:` line.
+- Machine-testable rules are in [`rules.md`](rules.md) and [`rules-legal-sim.md`](rules-legal-sim.md) (the legal layer and simulation rules, split for size). Chapters cite them on a `Rules:` line.
 - Run `node tools/check.mjs` to check the map, file sizes, banned wording, and rule ID parity.
 
 ## Status tags

@@ -1,8 +1,8 @@
 # Slice 1 brief
 
-Load this file with `02-agent-rules.md` for any slice-1 work. It is the **single owner** of the slice-1 scope and defaults, the moderation decision fields, the contribution-type enum, the slice-1 defaults and the minimal entity list. The lifecycle state and transition table is owned by `01a-lifecycle.md` (split out; `#4-lifecycle` here points to it). Other files link here.
+Load this file with `02-agent-rules.md` for any slice-1 work. It is the **single owner** of the slice-1 scope and defaults, the moderation decision fields, the contribution-type enum, the slice-1 defaults and the minimal entity list. The problem-level lifecycle table is owned by `01a-lifecycle.md` and the stage-level lifecycle by `01b-stages.md` (`#4-lifecycle` here points to both). This file owns the preparation and review flow (section 4). Other files link here.
 
-Every default below is reversible and logged in `DECISIONS.md` (D-12 to D-18, D-22, D-51 to D-58). Questions the community can help answer are in `docs/open-questions/`. The binding, testable rules are in `constitution/rules.md` (rule IDs such as `MOD-EXPLAIN-1`, `DRAFT-TTL-1`, `OWN-1`, `LEGAL-GATE-1`, `PUB-FAILCLOSED-1`, `POLICY-CITE-1`, `INTERIM-1`, `APPEAL-1`, `DECENT-1`, and from D-58 `STRUCT-ONLY-1`, `ASSUMP-1`, `COMPLETE-1`, `SIM-GATE-1`); the precedence order is Constitution I.2.
+Every default below is reversible and logged in `DECISIONS.md` (D-12 to D-18, D-22, D-51 to D-58). Questions the community can help answer are in `docs/open-questions/`. The binding, testable rules are in `constitution/rules.md` (rule IDs such as `MOD-EXPLAIN-1`, `DRAFT-TTL-1`, `OWN-1`, `LEGAL-GATE-1`, `PUB-FAILCLOSED-1`, `POLICY-CITE-1`, `INTERIM-1`, `APPEAL-1`, `DECENT-1`, from D-58 `STRUCT-ONLY-1`, `ASSUMP-1`, `COMPLETE-1`, `SIM-GATE-1`; and from D-72 `CRITERIA-1`, `REVIEW-1`, `RECO-1`, `SOURCE-1`, `STAGE-GATE-1`, `STAGE-PREP-1`, `STAGE-RESOLVE-1`, `PLAN-CHANGE-1`); the precedence order is Constitution I.2.
 
 ## 1. What slice 1 is
 
@@ -12,12 +12,12 @@ Slice 1 is the smallest build that runs one complete, honest problem lifecycle e
 - Seed problems use the real framings with **synthetic evidence** and Amsterdam (NL) as the first real jurisdiction overlay, with the full legal layer stack (D-61): L0 CAN rules, L1 UN human rights, L2 the EU Charter, EU law and the ECHR, L3 the Dutch constitution, L4 Dutch law, L5 Noord-Holland, L6 Amsterdam (D-56, which supersedes the fictional-jurisdiction wording of D-12 for seeds). English only at first (`OQ-launch-jurisdiction-language`). No individuals are named. Every seed is labelled "Seed problem, synthetic evidence".
 - **Structured content only (D-58):** no free-form posting. Every content type is a structured response to a schema in the policy pack. `DP-ASSUMPTIONS` and `DP-COMPLETENESS` hold back incomplete or wrongly assumed posts.
 - **The slice-1 proof is a persona simulation (D-55):** AI persona agents (submitters, contributors, proposers, appellants, adversaries) drive full lifecycles through the real pipeline on seeds 1 and 2, red-team the policy pack and feed the amendment loop. Design: `docs/design/ai/simulation.md`.
-- Flow: intake, AI moderation run under the ratified policy pack, typed contributions, proposals, decision record, tasks, verification, terminal state, plus appeals that feed the policy loop.
+- Flow (lifecycle v2, D-72): preparation (private), volunteer review (private), the AI publication decision, then a per-problem stage plan where each stage runs options, a choice, steps, evidence and a stage resolution, until the final acceptance criteria are met and the problem is `solved`. Appeals feed the policy loop.
 - The full AI moderation pipeline is in slice 1 (D-51, D-53): privacy gateway, decision points, moderation runs, run records, replay diff, appeal-to-example loop. Tests and night runs use a deterministic `FakeModel` plus recorded responses, so they make no paid calls. The live provider is OpenRouter (D-65), free and cheap models first, capped at $10 per month by default; real member data to a live provider stays founder-gated (`15-ai-inference.md`).
 - Seeds: (1) "Amsterdam residents face recurring explosions and violent incidents that may reduce actual and perceived public safety." (2) "Amsterdam city centre remains dirty despite substantial government cleaning activity and expenditure." Seeds 3 (continuous AI capability risk) and 4 (climate change) wait for the problem graph (`07-systemic-evidence.md`).
 - Not in slice 1: playbooks, governance issues, stewardship groups, live provider calls without the founder gate, uploads, the problem graph (only `duplicate_of`), federation, election features, payments.
 - Verified on web only (D-8). Native builds must still bundle. Native sessions and device tests are founder-gated.
-- Done means: (a) an end-to-end script over seeds 1 and 2 with synthetic evidence walks one problem from `draft` to `solved`, plus one rejection with a revise-and-resubmit, one `needs_revision` from `DP-ASSUMPTIONS`, one appeal that ends in a labeled example and a policy-pack change fixture, and one `stuck` path (including a legally blocked solution), one re-resolution reopening (T23) after a policy or legal-corpus change, and passes on `FakeModel`; (b) the persona simulation meets the graduation criteria below.
+- Done means: (a) an end-to-end script over seeds 1 and 2 with synthetic evidence walks one problem from `draft` through volunteer review and publication to `solved` (including one stage plan with two parallel stages and one contribution made ahead to a `planned` stage), plus one rejection with a revise-and-resubmit, one `needs_revision` from `DP-ASSUMPTIONS`, one appeal that ends in a labeled example and a policy-pack change fixture, and one `stuck` path (including a legally blocked solution), one re-resolution reopening (T20 `REOPEN-RULE`) after a policy or legal-corpus change, and passes on `FakeModel`; (b) the persona simulation meets the graduation criteria below.
 - **Graduation criteria gate public participation (`SIM-GATE-1`).** Public participation (real members posting) opens only when the criteria G1 to G13 in `docs/design/ai/simulation.md` section 8 hold on a recorded run set of the simulation of seeds 1 and 2 (`SIM-GATE-1`). The criteria and their default values live there and become pack values; open points are `OQ-graduation-criteria`, `OQ-persona-realism-bias`.
 
 Pilot-ready and Gate X (`18-phases-gates.md`) are later, stricter bars.
@@ -28,18 +28,19 @@ Pilot-ready and Gate X (`18-phases-gates.md`) are later, stricter bars.
 2. **AI:** deterministic checks plus a moderation run (`06-moderation-geo-governance.md`) at every decision point before publication, on every update and after publication. The privacy gateway is mandatory (`14`). Fail closed (`PUB-FAILCLOSED-1`). Live model calls need an API key and a spend cap, and real member data needs the founder gate (D-65); until then `FakeModel` and recorded responses. Public wording: "People make every rule. AI applies it, explains it and answers to appeal."
 3. **Accounts:** see section 8.
 4. **Lifecycle:** see section 4 and `01a-lifecycle.md`. Status styling is neutral.
-5. **Authority:** the initiator is provisional steward. The moderation run decides publish, `needs_revision`, `reject`, route, solved, closed and redirected under policy pack v1, which transitional founder stewardship ratifies (Constitution V.4, VIII.2, rule `INTERIM-1`). Every decision cites rule ids and the policy version. Humans change the policy, never a single outcome, except the logged emergency/legal lane (`NO-INSTANCE-OVERRIDE-1`). Appeals: section 5.
+5. **Authority:** the initiator is provisional steward. The moderation run decides publish (`DP-PUBLISH`), `needs_revision`, `reject`, route, stage resolution, solved, closed and redirected under policy pack v1, which transitional founder stewardship ratifies (Constitution V.4, VIII.2, rule `INTERIM-1`). Every decision cites rule ids and the policy version. Humans change the policy, never a single outcome, except the logged emergency/legal lane (`NO-INSTANCE-OVERRIDE-1`). Appeals: section 5.
 6. **Moderation decisions:** carry explanation fields (section 5).
 7. **Drafts:** section 9.
-8. **Pending review screen:** section 9.
+8. **Review status screen:** section 9.
 9. **Decentralization seams only** (D-22): UUIDv7 ids, `origin_node_id`, `protocol_version`, an append-only events table with a nullable `prev_hash`. Signing, export and AT Protocol are deferred (`12-decentralization-ready.md`).
 10. **Accessibility and RTL baseline:** section 11.
 
 Other defaults:
 - **Eligibility:** a public problem, submitted through the problem schema, that passes the deterministic checks and the moderation run. Placeholder category list: public services, infrastructure, environment, safety, accessibility. The real list is `OQ-eligible-categories`.
-- **Decision method:** a recorded decision, no vote (`OQ-decision-method`).
+- **Decision method:** a recorded decision, no vote (`OQ-decision-method`). Per stage it is set in the stage's metadata: by default the poster chooses after community input (`OQ-stage-decision-method`).
+- **Volunteer review:** opt-in members, a quorum before `DP-PUBLISH` (`OQ-review-quorum`, `OQ-reviewer-eligibility`). Trusted sources: `OQ-trusted-sources`.
 - **Visitors and core participants:** a self-declared coarse area, display only (`OQ-location-verification`). Nobody is excluded.
-- **Visibility classes:** `private` (draft, submitted, needs_revision, rejected: initiator, the emergency/legal lane, and auditors on sampled, context-masked decisions), `public` (published problems, readable by guests). Auditor-only notes exist but are never public (`OQ-visibility-classes`).
+- **Visibility classes:** `private` (draft, in_review, needs_revision, held, rejected: the poster, the emergency/legal lane, and auditors on sampled, context-masked decisions; `in_review` is also visible to opted-in volunteers with personal data masked), `public` (published problems, readable by guests). Auditor-only notes exist but are never public (`OQ-visibility-classes`).
 - **Search indexing:** all pages `noindex` (`OQ-guest-read-search-indexing`).
 - **Evidence:** URL references only, no uploads. **Links between problems:** `duplicate_of` only.
 - **Language:** English only at first (`OQ-launch-jurisdiction-language`). Text that looks non-English (script check) is held with a "language not yet supported" label (fail closed) and may get `needs_revision` (`OQ-unsupported-language`).
@@ -50,15 +51,31 @@ Other defaults:
 
 ## 3. Roles in slice 1
 
-`guest` (reads public problems), `member` (signed in), `initiator` (member who submitted a problem; provisional steward of that problem, owns nothing), `moderator`. A `moderator` no longer decides single items. It is the small emergency/legal lane, an auditor of sampled decisions, or a labeler of appeal and eval tasks. Legislators and `can_policy` maintainers act through policy PRs (`docs/design/ai/amendment-loop.md`). Experts, institutional representatives, stewardship groups, reviewers and election roles are deferred (`04-roles-stewardship.md`). The initiator does not own the problem and decides for no one but themselves.
+`guest` (reads public problems), `member` (signed in), `volunteer reviewer` (a member who opted in to review private problems; a flag on the account, revocable; never reviews their own problem), `initiator` (the poster; provisional steward of that problem after publication, owns nothing), `moderator`. A `moderator` no longer decides single items. It is the small emergency/legal lane, an auditor of sampled decisions, or a labeler of appeal and eval tasks. Legislators and `can_policy` maintainers act through policy PRs (`docs/design/ai/amendment-loop.md`). Experts, institutional representatives, stewardship groups, reviewers and election roles are deferred (`04-roles-stewardship.md`). The initiator does not own the problem and decides for no one but themselves.
 
 ## 4. Lifecycle
 
-The state classes, the transition table (T00 to T24) and the rules that apply to it live in [`01a-lifecycle.md`](01a-lifecycle.md), the single owner. In one line: `draft`, `submitted` and `needs_revision` are private; `eligible` through `verification` are the public working states; `paused` and `stuck` are resting states; `solved`, `closed`, `redirected` and `withdrawn` are terminal (`rejected` and a pre-publication `withdrawn` are private). Every decision point (`DP-*`) and every transition id (`T01`, `T14`, ...) is defined there. Outcomes: `publish`, `needs_revision`, `reject`, `route_external`, `hold` (fail closed), `escalate_human`.
+The problem states and the transition table (T00 to T22) live in [`01a-lifecycle.md`](01a-lifecycle.md); the stage plan, stage states and the stage transition table (ST01 to ST11) live in [`01b-stages.md`](01b-stages.md). They are the single owners. In one line: `draft`, `in_review`, `needs_revision` and `held` are private (`rejected` too); `active` is the public working state while the stage plan runs; `paused` and `stuck` are resting states; `solved`, `closed`, `redirected` and `withdrawn` are terminal. Every decision point (`DP-*`) and transition id is defined there. Outcomes: `publish`, `needs_revision`, `reject`, `route_external`, `hold` (fail closed), `escalate_human`.
+
+### 4.1 Preparation (private)
+
+The poster fills in the structured problem completely before anyone else sees it (`CRITERIA-1`): the **facts**; **trusted source URIs** that establish the issue is real (each a `source_ref`: `uri`, `category`, `establishes`, `authenticity_note`; `DP-SOURCE-TRUST`, `SOURCE-1`, `OQ-trusted-sources`); the **solved criteria** (the final acceptance criteria, measurable); and optionally **stages**, each with its own criteria and decision method (default template `classic-5`). AI may help fill fields; the poster confirms (`AI-ASSIST-1`). Sending it to review is T01.
+
+### 4.2 Volunteer review (private)
+
+Opted-in volunteers see the problem with personal data masked by the privacy gateway (`REVIEW-1`). They check facts, sources, stages, stage criteria and the solved criteria, and each makes **recommendations** on a field or metadata path (`review_recommendation`). The poster **accepts or declines each one with a reason** (`RECO-1`); accepting changes the draft. Nothing from review is public, and volunteers cannot publish, reject or edit. The default quorum before `DP-PUBLISH` may run is `OQ-review-quorum`.
+
+### 4.3 Publication decision
+
+When the quorum is met the poster requests publication. `DP-PUBLISH` aggregates the other decision points plus any recommendations still open, and returns publish (T04), `needs_revision` (T02), `reject` (T05) or `hold` (T09). A decision cites rule ids and the policy version and is appealable.
+
+### 4.4 Work in a stage
+
+Each stage runs: **options** (people contribute `stage_option` items) then a **choice** by the stage's decision method (default: the poster after community input; a `stage_choice` with rationale and authority) then **steps and tasks** then **evidence** (`stage_evidence`) then `DP-STAGE-RESOLUTION` against the stage's criteria. A stage cannot start until its predecessors are resolved (`STAGE-GATE-1`). People can contribute to later stages ahead of time (`STAGE-PREP-1`). Stage plan changes after publication need a proposal checked by `DP-STAGE-PLAN` (`PLAN-CHANGE-1`). Details: `01b-stages.md`.
 
 ## 5. Moderation decisions and appeals
 
-Every moderation decision (including decisions on a contribution) is made by a moderation run and stores:
+Every moderation decision (including decisions on a contribution, a stage resolution or a publication decision) is made by a moderation run and stores:
 
 | Field | Meaning |
 |---|---|
@@ -82,9 +99,11 @@ The UI offers "revise and resubmit", which keeps the draft. It never asks the pe
 
 | Overturned decision | Effect |
 |---|---|
-| T02 (changes requested) | back to `submitted`; hints struck through |
-| T05 (rejected) | back to `submitted`; draft restored and deletion cancelled if still held, otherwise the person resubmits |
-| T19 or T20 (closed or redirected) | back to the state before, with the reason recorded |
+| T02 (changes requested) | back to `in_review`; hints struck through |
+| T05 (rejected) | back to `in_review`; draft restored and deletion cancelled if still held, otherwise the person resubmits |
+| T16 or T17 (closed or redirected) | back to the state before, with the reason recorded |
+| ST05 or ST06 (stage resolution) | the stage is re-decided under the new version. Live successor stages keep running during the appeal. Only an overturn changes state, through the re-resolution notice path (ST10, unstarted successors return to `planned`) |
+| T15 "not met" or T20, T21 (reopen) | the problem is re-decided under the new version; an overturned reopen restores the earlier terminal state with the reason recorded |
 | Contribution removed or hidden | contribution restored |
 
 ## 6. Contributions
@@ -95,13 +114,13 @@ One enum for the whole platform (this replaces two earlier lists). A contributio
 
 - `factual_claim` also covers answers to a clarifying question (optional `answers_contribution_id`). `evidence` is a URL, never a file. `root_cause` is a hypothesis unless an `evidence` contribution supports it. `risk` covers objections and unintended consequences. `personal_experience` must pass the identifier checks.
 - `moderation_feedback` is reserved. In slice 1 people use appeals.
-- Allowed per state: all types in `eligible` and `solution_development`; `proposed_solution`, `proposal_improvement`, `risk`, `constraint`, `stakeholder_perspective`, `clarifying_question` in `solution_selection`; `implementation_offer`, `progress_update`, `risk`, `clarifying_question` in `implementation`; `verification_evidence`, `progress_update`, `clarifying_question` in `verification`; only `clarifying_question` and `progress_update` while `paused` or `stuck`; nothing after a terminal state.
+- Allowed per stage state: the table in `01b-stages.md` section 4b.6 (a contribution targets a stage or the problem; contributions to `planned` stages are allowed, `STAGE-PREP-1`). A `proposed_solution` aimed at a stage is stored as a `stage_option`; `evidence` and `verification_evidence` that the steward attaches to a stage's criteria become `stage_evidence`.
 - Contributions are shown grouped by type, never ranked by popularity.
 - Each contribution is checked on submit by the deterministic checks, then by a moderation run before it is shown (pending-review behaviour: section 9).
 
 ## 7. What "solved" means
 
-The steward (initiator) **proposes** `solved` with verification evidence: at least one URL tagged `verification_evidence` and an outcome statement that answers the success metric in the chosen proposal. The **moderation run decides** (T14, `DP-VERIFICATION`) and cites the policy version. Verification evidence may be an official page, a record, a dated observation by a named public role, or an independent statement. A promise is not an achievement: a completed task alone does not make a problem solved. The final threshold is `OQ-solved-evidence-threshold`.
+The steward (the poster) **proposes** `solved`, or the system proposes it when the last required stage resolves. The **moderation run decides** (T15, `DP-VERIFICATION`) against the problem's **final acceptance criteria** and cites the policy version. For each criterion there must be evidence that meets it (an official page, a record, a dated observation by a named public role, or an independent statement; at least one URL) and an outcome statement. Every required stage must be `resolved` or `skipped`. A promise is not an achievement: a completed task alone does not make a problem solved. The final threshold is `OQ-solved-evidence-threshold`.
 
 ## 8. Accounts and sign-in (D-14)
 
@@ -116,7 +135,7 @@ The steward (initiator) **proposes** `solved` with verification evidence: at lea
 
 - **Draft retention (D-18):** rejected or withdrawn drafts are hard-deleted 30 days after the decision, with the date shown.
 - **Repost detection:** a salted fingerprint (HMAC over normalized text, with a server-side secret) is kept 90 days after rejection or withdrawal, and purged at publish. It holds no text and no account id. A repost match is an input to `DP-DUPLICATE` and never auto-rejects.
-- **Pending review screen:** "Submitted, awaiting review". It states the wait ("Reviews run in the order received. A held item waits rather than lowers the standard. Today the median wait is X."), offers Withdraw and Edit, and says an email arrives when there is a decision.
+- **Review status screen:** "In volunteer review" (and "Waiting for the check" while `held`). It shows the review count and day count, the open recommendations, the wait for the publication decision ("Reviews run in the order received. A held item waits rather than lowers the standard. Today the median wait is X."), offers Withdraw and Edit, and says an email arrives when there is a decision.
 - **Data kept after a decision:** the moderation decision, the audit event and the fingerprint. Not the text.
 - Numbers (30, 90, 14 days) are `OQ-draft-ttl`.
 
@@ -126,17 +145,24 @@ Persistence is in `can_server` (Drizzle, domain kept ORM-free behind repository 
 
 | Entity | Purpose and key fields |
 |---|---|
-| `account` | encrypted email, email lookup hash, handle, role, age confirmation, created, deleted_at |
+| `account` | encrypted email, email lookup hash, handle, role, volunteer_reviewer opt-in flag (revocable), age confirmation, created, deleted_at |
 | `session` | account, token hash, expires, client kind |
 | `invite` | code hash, issued_by, redeemed_by, expires |
 | `jurisdiction` | id, name, synthetic-evidence flag, emergency notice text, rule set version |
-| `problem` | state, jurisdiction, coarse area, title, structural statement, affected scope, desired outcome, investigation_needed, pending_transition, resume_state, duplicate_of, initiator, published_at, tombstoned_at (no owner field) |
+| `problem` | state, jurisdiction, coarse area, title, structural statement, facts, affected scope, desired outcome, `plan_version`, investigation_needed, pending_transition, resume_state, duplicate_of, initiator, published_at, tombstoned_at (no owner field). Final criteria are `acceptance_criterion` rows and sources are `source_ref` rows |
 | `problem_event` | append-only: problem, type, actor, from, to, reason, evidence ids, `prev_hash` (nullable) |
 | `contribution` | problem, author, type (section 6 enum), body, status, answers_contribution_id |
 | `evidence_ref` | URL, kind, claim text, tier, submitted_by (URL only, no files) |
-| `proposal` | problem, mechanism, success metric, risks, verification plan, status |
-| `decision_record` | problem, proposal, method, rationale, decider, authority, dissent, interim |
-| `task` | problem, proposal, title, owner (optional), status, required flag |
+| `stage_option` | an option contributed to a stage (replaces the old `proposal`): stage, author, mechanism, success metric, risks, verification plan, status |
+| `decision_record` | problem, stage, `stage_choice` (chosen option or steps), method, rationale, decider, authority, dissent, interim |
+| `task` | problem, stage, stage_choice, title, owner (optional), status, required flag |
+| `stage` | problem, name, goal, state (01b), `decision_method`, `needs_choice`, `required`, `auto_start`, resume_state |
+| `stage_edge` | problem, stage, depends_on stage (the DAG; acyclic) |
+| `acceptance_criterion` | owner (the problem for final criteria, or a stage), statement, how it is observed, optional deadline, met_by evidence ids |
+| `stage_choice` | stage, chosen option ids or steps, `decision_method`, decider, authority, rationale, dissent |
+| `stage_evidence` | stage, URL, criteria it supports, submitted_by, tier (URL only, no files) |
+| `review_recommendation` | problem, reviewer (masked), `path` (field or metadata path), `recommendation`, `reason`, `status` (open, accepted, declined), `resolution_reason`, timestamps. Never public |
+| `source_ref` | problem or stage evidence, `uri`, `category` (official record, statistics body, court or legislature, reputable media, research, civil society, other), `establishes`, `authenticity_note`, `DP-SOURCE-TRUST` result |
 | `moderation_decision` | section 5 fields, target problem or contribution |
 | `appeal` | decision, appellant, grounds, re-run id, label task, outcome, explanation |
 | `audit_event` | actor, action, object, time, policy_version; never raw personal data |

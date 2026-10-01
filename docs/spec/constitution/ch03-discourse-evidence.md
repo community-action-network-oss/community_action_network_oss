@@ -35,12 +35,13 @@ Rules: NAME-1, TONE-1
 Evidence that identifies people, alleges misconduct, or belongs in a legal, regulatory, employment, medical, safeguarding, or investigative process stays out of ordinary discussion.
 
 - **Slice 1 stores evidence as a URL plus an attestation, never as an identifying file.** There are no uploads. The record holds the URL, an evidence category, a date, and a non-identifying procedural attestation such as "evidence submitted to competent authority".
+- **Trusted sources (D-72, `SOURCE-1`).** A problem cites the URIs that establish the issue is real. Each is a source of a trusted category (official record, statistics body, court or legislature, reputable media, research, civil society, other) or is corroborated, and states what it establishes and why it is authentic. A source proves only what it establishes.
 - An external source may contain names. The platform may cite its existence and provenance, and discussion turns the content into roles, patterns, mechanisms, institutional failures, and root causes. It does not copy lists of names. Repeated names are detected and redacted from contributions even when public elsewhere.
 - Every extracted claim says whether it is an allegation, verified fact, judicial finding, institutional record, or interpretation.
 - The platform may explain what evidence is relevant, how to preserve originals and provenance, which authority should receive it, and what redaction precautions apply. It never stores identifying evidence to make a problem more persuasive, and it does not determine guilt, run public investigations, replace legal discovery, or encourage trial by opinion.
 - A restricted evidence-reference layer for identifying sources does not exist in slice 1. Identifying sources stay at their authoritative external location. Any later layer needs its own approved design (phase 7).
 
-Rules: EVID-URL-1, NAME-1
+Rules: EVID-URL-1, NAME-1, SOURCE-1
 
 ### III.4 EVIDENCE-TIERS: Evidence tiers and the investigation flag
 *Status: Decided (Art 68, 75); Drafted (Art 76) · Old: Art 68, 75, 76 · First phase: S1, P7*
