@@ -8,15 +8,17 @@ description: Work on can_gallery, the read-only public gallery and explainer sit
 Weight: light. Next.js 16 static export. TARGET: gluestack-ui for all components (D-50, ADR 0007), adopted by units 06-u15 and 06-u16, with an explicit JS budget (130 KB gzipped per page) and still no runtime third-party fetch. UNTIL those units land the current implementation is plain CSS, zero client JavaScript of our own, no runtime dependencies beyond next/react. Phase 0A deliverable (`docs/spec/18-phases-gates.md`).
 
 ## Routes
-`/`, `/how-it-works/`, `/contribute/`, `/open-questions/`, `/roadmap/`, `/principles/` (all under `src/app/`, trailing slash on).
+`/`, `/how-it-works/`, `/contribute/`, `/open-questions/`, `/roadmap/`, `/principles/` (all under `src/app/`, trailing slash on), plus `/docs/` (Read everything), `/docs/<slug>/` for every public document (generated from the manifest) and `/docs/view/?path=<path>` for documents added after the build.
 
 ## Commands (run with `npm --prefix can_gallery`)
 - `run dev` (port 3000), `run build` (writes `out/`), `run lint`, `run typecheck`
 - `run sync:content` rewrites synced files; `run sync:check` fails on drift
-- `run verify` = sync:check + lint + typecheck + build + check:out (no `<form`, no analytics, no external hosts in href/src, no em or en dashes in rendered HTML, all six routes exist)
+- `run test` runs `scripts/whitelist.test.mjs` (whitelist rejects plans/, .claude/, `..`, absolute paths, URLs, non-md; fetch failure never yields text)
+- `run sync:docs` writes the docs index (`.generated/manifest.json`, gitignored); `dev` and `build` run it first
+- `run verify` = sync:check + test + lint + typecheck + build + check:out (no `<form`, no analytics, no external hosts in href/src, no em or en dashes in rendered HTML, all routes exist, docs page count equals the manifest, no document text anywhere in `out/`, only the allowed GitHub fetch hosts in built JS)
 
 ## Invariants
-- Phase 0A limits: no forms, cookies, analytics, third-party fetches or fonts. No collection of personal data. The channel to get involved is the repository plus the open questions (`OQ-promo-interest-channel`, a stable id kept from before the rename).
+- Phase 0A limits: no forms, cookies, analytics or fonts, and no third-party fetches EXCEPT the live document fetches of D-67/D-68 (see Docs below). No collection of personal data. The channel to get involved is the repository plus the open questions (`OQ-promo-interest-channel`, a stable id kept from before the rename).
 - Never imply the platform is live or handles real problems. Status: concept and early scaffolding; not an emergency, legal, medical, government or individual case service.
 - Copy rules: no em or en dashes; examples labelled "Fictional example"; the four seed problems (D-56) may name Amsterdam but are always labelled "Seed problem, synthetic evidence" and never name individuals; no other real jurisdiction named; anything unbuilt carries the `Planned` tag; calm, warm, no hype.
 - Visual: only tokens (`--can-*`), system fonts, no red for ordinary states, label always carries meaning. One h1 per page, skip link, visible focus, reduced motion respected, no horizontal scroll at 320px.
@@ -36,3 +38,13 @@ Change the source in `docs/`, run `sync:content`, commit both.
 - A `pre` inside a grid item overflows at 320px unless the item has `min-width: 0`.
 - `sync:check` skips when `../docs` is absent (standalone checkout).
 - Commit only inside `can_gallery`; the superproject records the pointer.
+
+## Docs: Read everything (D-66, D-67, D-68, D-70)
+- **Never a stale copy.** No document text is bundled in the build. Build ships only the index (`scripts/docs-manifest.json` committed path list, `.generated/manifest.json` with titles and sections, gitignored). Each `/docs/<slug>/` page is a shell: `LiveDoc` (client) shows a loading state, fetches the file from GitHub main in the browser, renders it with `src/lib/render.ts` (unified, remark-gfm, rehype-sanitize, slug, autolink, relative links rewritten to gallery routes or GitHub; lazy chunk, not base JS) and shows "Live from GitHub, checked <time>". Failure (network, non-200, 10 s timeout) shows "GitHub is unreachable right now, so this document cannot be shown live." with Retry and Open on GitHub; no-JS shows a noscript message. Changes appear only after the founder pushes: editing a doc locally does NOT change what the site shows.
+- **Whitelist** (`src/lib/whitelist.mjs`, deny by default): `manifesto.md`, `DECISIONS.md`, `docs/open-questions`, `docs/spec` (incl. constitution), `docs/design`, `docs/adr`, `can_policy/**` (.md plus .json/.yaml as code blocks). Never plans/, .claude/, code, scripts, tools, .env, tsv. Used by the build script, the live loader and the `/docs/view/` route.
+- **New files:** `/docs/` lists the build index at once, then asks the GitHub tree API (both repos) and lists new whitelisted files linking to `/docs/view/?path=`. Tree failure or rate limit falls back to the build index with a one-line note. Community policies (`can_policy`, public, may be empty or have no main yet: 404 or 409) show "being drafted" until files exist.
+- **One config** `src/config/docs-origin.mjs`: DOCS_ORIGIN (raw files), TREE_ORIGIN (listings), org and repos, `THIRD_PARTY`, privacy note text. To switch to a same-domain proxy, change the origins and set `THIRD_PARTY=false`; the privacy note (docs page, doc pages, footer) goes away. Pages never hard-code these.
+- **Privacy:** visible note on /docs, every doc page and the footer: GitHub sees the reader's IP. Rule relaxed only for `raw.githubusercontent.com` and `api.github.com`, repos `community_action_network_oss` and `can_policy`.
+- **Mermaid:** code blocks become `pre.mermaid`; `src/lib/mermaid.ts` is imported lazily only when a rendered page has one (bundled, no CDN, strict security level); on failure the source block stays visible.
+- **check:out** pins the config values, rejects any other GitHub host reference in built JS or any in HTML, and fails if a known sentence from manifesto.md, DECISIONS.md or the spec index appears anywhere in `out/`. The dash rule needs no exemption because no document text is in the HTML (titles in the index are cleaned by the build script).
+- **Base JS:** docs pages add about 4 KB gz over the home page. Render chunk about 50 KB gz, loaded after the fetch. Mermaid is several chunks (about 650 KB gz in total, largest 431 KB), loaded only on pages with diagrams.
