@@ -13,11 +13,11 @@ Moderation quality must be evaluated per language. Silent rejection excludes peo
 
 ## Current default (what we built meanwhile)
 
-English only. Text that looks non-English is accepted for human review with a "language not yet supported" label, and a moderator may request a translation.
+English only. Text that looks non-English is held with a "language not yet supported" label (fail closed), and the run may ask for a translation.
 
 ## Who can help
 
-Translators; linguists; right-to-left readers; moderators who read other languages.
+Translators; linguists; right-to-left readers; labelers who read other languages.
 
 ## What a good answer looks like
 

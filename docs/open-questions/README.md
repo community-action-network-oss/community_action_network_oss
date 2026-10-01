@@ -39,7 +39,7 @@ Copy any existing file. Keep the same headings. Night or agent runs add question
 | [OQ-promo-interest-channel](OQ-promo-interest-channel.md) | How can a visitor register interest without handing over personal data? |
 | [OQ-emergency-routing](OQ-emergency-routing.md) | Which emergency and crisis resources are shown, per jurisdiction? |
 | [OQ-eligible-categories](OQ-eligible-categories.md) | Which kinds of public problem are eligible, and which are excluded? |
-| [OQ-visibility-classes](OQ-visibility-classes.md) | Which records are public, limited, moderator-only or transient? |
+| [OQ-visibility-classes](OQ-visibility-classes.md) | Which records are public, limited, auditor-only or transient? |
 | [OQ-location-verification](OQ-location-verification.md) | How is a person's connection to an area established and shown? |
 | [OQ-decision-method](OQ-decision-method.md) | How are solutions selected, and how are stewardship groups formed? |
 | [OQ-legal-policy-reviewers](OQ-legal-policy-reviewers.md) | Who can review and approve jurisdiction policy packs? |
@@ -56,15 +56,23 @@ Copy any existing file. Keep the same headings. Night or agent runs add question
 | [OQ-handle-scope](OQ-handle-scope.md) | One handle per account, or a different pseudonym per problem? |
 | [OQ-human-presence](OQ-human-presence.md) | How do we limit bots and fake accounts without collecting identity? |
 | [OQ-rights-core-amendment](OQ-rights-core-amendment.md) | How can the protected rights core ever be amended? |
-| [OQ-moderation-confidence-threshold](OQ-moderation-confidence-threshold.md) | At what confidence must an automated result go to a human? |
+| [OQ-moderation-confidence-threshold](OQ-moderation-confidence-threshold.md) | Withdrawn, superseded by OQ-dp-confidence-thresholds |
 | [OQ-founder-stewardship-sunset](OQ-founder-stewardship-sunset.md) | When does transitional founder stewardship end? |
 | [OQ-duplicate-handling](OQ-duplicate-handling.md) | Who decides that a problem duplicates another, and can it be contested? |
 | [OQ-edit-after-publication](OQ-edit-after-publication.md) | How can published text be edited without hiding history? |
-| [OQ-moderator-signin](OQ-moderator-signin.md) | Should moderators use a stronger sign-in factor? |
-| [OQ-moderator-pool-size](OQ-moderator-pool-size.md) | How many moderators before interim labels can go? |
+| [OQ-moderator-signin](OQ-moderator-signin.md) | Should emergency/legal lane members, auditors and policy maintainers use a stronger sign-in factor? |
+| [OQ-moderator-pool-size](OQ-moderator-pool-size.md) | How big must the emergency/legal lane, auditor and labeler pools be? |
 | [OQ-native-device-testing](OQ-native-device-testing.md) | Who can test native-only behaviour on real devices? |
 | [OQ-handle-word-lists](OQ-handle-word-lists.md) | Are the handle word lists acceptable across cultures? |
 | [OQ-review-wait-statement](OQ-review-wait-statement.md) | How should the review wait be stated honestly? |
 | [OQ-evidence-tier-plain-language](OQ-evidence-tier-plain-language.md) | How do we explain evidence tiers and the investigation flag to ordinary people? |
+| [OQ-ratification-method](OQ-ratification-method.md) | How are policy changes ratified, and what is the quorum? |
+| [OQ-policy-retroactivity](OQ-policy-retroactivity.md) | Do policy changes apply to content already published? |
+| [OQ-model-provider-spend-cap](OQ-model-provider-spend-cap.md) | Which model provider and spend cap for live calls? |
+| [OQ-dp-confidence-thresholds](OQ-dp-confidence-thresholds.md) | What confidence threshold applies at each decision point? |
+| [OQ-policy-pr-rights](OQ-policy-pr-rights.md) | Who may open policy PRs, and who maintains can_policy? |
+| [OQ-replay-diff-sample-size](OQ-replay-diff-sample-size.md) | How large must a replay diff sample be? |
+| [OQ-label-task-panel](OQ-label-task-panel.md) | How big is a label-task panel, and how is it randomized? |
+| [OQ-bias-monitoring](OQ-bias-monitoring.md) | How is moderation bias monitored across jurisdictions? |
 
 Related: [spec index](../spec/00-index.md), [constitution](../spec/constitution/README.md), [decision log](../../DECISIONS.md), [design](../design/), [ADRs](../adr/).

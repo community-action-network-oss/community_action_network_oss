@@ -1,11 +1,11 @@
-# OQ-moderation-confidence-threshold: At what confidence must an automated result go to a human?
+# OQ-moderation-confidence-threshold: At what confidence must an automated result hold?
 
 - **ID:** OQ-moderation-confidence-threshold
-- **Status:** open
+- **Status:** withdrawn
 
 ## Question
 
-Once AI assistance exists, what thresholds force human review, per task and risk tier?
+Superseded by `OQ-dp-confidence-thresholds`: AI decides single items (D-51), so a low-confidence result holds the item rather than sending it to a human reviewer. Only the emergency and legal lane goes to a human.
 
 ## Why it matters
 
@@ -13,7 +13,7 @@ Too low a threshold lets errors through; too high swamps volunteers.
 
 ## Current default (what we built meanwhile)
 
-Not applicable yet. Slice 1 has no live AI and a human reviews everything published (D-13).
+See `OQ-dp-confidence-thresholds`. Below threshold the run holds (`PUB-FAILCLOSED-1`).
 
 ## Who can help
 

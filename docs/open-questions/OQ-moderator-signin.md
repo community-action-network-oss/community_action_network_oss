@@ -1,15 +1,15 @@
-# OQ-moderator-signin: Should moderators use a stronger sign-in factor?
+# OQ-moderator-signin: Should emergency/legal lane members, auditors and policy maintainers use a stronger sign-in factor?
 
 - **ID:** OQ-moderator-signin
 - **Status:** open
 
 ## Question
 
-What additional factor, if any, should moderators use beyond the email code?
+What additional factor, if any, should emergency/legal lane members, auditors and `can_policy` maintainers use beyond the email code?
 
 ## Why it matters
 
-Moderators can publish, close and see internal notes. A taken-over moderator account is serious.
+The lane can act on emergency and legal cases, auditors see sampled decisions, and maintainers can merge policy. A taken-over account is serious.
 
 ## Current default (what we built meanwhile)
 

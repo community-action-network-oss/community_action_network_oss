@@ -5,7 +5,7 @@
 
 ## Question
 
-What kinds and amounts of verification evidence let a moderator confirm `solved`?
+What kinds and amounts of verification evidence let the moderation run decide `solved` (`DP-VERIFICATION`)?
 
 ## Why it matters
 
@@ -13,7 +13,7 @@ Declaring victory too early damages trust. Too strict a bar means nothing is eve
 
 ## Current default (what we built meanwhile)
 
-The steward proposes with at least one `verification_evidence` URL and an outcome statement against the success metric. A moderator confirms. The decision is interim.
+The steward proposes with at least one `verification_evidence` URL and an outcome statement against the success metric. The moderation run decides and cites the policy version. The threshold is a policy-pack setting.
 
 ## Who can help
 

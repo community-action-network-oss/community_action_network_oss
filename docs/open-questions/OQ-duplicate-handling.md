@@ -13,11 +13,11 @@ Merging wrongly buries a problem; failing to merge splits effort.
 
 ## Current default (what we built meanwhile)
 
-A moderator decides. `duplicate_of` is the only link type. A duplicate closure is a moderation decision and can be appealed.
+The moderation run decides (`DP-DUPLICATE`). `duplicate_of` is the only link type. A duplicate closure is a moderation decision and can be appealed.
 
 ## Who can help
 
-Information architects; moderators; search specialists.
+Information architects; policy labelers; search specialists.
 
 ## What a good answer looks like
 

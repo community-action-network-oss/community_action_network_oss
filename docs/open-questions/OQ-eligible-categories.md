@@ -9,7 +9,7 @@ What is the real list of eligible problem categories and explicit exclusions for
 
 ## Why it matters
 
-It decides what moderators accept, what users see in the form, and which problems are redirected. A list that is too broad invites conflict; too narrow fails people.
+It decides what the moderation run accepts, what users see in the form, and which problems are redirected. A list that is too broad invites conflict; too narrow fails people.
 
 ## Current default (what we built meanwhile)
 
@@ -17,7 +17,7 @@ A placeholder list for fictional data: public services, infrastructure, environm
 
 ## Who can help
 
-Policy analysts; civic practitioners; moderators; journalists.
+Policy analysts; civic practitioners; policy labelers; journalists.
 
 ## What a good answer looks like
 

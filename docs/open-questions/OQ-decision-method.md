@@ -13,7 +13,7 @@ Majority voting is not assumed to be right. The method decides local legitimacy,
 
 ## Current default (what we built meanwhile)
 
-A recorded decision with rationale, decider, authority and dissent notes. No vote. The initiator is provisional steward and a moderator confirms publish, solved, closed and redirected.
+A recorded decision with rationale, decider, authority and dissent notes. No vote. The initiator is provisional steward and the moderation run decides publish, solved, closed and redirected under the policy pack.
 
 ## Who can help
 

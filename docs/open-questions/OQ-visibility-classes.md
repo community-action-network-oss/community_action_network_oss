@@ -1,4 +1,4 @@
-# OQ-visibility-classes: Which records are public, limited, moderator-only or transient?
+# OQ-visibility-classes: Which records are public, limited, auditor-only or transient?
 
 - **ID:** OQ-visibility-classes
 - **Status:** open
@@ -13,7 +13,7 @@ What becomes public is the most consequential privacy decision. It is hard to ta
 
 ## Current default (what we built meanwhile)
 
-Two classes plus notes: `private` (draft, submitted, needs_revision, rejected: initiator and moderators) and `public` (published problems). Moderator-only notes are never public.
+Two classes plus notes: `private` (draft, submitted, needs_revision, rejected: initiator, the emergency/legal lane and auditors on masked samples) and `public` (published problems). Auditor-only notes are never public.
 
 ## Who can help
 

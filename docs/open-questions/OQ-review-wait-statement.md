@@ -13,7 +13,7 @@ A made-up promise erodes trust. A silent wait causes anxiety.
 
 ## Current default (what we built meanwhile)
 
-The screen says volunteers review in the order received and that there is no guaranteed time. A number appears only when there is data to support it.
+The screen says reviews run in the order received, that a held item waits rather than lowers the standard, and that there is no guaranteed time. A number appears only when there is data to support it.
 
 ## Who can help
 
