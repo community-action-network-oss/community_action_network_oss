@@ -7,14 +7,14 @@ area: can-server
 model: sonnet
 est_hours: 1.5
 priority: 30
-depends_on: ["10-u29"]
+depends_on: ["10-u29","09-u08","09-u09","09-u12"]
 writes: ["src/policy/assist/**","src/policy/policy.module.ts","test/policy/assist/**","openapi/openapi.json"]
 reads: ["src/ai-gateway/**","src/policy/**"]
 spec: ["docs/design/ai/structured-content.md#7-ai-fill-assist","docs/design/components/server.md","docs/design/ai/safety-and-privacy.md","docs/spec/constitution/rules.md#AI-ASSIST-1","docs/design/flows/structured-submission.md"]
 needs: ["docker","db"]
 verify: ["npm run lint","npm run build","npm test","npm run openapi","git add openapi/openapi.json","npm run verify"]
 founder_gate: false
-defaults: "PLAN 09 DEPENDENCY (reworked after plan 09 landed if its ids were unknown at authoring time): this unit calls the privacy gateway and model adapter port that plan 09 builds. If `src/ai-gateway/` does not exist when you start, STOP and report blocked; do not write a gateway or call a model directly. With the gateway present, use FakeModel only."
+defaults: "Uses plan 09 units: AiGatewayPort and prompt builder (09-u08), privacy gateway (09-u09) and FakeModel (09-u12). If the AiGatewayPort does not exist when you start, STOP and report blocked; never write a gateway or call a provider directly. Use FakeModel only."
 status: todo
 attempts: 0
 commits: []

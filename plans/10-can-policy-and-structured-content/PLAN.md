@@ -54,13 +54,13 @@ From the repo roots with no network: `npm run verify` is green in can_policy, ca
 | [10-u27](u27-pack-v1-build.md) | Build pack v1.0.0 candidate: manifests, release.json, CHANGELOG, server fixture export | can_policy | 1.2 | 27 | 10-u13, 10-u15, 10-u16, 10-u17, 10-u18, 10-u19, 10-u20, 10-u21, 10-u26, 10-u25 | - |
 | [10-u28](u28-founder-ratify-pack-v1.md) | Founder stewardship ratification of pack v1.0.0 (founder action) | can_policy | 0.5 | 28 | 10-u27, 10-u22 | yes |
 | [10-u29](u29-submission-validator-draft-pin.md) | Validate submissions against the pinned schema version; drafts pin schema id, version and hash | can_server | 1.5 | 29 | 10-u04, 03-u06 | - |
-| [10-u30](u30-fill-assist-endpoint.md) | AI fill-assist endpoint through the privacy gateway (AI-ASSIST-1) | can_server | 1.5 | 30 | 10-u29 | - |
+| [10-u30](u30-fill-assist-endpoint.md) | AI fill-assist endpoint through the privacy gateway (AI-ASSIST-1) | can_server | 1.5 | 30 | 10-u29, 09-u08, 09-u09, 09-u12 | - |
 | [10-u31](u31-draft-schema-migration.md) | Draft schema migration: minor auto-migrate, major mapping with 30-day grace | can_server | 1.5 | 31 | 10-u29, 10-u12 | - |
 | [10-u32](u32-policy-proposals-api.md) | Policy proposals API: submit, stage, protected-core refusal, eval and replay reports | can_server | 1.5 | 32 | 10-u29, 10-u24, 10-u12 | - |
 | [10-u33](u33-problem-submit-via-renderer.md) | Problem submit flow rebuilt on the schema renderer (replaces hard-coded steps) | can_app | 1.5 | 33 | 10-u05, 10-u29, 03-u19, 03-u16 | - |
 | [10-u34](u34-contribution-proposal-forms.md) | Contribution and proposal forms rebuilt on the schema renderer | can_app | 1.5 | 34 | 10-u05, 10-u29, 10-u10, 04-u08, 04-u09 | - |
-| [10-u35](u35-resolution-appeal-forms.md) | Decision record, task, verification and appeal forms rebuilt on the schema renderer | can_app | 1.5 | 35 | 10-u05, 10-u29, 10-u11, 10-u12, 04-u10, 05-u05, 05-u08, 03-u22 | - |
-| [10-u36](u36-assist-and-hints.md) | Fill-assist per-field confirm and revision hints beside fields (WF-FORM-2, WF-FORM-3) | can_app | 1.5 | 36 | 10-u30, 10-u33 | - |
+| [10-u35](u35-resolution-appeal-forms.md) | Decision record, task and verification forms rebuilt on the schema renderer | can_app | 1.5 | 35 | 10-u05, 10-u29, 10-u11, 04-u10, 05-u05, 05-u08 | - |
+| [10-u36](u36-assist-and-hints.md) | Fill-assist per-field confirm and revision hints beside fields (WF-FORM-2, WF-FORM-3) | can_app | 1.5 | 36 | 10-u30, 10-u33, 09-u24, 09-u26 | - |
 | [10-u37](u37-draft-migration-screen.md) | Draft schema version change screen: pin, move, confirm mappings (WF-FORM-5) | can_app | 1.5 | 37 | 10-u31, 10-u33 | - |
 | [10-u38](u38-policy-proposal-form.md) | Policy proposal form on the schema renderer (WF-POLICY-1) | can_app | 1.5 | 38 | 10-u32, 10-u05, 10-u12 | - |
 | [10-u39](u39-policy-proposal-view.md) | Policy proposal view: eval results, replay diff, ratification, rollout (WF-POLICY-2) | can_app | 1.5 | 39 | 10-u38, 10-u32 | - |
@@ -74,7 +74,7 @@ Cross-plan contract (fixed ids, plan 09 depends on them): 10-u01 repo creation (
 - 10-u04 is large. Its `defaults` allow the cache to land unwired.
 - Prompts and examples are written before any live model has seen them. The eval numbers they produce are only meaningful on recorded responses until a founder-gated live run (plan 11).
 - The Amsterdam overlay is real law drafted from public sources and stays marked unreviewed until the founder-gated review unit is done (OQ-amsterdam-overlay-review).
-- The fill-assist endpoint needs plan 09 gateway unit. See the blocked note on that unit.
+- The fill-assist endpoint (10-u30) depends on plan 09 units 09-u08 (AiGatewayPort), 09-u09 (privacy gateway) and 09-u12 (FakeModel). The appeal form and post-decision hints are plan 09 (09-u49, 09-u51), not this plan.
 
 ## depends_on_plans
 02, 03

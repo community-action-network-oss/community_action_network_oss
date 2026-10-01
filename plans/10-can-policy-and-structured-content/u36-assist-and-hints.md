@@ -7,13 +7,13 @@ area: can-app
 model: sonnet
 est_hours: 1.5
 priority: 36
-depends_on: ["10-u30","10-u33"]
+depends_on: ["10-u30","10-u33","09-u24","09-u26"]
 writes: ["src/forms/schema/**","src/features/submit/**","src/i18n/en.json","__tests__/forms/**","src/api/schema.d.ts"]
 reads: ["src/**"]
 spec: ["docs/design/ux/wireframes/forms.md#WF-FORM-2","docs/design/ux/wireframes/forms.md#WF-FORM-3","docs/design/ai/structured-content.md#7-ai-fill-assist","docs/spec/constitution/rules.md#AI-ASSIST-1"]
 verify: ["npm run gen:api","npm run verify"]
 founder_gate: false
-defaults: "Hints come from the check or submit response `needs_revision` payload (field_ref, revision_hint, rule_ids, policy_version) that plan 09 defines; build against the contract in the generated client and a fixture, and do not invent a new endpoint."
+defaults: "Hints come from the HintDto of the advisory check and the submit response defined by plan 09 (09-u24, 09-u26); build against the generated client types. The post-submit decision screens (hints beside fields after a decision) are plan 09 (09-u49); this unit only wires the in-form advisory check and assist, and reuses the same HintCallout component if 09-u49 already created it."
 status: todo
 attempts: 0
 commits: []
