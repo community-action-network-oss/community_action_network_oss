@@ -12,12 +12,11 @@ Civic nodes run compatible problem-solving services for a community, jurisdictio
 
 #### Community-started civic nodes
 
-**Founder direction:** A non-technical person in an uncovered area should be able to open the client, discover that no compatible node currently serves the selected area, and start a small civic node through a guided deployment. For example, a person in an uncovered part of Bhopal could create an experimental local node, invite a small stewardship group, and progressively qualify it for broader public operation.
+**Founder direction:** A non-technical person in an uncovered area should be able to open the client, discover that no compatible node currently serves the selected area, and start a small civic node through a guided deployment. For example, a person in an uncovered part of a large city could create an experimental local node, invite a small stewardship group, and progressively qualify it for broader public operation.
 
 The client should say approximately:
 
 > **This area is not currently covered by a compatible civic node. You can follow nearby public problems, request coverage, or help start a community node.**
-> 
 
 Do not infer or publish uncovered status from precise GPS without necessity and consent. Let the person choose a coarse area, explain what coverage means, show nearby and overlapping nodes, and distinguish `no node found` from `no problem exists`.
 
@@ -68,21 +67,11 @@ Do not require Kubernetes, multiple microservices, a dedicated search cluster, R
 
 The engineering target should be that a low-activity node for a small community can run on a common entry-level hosting profile. Maintain a reproducible benchmark for 25, 100, and 500 active participants, including storage, bandwidth, backups, federation, moderation jobs, and AI calls. Publish current provider examples separately from the protocol because prices and regional availability change.
 
-A provisional product target is that the basic non-AI node for approximately 25 to 100 low-activity participants should fit on a single low-cost instance and remain within an approximately US$10–20 monthly infrastructure envelope in commonly available regions. This is a design target, not a price promise. AI inference, heavy media, SMS, email, high egress, enhanced backups, legal compliance services, and rapid traffic growth must be measured separately.
+A provisional product target is that the basic non-AI node for approximately 25 to 100 low-activity participants should fit on a single low-cost instance and remain within an approximately US$10 to $20 monthly infrastructure envelope in commonly available regions. This is a design target, not a price promise. AI inference, heavy media, SMS, email, high egress, enhanced backups, legal compliance services, and rapid traffic growth must be measured separately.
 
 #### External group cost sharing
 
-The platform remains non-monetary. The node operator or small group pays the cloud or service provider directly outside the platform. As membership grows, the group may voluntarily arrange external provider credits, shared organization billing, a cooperative account, or direct payment to the vendor through an approved external organization.
-
-The platform may display:
-
-- Current hosting provider and deployment profile
-- Approximate public operating-cost band supplied by the operator
-- Capacity and resource utilization bands
-- Whether the node seeks in-kind hosting, migration, or direct external vendor support
-- A rare external cost-need record under Article 98
-
-It must not collect contributions, maintain balances, assign payment shares, reveal who paid, rank members by payment, restrict civic rights based on payment, issue receipts, or mediate financial disputes. Paying a hosting bill does not create ownership of community data, permanent operator authority, additional votes, moderation power, or problem prominence.
+The platform remains non-monetary, and the rules are canonical in `20-participation-nonmonetary.md` ("Completely non-monetary platform", "Rare external cost-request procedure", "Supporter independence"). For nodes: the operator or small group pays the provider directly, outside the platform. A node page may show its hosting provider and profile, an operator-supplied cost band, capacity bands, and whether the node seeks in-kind hosting or a rare external cost-need record. It must not collect or route money, keep balances, reveal who paid, or turn paying a bill into ownership, votes, moderation power or prominence.
 
 #### Provider adapter model
 
@@ -233,15 +222,15 @@ For each dimension, document who currently holds control, what the failure or ca
 
 ### Parallel decentralization workstream
 
-This workstream begins in Phase 0 and proceeds alongside the numbered product phases without becoming a production dependency.
+This workstream starts after the slice-1 seams exist (D-22) and proceeds alongside the numbered product phases without becoming a production dependency. Not in the initial plan corpus.
 
 #### Milestone D0: Structural portability
 
-- Global identifiers and origin metadata
-- Framework-light domain schemas
-- Versioned protocol vocabulary
+The four seams (UUIDv7 identifiers, `origin_node_id`, `protocol_version`, append-only events) ship with slice 1. D0 adds the rest of the structural-portability list in `12-decentralization-ready.md` ("Decentralization-ready requirements"):
+
+- Versioned protocol vocabulary and protocol schemas
 - Signed export and import bundles
-- Storage, identity, and signing abstractions
+- Storage, identity and signing abstractions
 - Decentralization charter, threat model, and RFC template
 
 #### Milestone D1: Trusted federation prototype

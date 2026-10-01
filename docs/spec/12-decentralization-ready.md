@@ -1,6 +1,8 @@
 ### Centralized-first delivery with a parallel decentralization program
 
-**Founder decision:** The first production platform will be a founder-hosted centralized reference deployment. Full decentralization will proceed as a parallel open-source protocol, research, and experimentation program from the beginning. The decentralized track must not delay the first usable problem-resolution workflow, but the centralized implementation must preserve the structural escape routes required for federation, portability, independent nodes, and distributed storage later.
+**Founder decision:** The first production platform will be a founder-hosted centralized reference deployment. Full decentralization is a separate open-source protocol, research and experimentation program that follows the first working workflow. It must not delay the first usable problem-resolution workflow, but the centralized implementation keeps four structural escape routes from the start (D-22): UUIDv7 identifiers, `origin_node_id`, `protocol_version`, and an append-only events table with a nullable `prev_hash`. Signing, export and import, node discovery, federation, distributed storage and AT Protocol are deferred to the decentralization track (`13-decentralization-track.md`).
+
+This file is the **canonical** description of the centralized-first decision and of the decentralization-ready constraints. Other files link here.
 
 The project therefore has two coordinated tracks:
 
@@ -27,7 +29,9 @@ The tracks must share domain vocabulary, protocol schemas, identifiers, policy m
 
 ### Decentralization-ready requirements for the centralized implementation
 
-The reference platform must adopt these constraints from the beginning:
+**Slice 1 builds the four seams listed above and nothing more.** The constraints below are the full design; items beyond the four seams (signing, export and import, provider adapters beyond the interfaces slice 1 needs) arrive with the decentralization track (milestone D0 in `13-decentralization-track.md`).
+
+The reference platform adopts these constraints:
 
 #### Global object identity
 
@@ -35,7 +39,7 @@ Use globally unique, non-sequential public identifiers such as UUIDv7 or an equi
 
 #### Event-oriented consequential history
 
-Every consequential mutation should create a durable event containing an event ID, object ID and type, event type, origin node, actor or authorized role, timestamp, policy version, payload or payload reference, previous-event hash where applicable, and signature capability. The centralized deployment may initially sign events with one service identity, but the event model must not require one universal database forever.
+Every consequential mutation should create a durable event containing an event ID, object ID and type, event type, origin node, actor or authorized role, timestamp, policy version, payload or payload reference, and a previous-event hash where applicable (nullable in slice 1). The centralized deployment may initially sign events with one service identity, but the event model must not require one universal database forever.
 
 #### No permanent single-domain assumption
 
@@ -59,14 +63,13 @@ Maintain versioned schemas and conformance fixtures for externally meaningful ob
 
 ### Delivery priority and resource allocation
 
-Until the first bounded workflow is verified, approximately 80% to 90% of implementation capacity should remain on the founder-hosted reference platform and 10% to 20% on protocol boundaries, RFCs, threat models, conformance fixtures, and contained decentralization experiments. This is a planning default rather than a spending authorization.
+A fixed capacity split between the reference platform and the decentralization track is deferred. In slice 1 decentralization work is limited to the four seams above. Set a split when the decentralization track starts. This is a planning matter, not a spending authorization.
 
 No production sensitive data should enter experimental peer-to-peer storage or compute systems before independent security review, metadata-leakage analysis, recovery and deletion testing, jurisdictional legal review, abuse-storage threat modelling, and explicit founder approval.
 
 The governing architecture principle is:
 
 > **Centralized operationally at launch, portable structurally, open at the protocol boundary, and replaceable by design.**
-> 
 
 Required boundaries:
 

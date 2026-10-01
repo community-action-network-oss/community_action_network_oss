@@ -1,47 +1,41 @@
 ## 20. Required project artifacts
 
-Maintain these as version-controlled documents or equivalent living records:
+An index of the documents and living records the project maintains, version-controlled in the repositories. This table is the single list. Detail for an artifact belongs in the file it names, not here. "Where" is a path or the spec section that defines it. Status: `exists` (in the superproject today), `planned` (a plan unit or phase will produce it), `later` (a later phase or the decentralization track).
 
-- `README` with local setup and system overview
-- Product requirements document
-- Clarifying-question log
-- Assumptions and risk registers
-- Architecture overview and diagrams
-- Architecture decision records, including the Expo, gluestack, NativeWind, NestJS, persistence-layer, and API-contract decisions
-- Universal frontend compatibility matrix covering iOS, Android, mobile web, desktop web, LTR, RTL, accessibility, and supported scripts
-- Domain glossary and state machines
-- Data model and data classification
-- Threat model and privacy impact assessment
-- Public-facing AI data-flow map, trust-boundary diagram, data protection impact assessment, model and provider register, retention and deletion matrix, and hosted-provider approval checklist
-- AI privacy-gateway specification, redaction and re-identification evaluation plan, synthetic-PII corpus, safe-logging standard, and provider incident runbooks
-- Inference-stage DAG, context budgets, typed stage schemas, coverage manifest, policy-retrieval design, and deterministic aggregation specification
-- Prompt and policy cache architecture, cache-key standard, invalidation matrix, privacy namespaces, deletion behavior, and cache observability plan
-- Multi-model registry, routing policy, escalation ladder, task-and-risk evaluation suites, quality thresholds, model approval lifecycle, and cost-per-accepted-result dashboard
-- Moderation policy schema and evaluation plan
-- API contract
-- Test strategy and quality dashboard
-- Runbooks for deploy, rollback, incident response, backup, restore, and data deletion
-- Changelog and release notes
-- Contributor guide, code of conduct, security policy, and open-source license decision
-- AI-assisted contribution policy, disclosure template, reviewer checklist, risk-tiered merge gates, autonomous-agent rules, and affordable-tool setup guide
-- Public concept-page brief, factual claims register, recruitment content, contribution calls, launch checklist, and privacy-minimized interest form
-- Gate X readiness standard and role-page templates for technical, civic, expert, institutional, review, infrastructure, and funding participation
-- One-hour contribution catalog with role, risk, prerequisites, review, expected outcome, and stopping point
-- Non-monetary operating model, free-access guarantee, in-kind support registry, host-recognition standard, support-independence rules, rare external cost-request procedure, and no-custody/no-payments policy
-- Claim, provenance, evidence-safety, contradiction, correction, and restricted-reference specifications
-- Problem-graph, authority, responsibility, blocker, and commitment schemas
-- Public-infrastructure permission and community-implementation safety policy
-- Political-neutrality, candidate-identity, election-readiness, civic-report, and voter-brief policies before those features are enabled
-- Centralized-reference-deployment and parallel-decentralization architecture decision
-- Decentralization working-group charter, governance rules, and RFC template
-- Node-role taxonomy and signed node-manifest specification
-- Community-node deployment wizard, maturity model, operator and recovery model, low-cost reference profile, provider-adapter contract, capacity benchmark, external cost-need UX, and migration runbook
-- Global identifier, origin, authoritative-location, replica, and signed-event specifications
-- Public problem export, import, migration, and portability specification
-- Federation discovery, event exchange, conflict, correction, withdrawal, deletion, and retention RFCs
-- Distributed-storage threat model, capability model, fragment-placement model, repair protocol, metadata-leakage analysis, and abuse-storage policy
-- Node quarantine, revocation, key rotation, revalidation, and restoration procedures
-- Protocol conformance suite and independent-node compatibility matrix
-- Decentralization concentration register covering hosting, DNS, identity, custody, signing, protocol control, distribution, moderation, governance, funding, domain control, and recovery authority
-- Separate production and experimental-data handling rules
-
+| Artifact | Where | Phase | Status |
+|---|---|---|---|
+| README with local setup and system overview | superproject and each repository | 0B | planned |
+| Product requirements; scope and non-goals | `docs/spec/03-scope.md`, `01-slice-1-brief.md` | 0B | exists |
+| Open-questions register, assumptions and risk registers | `docs/open-questions/`; risks in `docs/design/` | 0B | exists |
+| Decision log | `DECISIONS.md` | 0B | exists |
+| Architecture decision records (Expo, gluestack on UniWind, NestJS, PostgreSQL, Drizzle, three submodules, server-owned OpenAPI, Next.js promo, email-code auth, web-first verification, no live AI in slice 1) | `docs/adr/` | 0B | exists |
+| Architecture overview, diagrams, slice-1 ERD, API surface, auth flow, test strategy | `docs/design/` | 0B | exists |
+| Domain glossary and state machines | `00-index.md` (glossary), `01-slice-1-brief.md` (state table) | 0B | exists |
+| Data model and data classification | `10-data-model.md`, `docs/design/` | 1 | exists (model), planned (classification) |
+| Constitution, rule registry, article map | `docs/spec/constitution/` | 0B | exists |
+| API contract | `can_server/openapi/openapi.json` (generated) | 1 | planned |
+| Universal frontend compatibility matrix (iOS, Android, mobile web, desktop web, LTR, RTL, scripts) | `can_app/docs/` | 1 | planned (web only in slice 1) |
+| Threat model and privacy impact assessment | `docs/design/`, `16-security-a11y-ops-testing.md` | 0B | planned |
+| Moderation policy schema and evaluation plan | `06-moderation-geo-governance.md` | 1 to 2 | planned |
+| AI data-flow map, trust-boundary diagram, DPIA, model and provider register, retention and deletion matrix, hosted-provider checklist, gateway spec, synthetic-PII corpus, safe-logging standard, provider incident runbooks | `14-ai-privacy-gateway.md` (gates) | before any AI | later |
+| Inference-stage DAG, context budgets, stage schemas, coverage manifest, cache architecture and invalidation, model registry, routing policy, escalation ladder, evaluation suites, cost dashboard | `15-ai-inference.md` | before any AI | later |
+| Test strategy and quality dashboard | `docs/design/`, `16-security-a11y-ops-testing.md` | 1 | planned |
+| Runbooks: deploy, rollback, incident response, backup, restore, data deletion | each repository `docs/runbooks/` | 6 | later |
+| Changelog and release notes | each repository | 1 | planned |
+| Contributor guide, code of conduct, security policy | `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md` | 0A | planned |
+| Open-source license decision | `docs/open-questions/OQ-license.md` (no LICENSE file yet) | 0B | open |
+| AI-assisted contribution policy, disclosure template, reviewer checklist, merge gates, autonomous-agent rules, tool setup guide | `22-ai-contribution-policy.md`, `AI_CONTRIBUTIONS.md` | 0A to 1 | planned |
+| Concept-page brief, factual claims register, recruitment content, contribution calls, launch checklist | `can_promo_site/`, `18-phases-gates.md` (Phase 0A) | 0A | planned |
+| Interest channel (form or list), if any | `docs/open-questions/OQ-promo-interest-channel.md` | 0A | open |
+| Gate X readiness standard and role-page templates | `18-phases-gates.md` (Gate X) | Gate X | later |
+| One-hour contribution catalog (role, risk, prerequisites, review, outcome, stopping point) | `plans/` task catalog | 0A | planned |
+| Non-monetary operating model, free-access guarantee, in-kind support registry, host-recognition standard, independence rules, cost-request procedure, no-custody policy | `20-participation-nonmonetary.md` | 0B | exists |
+| Claim, provenance, evidence-safety, contradiction, correction and restricted-reference specifications; problem-graph, authority, responsibility, blocker and commitment schemas; public-infrastructure and community-implementation safety policy | `07-systemic-evidence.md` | 7 | later |
+| Political-neutrality, candidate-identity, election-readiness, civic-report and voter-brief policies | `08-election-accountability.md` | 8 | later |
+| Centralized-first and decentralization decision; separate production and experimental data rules | `12-decentralization-ready.md` | 0B | exists |
+| Decentralization charter, governance, RFC template, node-role taxonomy, signed node manifest, community-node wizard, maturity model, low-cost profile, provider-adapter contract, capacity benchmark, migration runbook | `13-decentralization-track.md` | D | later |
+| Global identifier, origin, authoritative-location, replica and signed-event specifications; export, import and portability specification | `12-decentralization-ready.md` (seams now), `13-decentralization-track.md` (rest) | D0 | later |
+| Federation, discovery, event exchange, conflict, correction, withdrawal, deletion and retention RFCs | `13-decentralization-track.md` | D1 to D2 | later |
+| Distributed-storage threat model, capability model, fragment placement, repair protocol, metadata-leakage analysis, abuse-storage policy | `13-decentralization-track.md` | D3 | later |
+| Node quarantine, revocation, key rotation, revalidation and restoration procedures; conformance suite and compatibility matrix | `13-decentralization-track.md` | D2 | later |
+| Decentralization concentration register (hosting, DNS, identity, custody, signing, protocol control, distribution, moderation, governance, funding, domain control, recovery authority) | `13-decentralization-track.md` | D | later |

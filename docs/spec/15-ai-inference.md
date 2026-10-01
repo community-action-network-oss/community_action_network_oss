@@ -1,5 +1,7 @@
 ### Context-efficient, cached, multi-model inference architecture
 
+**Status:** design for later phases. Nothing here is built in slice 1 (no live AI, D-13). It extends the gates in `14-ai-privacy-gateway.md`, which stay canonical.
+
 **Founder direction:** The AI subsystem must be designed for a large and continuously evolving body of constitutional rules, jurisdiction laws, policy packs, workflow rules, and evidence requirements without sending the entire rule corpus into every model request. It should use bounded staged inference, deterministic policy evaluation where possible, privacy-safe caching, and eval-driven routing to the cheapest model that has demonstrated adequate performance for the specific task and risk tier.
 
 #### Do not turn the complete rule system into one prompt

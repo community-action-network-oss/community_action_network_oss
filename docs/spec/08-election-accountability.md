@@ -1,5 +1,7 @@
 ## 12A. Durable civic accountability and election information
 
+**Status:** Phase 8 design. Nothing here is in slice 1. This file is the **canonical** description of election accountability (the phase list in `18-phases-gates.md` only links here).
+
 ### Purpose and boundary
 
 The platform should preserve durable, evidence-backed institutional memory so that the public can understand which problems existed, which offices had relevant authority, what was requested, what was promised, what was done or not done, which dependencies intervened, and what outcomes followed.

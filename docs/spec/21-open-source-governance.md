@@ -43,7 +43,7 @@ The protocol should eventually allow independent communities to operate compatib
 
 #### Reference implementation
 
-Build one high-quality application that demonstrates how the constitution and protocol work. Do not delay the first useful product for federation. Begin with a modular monolith and preserve clean domain and protocol boundaries that permit later interoperability and federation.
+Build one high-quality application that demonstrates how the constitution and protocol work. Do not delay the first useful product for federation: centralized first, with the structural seams in `12-decentralization-ready.md`.
 
 ### Two growth engines
 
@@ -52,14 +52,12 @@ The project must develop product adoption and contributor adoption together.
 #### Product adoption loop
 
 > Real problem → structured collaboration → implementation → verified result → reusable playbook → new community adoption
-> 
 
 People and institutions should adopt the platform because it helps produce accountable progress and verified outcomes, not because it maximizes activity.
 
 #### Contributor adoption loop
 
 > Clear task → quick setup → constructive review → visible impact → increased responsibility → project stewardship
-> 
 
 A repository without real users risks becoming a hobby project. A product without independent maintainers remains founder-dependent.
 
@@ -67,7 +65,7 @@ A repository without real users risks becoming a hobby project. A product withou
 
 Governance should distribute authority as demonstrated capability and community maturity grow.
 
-1. **Founder stewardship:** The founder retains responsibility for scope, constitutional interpretation, safety, and release direction. Consequential decisions and reasons are documented publicly where safe.
+1. **Founder stewardship** (transitional, with limits and a sunset: Constitution VIII.2, `AMEND-STEWARDSHIP`; the sunset numbers are `docs/open-questions/OQ-founder-stewardship-sunset.md`): The founder retains responsibility for scope, constitutional interpretation, safety, and release direction. Consequential decisions and reasons are documented publicly where safe.
 2. **Bounded maintainership:** Reliable contributors gain ownership of defined areas such as accessibility, workflow, moderation tooling, protocol schemas, localization, security, or documentation.
 3. **Maintainer council:** Multiple independent maintainers approve releases and major technical changes. No single organization should control every critical subsystem.
 4. **Independent governance:** Once real users, maintainers, deployments, and funding relationships exist, evaluate transferring trademarks, protocol stewardship, and constitutional governance to an appropriate independent nonprofit or foundation structure.
@@ -75,6 +73,8 @@ Governance should distribute authority as demonstrated capability and community 
 Do not create a foundation before there is a functioning community to govern. Do not present ambiguous or founder-controlled processes as decentralized.
 
 ### Decision process
+
+This table is the **canonical** decision taxonomy. Agents use it with the founder, engineering and experiment split in `02-agent-rules.md`. Unresolved questions go to `docs/open-questions/`.
 
 Use decision mechanisms proportionate to the decision:
 
@@ -105,7 +105,7 @@ Project decisions must not collapse into raw vote count, GitHub popularity, fina
 
 ### Contributor-ready repository
 
-Before broad public promotion, maintain at least:
+Before broad public promotion, maintain at least the following. These block publishing, not building:
 
 - `README.md`
 - `CHARTER.md`
@@ -132,13 +132,13 @@ Local setup should be tested, reproducible, and progressively reduced in complex
 
 ### Contribution ladder
 
-Use a visible contribution ladder rather than treating everyone as either an outsider or a maintainer:
+Use a visible contribution ladder rather than treating everyone as either an outsider or a maintainer. These are roles in the open-source project, not platform roles (`04-roles-stewardship.md`); the names are chosen so they do not collide with the platform roles "Observer" and "Steward":
 
-1. **Observer:** Follows development and discussions.
+1. **Watcher:** Follows development and discussions.
 2. **Contributor:** Submits documentation, design, tests, translations, research, policy analysis, or code.
 3. **Reviewer:** Reviews work within a demonstrated area of competence.
 4. **Maintainer:** Owns a bounded subsystem or project area.
-5. **Steward:** Participates in cross-project coordination and governance.
+5. **Project steward:** Participates in cross-project coordination and governance.
 6. **Constitutional reviewer:** Reviews rights, safety, policy, or governance changes under stricter eligibility and conflict rules.
 
 Advancement should depend on sustained constructive work and demonstrated judgment, not employment, funding, follower count, popularity, or personal proximity to the founder.
@@ -171,6 +171,8 @@ Evaluate at least:
 - **Layered licensing:** For example, an Apache-licensed protocol and client libraries, an AGPL reference server, and an appropriate Creative Commons license for documentation and constitutional material. This may balance adoption and commons protection but increases complexity.
 
 Do not finalize licensing without qualified legal advice and a documented compatibility analysis.
+
+**Current state (D-27):** there is no LICENSE file yet. The recommendation, to be confirmed, is AGPL-3.0 for `can_server` (network copyleft keeps hosted forks open) and Apache-2.0 for `can_app`, `can_promo_site`, documentation and protocol schemas. The license blocks publishing and broad promotion, not building. See `docs/open-questions/OQ-license.md`.
 
 ### Outcome-led adoption
 
@@ -231,15 +233,7 @@ Do not optimize primarily for stars, downloads, account creation, posts, session
 
 #### Product health
 
-Track:
-
-- Problems progressing between stages
-- Proposal-to-implementation rate
-- Verified resolution rate
-- Time to meaningful next action
-- Reopened or failed resolutions
-- Appeal and overturn rates
-- Representation of affected groups
+The product metrics are the canonical list in `16-security-a11y-ops-testing.md` ("Observability and operations"). Do not duplicate them here.
 
 #### Community health
 

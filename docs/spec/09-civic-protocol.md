@@ -1,11 +1,8 @@
 ## 12B. Shared Civic Protocol and political organization interoperability
 
-<aside>
-🔗
+> **Founder direction:** The Open Problem-Solving Platform and the Open Political Organizing Platform are distinct products connected through one shared Civic Protocol and public civic data graph. They must not depend on one permanent shared internal application database.
 
-**Founder direction:** The Open Problem-Solving Platform and Open Political Organizing Platform — Autonomous Build Specification are distinct products connected through one shared Civic Protocol and public civic data graph. They must not depend on one permanent shared internal application database.
-
-</aside>
+**Status:** deferred to the decentralization track (D-22). The Open Political Organizing Platform has its own specification, which is not in this repository. Treat this file as design intent for a later protocol, not as work for slice 1. The AT Protocol choice below is a leading option to be confirmed by a bounded spike, not a decision.
 
 ### Product boundary
 
@@ -74,7 +71,7 @@ An official organizational publication must identify the publishing organization
 
 ### AT Protocol foundation
 
-Use AT Protocol as the leading public-data substrate unless a bounded technical spike demonstrates a material blocker. Define independently governed Civic Protocol Lexicons and application services on top of AT Protocol rather than forking the Bluesky product or representing civic objects as ordinary social posts.
+Use AT Protocol as the leading candidate public-data substrate unless a bounded technical spike demonstrates a material blocker. Define independently governed Civic Protocol Lexicons and application services on top of AT Protocol rather than forking the Bluesky product or representing civic objects as ordinary social posts.
 
 Use AT Protocol initially for:
 

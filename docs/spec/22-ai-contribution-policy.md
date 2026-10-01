@@ -1,3 +1,7 @@
+# AI-assisted contribution policy
+
+**Scope:** this policy governs **external contributors** to the project. It is unchanged and stays strict. Founder-operated agents (the orchestrated and overnight runs) follow the separate pipeline in `02-agent-rules.md`, "Founder-operated agent pipeline": they commit only to `night/*` branches and the founder merges. That exception does not relax any rule below for anyone else. Principles that mention autonomous pull requests, AI-written commit messages, human-written intent, and self-merge apply to external contributors.
+
 ### AI-assisted contribution and merge safety
 
 **Founder direction:** AI coding tools may make contribution more accessible, but they also make it inexpensive to generate changes whose review cost, defect risk, security risk, and long-term maintenance burden are much larger than their creation cost. The project must define its AI-assisted contribution and merge workflow before encouraging agent-generated pull requests. Blind or popularity-driven merging is prohibited.
@@ -22,37 +26,13 @@ Until the complete policy is approved, apply these provisional principles:
 
 A contributor should be able to work manually, with a paid coding assistant, with a lower-cost hosted model, or with a suitable local model. The project should document provider-neutral workflows rather than treating access to an expensive frontier model as an eligibility requirement.
 
-Potential tools and access paths to evaluate include:
-
-- Cline — open-source coding agent with provider choice and reviewable diffs
-- OpenCode — open-source terminal, desktop, and IDE coding agent with many provider and local-model options
-- Aider — open-source terminal pair programmer supporting hosted and local models
-- GitHub Models — model experimentation with a limited free access path
-- Kimi K2 and the Kimi API — openly available model weights and compatible hosted access, subject to current terms and availability
-- DeepSeek models and the DeepSeek API — model and hosted API options, subject to current terms and availability
-- Ollama — local-model execution where contributor hardware is sufficient
-
-Listing a tool is not an endorsement or a promise that it is free. Pricing, licenses, data use, model availability, geographic access, security characteristics, and terms can change. Contributors must not send secrets, private evidence, production data, credentials, personal information, or restricted repository material to an unapproved hosted service. The setup guide should maintain a current comparison of cost, license, privacy, context limits, hardware needs, provider compatibility, and data-retention terms.
+The list of candidate tools and access paths is time-sensitive (prices, licenses, data use, model availability and terms change quickly), so it does not live in the spec. It belongs in `CONTRIBUTING.md` and the affordable-tool setup guide, with an owner and a scheduled review. The version at the split commit is in git history (`git show 7f61360:docs/spec/22-ai-contribution-policy.md`). Listing a tool is never an endorsement or a promise that it is free. Contributors must not send secrets, private evidence, production data, credentials, personal information, or restricted repository material to an unapproved hosted service.
 
 #### Task: Establish the AI-assisted contribution policy and merge workflow
 
 - [ ]  Research, propose, review, and adopt `AI_CONTRIBUTIONS.md`, the AI disclosure fields in the pull-request template, a contributor checklist, a reviewer checklist, bot and autonomous-agent rules, risk-tiered merge gates, and an affordable-tool setup guide.
 
-The task should use these project policies and analyses as reference points:
-
-- Python Developer Guide: Guidelines for using AI tools — contributor understanding, focused changes, test integrity, and careful review
-- NumPy AI Policy — mandatory disclosure, contributor explanation, human-authored issue and PR context, and rejection of low-quality generated work
-- Kubernetes: Open source maintainership in the age of AI — disclosure, human engagement, verification, and limits on large generated pull requests
-- Apache Software Foundation Generative Tooling Guidance — originality, copyright, third-party licensing, and contributor responsibility
-- OpenInfra Policy for AI Generated Content — treating generated code as untrusted, human-in-the-loop review, debugging ability, and heightened scrutiny
-- Open edX AI Contribution Policy — separate contributor and reviewer guidance, transparency, understanding, and maintainer-load protection
-- scikit-learn Automated Contributions Policy — prohibition of fully automated submissions and requirement to review, understand, and test
-- KubeVirt AI Contribution Policy — disclosure conventions, DCO obligations, and policy lifecycle
-- Apache Airflow pull-request template — a practical AI disclosure field in the normal contribution workflow
-- Open Source Guides: How to Contribute — general contribution quality and AI-assisted review expectations
-- Gentoo AI Policy and NetBSD Commit Guidelines — strict-policy reference points for copyright, quality, and prior-approval concerns
-- Scientific Python: Community Considerations Around AI Contributions — maintainer capacity and community-culture analysis
-- Open-source AI contribution policy collection — a living cross-project reference set
+The task should draw on mature open-source AI contribution policies (Python, NumPy, Kubernetes, Apache, OpenInfra, Open edX, scikit-learn, KubeVirt, Gentoo, NetBSD and others) for contributor understanding, disclosure, focused changes, test integrity and maintainer-load protection. The current reference list changes quickly, so it lives with the tool list in `CONTRIBUTING.md` (version at the split commit: `git show 7f61360:docs/spec/22-ai-contribution-policy.md`).
 
 Required policy decisions and deliverables:
 

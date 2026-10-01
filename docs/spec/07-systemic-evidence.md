@@ -1,10 +1,16 @@
-## 6A. Systemic cases, public evidence, and accountable implementation
+## 6A. Systemic problems, public evidence, and accountable implementation
+
+**Status:** the problem graph, claim ledger, blocker ledger and the rest of this file are Phase 7 design (`18-phases-gates.md`). Slice 1 has `evidence_ref` (URL only), `duplicate_of` as the only link type, and an append-only event table with a nullable `prev_hash` (`01-slice-1-brief.md`). Systemic-hypothesis detection waits for the graph.
+
+### Evidence tiers and `investigation_needed`
+
+Evidence tiers (six, defined in the constitution at Constitution III.4, `EVIDENCE-TIERS`) describe how well a claim is supported. `investigation_needed` is a **derived flag**: it is true when the strongest tier attached to a problem is below the investigation threshold. It is not a tier, a workflow or a layer, and it does not change the lifecycle state.
 
 ### Problem graph
 
 The platform must support both bounded incident problems and broader systemic problems without collapsing them into one discussion. A systemic parent may link to incident, geographic, institutional, legal-reform, implementation, or recurrence problems. Each child retains its own jurisdiction, affected scope, evidence, stewardship, authority map, lifecycle, and outcome.
 
-A parent problem may aggregate patterns and common reforms, but a linked incident does not automatically prove the parent hypothesis. Similarity, coordinated submissions, or high report volume does not establish independence, prevalence, causation, or institutional responsibility. Every cross-case conclusion must identify the qualifying cases, comparison method, uncertainty, and evidence threshold.
+A parent problem may aggregate patterns and common reforms, but a linked incident does not automatically prove the parent hypothesis. Similarity, coordinated submissions, or high report volume does not establish independence, prevalence, causation, or institutional responsibility. Every cross-problem conclusion must identify the qualifying cases, comparison method, uncertainty, and evidence threshold.
 
 The graph must support:
 
@@ -12,7 +18,7 @@ The graph must support:
 - Duplicate, related, causal, dependency, recurrence, and reform links
 - Different stewardship groups at parent and child levels
 - Inherited context without inherited truth status
-- Cross-case summaries with drill-down and provenance
+- Cross-problem summaries with drill-down and provenance
 - Separate lifecycle and resolution states
 - Partial closure of an incident while the systemic parent remains active
 - Reopening when credible recurrence appears
@@ -57,7 +63,7 @@ Where public storage is unsafe or unlawful, record a limited attestation such as
 - Provenance and integrity reference
 - Competent external recipient
 - Submission date
-- Receipt or case-reference token where safe
+- Receipt or reference token where safe
 - Procedural status
 - Verification outcome
 

@@ -1,13 +1,16 @@
+## AI
+
+**Status (D-13, ADR 0006):** slice 1 has **no live AI**. It uses deterministic checks plus human review. The AI gateway interface exists in `can_server` behind a feature flag that stays off. Everything in this file and in `15-ai-inference.md` must be satisfied before any AI feature handles user content. Public wording: "Rules-based checks and human review today. AI assistance is planned; people make and answer for every decision."
+
+This file (the safety boundary and its operational gates) is the **canonical** AI specification. `06-moderation-geo-governance.md` and `17-ux.md` only link here.
+
 ### AI subsystem
 
-- Isolate model providers behind interfaces.
-- Use structured outputs with schema validation.
-- Treat user content, retrieved documents, and community labels as untrusted input.
-- Keep system instructions and policy data separated from user-controlled content.
-- Add prompt-injection tests and adversarial fixtures.
-- Log minimum necessary metadata, with redaction.
-- Support model and prompt versioning, evaluation sets, canary rollout, fallback behavior, and a kill switch.
-- Fail safely when models or policy services are unavailable.
+General rules for every AI feature, in addition to the gateway rules below:
+
+- Isolate model providers behind interfaces, with structured outputs validated against a schema.
+- Keep system instructions and policy data separate from user-controlled content, and treat user content, retrieved documents and community labels as untrusted.
+- Version models and prompts, keep evaluation sets, roll out by canary, and keep a kill switch and a safe non-AI fallback. Fail safely when a model or policy service is unavailable.
 
 ### Public-facing AI data safety boundary
 

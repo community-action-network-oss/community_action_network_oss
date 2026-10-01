@@ -1,29 +1,33 @@
 ## 19. Delivery phases
 
+This is the **canonical** phase list. The timing table is under "Indicative timing" below. Phase contents that are specified elsewhere link there instead of repeating.
+
+**Slice 1** (`01-slice-1-brief.md`) is a cut across phases 1 to 4: invite-only intake, review, typed contributions, proposals, decisions, tasks, verification and appeals on fictional data. It has no playbooks, governance issues or problem graph. Those stay in the phases below.
+
 ### Phase 0A: Public concept and founding contributor page
 
-This is the first public build. Create a fast, accessible, multilingual-ready promotional and recruitment site before the full platform. It should explain:
+This is the first public build. Create a fast, accessible promotional and recruitment site before the full platform. It is the `can_promo_site` repository: a Next.js static export with plain CSS, no forms, no analytics and no third-party fetches. English at first, with locale-prefixed routes added later for other languages. It should explain:
 
 - The public and structural problems the project addresses
 - Why existing protest, complaint, petition, social-media, and governance channels are insufficient by themselves
 - The complete problem-to-verified-outcome vision
 - The constitutional principles and explicit non-goals
-- The centralized reference-platform and parallel decentralization strategy
+- The centralized reference-platform and later decentralization strategy (`12-decentralization-ready.md`)
 - The current project stage and what does not exist yet
 - The `one hour, one problem, one step` contribution idea without promising that one hour alone solves a complex problem
 - A call for founding engineers, designers, security and privacy specialists, researchers, legal and policy experts, accessibility reviewers, translators, documentation contributors, and infrastructure partners
 - Concrete bounded contribution tasks rather than a generic request to `build everything`
 - How decisions are made, how AI-assisted contributions are handled, and how contributor work is reviewed
-- Links to the charter, specification, roadmap, governance, code of conduct, security policy, and repository
-- A privacy-minimized expression-of-interest path with no public roster by default
-- A transparent statement that the platform is not yet an emergency, legal, medical, government, or individual case-handling service
+- Links to the charter, specification, roadmap, governance, code of conduct, security policy, the repository (placeholder until the remote exists), and `docs/open-questions/`
+- A way to get involved that needs no personal data: the repository and its open questions. Any interest form or mailing list is an open question (`docs/open-questions/OQ-promo-interest-channel.md`); until it is answered there is no form and no public roster
+- A transparent statement that the platform is not yet an emergency, legal, medical, government, or individual service
 
 The page must not collect detailed civic problems, evidence, political profiles, precise locations, identity documents, or sensitive personal narratives before the protected platform intake exists. Use fictional examples and static verified external resources where useful.
 
 Phase 0A acceptance criteria:
 
 - The public can understand the mission, scope, current stage, safeguards, and ways to help.
-- No language implies that the unfinished platform is already handling real cases.
+- No language implies that the unfinished platform is already handling real problems.
 - Every call to contribute maps to a maintained task, owner, review process, and expected outcome.
 - The site meets the initial accessibility, privacy, security, analytics, localization, performance, and non-tracking requirements.
 - Founding contributors can reach the repository and setup instructions without needing a paid AI tool.
@@ -34,7 +38,7 @@ Phase 0A acceptance criteria:
 - Stakeholder and user journey map
 - Prioritized clarifying questions
 - Scope and non-goals
-- Launch jurisdiction and language decision
+- Launch jurisdiction and language decision (open question, defaulted)
 - Product requirements and threat model
 - Architecture decision records
 - Data classification and retention plan
@@ -42,41 +46,36 @@ Phase 0A acceptance criteria:
 - Public concept page, contributor recruitment flow, and founding role-page plan
 - Gate X definition for moving from engineering formation to multidisciplinary and public participation
 - Decentralization working-group charter and RFC process
-- Stable global identifier, origin-node, signed-event, export-bundle, and protocol-version conventions
+- The four decentralization seams of slice 1 (`12-decentralization-ready.md`)
 - Initial decentralization threat model and concentration map
 - Milestone plan with estimates, risks, and separate reference-platform and community-track allocations
 
 ### Phase 1: Foundation
 
-- Expo Router universal application for iOS, Android, tablet, and web
-- gluestack-based project-owned design system with NativeWind, semantic tokens, RTL, accessibility, and responsive-layout tests
+- Three repositories (`11-architecture.md`): `can_server`, `can_app`, `can_promo_site`
+- Expo Router universal application, with gluestack v5 on UniWind, project-owned civic components, semantic tokens, RTL, accessibility and responsive-layout tests. Verified on web; native builds must bundle (D-8)
 - NestJS modular-monolith service with framework-light domain modules
-- PostgreSQL schema, migrations, transaction strategy, and typed persistence boundary
-- Versioned OpenAPI contract and generated TypeScript client
-- Development environment and continuous integration
+- PostgreSQL schema through Drizzle, migrations, transaction strategy, and a typed persistence boundary
+- Code-first OpenAPI contract and generated TypeScript client
+- Development environment (docker compose for Postgres and Mailpit) and continuous integration
 - Authentication, authorization, audit events, configuration, secrets, and migrations
-- Core observability, testing harness, seed data, object-storage abstraction, and deployment pipeline
-- Native development builds, web preview deployments, deep-link configuration, and automated cross-platform smoke tests
-- UUIDv7 or approved globally unique identifiers for all externally meaningful objects
-- `originNodeId`, `protocolVersion`, authoritative-location, and replica-ready metadata conventions
-- Event-oriented consequential audit records with future signing and federation compatibility
-- Provider-independent storage, identity, signing, search, notification, and background-job boundaries
-- Signed versioned public-problem export and import prototype
-- Initial protocol schemas, conformance fixtures, and decentralization RFC repository
+- Core observability, testing harness and seed data
+- The four decentralization seams (`12-decentralization-ready.md`); the rest of the decentralization-ready list is milestone D0 in `13-decentralization-track.md`
+- Later, once permitted files exist: object-storage abstraction, deployment pipeline, native device builds, deep-link configuration and cross-platform device smoke tests (founder-gated)
 
 ### Phase 2: Safe public problem intake
 
 - Non-identifying structural problem submission
-- Evidence tiers and `investigation_needed` workflow
+- Evidence tiers and the derived `investigation_needed` flag
 - Geography, affected-population, and jurisdiction scoping
 - Role-alias and privacy controls
-- Duplicate, related-case, and systemic-hypothesis detection
+- Duplicate detection (`duplicate_of` is the only link type until the problem graph in Phase 7). Systemic-hypothesis detection waits for Phase 7
 - Moderator and distributed-review console
 - Explanations, revision, withdrawal, and appeals
 
 ### Phase 3: Structured resolution
 
-- Staged case workspace
+- Staged problem workspace
 - Typed contributions and evidence
 - Proposals, comparisons, and decision records
 - Participant scopes and rate limits
@@ -86,7 +85,7 @@ Phase 0A acceptance criteria:
 
 - Plans, tasks, owners, blockers, metrics, and updates
 - Verification evidence and terminal transitions
-- Resolution summaries and redacted playbooks
+- Resolution records and, later, redacted playbooks
 
 ### Phase 5: Grounding and governance
 
@@ -117,25 +116,17 @@ Begin only after the bounded workflow is stable.
 
 ### Phase 8: Election accountability
 
-Begin only after jurisdiction enablement, legal review, political-neutrality evaluation, and independent oversight are operational.
-
-- Term-bound institutional accountability
-- Verified candidate and party records from authoritative sources
-- Structured proposal and commitment lifecycle
-- Transparent multidimensional civic reports
-- Neutral jurisdiction-specific voter briefs
-- Equal correction, response, and appeal mechanisms
-- Election-period audits, change controls, and incident procedures
+Begin only after jurisdiction enablement, legal review, political-neutrality evaluation, and independent oversight are operational. The content of this phase is specified in `08-election-accountability.md` (canonical) and is not repeated here.
 
 ### Gate X: Open multidisciplinary participation
 
-Engineers must not open the platform to unrestricted public problem intake merely because the interface looks complete. Gate X is reached only when the founder approves evidence that:
+Engineers must not open the platform to unrestricted public problem intake merely because the interface looks complete. Gate X is reached only when the founder approves evidence that all of "Definition of pilot-ready" (end of this file) holds and, in addition:
 
 - The bounded vertical slice works from intake through a legitimate terminal state.
 - Authentication, authorization, privacy gates, PII handling, moderation, appeals, audit, deletion, backup, restore, incident response, and observability have passed their quality gates.
 - The launch jurisdiction and language have qualified policy coverage and human-review capacity.
 - Accessibility and low-bandwidth core flows are usable.
-- Fictional and controlled pilot data demonstrate the lifecycle without exposing real private cases.
+- Fictional and controlled pilot data demonstrate the lifecycle without exposing real private matters.
 - Contribution governance, AI-assisted merge safeguards, maintainer capacity, code ownership, security disclosure, and release processes are operational.
 - Public communications explain limitations, risk, authority boundaries, and emergency exclusions.
 - A bounded pilot problem, steward group, institutional route, and verification plan have been approved.
@@ -168,60 +159,24 @@ Open participation progressively:
 
 Each phase must end with a demonstrable product increment, evidence against acceptance criteria, open risks, and a clear go or no-go decision.
 
-### Recommended first-year sequence
+### Indicative timing
 
-#### Months 0 to 2: Make the project legible
+The phases above are the canonical sequence; this table only adds time. It is a planning default, not a promise.
 
-- Publish the concise charter
-- Select the pilot problem, jurisdiction, and language
-- Resolve licensing
-- Establish governance and contribution documents
-- Create low-fidelity UX prototypes
-- Define the core domain model and protocol vocabulary
-- Publish the initial threat model
-- Establish the repository, tests, and continuous integration
-
-#### Months 3 to 5: Build the vertical slice
-
-- Safe problem intake
-- Evidence tiers
-- Problem workspace
-- Typed contributions
-- Proposals and decision records
-- Implementation tracking
-- Verification
-- Moderation and appeals
-- Fictional example cases
-- Accessibility testing
-
-#### Months 6 to 8: Run a controlled pilot
-
-- Invite a small real community
-- Observe and support the complete journey
-- Record failures, confusion, and unintended behavior
-- Measure whether the workflow produces meaningful action
-- Publish transparent pilot findings
-- Correct the workflow before expanding scope
-
-#### Months 9 to 12: Grow maintainership
-
-- Onboard independent maintainers
-- Formalize justified working groups
-- Publish protocol version `0.1`
-- Release contributor-focused development resources
-- Support a second controlled deployment
-- Begin interoperability experiments
-- Establish a maintainer council only if the contributor base supports it
+| Months | Phases | What it proves |
+|---|---|---|
+| 0 to 2 | 0A, 0B | The project is legible: concept page, charter, governance and contribution documents, a pilot problem and jurisdiction chosen (open questions), license decided, low-fidelity UX, domain model, threat model, repository, tests and CI. |
+| 3 to 5 | 1 to 4 (slice 1) | The vertical slice runs on fictional data: intake, evidence tiers, workspace, typed contributions, proposals and decisions, implementation tracking, verification, moderation and appeals, accessibility testing, fictional example problems. |
+| 6 to 8 | 6 (hardening and pilot) | A controlled pilot with a small real community. Observe the whole journey, record failures and confusion, measure whether the workflow produces meaningful action, publish transparent findings, and correct the workflow before expanding. |
+| 9 to 12 | growth; 5 and 7 as capacity allows | Grow maintainership: onboard independent maintainers, formalize justified working groups, publish protocol version `0.1`, release contributor-focused resources, support a second controlled deployment, begin interoperability experiments. Establish a maintainer council only if the contributor base supports it. |
 
 ### Strategic growth rule
 
 > **Keep the mission universal, but make every implementation step narrow and verifiable.**
-> 
 
 The intended growth path is:
 
 > One constitutional core → one excellent workflow → one verified resolution → several independent contributors → several controlled deployments → an open protocol → a durable federation
-> 
 
 This sequence should guide roadmap, funding, contributor recruitment, public communication, and architecture. The project should become infrastructure through demonstrated trust and utility rather than attempting to manufacture scale before it can support it.
 

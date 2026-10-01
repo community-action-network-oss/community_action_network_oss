@@ -1,5 +1,7 @@
 ## 20A. Launch sequence, continuous participation, and nonprofit hosting
 
+The build phases are in `18-phases-gates.md`. This section covers how participation grows and the non-monetary rules, which are **canonical here**.
+
 ### Build and participation sequence
 
 The platform should grow through a deliberate sequence:
@@ -20,12 +22,10 @@ The engineers build and maintain the enabling infrastructure. Non-engineers, aff
 The participation invitation may use a message such as:
 
 > **Give one hour. Move one real problem one responsible step forward.**
-> 
 
 A supporting public phrase may be:
 
-> **Change the world one problem at a time—locally, together, and with evidence.**
-> 
+> **Change the world one problem at a time, locally, together, and with evidence.**
 
 This is an invitation, not a promise or moral obligation. Complex public problems may require years, professional authority, public institutions, funding, and sustained stewardship. The product should help each person find a bounded, honest one-hour task with a stopping point, such as:
 
@@ -41,7 +41,7 @@ This is an invitation, not a promise or moral obligation. Complex public problem
 - Verify one implementation update
 - Document one reusable lesson
 
-Do not rank people by hours, manufacture streaks, shame inactivity, or imply that volunteer time replaces public obligations or paid professional work. Recognize useful outcomes, care, reliability, and documented contribution without turning civic work into engagement gamification.
+Do not rank people by hours, manufacture streaks, shame inactivity (anti-engagement rules: `17-ux.md`, "Deliberate, not addictive"), or imply that volunteer time replaces public obligations or paid professional work. Recognize useful outcomes, care, reliability, and documented contribution without turning civic work into engagement gamification.
 
 ### Perpetual dual flywheel
 
@@ -49,19 +49,17 @@ The project has two continuous, connected loops:
 
 **Public problem-solving loop**
 
-> Problem → evidence → causes and constraints → proposals → decision → implementation → verification → playbook or accountable unresolved record
-> 
+> Problem → evidence → causes and constraints → proposals → decision → implementation → verification → Resolution record, playbook, or a `stuck` problem kept as an accountable unresolved record
 
 **Platform-improvement loop**
 
 > Observed need → bounded issue or RFC → design and risk review → implementation → tests and evaluation → controlled release → measured outcome → revision
-> 
 
 A public problem does not automatically authorize a software change, and a popular feature request does not override the constitution. Engineers should convert platform feedback into scoped, reviewable work while preserving the integrity of the civic record.
 
 ### Completely non-monetary platform
 
-**Revised founder decision:** The platform itself is non-monetary by design. Withdraw the earlier Wikimedia-style fundraising approach. The product, protocol, reference implementation, federation, governance, reputation, and ordinary operation must not collect, hold, transfer, distribute, account for, intermediate, or optimize money.
+**Revised founder decision (Constitution I.7, `NONMONETARY-INDEPENDENT`; rule `MONEY-0`):** The platform itself is non-monetary by design. Withdraw the earlier Wikimedia-style fundraising approach. The product, protocol, reference implementation, federation, governance, reputation, and ordinary operation must not collect, hold, transfer, distribute, account for, intermediate, or optimize money.
 
 The platform must not provide:
 
@@ -83,8 +81,7 @@ Ordinary people must be able to read, submit, participate in, and follow eligibl
 
 The platform may display a standardized acknowledgment such as:
 
-> **Infrastructure for this node is provided by IBM.**
-> 
+> **Infrastructure for this node is provided by [Operator Name].**
 
 This is recognition, not an advertisement auction. Acknowledgment may identify the verified operator or sponsor, infrastructure category, supported region, support period, public contribution, and a neutral link to an operator information page.
 

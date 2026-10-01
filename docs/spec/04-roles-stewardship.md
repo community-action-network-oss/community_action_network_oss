@@ -1,15 +1,19 @@
 ## 4. Users, roles, and authority
 
+This file is the **canonical** definition of platform roles and problem stewardship. The contributor ladder in `21-open-source-governance.md` is a different thing (roles in the open-source project, not on the platform) and uses different names on purpose.
+
+**Slice 1** uses only `guest`, `member`, `initiator` (provisional steward), and `moderator` (`01-slice-1-brief.md`). Stewardship groups, experts, institutional representatives and election roles are deferred. Their definitions below are the long-term design.
+
 ### Platform roles
 
 - **Guest:** Can view content permitted for public access.
-- **Member:** Can submit problems, follow cases, and contribute where eligible.
+- **Member:** Can submit problems, follow problems, and contribute where eligible.
 - **Problem initiator:** Submitted the initial public problem or systemic hypothesis. Can clarify the original framing and contribute evidence, but does not own the public problem or decide for all affected people.
 - **Stewardship group:** A decentralized, capability-balanced group that maintains framing, scope, stages, implementation coordination, and outcome records under transparent quorum and conflict rules.
-- **Core participant:** Is materially connected to the affected geography or group under an approved verification method.
-- **Visitor:** Is outside the core scope. Contributions may be limited, separately ranked, or excluded from local decisions.
+- **Core participant:** Is materially connected to the affected geography or group under an approved verification method. Geography is one signal; a material connection (for example living, working, using a service, or being affected by the condition) is what counts. In slice 1 the area is self-declared, for display only, and nobody is excluded.
+- **Visitor:** Has no material connection to the affected scope. Contributions may be limited, separately ranked, or excluded from local decisions.
 - **Expert:** Has relevant verified or contextually accepted expertise. Expertise must be scoped, reviewable, and non-transitive.
-- **Observer:** Follows a case without participating materially.
+- **Observer:** Follows a problem without participating materially.
 - **Volunteer reviewer:** Performs bounded labeling or review tasks with minimum necessary context.
 - **Moderator:** Reviews escalations and enforces rules. Sensitive actions require strong authentication and logging.
 - **Legal or domain reviewer:** Advises on scoped high-risk decisions. The system must distinguish advice from authoritative legal determination.
@@ -24,7 +28,9 @@ Use explicit role and policy checks on the server. Do not rely on hidden UI cont
 
 ### Problem stewardship groups
 
-Every eligible public problem should support a stewardship group that acts as the problem's scoped administrative and coordination team. Stewardship is attached to the problem, not to platform-wide authority.
+**Slice 1:** there is no group. The initiator is the provisional steward and a moderator confirms publish, solved, closed and redirected (D-16, interim clause in `01-slice-1-brief.md`). Group formation, quorum and consent thresholds are open design work, tracked in `docs/open-questions/OQ-decision-method.md`.
+
+Long term, every eligible public problem should support a stewardship group that acts as the problem's scoped administrative and coordination team. Stewardship is attached to the problem, not to platform-wide authority.
 
 The problem initiator may:
 

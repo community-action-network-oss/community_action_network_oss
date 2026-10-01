@@ -1,189 +1,157 @@
-Open-source, public problem-resolution platform where people surface civic and structural problems, eligible submissions are vetted by AI plus rules, and the community works through structured stages until the problem is solved, closed, paused, or routed to a competent institution or partner project.
+# Community Action Network: a manifesto
 
-The platform is not an individual advice, therapy, consulting, legal-service, or personal case-management system. Individual experiences may reveal, evidence, or corroborate a public problem, but the unit of collaborative work is the shared condition, institutional failure, recurring pattern, geographic issue, or structural root cause.
+Complaints go nowhere. Petitions pile up. Threads burn for a week and then vanish, and the pothole, the broken process, the unsafe crossing is still there.
+
+We think that is a design failure, not a law of nature. This project is an open-source platform where people surface a real public problem, bring evidence, work out what is causing it, propose lawful solutions, track who does what, and check whether it worked. Problem, evidence, lawful solution, tracked outcome. That is the whole idea. Yes, finally: we can actually solve problems.
+
+## Where we are
+
+**Concept and scaffolding.** The specification, the constitution and the repositories exist. Nothing handles real problems yet. Everything you see is a plan, a fictional example, or a first piece of code. We say so plainly and we label anything not built as planned.
+
+## What this is
+
+A public, open-source problem-resolution platform. People surface civic and structural problems. Eligible submissions are checked by clear rules and reviewed by people, and the community works through structured stages until the problem is solved, closed, redirected, or honestly marked stuck.
+
+The unit of work is the shared condition: an institutional failure, a recurring pattern, a geographic issue, a structural root cause. A single personal experience can reveal, evidence or corroborate it. It does not become a personal service request.
+
+## What this is not
+
+- Not an individual advice, therapy, medical, legal, consulting or personal case-management service.
+- Not an emergency service. If someone is in danger, contact your local emergency number. No part of this platform replaces that.
+- Not a social feed, a debate forum, a petition site, or a complaint board.
+- Not a platform that endorses candidates or parties.
+- Not a place to name or pursue private individuals.
+- Not a place that handles money. See below.
 
 ## Core promise
 
-Surface a public problem. Define who and where it affects. Contribute evidence and lived experience. Let the platform help the community understand root causes, develop lawful and safe structural solutions, coordinate implementation, and track outcomes without letting the discussion collapse into hate, chaos, personality conflict, or unrelated ideology.
+Surface a public problem. Say who and where it affects. Contribute evidence and lived experience. Let the platform help the community understand root causes, develop lawful and safe structural solutions, coordinate implementation, and track outcomes, without letting the discussion collapse into hate, chaos, personality conflict or unrelated ideology.
 
 ## Core principles
 
-- Open source
-- Focused on real, solvable problems
-- Progress is visible and trackable
-- AI-moderated and rules-based
-- Community members help improve the moderation framework
-- Location-aware and context-aware
-- Grounded in applicable constitutional, legal, regulatory, and local rules
-- Solution-first, not conflict-first
-- Preparation-oriented, not just reactive
-- Improvable by design, not perfect by assumption
+- Open source, in the open.
+- Real, solvable, bounded problems.
+- Progress is visible and trackable.
+- Rules-based checks and human review today. AI assistance is planned, and people make and answer for every decision.
+- The community helps improve the moderation framework.
+- Location-aware and context-aware, built on a material connection to a problem, not only a postcode.
+- Law-aware: grounded in the constitution, laws and local rules that apply.
+- Solution-first, not conflict-first.
+- Preparation-oriented, not only reactive.
+- Improvable by design, not perfect by assumption.
+- Non-monetary by design.
 
 ## How it works
 
 1. **Public problem submission**
-    - A person posts a non-identifying civic, institutional, geographic, recurring, or structural problem.
-    - A single personal experience may be submitted only as evidence or a signal of the wider condition, not as a request for individualized service.
-    - The problem is assigned an evidence tier and affected geography.
-    - The poster proposes the affected scope, responsible roles or institutions, and desired public outcome.
-    - AI and community review test the framing, evidence, privacy, legality, duplication, scope, and systemic hypothesis.
+    - A person posts a non-identifying civic, institutional, geographic, recurring or structural problem.
+    - A personal experience may be submitted as evidence of the wider condition, not as a request for individual help.
+    - The submission gets an evidence tier and an affected area. The person who raises it is the initiator. The initiator does not own the problem and decides for no one else.
+    - Automatic checks and human volunteers test the framing, evidence, privacy, legality, duplication and scope.
 2. **Eligibility review**
-    - Ineligible, low-quality, abusive, duplicate, unsafe, or irrelevant submissions are filtered out.
-    - Eligible problems are added to the public problem list.
-    - Based on the nature of the issue, the platform can route the user into an internal solution path or toward a relevant partner project.
-    - If an issue requires deeper party-political, electoral, ideological, or legislative debate beyond the immediate safe solution path, it can be routed to the open-source political platform or another appropriate partner project.
+    - Ineligible, abusive, duplicate, unsafe or irrelevant submissions are filtered out, with reasons and a path to revise and resubmit.
+    - Eligible problems join the public list.
+    - A problem that needs party-political, electoral or legislative debate can be redirected to a more suitable project or institution.
 3. **Structured discussion**
-    - The conversation moves through defined stages instead of becoming an unstructured thread.
-    - The main thread stays centered on the affected geography.
-    - Participation roles are based on geography and relevance:
-        - **Core participants:** people inside the affected geography.
-        - **Visitors:** people outside the affected geography who can still view or contribute, but do not define the main direction of the thread.
-        - **Experts:** people with relevant knowledge who can contribute if verified or contextually useful, even if they are outside the affected geography.
-        - **Observers:** people who mainly read, learn, and follow the issue.
-        - **Moderators / AI:** systems and volunteers that enforce scope, relevance, safety, and rule compliance.
-    - People comment, identify root causes, clarify constraints, provide evidence, and suggest solutions.
-4. **Solution-only discussion mode**
-    - Comments must help clarify the issue, identify constraints, propose lawful solutions, improve existing proposals, provide evidence, or support implementation.
-    - Every comment goes through AI moderation before it is accepted into the discussion.
-    - Users wait between comments by design, so discussion is slower, more thoughtful, and focused on adding value instead of reacting impulsively.
-    - The waiting period encourages users to comment only when they have something useful, relevant, or constructive to add.
-    - Unrelated, hateful, unsafe, inflammatory, or conflict-escalating comments are deprioritized, rejected, redirected, or removed.
-    - Example: if people discuss the volume of religious speakers, the platform should allow solution-oriented comments such as petitions, requests, mediation, local authority processes, technical fixes, timing limits, or legal remedies.
-    - The platform should not allow the thread to become a communal clash, hate campaign, or unrelated attack on a religious or social group.
+    - The conversation moves through defined stages instead of an endless thread.
+    - Roles follow relevance, not status:
+        - **Core participants** have a material connection to the problem: they live there, work there, use the service, or are affected by it. Geography is one signal of that.
+        - **Visitors** have no such connection. They can read and contribute, but they do not steer the main direction.
+        - **Experts** bring relevant knowledge, verified or useful in context, wherever they live.
+        - **Observers** read, learn and follow.
+        - **Moderators** are volunteers who enforce scope, relevance, safety and rules.
+    - People ask questions, identify root causes, clarify constraints, provide evidence and suggest solutions.
+4. **Solution-only discussion**
+    - Contributions must clarify, add evidence, identify constraints, propose lawful solutions, improve proposals or support implementation.
+    - Each contribution is checked, and a human reviews it before it is accepted into the discussion.
+    - Targeted reflection delays slow down heated exchanges and rejected contributions. There is no flat wait on everyone, and urgent updates are never held back.
+    - Unrelated, hateful, unsafe or inflammatory contributions are deprioritized, rejected, redirected or removed.
+    - Example: if people discuss the volume of amplified sound from places of worship, the platform welcomes petitions, requests, mediation, local authority processes, technical fixes, timing limits and legal remedies. It does not let the thread become a communal clash or an attack on any group.
 5. **Solution development**
-    - The best ideas are surfaced, compared, and refined.
-    - The original poster, affected participants, experts, and the community can keep updating progress.
-    - Solutions should be safe, lawful, realistic, and connected to the actual problem.
+    - The best ideas are surfaced, compared and refined. Proposals say how they would be verified.
+    - The initiator, affected participants, experts and the community keep progress up to date. Decisions are recorded with the reason and the authority.
+    - Solutions must be safe, lawful, realistic and tied to the actual problem.
 6. **Resolution tracking**
-    - The problem advances stage by stage until it is solved, closed, paused, or redirected.
-    - Progress, blockers, decisions, and next steps remain visible.
-7. **Hall of fame**
-    - Once a problem is fully solved, the complete journey is preserved as a high-quality example others can learn from.
-    - Solved cases become reusable civic playbooks.
+    - A problem moves stage by stage until it is solved, closed, redirected, or withdrawn.
+    - Some problems stall. They are marked **paused** (with a reason and a condition to resume) or **stuck** (documented effort hit a blocker). The blocker and the next lawful route stay public. An honest unresolved record is better than a quiet disappearance.
+    - **Solved** means a steward proposes it with verification evidence and a moderator confirms it. A promise is not an achievement.
+7. **Resolution records**
+    - Every problem that reaches an end keeps its whole journey in a plain archive of resolution records. No ranking, no scores, no rewards. Solved problems become examples others can learn from, and later reusable civic playbooks.
 8. **Preparation and adaptation**
-    - The platform is not only for resolving current public problems, but also for preparing communities and institutions before problems escalate.
-    - Each discussion may produce public preparation paths at neighborhood, municipal, regional, state, national, or international levels.
-    - A preparation path can contain triggers, responsibilities, institutional routes, resources, implementation steps, and feedback loops.
-    - Individuals may follow relevant public paths, but personalized advice and one-to-one service delivery remain outside the platform.
-    - When a preparation path changes, followers can be notified to review the improved public guidance.
+    - The aim is also to prepare communities before problems escalate. A preparation path holds triggers, responsibilities, institutional routes, resources, steps and feedback loops. Personal advice stays out of scope.
 9. **Local community strengthening**
-    - The platform also improves local communities by giving people a constructive reason to repeatedly engage with each other.
-    - As people work on local issues, they see each other more, understand each other better, and build trust through shared problem-solving.
-    - Every useful engagement improves the community because people are not only talking, they are contributing toward something practical.
-    - This creates a different kind of social gathering: not just meeting to drink, dance, or be entertained, but coming together to volunteer, solve problems, and improve the place they live in.
+    - Working on local problems gives neighbours a constructive reason to meet and trust each other. It is a different kind of gathering: not only to be entertained, but to volunteer, solve something practical and improve the place we live.
+
+## Evidence and responsibility
+
+Evidence attaches to specific claims. A report is not a fact, a filing proves only that a filing exists, and popularity is not proof. Weakly supported problems are flagged as needing investigation, not presented as established. Responsibility is traced to roles and institutions, backed by sources, never to character or motive.
+
+Each problem can have stewards who coordinate it. A steward is not an owner and gains no authority over affected people or institutions.
+
+## Elections without endorsements
+
+Durable, source-backed records of who had authority, what was promised and what happened can help voters judge for themselves. The platform will never tell anyone whom to vote for, endorse a candidate or party, or target political persuasion. The election layer stays off until legal review, neutrality evaluation and independent oversight are in place.
 
 ## Moderation model
 
-- Rules define what kinds of problems, comments, solutions, and actions are allowed.
-- The moderation rules stack starts with base platform rules, then applies the constitution, applicable laws, regulations, and local rules connected to the issue's geography.
-    - For example, if a problem is posted in India, AI moderation first follows the platform's base rules, then India's constitution, applicable Indian laws, regulations, and local rules, so people do not create or discuss solutions that are illegal in India or outside the platform's principles.
-- The platform recognizes that many public problems are political in the broad sense because they affect communities, institutions, rights, resources, and public life.
-- The moderation goal is not to avoid all politics. The goal is to prevent discussions from turning into unrelated, hateful, unsafe, or inflammatory conflict.
-- AI handles first-line moderation, classification, routing, and guidance.
-- Human behavior is guided by system design rather than open-ended debate.
-- Moderation decisions should be explainable where possible:
-    - Which base platform rule applied
-    - Which constitutional, legal, regulatory, or local rule applied
-    - What part of the content triggered the decision
-    - What the user can change to make the submission or comment eligible
+- Rules define which problems, contributions and actions are allowed.
+- The stack starts with base platform rules, then the constitution, then the laws, regulations and local rules connected to the problem's place. For a problem raised in a given country, that means that country's constitution and laws, so nobody builds a solution that is illegal where it would happen.
+- Many public problems are political in the broad sense. The goal is not to avoid politics. The goal is to stop discussions turning into unrelated, hateful, unsafe or inflammatory conflict.
+- Rules-based checks and human review do the first line today. AI assistance is planned, behind strict privacy and safety gates, and never the final authority.
+- Every moderation decision is explainable:
+    - which rule applied
+    - which part of the content triggered it
+    - what the person can change to make it eligible
+    - how to appeal, and by when
 
-## Community AI grounding layer
+## Community grounding layer (planned)
 
-The platform does not only use AI to moderate people. It lets the community improve the AI by creating better examples, labels, edge cases, legal context, geography rules, relevance rules, safety rules, expertise signals, and solution-quality standards.
+The community will be able to improve the moderation framework: examples, labels, edge cases, legal and local context, relevance and safety rules, and solution-quality standards. Submitted grounding data is untrusted until reviewed, versioned and approved. Improvements enter the framework transparently, so moderation evolves without becoming arbitrary.
 
-- The platform includes an option to improve the AI when users find moderation gaps, mistakes, unclear decisions, or missing context.
-- AI improvement is community-driven: users and volunteers help create, review, label, and organize grounding data across the platform's various aspects.
-- Grounding data can cover:
-    - Relevance
-    - Safety
-    - Legality
-    - Solution quality
-    - Geography
-    - Local context
-    - Expertise
-    - Discussion scope
-    - Conflict escalation risk
-    - Hateful or inflammatory content
-    - Practical implementation paths
-- This grounding data continuously improves AI moderation and guidance, so decisions become more accurate, transparent, locally aware, and aligned with the platform's rules.
-- Approved improvements are incorporated into the framework transparently, so moderation evolves without becoming arbitrary.
+## Randomized, context-masked review (planned)
 
-## Randomized context-masked review
-
-To reduce bias and prevent local group capture, moderation improvement requests can be reviewed through randomized, cross-location, context-masked labeling.
-
-- Reviewers can be randomly assigned across locations.
-- Data can be masked or revealed depending on the type of labeling required.
-- Reviewers should see only the minimum context needed for the task.
-- Some labels may need little or no location data, such as basic hate or abuse detection.
-- Some labels need partial context, such as relevance, solution quality, or discussion scope.
-- Some labels need jurisdictional context, such as legal compliance or local practicality.
-- Sensitive personal data should be masked unless it is required for accurate judgment.
-- Disagreement between reviewers can be tracked and escalated.
-- High-risk cases can require trusted volunteers, domain experts, legal reviewers, or platform maintainers.
-
-The goal is not simply random review. The goal is randomized, context-masked, multi-layer review where each reviewer sees only what is needed for the label they are asked to provide.
+To reduce bias and local capture, review of moderation improvements can be randomized across locations and masked so each reviewer sees only what the label needs. Basic abuse labels need little context. Relevance needs some. Legal compliance needs jurisdiction. Sensitive personal data stays masked unless essential. Disagreement is tracked and escalated, and high-risk questions go to trusted volunteers, domain experts, legal reviewers or maintainers.
 
 ## Platform governance issues
 
-There will always be new concerns. The platform should acknowledge this instead of pretending every risk can be solved upfront.
+There will always be new concerns: a biased category, incomplete legal grounding for a region, visitors steering local threads, captured volunteer labelling, masking that hides too much or too little. The platform should admit that instead of pretending every risk is solved in advance, and should use the same problem-solving process on itself. It is not perfect by design. It is improvable by design.
 
-The platform itself should use a problem-solving process for platform-level concerns.
+## Pseudonymity and privacy
 
-Examples:
+People take part under a generated public name. Email addresses are encrypted and never shown. No identity documents are collected. Problems are described by roles and institutions, not private individuals. Drafts that are rejected or withdrawn are deleted on a published date. We collect the minimum, we log the minimum, and we do not sell, profile or track.
 
-- AI moderation is biased in a category.
-- Legal grounding for a region is incomplete.
-- Visitors are influencing local threads too much.
-- Volunteer labeling is being captured.
-- Masking rules are hiding too much context.
-- Masking rules are exposing too much sensitive data.
-- Expert contributions are being misused.
-- A discussion category needs better solution-quality standards.
+## Non-monetary by design
 
-Platform-level concerns should move through the same kind of structured process:
+The platform never charges, sells, takes donations, holds balances, pays bounties or shows paid placement. Ordinary people read, submit and take part for free, with no ads and no sale of personal data. Hosting and help are given in kind, and nobody can buy influence, prominence or governance power.
 
-1. A concern is identified.
-2. The concern is posted as a platform governance issue.
-3. The affected users, scope, and risks are defined.
-4. AI and rules classify it.
-5. The community discusses solution paths.
-6. Volunteers and experts contribute evidence and proposals.
-7. Experiments, rule changes, or product changes are tested.
-8. Approved changes are implemented.
-9. Effects are monitored.
-10. The process improves again.
+## Centralized first, decentralization later
 
-The platform is not perfect by design. It is improvable by design.
+We start with one founder-hosted reference deployment so the first workflow can be proven and operated responsibly. From day one we keep the seams that let it spread later: globally unique identifiers, an origin for every record, and an append-only history. Federation, portability and independent nodes come after the first workflow works. We will not call it decentralized before it is.
+
+## Open source, and how to contribute
+
+The code, the specification and the constitution are open. The project is built so that one hour can be useful.
+
+**One hour, one problem, one step.** Check one claim. Find one authoritative source. Translate one passage. Test one screen with a screen reader. Map one institution's responsibility. Review one piece of public evidence. Improve one test or document. No streaks, no leaderboards, no pressure.
+
+- Browse the questions the project has not answered yet and help close one: [`docs/open-questions/`](docs/open-questions/README.md). Most need knowledge and care, not code.
+- Pick a small, bounded unit of work from [`plans/`](plans/).
+- Read the specification index: [`docs/spec/00-index.md`](docs/spec/00-index.md).
+
+Developers, designers, accessibility reviewers, translators, privacy and security specialists, researchers, legal and policy experts: there is a real task waiting for you.
 
 ## Why this is different
 
-This is not just a Q&A platform, social feed, petition site, or complaint board. It is a problem-resolution platform.
+This is not a Q&A site, a social feed, a petition site or a complaint board. It is a problem-resolution platform. Its ingredients:
 
-Its unique ingredients are:
+- real-world issue intake
+- participation based on a material connection
+- law-aware moderation
+- solution-only discussion
+- structured stages and resolution tracking
+- evidence tiers and honest unresolved records
+- a community loop for improving the rules
+- preparation paths and, later, reusable playbooks
+- a governance process for improving the platform itself
 
-- Real-world issue intake
-- Geo-scoped participation
-- Law-aware moderation
-- Solution-only discussion behavior
-- AI plus community improvement loop
-- Randomized and context-masked review
-- Structured discussion stages
-- Resolution tracking
-- Preparation paths
-- Reusable solved-case playbooks
-- A governance process for improving the platform itself
-
-The value is not that people can talk about problems. The value is that people can safely coordinate around real problems without the internet turning those problems into social conflict.
-
-## Marketing material pitch
-
-See how powerful your country's constitution is.
-
-Appendix:
-
-Promotional resource- Dutch are good at solving problems together
-
-https://www.instagram.com/reel/DYfZCYnptIX/?igsh=ZXB1YWczYjJwa3U1
-
-Autonomous Build Specification
+The value is not that people can talk about problems. The value is that people can safely coordinate around real problems, and then see them fixed.

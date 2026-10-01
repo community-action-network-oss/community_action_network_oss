@@ -44,33 +44,21 @@ Track product outcomes without optimizing for addiction:
 - Responsibility-attribution accuracy and successful appeals
 - Civic-report coverage, uncertainty, and equal-treatment audits
 
-Do not use time spent, session count, posting volume, political conversion, candidate preference, or vote choice as primary success metrics. The platform must not measure success by changing votes toward a candidate or party.
+Do not use time spent, session count, posting volume, political conversion, candidate preference, or vote choice as primary success metrics (anti-engagement rules: `17-ux.md`, "Deliberate, not addictive"). The platform must not measure success by changing votes toward a candidate or party. This list is the **canonical** product-metrics list; `21-open-source-governance.md` links here.
 
 ## 18. Testing and quality gates
 
-Maintain a layered test suite:
+Maintain a layered test suite. This section lists categories only. The detailed AI test requirements live in the operational gates of `14-ai-privacy-gateway.md` and the evaluation sections of `15-ai-inference.md`.
 
-- Unit tests for domain rules and state transitions
-- Property-based tests for permissions and lifecycle invariants
-- Integration tests for database, jobs, storage, and AI adapters
-- Contract tests for APIs and policy schemas
-- End-to-end tests for each critical user journey
+- Unit tests for domain rules and state transitions; property-based tests for permissions and lifecycle invariants
+- Integration tests for database, jobs, storage and adapters; contract tests for the API and policy schemas
+- End-to-end tests for each critical user journey (slice 1: the script in `01-slice-1-brief.md`)
 - Moderation evaluation sets, including multilingual and adversarial cases
-- Accessibility checks
-- Security scanning, dependency review, and authorization tests
-- Migration, backup, restore, export, and deletion tests
-- Load and resilience tests before broad launch
-- Provenance, contradiction, correction, and tamper-evident timeline tests
-- Responsibility-attribution and term-boundary tests
-- Public-asset permission and unsafe-community-action tests
-- Mass-participation, duplicate-report, brigading, and coordinated-evidence tests
-- Political-neutrality, equal-treatment, candidate-correction, ranking-transparency, and voter-brief non-endorsement tests
-- Public-facing AI PII detection, redaction, minimization, tokenization, output-leakage, and deletion tests
-- Retrieval authorization, prompt-injection, tool-exfiltration, cross-tenant isolation, model memorization, and provider-fallback tests
-- Synthetic multilingual PII fixtures covering names, addresses, identifiers, biometrics, documents, metadata, rare narratives, mixed-direction text, and indirect re-identification
-- Stage-level context-budget, mandatory-rule coverage, chunk-boundary, cross-chunk dependency, aggregation, replay, and truncation-failure tests
-- Prompt-prefix, compiled-policy, retrieval, and result-cache correctness, invalidation, isolation, deletion, side-channel, and stale-policy tests
-- Multi-model routing, cheapest-qualified selection, privacy-constrained fallback, disagreement escalation, eval-threshold, drift, rollback, and cost-runaway tests
+- Accessibility checks, security scanning, dependency review and authorization tests (horizontal and vertical privilege escalation)
+- Migration, backup, restore, export and deletion tests; load and resilience tests before broad launch
+- Systemic-accountability suites, once those features exist: provenance, contradiction, correction and tamper-evident timeline; responsibility attribution and term boundaries; public-asset permission and unsafe-action; mass participation, duplicate-report and brigading
+- Election-layer suites, once enabled: political neutrality, equal treatment, candidate correction, ranking transparency, voter-brief non-endorsement
+- AI suites, once any AI feature exists: PII detection and redaction, retrieval authorization, prompt injection, cross-tenant isolation, context budgets, caches, routing and cost (all defined in the AI files)
 
 A feature is not done until acceptance criteria, tests, documentation, observability, privacy impact, failure behavior, and rollback are addressed.
 

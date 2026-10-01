@@ -1,5 +1,7 @@
 ## 13. Data model baseline
 
+The **slice-1 entity set** (15 entities) is in `01-slice-1-brief.md`, section 10, and its ERD is in `docs/design/`. The list below is the long-term list to evaluate as later phases arrive. It is a menu, not a commitment: add an entity only when a phase needs it.
+
 Produce an entity-relationship model before implementation. At minimum evaluate these entities:
 
 - User, profile, consent, authentication factor, role, scoped permission

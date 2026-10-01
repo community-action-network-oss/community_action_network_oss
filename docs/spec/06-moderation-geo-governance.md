@@ -1,6 +1,6 @@
 ## 8. Moderation and safety system
 
-Use defense in depth. AI is an assistive first line, not the final authority for high-impact decisions.
+Use defense in depth. **Slice 1 uses deterministic checks plus human review of everything published; there is no live AI (D-13).** Later, AI becomes an assistive first line, never the final authority for high-impact decisions, and only after the gates in `14-ai-privacy-gateway.md` pass. The sections below describe the long-term pipeline; in slice 1 steps 1, 2 and 4 are deterministic code, step 5 uses a fictional-jurisdiction rule set, and steps 6 to 9 are done by a human moderator.
 
 ### Moderation pipeline
 
@@ -18,6 +18,7 @@ Use defense in depth. AI is an assistive first line, not the final authority for
 
 - Keep policy rules versioned and testable.
 - Store the policy and model versions used for each decision.
+- Every decision carries explanation fields (`rule_ids`, field or span reference, revision hint, `appealable_until`). They are defined in `01-slice-1-brief.md`, section 5.
 - Separate public explanations from sensitive internal evidence.
 - Give users actionable revision guidance when safe.
 - Require human review for defined high-risk categories and low-confidence consequential decisions.
@@ -55,17 +56,21 @@ The system must distinguish:
 - Legal jurisdiction
 - Service availability region
 
-Do not infer legal jurisdiction solely from GPS coordinates. Handle overlapping municipal, regional, national, and supranational rules. Record the source, effective dates, authority, reviewer, and version of every legal policy pack. The founder must approve the launch jurisdiction and location-verification model.
+Do not infer legal jurisdiction solely from GPS coordinates. Handle overlapping municipal, regional, national, and supranational rules. Record the source, effective dates, authority, reviewer, and version of every legal policy pack. The launch jurisdiction and the location-verification model are open questions (`docs/open-questions/OQ-launch-jurisdiction-language.md`, `OQ-location-verification.md`). Slice 1 uses one fictional jurisdiction and a self-declared coarse area, for display only.
 
-## 11. Preparation paths and solved-case playbooks
+## 11. Preparation paths and solved-problem playbooks
+
+Deferred: not in slice 1.
 
 After the core resolution workflow is stable, support reusable guidance for prevention and preparation.
 
-A playbook should include trigger conditions, scope, prerequisites, steps, resources, risks, escalation paths, version, owner, evidence, and feedback. Publishing a solved case as a playbook requires redaction, consent checks, and removal of unnecessary personal or location data.
+A playbook should include trigger conditions, scope, prerequisites, steps, resources, risks, escalation paths, version, owner, evidence, and feedback. Publishing a solved problem as a playbook requires redaction, consent checks, and removal of unnecessary personal or location data.
 
 People who followed a preparation path may be notified when it changes, subject to consent and notification preferences.
 
 ## 12. Platform governance
+
+Deferred: not in slice 1. Platform concerns reach people through appeals and the open-questions register until this exists.
 
 Platform concerns use a structured workflow similar to public problems, but with stricter security and disclosure controls. Examples include biased moderation, incomplete legal grounding, reviewer capture, unsafe masking, or misuse of expert status.
 
