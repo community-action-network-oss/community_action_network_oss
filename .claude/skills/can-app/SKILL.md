@@ -36,3 +36,4 @@ Expo SDK 57, expo-router ~57 (`web.output: single`, scheme `can`), RN 0.86, Reac
 - `npx gluestack-ui@5 init` fails on a divergent cache clone in ~/.gluestack; workaround is a throwaway HOME. It also pulls reanimated, worklets and react-aria.
 - react-intl and @formatjs are ESM: jest.config.js widens transformIgnorePatterns for them.
 - Web build is `output: single` (SPA): no per-route HTML, no SSR.
+- `expo start` rewrites `tsconfig.json` (expands arrays, drops the `.expo/types` and `expo-env.d.ts` includes). The committed file is Expo's own output so the tree stays clean, and `tsconfig.json` is in `.prettierignore` because Expo's formatting conflicts with prettier. Edit it by hand only, then run `expo start` once and commit what Expo writes. tsc passes without those includes (no typed routes).
