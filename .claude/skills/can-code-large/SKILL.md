@@ -303,6 +303,11 @@ from it. Corpus format: `plans/FORMAT.md`; tool: `node plans/tools/corpus.mjs li
   `SendMessage` only for fix-ups within the same unit. This overrides resume-don't-respawn.
 - Only the server lane touches compose/DB. App tests mock the API.
 - Live Playwright e2e once at close-out, by you. Dev servers in background, killed after.
+- **Wall-clock cap per unit = max(2 × `est_hours`, 1h)**, measured from spawn with `date`. Schedule a
+  check at the cap (ScheduleWakeup or a background `sleep` timer). On expiry: `TaskStop` the agent;
+  commit partial work by path to `wip/<date>-<unit>` in that repo; switch back to the night branch;
+  `corpus.mjs set <unit> status=blocked blocked_reason=timeout`; kill dev servers the unit started
+  (`lsof -ti :4000 :8081 :3000`); list it in the morning report.
 - Only you write unit status, via `corpus.mjs set`. Agents return SHAs.
 - Crash recovery: resolve a `doing` unit by grepping its repo's git log for the unit id.
 
@@ -312,6 +317,10 @@ from it. Corpus format: `plans/FORMAT.md`; tool: `node plans/tools/corpus.mjs li
 - Two blocked in a row halt the lane.
 - Reversible block: apply the unit's `defaults`, log to DECISIONS.md and `docs/open-questions/`.
 - Irreversible, safety, legal or privacy: `blocked`.
+
+**Traps**
+- `npx expo start` rewrites `can_app/tsconfig.json`: keep it stable and re-check `git status` after any expo start.
+- Git blocks file-transport submodule clones (sibling bare remotes) unless `-c protocol.file.allow=always`.
 
 **Time:** no new unit after T-75min. Log `actual_hours`.
 
