@@ -24,7 +24,7 @@ Finish the public gallery of CAN in can_gallery (a read-only window into the pro
 
 ## Units
 
-Total estimate: 20 hours across 16 units. Gated units are never selected by `corpus.mjs next`.
+Total estimate: 28.5 hours across 22 units. Gated units are never selected by `corpus.mjs next`.
 
 | Unit | Title | Repo | Hours | Needs units | Founder gate |
 |---|---|---|---|---|---|
@@ -44,6 +44,14 @@ Total estimate: 20 hours across 16 units. Gated units are never selected by `cor
 | 06-u14 | Deploy the gallery to the chosen static host | can_gallery | 1 | 1, 8, 9, 12, 13 | yes |
 | 06-u15 | Adopt gluestack-ui for gallery surfaces: install, pin and tokens theme | can_gallery | 1.5 | none | no |
 | 06-u16 | Adopt gluestack-ui for gallery surfaces: migrate layout and components, drop component CSS | can_gallery | 1.5 | 15 | no |
+| 06-u17 | Contributor pitch for every profession: engineers, designers and technical people first, lawyers, activists and policy experts needed now | can_gallery | 1.5 | 4, 5 | no |
+| 06-u18 | Explainer page: AI-executed community policy and structured content | can_gallery | 1.5 | 17 | no |
+| 06-u19 | Replace the old human-only moderation copy and re-sync manifesto-derived copy | can_gallery | 1.5 | 18 | no |
+| 06-u20 | Explainer page: the legal layer stack, lawful everywhere | can_gallery | 1.5 | 18, 19 | no |
+| 06-u21 | Explainer page: when the rules improve, past cases are re-examined | can_gallery | 1.0 | 20 | no |
+| 06-u22 | Explainer page: persona simulation proof and the four seed problems (synthetic evidence) | can_gallery | 1.5 | 21 | no |
+D-60 and D-61 additions (06-u17 to 06-u22): a pitch for every profession (engineers, designers and technical people most urgent today; lawyers, activists, policy and rights experts needed now to draft rules and policy packs in can_policy), and explainer pages for AI-executed community policy, the legal layer stack, retroactive re-resolution and the persona simulation proof with seed problems labelled "Seed problem, synthetic evidence". 06-u19 removes the old "people make and answer for every decision" copy. 06-u08 (accessibility audit) now waits for 06-u22 so the new routes are audited.
+
 ## Conventions
 
 - Run every unit with cwd can_gallery. The standing verify is `npm run verify`; units add their own `check:*` npm scripts and extend `verify` to call them.

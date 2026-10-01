@@ -23,6 +23,7 @@ actual_hours: null
 Create the role-page template for the founding stage (Gate X lists the full template; founding stage uses the first rung of the open-participation ladder) and fill four roles: engineers and maintainers, designers, accessibility reviewers, security and privacy specialists.
 
 ## Steps
+0. D-60 consistency: engineers, designers and other technical contributors are the most urgent need today because the platform is being built. Add `urgency: "most-urgent-now"` to the Role type and render the sentence "Most urgent today: the platform is being built." on these role pages (06-u17 builds the cross-profession pitch on top).
 
 1. Define a typed Role in src/content/roles/types.ts with the Gate X fields: what you can do now, prerequisites, time commitment options, privacy and conflict rules, prohibited activity, available tasks, review and escalation, how contribution affects decisions. Add `stage` ("founding") and a fixed statement: a role page does not grant authority merely by allowing self-selection.
 2. Build /contribute/roles (index) and /contribute/roles/[role] with generateStaticParams. Same structure on every page so a screen reader user always finds fields in the same order. Use src/lib/paths.ts for links.

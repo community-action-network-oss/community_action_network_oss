@@ -23,6 +23,7 @@ actual_hours: null
 Add the remaining four founding roles using the template from 06-u04: legal and policy experts, translators and localizers, researchers, and documentation contributors.
 
 ## Steps
+0. D-60 consistency: the legal and policy role page is retitled "Legal, policy, rights and activism" (slug stays `legal-policy`) and says these people are needed now, not later: they draft the platform rules and policy packs in can_policy and review legal corpora. Add `urgency: "needed-now"`. List concrete tasks: legal-corpus review (plan units 10-u51, 10-u52), rule drafting (open questions OQ-policy-pr-rights, OQ-legal-layer-conflicts, OQ-reresolution-feasibility), the no-git path (08-u15). Keep the no-individual-advice statement and the independence note. Do not say the role reviews fictional material only.
 
 1. Add four Role entries. Legal and policy: reviews fictional or public material and open questions only, gives no legal advice to individuals, and a policy pack needs a qualified reviewer (OQ-legal-policy-reviewers). Translators: fictional examples and interface strings only, verify technical meaning, language order is an open question (OQ-unsupported-language). Researchers: user research on fictional prototypes, public sources, consent and no recruiting of real affected people yet. Documentation: spec edits, READMEs, plain-language rewrites.
 2. Each role links to the open questions that fit it by "Who can help" in docs/open-questions, and to catalog tasks by tag.
