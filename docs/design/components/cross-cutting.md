@@ -42,7 +42,13 @@ Hosting is undecided, so every service must run anywhere. All plan 07/08 (pendin
 | `EMAIL_ENC_KEY`, `EMAIL_INDEX_KEY` | server | email encryption and blind index |
 | `MAIL_TRANSPORT`, `SMTP_URL`, `MAIL_FROM` | server | notification port |
 | `POLICY_PACK_SOURCE`, `POLICY_PACK_VERSION`, `POLICY_PACK_HASH` | server | which pack to load, hash check |
-| `AI_PROVIDER` (`fake` default, `anthropic`), `ANTHROPIC_API_KEY`, `AI_SPEND_CAP_DAILY` | server | live AI stays off unless all are set (founder-gated) |
+| `AI_PROVIDER` (`fake` default, `openrouter`, optional `anthropic`) | server | selects the model adapter; tests and night runs use `fake` or `replay` |
+| `OPEN_ROUTER_KEY` | server | OpenRouter API key (secret). Never committed or logged. The key has a $50 hard limit set at OpenRouter |
+| `AI_SPEND_CAP_MONTHLY_USD` (default `10`) | server | app-level monthly spend cap; per-run budgets are CLI or config arguments under it |
+| `AI_DATA_COLLECTION` (`deny` default, `allow` only on synthetic-data runs) | server | OpenRouter provider routing `data_collection`; `allow` is refused for any payload not marked synthetic |
+| `ANTHROPIC_API_KEY` | server | only if the optional Anthropic adapter is used |
+
+Live AI stays off unless `AI_PROVIDER=openrouter`, the key and a positive cap are present. In development, `config.ts` falls back to loading the superproject `../.env` (gitignored) for variables not already set; production reads the process environment only. The key is read once into the config object, is never logged (the logger's redact list covers `key`, `secret`, `token`) and never appears in an error message.
 | `COOKIE_SECURE`, `ALLOWED_ORIGINS` | server | web session and CSRF |
 | `EXPO_PUBLIC_API_BASE_URL` | app | API location at build |
 | `NEXT_PUBLIC_APP_URL` | gallery | link target at build |

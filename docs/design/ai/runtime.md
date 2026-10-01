@@ -91,13 +91,13 @@ Privacy, region and retention are hard filters, not cost preferences: failover n
 | Cost per event | cap in micro-USD per DP and per event; per-jurisdiction and global daily spend caps |
 | Retries | 1 schema repair, 1 provider retry; no retry loops |
 
-Breaching a budget gives `hold` or deferred processing and an alert, never a weaker check (spec 15 cost governance). Live providers also require a founder-set spend cap; with no cap configured, live calls refuse to start.
+Breaching a budget gives `hold` or deferred processing and an alert, never a weaker check (spec 15 cost governance). Live providers also require a spend cap; with no cap configured, live calls refuse to start. Defaults (D-65): `AI_SPEND_CAP_MONTHLY_USD=10` for the app, plus a per-run budget on every record, persona or eval run. Both sit under the $50 hard limit set on the OpenRouter key itself.
 
 ## Provider adapter interface
 
 ```ts
 interface ModelProvider {
-  id: string;                       // register entry, e.g. "fake-1", "anthropic:<model>"
+  id: string;                       // register entry, e.g. "fake-1", "openrouter:<model-slug>"
   complete(req: {
     stage: string; promptHash: string;
     system: string;                 // pack text, schema; public
@@ -109,7 +109,9 @@ interface ModelProvider {
 
 - **FakeModel** (slice 1 default): deterministic. Output is a function of `(stage, rule ids, a keyword table in the fixtures)`, so every test is repeatable. It can be scripted per fixture to return low confidence, schema errors, timeouts and injection-style outputs.
 - **Recorded responses**: a record mode stores `(request hash -> response)` fixtures when a founder-approved live run happens; replay mode serves them, so night runs and CI make zero paid calls. A missing recording fails the test instead of calling out.
-- **AnthropicProvider**: the first live adapter, founder-gated (API key and spend cap). It is only constructible when both exist in server config and the model is in the register with a current eval. It ships dark behind the existing flag semantics: absent the gate, the registry only offers `FakeModel`.
+- **OpenRouterProvider** (D-65, the first live adapter): calls the official OpenAI-compatible endpoint `https://openrouter.ai/api/v1` with the key from `OPEN_ROUTER_KEY`. Each request carries OpenRouter provider routing, including `data_collection` (`deny` for real member content, `allow` only on synthetic-data runs) and `allow_fallbacks: false`, so a request never silently lands on a weaker endpoint. It is only constructible when the key and a spend cap exist and the model is in the register with a current eval. No live call is founder-gated any more, within the caps; sending real member data still is (see `safety-and-privacy.md`).
+- **AnthropicProvider**: optional. A second adapter behind the same `ModelProvider` interface, written only if the founder wants a direct Anthropic path. Nothing depends on it.
+- **Selecting a provider**: `AI_PROVIDER=fake` (default) | `replay` | `openrouter` | `anthropic`. Tests, CI and night runs bind `fake` or `replay`.
 - The NoopAiGateway of ADR 0006 is replaced by this port; there is no code path where publication works without a run.
 
 ## Prompt-injection defenses
@@ -133,3 +135,14 @@ Metrics (no content labels, jurisdiction and DP as dimensions):
 - canary trips, schema failure rate, budget breaches, queue depth and age
 
 Logs carry run ids, outcome codes and counts only (spec 14 logging rules). Alerts: hold rate spike, overturn rate spike, cost per accepted result regression, injection canary trip.
+
+## Model register and selection by eval
+
+The register is a checked-in JSON file (`ai-gateway/register/models.json`, schema in unit 09-u08) written by the selection script (unit 09-u68), never edited by hand to loosen a score. Each entry holds the OpenRouter model id, `priceInPerMtok` and `priceOutPerMtok` (USD, read from the OpenRouter models list on the selection date), `free` (id ends in `:free` or both prices are 0), context and structured-output support, `dataCollection` terms, and per decision point `{dpId, evalScore, evalSetVersion, evalDate, passed}`, plus `evalExpiry`.
+
+1. **Candidates.** The script queries the OpenRouter models list, drops models without structured output, and orders the rest: free first, then ascending price.
+2. **Eval.** Each DP's eval set (`evaluation.md`) runs on FakeModel-recorded fixtures for the machinery, then against each candidate with a small live budget. Scores are written to the register with the date.
+3. **Pick.** Per DP, the cheapest candidate that passes that DP's thresholds is the primary. The next-cheapest passing candidates form the fallback chain. A model that passes one DP is not eligible for another by that fact.
+4. **Escalation** to a stronger (costlier) registered model happens only on low confidence, rule disagreement, schema failure or an eval failure, as in the routing section above.
+5. **Rate limits and outages (fallback chain).** A 429, 5xx or timeout backs off (bounded, jittered, one retry per model), then falls through to the next registered model for that DP. Fallback never crosses to an endpoint with weaker data terms than the request needs. If every model in the chain fails, the item is held (`FAIL-CLOSED-AI-1`).
+6. **Re-selection** cadence is in `evaluation.md`.

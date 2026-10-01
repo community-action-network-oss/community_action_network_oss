@@ -4,10 +4,10 @@
 Prove the pipeline before real people join (D-55). A harness runs AI persona agents (submitters, contributors, proposers, appellants, adversarial actors) against the real server through its public API. Failures red-team the policy pack and feed the amendment loop. Graduation criteria decide when public participation opens.
 
 ## Trigger
-CI and night runs (deterministic: FakeModel, scripted personas), recorded replay, or a founder-gated live run (API key, spend cap, DPIA gate). Detail: [../ai/simulation.md](../ai/simulation.md).
+CI and night runs (deterministic: FakeModel, scripted personas), recorded replay, or a live run (OpenRouter, free or cheap models, synthetic data only, budget-capped; D-65). Detail: [../ai/simulation.md](../ai/simulation.md).
 
 ## Status
-plan 11 (pending). Live persona runs need an API key and spend cap: founder-gated.
+plan 11 (pending). Live persona runs need the key and an explicit run budget under the spend cap (D-65); the graduation review stays founder-gated.
 
 ## Sequence
 ```mermaid

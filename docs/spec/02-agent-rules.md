@@ -33,7 +33,7 @@ How project decisions of each size are made: `21-open-source-governance.md`, "De
 - Never claim completion without test or inspection evidence.
 - Never silently weaken safety, moderation, privacy, accessibility or legal controls to make a feature pass.
 - Never expose secrets, personal data, precise private locations, moderation evidence or internal risk signals.
-- Make no live model call. Tests and night runs use `FakeModel` and recorded responses. The live provider needs the founder gate (API key, spend cap, `14-ai-privacy-gateway.md`).
+- Make no live model call. Tests and night runs use `FakeModel` and recorded responses. Live calls are allowed only through the OpenRouter provider within the spend caps and with synthetic data (D-65, `14-ai-privacy-gateway.md`); never send real member data.
 - Do not deploy to production, spend money, register services, contact users, accept legal terms or make a public commitment without explicit approval.
 - Prefer boring, maintainable technology over novelty unless evidence supports the novelty.
 - Keep changes small, reviewable, reversible and covered by tests.

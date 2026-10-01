@@ -22,7 +22,7 @@ flowchart TD
   task --> modr
   modr --> pol[policy]
   modr --> gw[ai-gateway]
-  gw --> adapters[provider adapters: FakeModel, Anthropic]
+  gw --> adapters[provider adapters: FakeModel, OpenRouter, optional Anthropic]
   gw --> budgets[router and budgets]
   modr --> aud[audit]
   acc --> aud
@@ -39,7 +39,7 @@ flowchart TD
 | `problems` | problem, problem_event, transition engine, jurisdiction, draft_fingerprint, deterministic submission checks | accounts, moderation, audit | 02-u09 to 02-u12, 03-u01 to 03-u08 | planned |
 | `moderation` | **AI moderation runtime orchestrator**: DP selector, run recorder, decision applier, outcome mapper, hold-and-retry, appeal re-run | problems, policy, ai-gateway, audit | plan 09 (pending); today 03-u09, 03-u10 (human queue, superseded) | plan 09 (pending) |
 | `policy` | pack loader, version registry (semver + hash), active and rollout state, cache keyed by version | platform | plan 09 (pending) | plan 09 (pending) |
-| `ai-gateway` | privacy gateway (redact, pseudonymize, zones), provider adapters (FakeModel, Anthropic), router (small model first), budgets and spend caps, model register | policy, platform | plan 09 (pending) | plan 09 (pending) |
+| `ai-gateway` | privacy gateway (redact, pseudonymize, zones), provider adapters (FakeModel, OpenRouter, optional Anthropic), router (small model first), budgets and spend caps, model register | policy, platform | plan 09 (pending) | plan 09 (pending) |
 | `contributions` | contribution, evidence_ref (URL only), allowed-per-state matrix | problems, moderation | 04-u01 to 04-u03 | planned |
 | `proposals` | proposal, comparison data | problems, contributions | 04-u04 | planned |
 | `decisions` | decision_record, legal-gate record | proposals, problems | 04-u05 | planned |
@@ -72,7 +72,7 @@ flowchart LR
   gwp --> priv[privacy gateway]
   priv --> rt[router + budget guard]
   rt --> fake[FakeModel]
-  rt --> anth[Anthropic adapter, founder-gated]
+  rt --> anth[OpenRouter adapter, optional Anthropic adapter]
   run --> agg[deterministic aggregation]
   agg --> app2[decision applier]
   app2 --> rec[run recorder]
@@ -86,8 +86,8 @@ flowchart LR
 | DP selector | maps event type plus content kind to the DP set in the active pack. Provisional DP ids in [../ai/decision-points.md](../ai/decision-points.md). |
 | Run executor | classify, rule checks, explain, then aggregate deterministically. Agents have no tools; content is quoted data; outputs schema-bound. |
 | Privacy gateway | redaction, pseudonymization, data zones, zero-retention providers; no provider call without it. See [../ai/safety-and-privacy.md](../ai/safety-and-privacy.md). |
-| Router and budgets | small model first, escalate on low confidence, per-day and per-run caps, cost per accepted result metric. |
-| Adapters | `FakeModel` (deterministic, recorded responses; tests and night runs). `Anthropic` adapter needs API key and spend cap: founder-gated, off by default. |
+| Router and budgets | cheapest eval-passing model per DP from the model register, fallback chain on 429 or outage, escalate on low confidence, $10/month app cap and per-run caps, cost per accepted result metric. |
+| Adapters | `FakeModel` (deterministic, recorded responses; tests and night runs). `OpenRouter` adapter (D-65) needs `OPEN_ROUTER_KEY` and a spend cap; not founder-gated within the caps, off unless `AI_PROVIDER=openrouter`. Optional `Anthropic` adapter. In dev, config loads the superproject `../.env` as a fallback when the variable is not already in the environment (never in production), reads only the names it needs and never logs a value. |
 | Decision applier | writes decision and the transition in one transaction through the engine. `hold` on any failure. |
 | Policy loader | loads a pack by version and hash, refuses on mismatch, keeps the previous active version; cache keyed by policy version plus normalized input hash. See [../ai/policy-pack.md](../ai/policy-pack.md). |
 

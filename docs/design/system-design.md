@@ -22,7 +22,7 @@ flowchart LR
   end
   pg[("Postgres 16<br/>host :5433, Drizzle")]
   mail["Mailpit (dev SMTP :1025, UI :8025)<br/>real SMTP is founder-gated"]
-  prov["Model provider via adapter<br/>FakeModel (tests, night runs)<br/>Anthropic (founder-gated)"]
+  prov["Model provider via adapter<br/>FakeModel (tests, night runs)<br/>OpenRouter (D-65, free-first)"]
   cp["can_policy repo (planned)<br/>policy packs, content schemas,<br/>seed packs, ratified by PR"]
   sim["Simulation harness<br/>can_server/test/simulation<br/>persona agents, public API only"]
   humans["Human lanes<br/>legislators, auditors, labelers,<br/>emergency and legal lane"]
@@ -53,7 +53,7 @@ Ports: API :4000, Expo web :8081, gallery :3000, Postgres :5433 (D-4).
 Rules that follow from the diagram:
 - The gallery never calls the API. It is static HTML and links to the repository, docs and open questions.
 - The app talks only to `/v1`. Its client is generated from `can_server/openapi/openapi.json` (ADR 0002).
-- Moderation is AI-executed under a ratified policy pack (D-51, D-53). Every model call goes through the privacy gateway; the provider sits behind an adapter. Tests and night runs bind `FakeModel` with recorded responses; the Anthropic adapter needs an API key and spend cap and is founder-gated. Publication fails closed (`hold`). ADR 0006 is superseded. Policy lives in `can_policy` (D-52), see [components/can-policy.md](components/can-policy.md).
+- Moderation is AI-executed under a ratified policy pack (D-51, D-53). Every model call goes through the privacy gateway; the provider sits behind an adapter. Tests and night runs bind `FakeModel` with recorded responses; the OpenRouter adapter (D-65) needs `OPEN_ROUTER_KEY` and a spend cap, with free-first, eval-chosen models, and is not founder-gated within the caps (real member data still is). Publication fails closed (`hold`). ADR 0006 is superseded. Policy lives in `can_policy` (D-52), see [components/can-policy.md](components/can-policy.md).
 - No object storage, Redis or queue in slice 1. Jobs run as Nest scheduled tasks calling job port methods, backed by Postgres rows (`SELECT ... FOR UPDATE SKIP LOCKED`).
 
 ## 2. can_server module boundaries
@@ -66,7 +66,7 @@ Layout inside `can_server/src`: each module has `domain/` (pure TS, no Nest or D
 | `problems` | problem, problem_event, lifecycle transition engine, jurisdiction, draft_fingerprint, deterministic submission checks | accounts, moderation, audit | The transition engine executes the brief's table as data. Invalid transitions fail atomically. |
 | `moderation` | AI moderation runtime: DP selector, run recorder, decision applier; moderation_run, moderation_decision, appeal, label_task | problems, policy, ai-gateway, audit | Decisions carry `rule_ids[]`, span ref, `revision_hint`, `appealable_until`, `policy_version`, `prompt_hash`, `model_id`. Plan 09 (pending). |
 | `policy` | pack loader, version registry, cache | platform | Loads `can_policy` packs by version and hash. Plan 09 (pending). |
-| `ai-gateway` | privacy gateway, provider adapters, router, budgets | policy, platform | FakeModel and Anthropic adapters. Plan 09 (pending). |
+| `ai-gateway` | privacy gateway, provider adapters, router, budgets | policy, platform | FakeModel and OpenRouter adapters (Anthropic optional). Plan 09 (pending). |
 | `contributions` | contribution, evidence_ref (URL only) | problems, moderation | Typed contributions; the type list comes from the brief. |
 | `proposals` | proposal | problems, contributions | Comparison data only; no voting rule (decision rule is a recorded text, not a score). |
 | `decisions` | decision_record | proposals, problems | States who decided, under which authority, why. |
@@ -377,7 +377,7 @@ Defined as TypeScript interfaces in `platform/ports`, with one in-process implem
 | `SigningPort` (sign event bytes, verify) | `NoSigner` returns null | Node key, user key |
 | `NotificationPort` (send email) | SMTP via Mailpit | Real provider, push |
 | `JobPort` (schedule, run) | Nest schedule plus Postgres rows | Queue |
-| `AiGatewayPort` (privacy gateway, model call) | `FakeModel` in tests; Anthropic adapter founder-gated | Other providers, self-hosted models |
+| `AiGatewayPort` (privacy gateway, model call) | `FakeModel` in tests; OpenRouter adapter (D-65) | Other providers, self-hosted models |
 
 Structural escapes already in the schema: UUIDv7, `origin_node_id`, `protocol_version`, append-only events, nullable `prev_hash`, no hostname stored in ids or rows.
 

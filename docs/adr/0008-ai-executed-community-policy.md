@@ -1,6 +1,6 @@
 # ADR 0008: AI-executed, community-legislated policy
 
-- Status: Accepted, 2026-10-01 (D-51, D-53). Supersedes [0006](0006-no-live-ai-in-slice-1.md).
+- Status: Accepted, 2026-10-01 (D-51, D-53). Supersedes [0006](0006-no-live-ai-in-slice-1.md). The Anthropic-first provider line is superseded by [0014](0014-openrouter-free-first-models.md).
 
 ## Context
 Per-item human review does not scale, is slow and varies by reviewer. ADR 0006 chose no live AI and a human for everything published, which only postponed the question. The founder model separates community consensus from the individual instance: the community legislates policy, AI applies it.

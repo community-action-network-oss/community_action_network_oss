@@ -51,7 +51,7 @@ Participant names (use exactly these, one alias per box):
 | `Mod` | moderation module: DP selector, run recorder, decision applier |
 | `Pol` | policy module: pack loader, version registry, cache |
 | `GW` | ai-gateway: privacy gateway, router, budgets |
-| `LLM` | provider adapter (FakeModel in tests, Anthropic when founder-gated) |
+| `LLM` | provider adapter (FakeModel in tests, OpenRouter for live runs (D-65)) |
 | `DB` | Postgres |
 | `Jobs` | job runner |
 | `Mail` | notification port |

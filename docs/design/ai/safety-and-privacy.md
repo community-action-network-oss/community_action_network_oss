@@ -30,7 +30,10 @@ No moderation code calls a provider directly. Only the gateway can construct a m
 ## Zero retention and providers
 
 - A provider enters the register only with the spec 14 approvals: DPA, no training on project data, zero or strictly bounded retention with deletion verification, approved region, tenant isolation, subprocessor list.
-- Slice 1 uses the FakeModel and recordings, so no real data reaches any provider. The register has no live entry until the founder gate (key, spend cap, approvals) is satisfied.
+- Tests, CI and night runs use the FakeModel and recordings, so no real data reaches any provider.
+- **Free endpoints are synthetic-only (D-65).** Free (`:free`) OpenRouter endpoints may log or train on their inputs. They are allowed only for synthetic data: simulation, seeds, evals and record runs. Requests on those paths set `data_collection: "allow"` explicitly and the gateway refuses to send any payload not marked synthetic to them.
+- **Real member content** goes only to endpoints with data collection denied: OpenRouter provider routing `data_collection: "deny"`, or zero-data-retention endpoints. The router filters the register by the request's data class before it ranks by price, and never fails over to a weaker endpoint. It always passes through the privacy gateway first.
+- Any path that sends real member data stays founder-gated (operational gates below, graduation review 11-u40).
 - Order of preference for identifying content: deterministic local, then project-operated inference in an approved region, then a contracted hosted provider.
 - Cache and recordings store no raw text (see `runtime.md`); recorded response fixtures are made from synthetic inputs only.
 
@@ -80,7 +83,7 @@ Publication fails closed. Safety routing fails open to static resources, because
 
 ## Spend caps
 
-Per DP, per event, per jurisdiction and global daily caps, in micro-USD, set in server config and refused to be missing for live providers. Cost per accepted result is the main efficiency metric. Reaching a cap sheds work in the order sampling, re-moderation, low-risk updates, and holds blocking work; it never weakens a check. Alerts fire at 50, 80 and 100 percent. Route changes that raise cost need a ratified routing change (`amendment-loop.md`).
+Per DP, per event, per jurisdiction and global daily caps, in micro-USD, set in server config and refused to be missing for live providers. The app-level default is `AI_SPEND_CAP_MONTHLY_USD=10` (D-65), and every live record, persona or eval run also takes its own budget; both sit under the $50 hard limit on the provider key. Cost per accepted result is the main efficiency metric. Reaching a cap sheds work in the order sampling, re-moderation, low-risk updates, and holds blocking work; it never weakens a check. Alerts fire at 50, 80 and 100 percent. Route changes that raise cost need a ratified routing change (`amendment-loop.md`).
 
 ## Operational gates before live data
 

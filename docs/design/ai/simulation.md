@@ -87,7 +87,7 @@ Each turn: the orchestrator picks a persona whose state allows an action (from t
 | Mode | Model | Use | Gate |
 |---|---|---|---|
 | **Deterministic** | `FakeModel` plus recorded responses; personas are scripts with seeded randomness (fixed seed, fixed turn order) | Every CI run and night run; proves machinery and regressions, no paid calls | None |
-| **Live** | Persona agents and DP models are real providers via the gateway | Quality evidence for graduation; red-teaming with creative attackers | Founder-gated: API key, spend cap, DPIA gate (spec 14) |
+| **Live** | Persona agents and DP models are real providers via the gateway | Quality evidence for graduation; red-teaming with creative attackers | API key and spend cap, free or cheap models, synthetic data only (D-65); the graduation review stays founder-gated |
 | **Recorded replay** | Responses from a past live run | Cheap regression of a live finding | None |
 
 Deterministic mode reports state "met on synthetic fixtures with FakeModel" and can never satisfy the model-quality graduation criteria (section 8). Live persona runs use a separate persona model per run id from the DP model where possible, so attackers are not tuned to the judge.

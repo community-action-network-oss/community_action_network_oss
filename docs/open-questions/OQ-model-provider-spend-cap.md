@@ -1,7 +1,7 @@
 # OQ-model-provider-spend-cap: Which model provider and spend cap for live calls?
 
 - **ID:** OQ-model-provider-spend-cap
-- **Status:** open
+- **Status:** decided (D-65, 2026-10-01; ADR 0014)
 
 ## Question
 
@@ -11,9 +11,13 @@ Which provider, models and monthly spend cap switch live model calls on, and und
 
 Live calls cost money and send content to a third party. The cap and the terms decide who can run the platform and what leaves the trust boundary.
 
+## Decision (D-65)
+
+OpenRouter is the provider. Free (`:free`) models first, then cheap, chosen per decision point as the cheapest model passing that DP's eval thresholds. App spend cap: **$10 per month** by default plus per-run budgets, under the key's $50 hard limit. Free endpoints take synthetic data only; real member content goes only to endpoints with data collection denied or zero data retention, behind the privacy gateway. Open remainder: the DPA and hosted-provider approvals for real member data (spec 14), which stay founder-gated, and the cost-per-accepted-result target.
+
 ## Current default (what we built meanwhile)
 
-Live calls are off. Tests and night runs use `FakeModel` with recorded responses. The first provider adapter is Claude via the Anthropic API, founder-gated by an API key and a spend cap (D-53). Hitting the cap holds items (`FAIL-CLOSED-AI-1`).
+Live calls are off by default (`AI_PROVIDER=fake`). Tests and night runs use `FakeModel` with recorded responses. The first provider adapter is OpenRouter, per the decision above (the earlier Anthropic-first plan of D-53 is superseded). Hitting the cap holds items (`FAIL-CLOSED-AI-1`).
 
 ## Who can help
 

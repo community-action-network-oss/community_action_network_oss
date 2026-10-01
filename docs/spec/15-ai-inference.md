@@ -152,3 +152,6 @@ Track cost by stage, problem, jurisdiction, language, model, retry, cache hit, a
 
 Set budgets and alerts for unexpected context growth, cache misses, retry loops, tool recursion, provider price changes, traffic abuse, and stage-level regressions. Any automatic cost cutoff must fail safely to a private draft, deferred processing, deterministic fallback, or human queue rather than silently weakening policy checks.
 
+#### Provider and model policy (D-65)
+
+The provider is OpenRouter through its OpenAI-compatible API. Free (`:free`) models are tried first, then cheap ones. For each decision point the router uses the cheapest registered model that passes that DP's evaluation thresholds, and escalates only on low confidence or an eval failure. The model register records model id, price and per-DP eval score with dates. A 429 or outage backs off and falls through to the next registered model; if all fail the item is held. The default app spend cap is $10 per month, with per-run budgets below it. Free endpoints take synthetic data only; real member content goes only to endpoints with data collection denied. Design: `docs/design/ai/runtime.md`, `docs/design/ai/evaluation.md`.
