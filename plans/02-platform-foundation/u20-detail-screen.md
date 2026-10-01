@@ -28,9 +28,9 @@ Build WF-DETAIL-1 (problem workspace with status panel and timeline) and the WF-
 2. app/problems/[id].tsx: sections in order: title, StatusPanel (label chip, plain explanation, next action, the decided-under or reopened policy-version notice, a transitional-stewardship badge when the API sets transitional, all from the API), problem text (condition, affected, observed versus uncertain shown as two labelled blocks), jurisdiction and coarse area (display only, never "verified"), timeline from /events with "Load more", duplicate_of notice when present.
 3. Tombstone (WF-DETAIL-2): when tombstone is true show date and reason with calm wording and no author text; never a 404 screen. True 404 (id never existed or private to this viewer) shows common not found with a link back to the list.
 4. Reusable StatusPanel and Timeline components in src/problems/ (plans 04 and 05 reuse them for paused, stuck, closed variants; keep the variant prop open but implement only the base).
-5. Do not render tabs yet; plans 04 and 05 add them, and plan 09 adds the re-reviewed notice (09-u50). Any label for something unbuilt must say planned.
+5. Do not render tabs yet; the stage map (WF-STAGEMAP-1) is added by 12-u05, contributions by plan 04, tasks by plan 05, and plan 09 adds the re-reviewed notice (09-u50). Render the sections `finalCriteria` and `sources` (each with its category label) and the review count only when the API response carries them (12-u04). Any label for something unbuilt must say planned.
 6. Handles only; never an email. States: loading, error, offline, tombstone, not found.
-7. Tests: eligible problem renders label from API; tombstone renders without author text; 404 state; offline with cached data; timeline pages; heading outline has exactly one h1.
+7. Tests: an active problem renders its label from API; tombstone renders without author text; 404 state; offline with cached data; timeline pages; heading outline has exactly one h1.
 
 ## Acceptance
 - Acceptance: meets docs/design/ux/ui-unit-template.md (sections 1 to 6; mark items not applicable with a reason in the commit message).
@@ -40,5 +40,5 @@ Build WF-DETAIL-1 (problem workspace with status panel and timeline) and the WF-
 - `npm run verify` is green (tsc, lint, prettier, logical-properties check, jest, web export).
 
 ## Out of scope
-- Contribution, proposal, task tabs (plans 04, 05).
+- The stage map, stage workspace, contribution and task tabs (12-u05, 12-u18, plans 04, 05).
 - Paused, stuck, closed variants (plan 05).

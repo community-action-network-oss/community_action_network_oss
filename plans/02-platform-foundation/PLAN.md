@@ -30,7 +30,7 @@ With compose up and `npm run seed`, a developer can: open Expo web, see the fixt
 | [02-u06](u06-mail-port.md) | Notification port, SMTP adapter and Mailpit test helper | can_server | 1 | 14 | 02-u02 | - |
 | [02-u07](u07-auth-usecases.md) | Auth use cases: sign-up, code, verify, sessions | can_server | 1.5 | 15 | 02-u04, 02-u05, 02-u06, 02-u03 | - |
 | [02-u08](u08-auth-http.md) | Auth HTTP: cookies, CSRF, guards, /v1/me | can_server | 1.5 | 16 | 02-u07 | - |
-| [02-u09](u09-lifecycle-vocabulary.md) | Lifecycle state vocabulary from the brief | can_server | 0.8 | 9 | - | - |
+| [02-u09](u09-lifecycle-vocabulary.md) | Lifecycle v2 problem-state vocabulary from the lifecycle spec | can_server | 0.8 | 9 | - | - |
 | [02-u10](u10-problems-read-model.md) | Problems schema, jurisdictions and list endpoint | can_server | 1.5 | 18 | 02-u08, 02-u09, 02-u04 | - |
 | [02-u11](u11-problem-detail.md) | Problem detail, visibility rules and public timeline | can_server | 1.2 | 19 | 02-u10 | - |
 | [02-u12](u12-seed-fictional.md) | Dev seed: accounts, jurisdictions, invites and a tiny fictional test fixture | can_server | 1.2 | 20 | 02-u11 | - |
