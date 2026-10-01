@@ -253,3 +253,6 @@ Every default, deviation and judgment call made while building CAN. Each one can
 - **D-53 · W3 · Slice 1 builds the full AI pipeline (founder), but this wave changes plans and design only.**
   - Tests and night runs use a deterministic FakeModel with recorded responses.
   - The first live provider is Claude via the Anthropic API. It stays founder-gated until there is an API key and a spend cap.
+- **D-54 · W3 · The repo is the single source of truth for CAN's design (founder).** Notion pages (the CAN hub, V1 Specification, V1 System Design, Open Problem-Solving Platform, Autonomous Build Specification) were written at different times and may conflict. They count as input only.
+  - Anything decided in this repo (DECISIONS.md, `docs/`, `plans/`) supersedes all of them.
+  - Useful Notion ideas are adopted only through a new decision here.
