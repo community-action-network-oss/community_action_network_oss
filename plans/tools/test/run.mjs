@@ -107,3 +107,9 @@ test('graph emits mermaid', () => {
   assert.match(r.stdout, /u_01_u01 --> u_01_u02/);
   assert.match(r.stdout, /s_01 ==> s_02/);
 });
+
+test('next lists a same-lane dependency before its dependent even when the dependent has lower priority number', () => {
+  const d = mutant(sub(U2, 'priority: 2', 'priority: 0'));
+  const j = JSON.parse(run(d, 'next', '--hours', '6', '--json').stdout);
+  assert.deepEqual(j.lanes.can_server.units.map((u) => u.id), ['01-u01', '01-u02']);
+});
