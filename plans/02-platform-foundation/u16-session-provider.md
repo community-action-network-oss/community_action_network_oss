@@ -7,7 +7,7 @@ area: can-app
 model: sonnet
 est_hours: 1.2
 priority: 30
-depends_on: ["02-u08","02-u13","02-u15"]
+depends_on: ["02-u08","02-u13","02-u15","02-u24","02-u25"]
 writes: ["src/session/**","src/navigation/**","app/_layout.tsx","src/i18n/en.json","__tests__/session-*.test.tsx","src/api/schema.d.ts"]
 reads: ["src/**","app/**"]
 spec: ["docs/spec/01-slice-1-brief.md","docs/design/system-design.md#5-auth-flow","docs/design/ux/wireframes/auth.md#WF-SESSION-1","docs/design/ux/copy-deck.md","docs/design/ux/ui-unit-template.md"]

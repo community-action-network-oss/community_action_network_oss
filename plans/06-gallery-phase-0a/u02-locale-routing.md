@@ -7,7 +7,7 @@ area: "can-gallery"
 model: sonnet
 est_hours: 1
 priority: 20
-depends_on: ["06-u01"]
+depends_on: ["06-u01","06-u15","06-u16"]
 writes: ["src/lib/locale.ts","src/lib/paths.ts","src/content/site.ts","src/components/**","src/app/layout.tsx","src/app/**/page.tsx","docs/i18n.md","scripts/check-locale.mjs","package.json"]
 spec: ["docs/spec/18-phases-gates.md","docs/spec/16-security-a11y-ops-testing.md","docs/open-questions/OQ-unsupported-language.md"]
 verify: ["npm run check:locale","npm run verify"]

@@ -30,7 +30,7 @@ Prove slice 1 is done and safe to hand to contributors: adversarial inputs, rate
 | [07-u06](u06-journey-main.md) | Playwright journey: draft to solved | can_app | 1.5 | 120 | 02-u21, 05-u08, 05-u07, 04-u11, 03-u25 | - |
 | [07-u07](u07-journey-branches.md) | Playwright journeys: rejection, appeal and stuck | can_app | 1.5 | 121 | 07-u06 | - |
 | [07-u08](u08-root-e2e-wiring.md) | Root e2e wiring in verify-all | . | 1 | 122 | 07-u06, 07-u07, 02-u01 | - |
-| [07-u09](u09-a11y-pass.md) | Accessibility pass against the UI unit template | can_app | 1.5 | 123 | 07-u07 | - |
+| [07-u09](u09-a11y-pass.md) | Accessibility pass against the UI unit template | can_app | 1.5 | 123 | 07-u07, 02-u24, 02-u25 | - |
 | [07-u10](u10-perf-budget.md) | Web bundle performance budget and native bundle check | can_app | 1 | 124 | 05-u08 | - |
 | [07-u11](u11-device-smoke-test.md) | Native device smoke test run (founder-gated) | can_app | 1 | 220 | 07-u10 | yes |
 

@@ -7,9 +7,9 @@ area: "can-gallery"
 model: sonnet
 est_hours: 1.5
 priority: 90
-depends_on: ["06-u08"]
+depends_on: ["06-u08","06-u15","06-u16"]
 writes: ["docs/performance-budget.md","scripts/check-budget.mjs","scripts/perf.mjs","package.json","src/app/**","src/components/**","public/**"]
-spec: ["docs/spec/16-security-a11y-ops-testing.md","docs/spec/18-phases-gates.md","docs/adr/0003-nextjs-static-gallery-site.md"]
+spec: ["docs/spec/16-security-a11y-ops-testing.md","docs/spec/18-phases-gates.md","docs/adr/0003-nextjs-static-gallery-site.md","docs/adr/0007-gluestack-design-system.md"]
 verify: ["npm run build","npm run check:budget","npm run perf","npm run verify"]
 founder_gate: false
 defaults: "If a budget number fails on the first run, fix the page first; only relax a budget by editing docs/performance-budget.md with a written reason."
@@ -25,7 +25,7 @@ Make fast and non-tracking enforceable. Define a budget, check the built output 
 
 ## Steps
 
-1. Write docs/performance-budget.md with numbers and why: HTML per page at most 30 KB, total JavaScript per page at most 100 KB gzipped, CSS at most 30 KB gzipped, each image at most 100 KB, no web fonts (system fonts), zero third-party origins, LCP at most 2.5 s and CLS at most 0.1 under a slow 4G profile, no console errors.
+1. Write docs/performance-budget.md with numbers and why: HTML per page at most 30 KB, total JavaScript per page at most 130 KB gzipped (raised from 100 KB by 06-u16 to account for gluestack-ui; state that reason in the file), CSS at most 30 KB gzipped, each image at most 100 KB, no web fonts (system fonts), zero third-party origins, LCP at most 2.5 s and CLS at most 0.1 under a slow 4G profile, no console errors.
 2. Write scripts/check-budget.mjs over `out/`: sizes (gzip via node:zlib), every external URL in HTML and CSS must be on a short allow list (documented in the budget file), no script tags with a remote src, `img` has width, height and alt, no cookies or storage writes in JS strings.
 3. Write scripts/perf.mjs: serve out/ with scripts/serve-out.mjs, drive Chromium via Playwright with CDP network and CPU throttling, record LCP, CLS and total bytes via PerformanceObserver per route, fail on budget breach, print a table. This is the Lighthouse-style check; the lighthouse package is optional and not required.
 4. Fix breaches (remove unused CSS and JS, size images). Add check:budget and perf to package.json; add check:budget to verify.

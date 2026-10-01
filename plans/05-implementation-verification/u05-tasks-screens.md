@@ -7,7 +7,7 @@ area: can-app
 model: sonnet
 est_hours: 1.5
 priority: 94
-depends_on: ["05-u01","05-u02","04-u10"]
+depends_on: ["05-u01","05-u02","04-u10","02-u24","02-u25"]
 writes: ["app/problems/**","app/tasks/**","src/tasks/**","src/stage/**","src/i18n/en.json","__tests__/task-*.test.tsx","src/api/schema.d.ts"]
 reads: ["src/**","app/**"]
 spec: ["docs/design/ux/wireframes/participate.md#WF-TASK-1","docs/design/ux/wireframes/participate.md#WF-TASK-2","docs/spec/constitution/rules.md#EVID-URL-1","docs/spec/01-slice-1-brief.md#7-what-solved-means","docs/design/ux/copy-deck.md","docs/design/ux/ui-unit-template.md"]

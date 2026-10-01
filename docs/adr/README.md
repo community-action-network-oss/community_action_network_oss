@@ -10,5 +10,6 @@ MADR-lite: context, decision, consequences, how to reverse. One decision per fil
 | [0004](0004-email-code-auth.md) | Email 6-digit code sign-in | Accepted |
 | [0005](0005-web-first-verification.md) | Verify on web first; native only has to bundle | Accepted |
 | [0006](0006-no-live-ai-in-slice-1.md) | No live AI in slice 1 | Accepted |
+| [0007](0007-gluestack-design-system.md) | gluestack-ui is the design system for all surfaces | Accepted |
 
 To propose a new ADR: copy an existing file, use the next number, state context and how to reverse, and open it as a pull request. Keep each file under 25KB.

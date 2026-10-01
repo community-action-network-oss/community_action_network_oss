@@ -7,7 +7,7 @@ area: can-app
 model: sonnet
 est_hours: 1.5
 priority: 123
-depends_on: ["07-u07"]
+depends_on: ["07-u07","02-u24","02-u25"]
 writes: ["e2e/a11y/**","src/**","app/**","e2e/helpers/**"]
 reads: ["e2e/**"]
 spec: ["docs/design/ux/ui-unit-template.md#3-accessibility","docs/design/ux/ui-unit-template.md#4-layout-and-rtl","docs/spec/01-slice-1-brief.md#11-accessibility-and-rtl-baseline-from-day-one","docs/spec/16-security-a11y-ops-testing.md","docs/design/ux/copy-deck.md","docs/design/ux/wireframes/browse.md#WF-LIST-1","docs/design/ux/wireframes/submit.md#WF-SUBMIT-1","docs/design/ux/wireframes/moderation.md#WF-MOD-QUEUE-1","docs/design/ux/wireframes/browse.md#WF-DETAIL-3","docs/design/ux/ui-unit-template.md"]

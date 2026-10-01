@@ -7,7 +7,7 @@ area: "can-gallery"
 model: sonnet
 est_hours: 1.5
 priority: 60
-depends_on: ["06-u02"]
+depends_on: ["06-u02","06-u15","06-u16"]
 writes: ["scripts/sync-decisions.mjs","scripts/check-decisions.mjs","src/content/decisions.json","src/app/how-decisions-are-made/**","src/components/**","package.json"]
 spec: ["docs/spec/21-open-source-governance.md","docs/spec/22-ai-contribution-policy.md","DECISIONS.md","docs/adr/README.md","docs/open-questions/README.md"]
 verify: ["npm run sync:decisions","npm run check:decisions","npm run verify"]

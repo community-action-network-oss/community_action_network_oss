@@ -7,7 +7,7 @@ area: can-app
 model: sonnet
 est_hours: 1.5
 priority: 59
-depends_on: ["03-u09","03-u15","02-u16","02-u15"]
+depends_on: ["03-u09","03-u15","02-u16","02-u15","02-u24","02-u25"]
 writes: ["app/mod/**","src/moderator/**","src/i18n/en.json","__tests__/mod-queue-*.test.tsx","__tests__/mod-invite-*.test.tsx","src/api/schema.d.ts"]
 reads: ["src/**","app/**"]
 spec: ["docs/spec/01-slice-1-brief.md","docs/design/ux/wireframes/moderation.md#WF-MOD-QUEUE-1","docs/design/ux/wireframes/moderation.md#WF-MOD-INVITE-1","docs/open-questions/OQ-moderator-pool-size.md","docs/design/ux/copy-deck.md","docs/design/ux/ui-unit-template.md"]

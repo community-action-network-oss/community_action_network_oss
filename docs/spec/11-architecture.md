@@ -7,8 +7,8 @@ The superproject holds the specification, plans and decisions. Code lives in thr
 | Repository | Stack | Owns |
 |---|---|---|
 | `can_server` | NestJS 12 (ESM, Vitest, oxlint), Drizzle on Postgres 16, class-validator | domain and state machines (`src/domain/`, ORM-free behind repository interfaces), policy rules, protocol schemas, and the **OpenAPI contract**, generated from code with `@nestjs/swagger` into `openapi/openapi.json` |
-| `can_app` | Expo SDK 57, Expo Router, gluestack v5 on UniWind, zod | the design system and civic components, i18n messages, and the typed API client **generated** from `can_server`'s OpenAPI file |
-| `can_gallery` | Next.js 16 static export, plain CSS | the public gallery: the Phase 0A public concept page plus a read-only window into the project. No forms, no analytics, no third-party fetches |
+| `can_app` | Expo SDK 57, Expo Router, gluestack-ui (adopted by 02-u24 and 02-u25; RN-core civic wrappers until then), zod | the design system and civic components, i18n messages, and the typed API client **generated** from `can_server`'s OpenAPI file |
+| `can_gallery` | Next.js 16 static export, gluestack-ui (target, adopted by 06-u15 and 06-u16; plain CSS until then) | the public gallery: the Phase 0A public concept page plus a read-only window into the project. No forms, no analytics, no third-party fetches |
 
 Rules:
 
@@ -31,8 +31,9 @@ Use one universal Expo application for iOS, Android, tablet, and web:
 - Expo Router for file-based universal routing, deep links, Android App Links, and iOS Universal Links
 - React Native Web for browser delivery
 - TypeScript with strict checking
-- gluestack UI v5 as the universal component foundation, with a pre-authorized fallback to project-owned civic wrappers over React Native core if web breaks
-- UniWind as the styling engine (NativeWind v5 is still a release candidate; D-7)
+- gluestack-ui as the one design-system foundation for every CAN surface, `can_app` and `can_gallery` alike (D-50, ADR 0007). Version rule: the newest stable major that supports Expo SDK 57, React 19.2 and react-native-web 0.21; if only a pre-release supports the stack, pin that exact version and log it. No fallback to React Native core
+- The styling engine (NativeWind or UniWind) is whatever the pinned gluestack version requires, configured from `tokens.json`; the gluestack theme is generated, never hand-edited
+- Until units 02-u24 and 02-u25 land, `can_app` runs RN-core civic wrappers (D-33), and until 06-u15 and 06-u16 land the gallery uses plain CSS
 - Project-owned semantic design tokens and civic components wrapping gluestack primitives
 - `expo-localization` for device locale, region, and text-direction signals
 - FormatJS / `react-intl` for ICU messages, plurals, dates, numbers, units, and relative time
@@ -45,7 +46,9 @@ Within `can_app`, share i18n messages, design tokens, the generated API client a
 
 Feature code should import project-owned components such as `CivicButton`, `EvidenceRecord`, `ProblemStatus`, `InstitutionRole`, `BlockerTimeline`, `StewardshipPanel`, and `ProposalComparison`, rather than importing gluestack components directly. Pin component and styling versions, retain copied component source in the repository, and maintain visual, accessibility, RTL, and cross-platform regression tests.
 
-**Verification stance (D-8, ADR 0005):** in slice 1 the app is verified on **Expo web only**. Native builds must still bundle (`expo export -p ios` and `-p android`). Native session paths and device smoke tests are founder-gated. Before the component foundation is considered production-approved, the reference prototype must also pass on iOS, Android, mobile web and desktop web in representative LTR and RTL languages, covering forms, tables, timelines, dialogs, drawers, menus, selects, action sheets, mixed-direction content, keyboard navigation, screen readers, large text, reduced motion and low-end Android performance. If gluestack fails the agreed thresholds, keep the Expo architecture and replace only the component layer.
+**Verification stance (D-8, ADR 0005):** in slice 1 the app is verified on **Expo web only**. Native builds must still bundle (`expo export -p ios` and `-p android`). Native session paths and device smoke tests are founder-gated. Before the component foundation is considered production-approved, the reference prototype must also pass on iOS, Android, mobile web and desktop web in representative LTR and RTL languages, covering forms, tables, timelines, dialogs, drawers, menus, selects, action sheets, mixed-direction content, keyboard navigation, screen readers, large text, reduced motion and low-end Android performance. If gluestack fails the agreed thresholds, keep the Expo architecture and replace only the component layer (reversal path in ADR 0007).
+
+**Gallery:** `can_gallery` uses the same gluestack-ui foundation and the same tokens. It stays a fully static export (`output: 'export'`) with no runtime third-party fetch, no tracking and the Phase 0A rules unchanged; the added client JavaScript is held to an explicit budget (06-u16, 06-u09).
 
 ### Backend stack
 

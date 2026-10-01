@@ -7,7 +7,7 @@ area: can-app
 model: sonnet
 est_hours: 1
 priority: 32
-depends_on: ["02-u17"]
+depends_on: ["02-u17","02-u24","02-u25"]
 writes: ["app/sign-in/**","src/auth/**","src/i18n/en.json","__tests__/signin-*.test.tsx","src/api/schema.d.ts"]
 reads: ["src/**","app/**"]
 spec: ["docs/spec/01-slice-1-brief.md","docs/design/ux/wireframes/auth.md#WF-SIGNIN-1","docs/design/ux/wireframes/auth.md#WF-SIGNIN-2","docs/design/system-design.md#5-auth-flow","docs/design/ux/copy-deck.md","docs/design/ux/ui-unit-template.md"]

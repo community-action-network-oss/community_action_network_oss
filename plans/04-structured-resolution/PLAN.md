@@ -29,10 +29,10 @@ On a seeded eligible problem, member-two adds a clarifying question and an evide
 | [04-u05](u05-decision-record.md) | Decision record and legal-gate record | can_server | 1.2 | 74 | 04-u04 | - |
 | [04-u06](u06-duplicate-link.md) | duplicate_of linking | can_server | 0.8 | 75 | 04-u05 | - |
 | [04-u07](u07-follows-notifications.md) | Follows, consent, in-app notifications and emails | can_server | 1.5 | 76 | 04-u06, 03-u11 | - |
-| [04-u08](u08-contributions-screens.md) | Contributions tab and add-contribution screen | can_app | 1.5 | 77 | 04-u02, 02-u20, 02-u14 | - |
-| [04-u09](u09-proposals-screens.md) | Proposals tab, comparison and proposal form | can_app | 1.5 | 78 | 04-u04, 04-u08 | - |
-| [04-u10](u10-decision-record-screen.md) | Decision record screen and stage transition controls | can_app | 1.5 | 79 | 04-u09, 04-u05 | - |
-| [04-u11](u11-follow-notification-screens.md) | Follow controls and notifications list | can_app | 1.2 | 80 | 04-u07, 04-u10 | - |
+| [04-u08](u08-contributions-screens.md) | Contributions tab and add-contribution screen | can_app | 1.5 | 77 | 04-u02, 02-u20, 02-u14, 02-u24, 02-u25 | - |
+| [04-u09](u09-proposals-screens.md) | Proposals tab, comparison and proposal form | can_app | 1.5 | 78 | 04-u04, 04-u08, 02-u24, 02-u25 | - |
+| [04-u10](u10-decision-record-screen.md) | Decision record screen and stage transition controls | can_app | 1.5 | 79 | 04-u09, 04-u05, 02-u24, 02-u25 | - |
+| [04-u11](u11-follow-notification-screens.md) | Follow controls and notifications list | can_app | 1.2 | 80 | 04-u07, 04-u10, 02-u24, 02-u25 | - |
 
 ## Risks
 - Moderator workload: every contribution is reviewed before it is shown (brief section 6). Default: unreviewed contributions are visible only to their author with a "pending review" label.

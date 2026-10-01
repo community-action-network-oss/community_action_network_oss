@@ -35,16 +35,20 @@ With compose up and `npm run seed`, a developer can: open Expo web, see the seed
 | [02-u11](u11-problem-detail.md) | Problem detail, visibility rules and public timeline | can_server | 1.2 | 19 | 02-u10 | - |
 | [02-u12](u12-seed-fictional.md) | Fictional seed data and npm run seed | can_server | 1.2 | 20 | 02-u11 | - |
 | [02-u13](u13-api-client-infra.md) | API client infrastructure: CSRF, error envelope, session events | can_app | 1 | 21 | - | - |
-| [02-u14](u14-form-kit.md) | Form kit: fields, inline validation, focus-first-error | can_app | 1.2 | 22 | - | - |
-| [02-u15](u15-nav-shell.md) | Navigation shell, skip link and emergency notice | can_app | 0.8 | 23 | 02-u14 | - |
-| [02-u16](u16-session-provider.md) | Session provider, route guard and session-expired sheet | can_app | 1.2 | 30 | 02-u08, 02-u13, 02-u15 | - |
-| [02-u17](u17-signup-onboarding-screens.md) | Sign-up and onboarding screens | can_app | 1.5 | 31 | 02-u16, 02-u14 | - |
-| [02-u18](u18-signin-screens.md) | Sign-in screens: email and code | can_app | 1 | 32 | 02-u17 | - |
-| [02-u19](u19-list-screen.md) | Problem list screen (real data) | can_app | 1.2 | 33 | 02-u10, 02-u15, 02-u13 | - |
-| [02-u20](u20-detail-screen.md) | Problem detail screen and tombstone | can_app | 1.5 | 34 | 02-u19, 02-u11 | - |
+| [02-u14](u14-form-kit.md) | Form kit: fields, inline validation, focus-first-error | can_app | 1.2 | 22 | 02-u24, 02-u25 | - |
+| [02-u15](u15-nav-shell.md) | Navigation shell, skip link and emergency notice | can_app | 0.8 | 23 | 02-u14, 02-u24, 02-u25 | - |
+| [02-u16](u16-session-provider.md) | Session provider, route guard and session-expired sheet | can_app | 1.2 | 30 | 02-u08, 02-u13, 02-u15, 02-u24, 02-u25 | - |
+| [02-u17](u17-signup-onboarding-screens.md) | Sign-up and onboarding screens | can_app | 1.5 | 31 | 02-u16, 02-u14, 02-u24, 02-u25 | - |
+| [02-u18](u18-signin-screens.md) | Sign-in screens: email and code | can_app | 1 | 32 | 02-u17, 02-u24, 02-u25 | - |
+| [02-u19](u19-list-screen.md) | Problem list screen (real data) | can_app | 1.2 | 33 | 02-u10, 02-u15, 02-u13, 02-u24, 02-u25 | - |
+| [02-u20](u20-detail-screen.md) | Problem detail screen and tombstone | can_app | 1.5 | 34 | 02-u19, 02-u11, 02-u24, 02-u25 | - |
 | [02-u21](u21-playwright-harness.md) | Playwright web smoke harness | can_app | 1.5 | 40 | 02-u20, 02-u18, 02-u12 | - |
+| [02-u24](u24-gluestack-install-theme.md) | Adopt gluestack-ui: install, pin and generate the theme from tokens | can_app | 1.5 | 19 | - | - |
+| [02-u25](u25-gluestack-civic-wrappers.md) | Adopt gluestack-ui: re-implement civic wrappers on gluestack primitives | can_app | 1.5 | 20 | 02-u24 | - |
 | [02-u22](u22-smtp-provider-adapter.md) | Real SMTP provider adapter (founder-gated) | can_server | 1 | 200 | 02-u06 | yes |
 | [02-u23](u23-native-session-securestore.md) | Native session storage and device smoke test (founder-gated) | can_app | 1.5 | 201 | 02-u16 | yes |
+
+Design system: gluestack-ui for all surfaces (ADR 0007, D-50). 02-u24 and 02-u25 run before every other can_app UI unit; until they land the app uses RN-core civic wrappers (D-33).
 
 Night-1 shape: server lane runs config, kernel, schema, identity, mail; app lane runs client infra, form kit, nav shell (no server dependency); root lane runs the verify script. Auth-dependent app units start once the auth HTTP unit is done.
 

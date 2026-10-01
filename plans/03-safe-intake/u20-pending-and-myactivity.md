@@ -7,7 +7,7 @@ area: can-app
 model: sonnet
 est_hours: 1.2
 priority: 56
-depends_on: ["03-u19"]
+depends_on: ["03-u19","02-u24","02-u25"]
 writes: ["app/me/**","src/myactivity/**","src/i18n/en.json","__tests__/pending-*.test.tsx","__tests__/myactivity-*.test.tsx","src/api/schema.d.ts"]
 reads: ["src/**","app/**"]
 spec: ["docs/design/ux/wireframes/submit.md#WF-PENDING-1","docs/design/ux/wireframes/submit.md#WF-MYACT-1","docs/spec/01-slice-1-brief.md#9-drafts-fingerprints-and-the-pending-screen","docs/open-questions/OQ-review-wait-statement.md","docs/design/ux/copy-deck.md","docs/design/ux/ui-unit-template.md"]

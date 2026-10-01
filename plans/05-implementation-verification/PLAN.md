@@ -27,10 +27,10 @@ On a seeded problem in solution_selection: the initiator records the decision th
 | [05-u02](u02-verification-solved.md) | Verification evidence, T13, T14 solved and Resolution records | can_server | 1.5 | 91 | 05-u01 | - |
 | [05-u03](u03-stuck-paused.md) | Stuck and paused transitions (T15 to T18) and pause review flags | can_server | 1.2 | 92 | 05-u02 | - |
 | [05-u04](u04-close-redirect-withdraw.md) | Closed, redirected and withdrawn (T19, T20, T21) with appeals | can_server | 1.5 | 93 | 05-u03 | - |
-| [05-u05](u05-tasks-screens.md) | Tasks tab, task detail and verification evidence form | can_app | 1.5 | 94 | 05-u01, 05-u02, 04-u10 | - |
-| [05-u06](u06-detail-variants.md) | Detail variants: paused, stuck, withdrawn, closed, redirected, tombstone | can_app | 1.5 | 95 | 05-u03, 05-u04, 04-u10 | - |
-| [05-u07](u07-resolution-and-external.md) | Resolution records archive and external routes | can_app | 1.2 | 96 | 05-u02, 05-u04, 02-u15 | - |
-| [05-u08](u08-terminal-action-forms.md) | Terminal action forms and moderator confirm panel | can_app | 1.5 | 97 | 05-u06, 05-u05, 05-u04, 03-u24 | - |
+| [05-u05](u05-tasks-screens.md) | Tasks tab, task detail and verification evidence form | can_app | 1.5 | 94 | 05-u01, 05-u02, 04-u10, 02-u24, 02-u25 | - |
+| [05-u06](u06-detail-variants.md) | Detail variants: paused, stuck, withdrawn, closed, redirected, tombstone | can_app | 1.5 | 95 | 05-u03, 05-u04, 04-u10, 02-u24, 02-u25 | - |
+| [05-u07](u07-resolution-and-external.md) | Resolution records archive and external routes | can_app | 1.2 | 96 | 05-u02, 05-u04, 02-u15, 02-u24, 02-u25 | - |
+| [05-u08](u08-terminal-action-forms.md) | Terminal action forms and moderator confirm panel | can_app | 1.5 | 97 | 05-u06, 05-u05, 05-u04, 03-u24, 02-u24, 02-u25 | - |
 | [05-u09](u09-real-emergency-routes.md) | Real emergency and external routes with reviewed legal text (founder-gated) | can_app | 1 | 210 | 05-u07 | yes |
 
 ## Risks

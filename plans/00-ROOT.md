@@ -27,14 +27,14 @@ Generated from the corpus (snapshot; recompute with the tool). Lanes are repos; 
 
 | id | title | approved | units | est hours | lanes | depends_on_plans | founder-gated |
 |---|---|---|---|---|---|---|---|
-| 02 | Platform foundation | true | 23 | 28.3 | root, can_app, can_server | none | 02-u22, 02-u23 |
+| 02 | Platform foundation | true | 25 | 31.3 | root, can_app, can_server | none | 02-u22, 02-u23 |
 | 03 | Safe intake | true | 25 | 33.2 | can_app, can_server | 02 | none |
 | 04 | Structured resolution | true | 11 | 15.2 | can_app, can_server | 03 | none |
 | 05 | Implementation and verification | true | 9 | 12.4 | can_app, can_server | 04 | 05-u09 |
-| 06 | Gallery, Phase 0A completion | true | 14 | 17.0 | can_gallery | 08 | 06-u11, 06-u12, 06-u14 |
+| 06 | Gallery, Phase 0A completion | true | 16 | 20.0 | can_gallery | 08 | 06-u11, 06-u12, 06-u14 |
 | 07 | Hardening | true | 11 | 14.7 | root, can_app, can_server | 02, 03, 04, 05 | 07-u11 |
 | 08 | Contributor experience and operations | true | 14 | 14.5 | root, can_app, can_gallery, can_server | none | 08-u14 |
-| | **Total** | | 107 | 135.3 | | | 8 |
+| | **Total** | | 111 | 141.3 | | | 8 |
 
 ## Plan dependencies
 
@@ -73,7 +73,7 @@ Morning:
 
 ## Night 1 dry run (snapshot)
 
-Output of `node plans/tools/corpus.mjs next --hours 6` when all 107 units were `todo`. It will drift as units complete; rerun the command for the current queue.
+Output of `node plans/tools/corpus.mjs next --hours 6` when all 111 units were `todo`. It will drift as units complete; rerun the command for the current queue.
 
 ```
 night plan: 6h, budget 4.8h per lane
@@ -85,15 +85,14 @@ lane . (4.0h)
   08-u11  0.5h  sonnet  Night-run report template
 
 lane can_app (4.0h)
+  02-u24  1.5h  sonnet  Adopt gluestack-ui: install, pin and generate the theme from tokens
+  02-u25  1.5h  sonnet  Adopt gluestack-ui: re-implement civic wrappers on gluestack primitives
   02-u13  1h  sonnet  API client infrastructure: CSRF, error envelope, session events
-  02-u14  1.2h  sonnet  Form kit: fields, inline validation, focus-first-error
-  02-u15  0.8h  sonnet  Navigation shell, skip link and emergency notice
-  03-u16  1h  sonnet  Local draft store with autosave
 
-lane can_gallery (4.0h)
+lane can_gallery (4.5h)
   06-u01  1.5h  sonnet  Factual-claims register and Phase 0A content audit
-  06-u02  1h  sonnet  Locale-ready routing structure (English only)
-  06-u06  1.5h  sonnet  How decisions are made: DECISIONS.md summary and ADR index page
+  06-u15  1.5h  sonnet  Adopt gluestack-ui for gallery surfaces: install, pin and tokens theme
+  06-u16  1.5h  sonnet  Adopt gluestack-ui for gallery surfaces: migrate layout and components, drop component CSS
 
 lane can_server (4.5h)
   02-u09  0.8h  sonnet  Lifecycle state vocabulary from the brief
@@ -109,10 +108,12 @@ skipped:
   02-u10: deps not satisfied: 02-u08
   02-u11: deps not satisfied: 02-u10
   02-u12: deps not satisfied: 02-u11
-  02-u16: deps not satisfied: 02-u08
-  02-u17: deps not satisfied: 02-u16
+  02-u14: over time budget
+  02-u15: deps not satisfied: 02-u14
+  02-u16: deps not satisfied: 02-u08, 02-u15
+  02-u17: deps not satisfied: 02-u16, 02-u14
   02-u18: deps not satisfied: 02-u17
-  02-u19: deps not satisfied: 02-u10
+  02-u19: deps not satisfied: 02-u10, 02-u15
   02-u20: deps not satisfied: 02-u19, 02-u11
   02-u21: deps not satisfied: 02-u20, 02-u18, 02-u12
   02-u22: founder_gate
@@ -132,13 +133,14 @@ skipped:
   03-u13: deps not satisfied: 03-u12, 03-u11
   03-u14: deps not satisfied: 03-u13, 03-u04
   03-u15: deps not satisfied: 02-u08
-  03-u17: deps not satisfied: 03-u06, 02-u16
+  03-u16: over time budget
+  03-u17: deps not satisfied: 03-u16, 03-u06, 02-u14, 02-u16
   03-u18: deps not satisfied: 03-u17
   03-u19: deps not satisfied: 03-u18, 03-u08, 03-u07
   03-u20: deps not satisfied: 03-u19
   03-u21: deps not satisfied: 03-u20, 03-u10, 03-u09
   03-u22: deps not satisfied: 03-u21, 03-u12
-  03-u23: deps not satisfied: 03-u09, 03-u15, 02-u16
+  03-u23: deps not satisfied: 03-u09, 03-u15, 02-u16, 02-u15
   03-u24: deps not satisfied: 03-u23, 03-u10, 03-u08
   03-u25: deps not satisfied: 03-u24, 03-u13
   04-u01: deps not satisfied: 03-u14
@@ -148,7 +150,7 @@ skipped:
   04-u05: deps not satisfied: 04-u04
   04-u06: deps not satisfied: 04-u05
   04-u07: deps not satisfied: 04-u06, 03-u11
-  04-u08: deps not satisfied: 04-u02, 02-u20
+  04-u08: deps not satisfied: 04-u02, 02-u20, 02-u14
   04-u09: deps not satisfied: 04-u04, 04-u08
   04-u10: deps not satisfied: 04-u09, 04-u05
   04-u11: deps not satisfied: 04-u07, 04-u10
@@ -158,18 +160,19 @@ skipped:
   05-u04: deps not satisfied: 05-u03
   05-u05: deps not satisfied: 05-u01, 05-u02, 04-u10
   05-u06: deps not satisfied: 05-u03, 05-u04, 04-u10
-  05-u07: deps not satisfied: 05-u02, 05-u04
+  05-u07: deps not satisfied: 05-u02, 05-u04, 02-u15
   05-u08: deps not satisfied: 05-u06, 05-u05, 05-u04, 03-u24
   05-u09: founder_gate
-  06-u03: deps not satisfied: 08-u01
+  06-u02: over time budget
+  06-u03: deps not satisfied: 06-u02, 08-u01
   06-u04: deps not satisfied: 06-u03
   06-u05: deps not satisfied: 06-u04
-  06-u07: over time budget
-  06-u08: deps not satisfied: 06-u03, 06-u05, 06-u07
+  06-u06: deps not satisfied: 06-u02
+  06-u07: deps not satisfied: 06-u02
+  06-u08: deps not satisfied: 06-u03, 06-u05, 06-u06, 06-u07
   06-u09: deps not satisfied: 06-u08
   06-u10: deps not satisfied: 06-u08, 06-u09
   06-u11: founder_gate
-  06-u12: founder_gate
   06-u13: deps not satisfied: 06-u09
   06-u14: founder_gate
   07-u01: deps not satisfied: 03-u03, 03-u02

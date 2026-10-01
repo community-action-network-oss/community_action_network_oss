@@ -7,7 +7,7 @@ area: can-app
 model: sonnet
 est_hours: 1.2
 priority: 96
-depends_on: ["05-u02","05-u04","02-u15"]
+depends_on: ["05-u02","05-u04","02-u15","02-u24","02-u25"]
 writes: ["app/resolutions/**","app/external.tsx","src/resolutions/**","src/external/**","src/i18n/en.json","__tests__/resolution-*.test.tsx","__tests__/external-*.test.tsx","src/api/schema.d.ts"]
 reads: ["src/**","app/**"]
 spec: ["docs/spec/01-slice-1-brief.md","docs/design/ux/wireframes/browse.md#WF-RESOLUTION-1","docs/design/ux/wireframes/submit.md#WF-EXTERNAL-1","docs/spec/constitution/rules.md#CRISIS-STATIC-1","docs/open-questions/OQ-emergency-routing.md","docs/design/ux/copy-deck.md","docs/design/ux/ui-unit-template.md"]

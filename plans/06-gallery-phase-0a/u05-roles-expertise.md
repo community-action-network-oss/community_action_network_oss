@@ -7,7 +7,7 @@ area: "can-gallery"
 model: sonnet
 est_hours: 1.5
 priority: 50
-depends_on: ["06-u04"]
+depends_on: ["06-u04","06-u15","06-u16"]
 writes: ["src/content/roles/**","src/app/contribute/roles/**","scripts/check-roles.mjs"]
 spec: ["docs/spec/18-phases-gates.md","docs/spec/21-open-source-governance.md","docs/spec/20-participation-nonmonetary.md","docs/open-questions/OQ-legal-policy-reviewers.md","docs/open-questions/OQ-unsupported-language.md","docs/spec/06-moderation-geo-governance.md"]
 verify: ["npm run check:roles","npm run verify"]

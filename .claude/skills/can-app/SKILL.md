@@ -16,7 +16,7 @@ Expo SDK 57, expo-router ~57 (`web.output: single`, scheme `can`), RN 0.86, Reac
 - `npm run sync:tokens` copies `../docs/design/ux/tokens.json`. `npm run gen:api` regenerates `src/api/schema.d.ts` from `../can_server/openapi/openapi.json`.
 
 ## Invariants
-- Feature code (app/, non-civic src/) imports UI only from `src/components/civic` (ESLint no-restricted-imports). Civic components are wrappers over RN primitives styled from tokens. gluestack-ui v5 is still alpha and was not adopted; if adopted later it lives in `src/components/ui/` behind civic.
+- Feature code (app/, non-civic src/) imports UI only from `src/components/civic` (ESLint no-restricted-imports). TARGET: civic components are wrappers over gluestack-ui primitives (D-50, ADR 0007), adopted by units 02-u24 and 02-u25, generated source in `src/components/ui/`, theme generated from tokens. UNTIL those units land the current implementation is RN-core civic wrappers styled from tokens (D-33). Civic public props never change.
 - Every UI string goes through `useT()` with an id from `src/i18n/en.json` (typed `MessageId`). ICU placeholders, no concatenation, no em or en dashes (a test enforces it). Copy source of truth: `docs/design/ux/copy-deck.md`.
 - Logical properties only (start/end, never left/right): `scripts/check-logical.mjs` fails verify.
 - `CivicButton` requires `accessibilityLabel`; touch targets at least `size.minTarget` (44).
@@ -25,7 +25,7 @@ Expo SDK 57, expo-router ~57 (`web.output: single`, scheme `can`), RN 0.86, Reac
 
 ## Single-owner paths
 - `src/api/schema.d.ts`: generated only by `npm run gen:api`. Never hand-edit. Commit it with the contract change it follows.
-- `src/components/ui/**`: reserved for the gluestack CLI (does not exist yet). Never hand-edit.
+- `src/components/ui/**`: reserved for the gluestack CLI (appears when 02-u24 lands). Never hand-edit.
 - `src/theme/tokens.json`: synced from `docs/design/ux/tokens.json` by `npm run sync:tokens`. Never hand-edit; change the design source.
 
 ## Traps
@@ -33,7 +33,7 @@ Expo SDK 57, expo-router ~57 (`web.output: single`, scheme `can`), RN 0.86, Reac
 - ESLint 10 breaks eslint-config-expo peers: stay on ESLint 9. react-test-renderer must match React (19.2.3).
 - TS 6 has `types: []` by default; tsconfig lists `"types": ["jest"]`.
 - Do not install openapi-typescript locally (TS peer conflict); `gen:api` runs it via npx with a TS 5 helper.
-- `npx gluestack-ui@5 init` fails on a divergent cache clone in ~/.gluestack; workaround is a throwaway HOME. It also pulls reanimated, worklets and react-aria.
+- (Pre-adoption note) `npx gluestack-ui@5 init` failed on a divergent cache clone in ~/.gluestack; workaround is a throwaway HOME. It also pulls reanimated, worklets and react-aria.
 - react-intl and @formatjs are ESM: jest.config.js widens transformIgnorePatterns for them.
 - Web build is `output: single` (SPA): no per-route HTML, no SSR.
 - `expo start` rewrites `tsconfig.json` (expands arrays, drops the `.expo/types` and `expo-env.d.ts` includes). The committed file is Expo's own output so the tree stays clean, and `tsconfig.json` is in `.prettierignore` because Expo's formatting conflicts with prettier. Edit it by hand only, then run `expo start` once and commit what Expo writes. tsc passes without those includes (no typed routes).

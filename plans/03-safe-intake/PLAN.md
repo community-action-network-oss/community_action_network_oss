@@ -39,15 +39,15 @@ Against seed data: member-one signs in, writes a draft through WF-SUBMIT-1 to 7 
 | [03-u14](u14-retention-jobs.md) | Retention jobs: draft purge, fingerprints, idle revisions | can_server | 1.5 | 51 | 03-u13, 03-u04 | - |
 | [03-u15](u15-invites-endpoint.md) | Moderator-issued invites endpoint | can_server | 0.8 | 52 | 02-u08 | - |
 | [03-u16](u16-draft-store.md) | Local draft store with autosave | can_app | 1 | 24 | - | - |
-| [03-u17](u17-submit-steps-1-3.md) | Submit steps 1 to 3: condition, affected, where | can_app | 1.5 | 53 | 03-u16, 03-u06, 02-u14, 02-u16 | - |
-| [03-u18](u18-submit-steps-4-5.md) | Submit steps 4 and 5: observed vs uncertain, evidence links | can_app | 1.2 | 54 | 03-u17 | - |
-| [03-u19](u19-submit-steps-6-7.md) | Submit steps 6 and 7: privacy review, preview, submit | can_app | 1.5 | 55 | 03-u18, 03-u08, 03-u07 | - |
-| [03-u20](u20-pending-and-myactivity.md) | Pending review and my activity screens | can_app | 1.2 | 56 | 03-u19 | - |
-| [03-u21](u21-decision-screens.md) | Decision screens with hints beside fields and revise-resubmit | can_app | 1.5 | 57 | 03-u20, 03-u10, 03-u09 | - |
-| [03-u22](u22-appeal-screen.md) | Appeal screen | can_app | 0.8 | 58 | 03-u21, 03-u12 | - |
-| [03-u23](u23-mod-queue-invite.md) | Moderator queue and invite screens | can_app | 1.5 | 59 | 03-u09, 03-u15, 02-u16, 02-u15 | - |
-| [03-u24](u24-mod-review-screen.md) | Moderator review screen with explainable decision form | can_app | 1.5 | 60 | 03-u23, 03-u10, 03-u08 | - |
-| [03-u25](u25-mod-appeal-screen.md) | Moderator appeal review screen | can_app | 1 | 61 | 03-u24, 03-u13 | - |
+| [03-u17](u17-submit-steps-1-3.md) | Submit steps 1 to 3: condition, affected, where | can_app | 1.5 | 53 | 03-u16, 03-u06, 02-u14, 02-u16, 02-u24, 02-u25 | - |
+| [03-u18](u18-submit-steps-4-5.md) | Submit steps 4 and 5: observed vs uncertain, evidence links | can_app | 1.2 | 54 | 03-u17, 02-u24, 02-u25 | - |
+| [03-u19](u19-submit-steps-6-7.md) | Submit steps 6 and 7: privacy review, preview, submit | can_app | 1.5 | 55 | 03-u18, 03-u08, 03-u07, 02-u24, 02-u25 | - |
+| [03-u20](u20-pending-and-myactivity.md) | Pending review and my activity screens | can_app | 1.2 | 56 | 03-u19, 02-u24, 02-u25 | - |
+| [03-u21](u21-decision-screens.md) | Decision screens with hints beside fields and revise-resubmit | can_app | 1.5 | 57 | 03-u20, 03-u10, 03-u09, 02-u24, 02-u25 | - |
+| [03-u22](u22-appeal-screen.md) | Appeal screen | can_app | 0.8 | 58 | 03-u21, 03-u12, 02-u24, 02-u25 | - |
+| [03-u23](u23-mod-queue-invite.md) | Moderator queue and invite screens | can_app | 1.5 | 59 | 03-u09, 03-u15, 02-u16, 02-u15, 02-u24, 02-u25 | - |
+| [03-u24](u24-mod-review-screen.md) | Moderator review screen with explainable decision form | can_app | 1.5 | 60 | 03-u23, 03-u10, 03-u08, 02-u24, 02-u25 | - |
+| [03-u25](u25-mod-appeal-screen.md) | Moderator appeal review screen | can_app | 1 | 61 | 03-u24, 03-u13, 02-u24, 02-u25 | - |
 
 Notes: the transitions endpoint refuses T02, T04 and T05 (those happen only through moderation decisions). Proposes-and-confirms transitions (T14, T19, T20) are modelled in the engine here but their field validation lands in plan 05.
 

@@ -7,7 +7,7 @@ area: "can-gallery"
 model: sonnet
 est_hours: 1.5
 priority: 30
-depends_on: ["06-u02","08-u01"]
+depends_on: ["06-u02","08-u01","06-u15","06-u16"]
 writes: ["scripts/sync-catalog.mjs","scripts/check-catalog.mjs","src/content/catalog.json","src/app/contribute/tasks/**","src/components/**","src/app/globals.css","package.json"]
 spec: ["docs/spec/20-participation-nonmonetary.md","docs/spec/21-open-source-governance.md","docs/spec/01-slice-1-brief.md","plans/FORMAT.md"]
 verify: ["npm run sync:catalog","npm run check:catalog","npm run verify"]
