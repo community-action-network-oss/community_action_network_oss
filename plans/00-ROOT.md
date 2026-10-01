@@ -32,7 +32,7 @@ Generated from the corpus (snapshot; recompute with the tool). Lanes are repos; 
 | 03 | Safe intake | true | 25 | 14 | 11 | 0 | 18.5 | can_app, can_server | 02 | none |
 | 04 | Structured resolution | true | 11 | 11 | 0 | 0 | 15.2 | can_app, can_server | 03 | none |
 | 05 | Implementation and verification | true | 9 | 9 | 0 | 0 | 12.4 | can_app, can_server | 04 | 05-u09 |
-| 06 | Gallery, Phase 0A completion | true | 25 | 24 | 0 | 1 | 31.5 | can_gallery | 08, 10, 11 | 06-u11, 06-u12, 06-u14 |
+| 06 | Gallery, Phase 0A completion | true | 25 | 23 | 1 | 1 | 30.0 | can_gallery | 08, 10, 11 | 06-u11, 06-u12, 06-u14 |
 | 07 | Hardening | true | 22 | 21 | 1 | 0 | 25.2 | root, can_app, can_gallery, can_server | 02, 03, 04, 05, 06, 09, 10, 11, 12 | 07-u11 |
 | 08 | Contributor experience and operations | true | 15 | 14 | 0 | 1 | 14.9 | root, can_app, can_gallery, can_policy, can_server | 10 | 08-u14 |
 | 09 | AI moderation pipeline | true | 74 | 74 | 0 | 0 | 104.0 | can_app, can_server | 02, 03, 04, 05, 10 | 09-u46 |
@@ -41,6 +41,7 @@ Generated from the corpus (snapshot; recompute with the tool). Lanes are repos; 
 | 12 | Stage plans and volunteer review | true | 26 | 26 | 0 | 0 | 36.9 | can_app, can_server | 02, 03, 04, 05, 09, 10, 11, 14 | none |
 | 13 | Archive and path reuse | true | 28 | 28 | 0 | 0 | 39.9 | can_app, can_policy, can_server | 02, 03, 09, 10 | none |
 | 14 | Location attestation | true | 29 | 29 | 0 | 0 | 36.6 | root, can_app, can_server | 02, 04, 09 | 14-u28, 14-u29, 14-u30, 14-u32 |
+| 16 | CAN for everyone: gallery anyone can read, gradual unfolding, private capability profile | true | 15 | 15 | 0 | 0 | 18.3 | root, can_app, can_gallery, can_server | 06, 10 | none |
 | | **Total** | | 408 | 393 | 12 | 3 | 525.1 | | | 24 |
 
 ## Plan dependencies
@@ -62,6 +63,7 @@ flowchart LR
   p12["12 Stage plans and volunteer review"]
   p13["13 Archive and path reuse"]
   p14["14 Location attestation"]
+  p16["16 CAN for everyone"]
   p02 --> p03
   p03 --> p04
   p04 --> p05
@@ -104,6 +106,8 @@ flowchart LR
   p02 --> p14
   p04 --> p14
   p09 --> p14
+  p06 --> p16
+  p10 --> p16
 ```
 
 ## What the plans build
@@ -121,6 +125,7 @@ flowchart LR
 - **12 Stage plans and volunteer review.** Lifecycle v2: private preparation, opted-in volunteer review with masked personal data, AI publication, a per-problem stage plan (a DAG) with its gating engine and screens, plan changes, contributing ahead to planned stages, the impacted and guest label UI and the end-to-end journey.
 - **13 Archive and path reuse.** A public archive of every ended problem with personal data stripped, AI retrieval of similar archived problems during preparation, adapted path proposals the poster accepts or declines with the source always credited, and AI-drafted stage plans from accepted suggestions.
 - **14 Location attestation.** Impacted versus guest labels from a private on-device check: versioned affected areas, single-use server challenges, App Attest and Play Integrity where native, rate limits, only four stored fields, and a spike toward a blinded cell-membership proof.
+- **16 CAN for everyone.** Runs first (priorities 1 to 11, D-80). The gallery rebuilt in its own Public Pictograms world on customised gluestack, plain first with gradual unfolding on every page and a new /where-you-fit/ page; spec 26 and constitution II.10 for the private capability profile, kept and matched only on the person's device; profile wireframes, `help_needed` tags on public problems, and the app's on-device store and matcher.
 
 ## For maintainers: overnight runs
 

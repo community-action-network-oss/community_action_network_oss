@@ -7,7 +7,7 @@ area: "can-gallery"
 model: sonnet
 est_hours: 1
 priority: 110
-depends_on: ["06-u01","06-u02","06-u15","06-u16"]
+depends_on: ["06-u01","06-u02","06-u15","16-u10"]
 writes: ["src/app/get-involved/**","src/content/site.ts","src/content/interest.ts","docs/claims.md","docs/privacy-notice.md","package.json"]
 spec: ["docs/open-questions/OQ-promo-interest-channel.md","docs/spec/18-phases-gates.md","docs/spec/16-security-a11y-ops-testing.md","DECISIONS.md"]
 verify: ["npm run check:copy","npm run check:claims","npm run verify"]

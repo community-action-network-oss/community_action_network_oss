@@ -506,3 +506,40 @@ Every default, deviation and judgment call made while building CAN. Each one can
     - Founder-gated: the external privacy review (14-u28), native round trips (14-u29), real-device measurements (14-u30) and the adoption decision (14-u32).
     - The `zk_cell_v1` units (14-u40 to 14-u45) wait on 14-u32.
   - **No skips:** no units were skipped. Old-sequence units were rewritten under their existing ids.
+- **D-80 · W14 · CAN for everyone: a gallery anyone can read, gradual unfolding, and the private capability profile (founder).**
+  - **Audience:**
+    - The gallery is for anyone with any expertise: nurses, hospitality workers, civil servants, trades people, students and everyone else. Developers are one audience among many.
+    - This supersedes the line in plan 06 that says "the primary visitor is a developer".
+    - Every page should make sense to someone with no technical background.
+  - **Gradual unfolding:**
+    - Every gallery page keeps all the information it serves today. Each view first shows only what matters at that moment, and the detail opens when the visitor asks.
+    - The primitive is a single `Unfold` component built on native `details`/`summary`. The collapsed text stays in the exported HTML, so it can be found and works without JavaScript.
+  - **The gallery has its own identity:**
+    - The founder chose the direction "Public Pictograms" on the impeccable decision page (seed `667a61fe`). It explains CAN in an Isotype picture language: counted flat pictograms that anyone can read without a glossary.
+    - This reverses the "same calm palette … not a separate brand" line in `docs/design/ux/visual-direction.md` for the gallery only. The app keeps the shared tokens.
+    - The gallery theme lives in can_gallery and is owned by it. Status chips keep the shared hue families, and there is no red for ordinary states.
+    - The direction contract is in `can_gallery/.impeccable/surfaces/src-app-page-tsx.md`, and the product record is in `can_gallery/PRODUCT.md`. Both are settled: night agents never rerun init, concept-seed or a direction round.
+  - **Fonts:** system fonts only. The Phase 0A no-font rule stands.
+  - **gluestack:**
+    - D-50 holds for the gallery.
+    - The gallery's `src/components/ui/**` is generated once by the gluestack CLI, then owned by the gallery and customised to the identity. This supersedes the 06-u15 rule "never hand-edited".
+    - 06-u16 is skipped, superseded by 16-u10. Every unit that depended on 06-u16 now depends on 16-u10.
+  - **The capability profile:**
+    - A person describes themselves through a structured registration, just as a problem is prepared through structured fields. It covers what they know and can do, what they can give, the languages they read and speak, the places they are connected to, what affects them, and the causes they care about.
+    - It holds no personally identifiable information.
+    - It lives only on the person's device, encrypted at rest, and matching happens on the device. The device downloads the public problem list, or a coarse region shard, without signing in and filters it locally. The server never receives the profile or anything derived from it.
+    - Notifications are opt-in (NOTIFY-CONSENT-1). The server push knows nothing about interests ("new public problems were published"), and the device raises the local notice itself.
+    - The pattern follows the mera protocol, rules 1, 4 and 6: facts stay on the device, no consumption signals leave it, and inference happens on the device. Unlike mera, nothing derived from the profile is ever sent as a query.
+    - Spec: `docs/spec/26-capability-profile.md` (16-u01).
+  - **How to frame it:**
+    - Copy and spec describe the vision, not the feature. A person is a problem solver who is shown only the few problems they can move. One person, maybe five problems, solved properly.
+    - Never call it a feed. No engagement algorithm, nothing inferred from behaviour.
+  - **Constitution, recorded by the founder as transitional steward (VIII.2).** The amendment adds privacy and removes nothing from the protected core. Transcribe this text verbatim as a new article in `ch02-privacy-participation.md` (16-u02):
+    > ### II.10 CAPABILITY-PROFILE-LOCAL: The private capability profile
+    > *Status: Decided (D-80) · Old: none · First phase: P2*
+    >
+    > A person may describe what they know, what they can give, the languages they use, the places they are connected to and what affects them, so the platform can show them the public problems they can help with. This capability profile is kept only on the person's own device. The platform never receives it, stores it, joins it with anything, or infers it from behaviour, and it holds no name, contact detail, exact location or identifier. Matching runs on the device against the public problem list. A profile kept this way is not a person profile in the sense of III and VII. Showing a person public problems on their own device is neither private matching (Art 59) nor assignment (Art 72): nobody is contacted, ranked or obliged, and taking part in a problem stays a public act under the ordinary rules. The person can view, edit, export and delete the whole profile at any time.
+  - **Reverse:**
+    - **Gallery identity:** restore the shared tokens and calm palette.
+    - **Unfold:** unwrap the `Unfold` sections back into the page.
+    - **Capability profile:** stays a spec entry until the app units land. Removing it means deleting spec 26, article II.10 and plan 16's app units.

@@ -41,7 +41,7 @@ Prove slice 1 is done and safe to hand to contributors: adversarial inputs, rate
 | [07-u17](u17-compose-prod-like.md) | Compose prod-like profile: all images together, nothing deployed | . | 1.2 | 135 | 07-u12, 07-u13, 07-u14, 07-u15, 07-u16 | - |
 | [07-u18](u18-token-rename-docs.md) | Rename design token status.interim to status.transitional (tokens, build, contrast check) | . | 0.8 | 136 | - | - |
 | [07-u19](u19-app-token-sync.md) | can_app: sync tokens and rename code references to status.transitional | can_app | 0.8 | 137 | 07-u18, 02-u24, 02-u25 | - |
-| [07-u20](u20-gallery-token-sync.md) | can_gallery: sync content and rename references to status.transitional | can_gallery | 0.8 | 138 | 07-u18, 06-u16 | - |
+| [07-u20](u20-gallery-token-sync.md) | can_gallery: sync content and rename references to status.transitional | can_gallery | 0.8 | 138 | 07-u18, 16-u10 | - |
 | [07-u21](u21-journey-remoderation-reresolution.md) | Playwright journeys: policy change notice and re-resolution reopen (T20, T21) | can_app | 1.5 | 126 | 07-u07, 09-u50, 09-u65, 09-u66, 09-u64 | - |
 | [07-u22](u22-journey-legal-stack.md) | Playwright journeys: legal stack refusal (TOPIC-FORBIDDEN-1) and legally blocked stuck | can_app | 1.5 | 127 | 07-u07, 09-u67, 09-u59, 09-u58, 09-u49, 05-u06, 12-u05 | - |
 

@@ -14,11 +14,13 @@ spec: ["docs/adr/0003-nextjs-static-gallery-site.md","docs/adr/0007-gluestack-de
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "If the perf budget in the acceptance is exceeded, trim generated components and unused provider features first; raise a number only by editing docs/gluestack.md with a written reason and telling the orchestrator."
-status: todo
+status: skipped
 attempts: 0
 commits: []
 actual_hours: null
 ---
+
+> Skipped (D-80): superseded by 16-u10, which applies the gallery identity on customised gluestack.
 
 ## Objective
 

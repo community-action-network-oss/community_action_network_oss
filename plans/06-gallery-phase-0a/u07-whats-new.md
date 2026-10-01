@@ -7,7 +7,7 @@ area: "can-gallery"
 model: sonnet
 est_hours: 1
 priority: 70
-depends_on: ["06-u02","06-u15","06-u16"]
+depends_on: ["06-u02","06-u15","16-u10"]
 writes: ["scripts/sync-changelog.mjs","scripts/check-changelog.mjs","src/content/changelog.json","src/app/whats-new/**","package.json"]
 spec: ["docs/spec/21-open-source-governance.md","docs/spec/20-participation-nonmonetary.md"]
 verify: ["npm run sync:changelog","npm run check:changelog","npm run verify"]

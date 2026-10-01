@@ -7,7 +7,7 @@ area: "can-gallery"
 model: sonnet
 est_hours: 1.5
 priority: 90
-depends_on: ["06-u08","06-u15","06-u16"]
+depends_on: ["06-u08","06-u15","16-u10"]
 writes: ["docs/performance-budget.md","scripts/check-budget.mjs","scripts/perf.mjs","package.json","src/app/**","src/components/**","public/**"]
 spec: ["docs/spec/16-security-a11y-ops-testing.md","docs/spec/18-phases-gates.md","docs/adr/0003-nextjs-static-gallery-site.md","docs/adr/0007-gluestack-design-system.md"]
 verify: ["npm run build","npm run check:budget","npm run perf","npm run verify"]

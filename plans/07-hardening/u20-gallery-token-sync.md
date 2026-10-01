@@ -7,7 +7,7 @@ area: can-gallery
 model: sonnet
 est_hours: 0.8
 priority: 138
-depends_on: ["07-u18", "06-u16"]
+depends_on: ["07-u18", "16-u10"]
 writes: ["src/content/tokens.json", "src/app/tokens.css", "src/app/globals.css", "src/app/**", "src/components/**", "src/content/**", "scripts/sync-content.mjs"]
 spec: ["docs/design/ux/tokens.json", "docs/design/ux/visual-direction.md"]
 needs: []

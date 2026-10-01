@@ -7,7 +7,7 @@ area: "can-gallery"
 model: sonnet
 est_hours: 1
 priority: 100
-depends_on: ["06-u08","06-u09","06-u15","06-u16"]
+depends_on: ["06-u08","06-u09","06-u15","16-u10"]
 writes: ["scripts/gen-og.mjs","scripts/check-og.mjs","public/og/**","src/app/layout.tsx","src/app/**/page.tsx","src/lib/metadata.ts","package.json"]
 spec: ["docs/spec/18-phases-gates.md","docs/design/ux/tokens.json","docs/design/ux/visual-direction.md","docs/adr/0003-nextjs-static-gallery-site.md"]
 verify: ["npm run gen:og","npm run check:og","npm run verify"]

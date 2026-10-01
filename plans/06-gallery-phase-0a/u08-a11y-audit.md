@@ -7,7 +7,7 @@ area: "can-gallery"
 model: sonnet
 est_hours: 1.5
 priority: 80
-depends_on: ["06-u01","06-u03","06-u05","06-u06","06-u07","06-u15","06-u16","06-u22"]
+depends_on: ["06-u01","06-u03","06-u05","06-u06","06-u07","06-u15","16-u10","06-u22"]
 writes: ["scripts/serve-out.mjs","scripts/a11y.mjs","docs/a11y-report.md","playwright.config.*","package.json","package-lock.json","src/app/**","src/components/**","src/content/**"]
 spec: ["docs/spec/16-security-a11y-ops-testing.md","docs/spec/17-ux.md","docs/spec/18-phases-gates.md","docs/spec/01-slice-1-brief.md"]
 verify: ["npm run build","npm run a11y","npm run verify"]
