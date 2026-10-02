@@ -13,9 +13,9 @@ spec: ["docs/design/ai/decision-points.md#per-dp-notes", "docs/design/flows/re-r
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: doing
+status: done
 attempts: 0
-commits: []
+commits: ["ece5872","5a60600"]
 actual_hours: null
 ---
 ## Objective

@@ -15,9 +15,9 @@ needs: []
 verify: ["npm run verify", "npx jest --ci __tests__/mod-invite.test.tsx"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: doing
+status: done
 attempts: 0
-commits: []
+commits: ["d38b6c3"]
 actual_hours: null
 ---
 ## Objective

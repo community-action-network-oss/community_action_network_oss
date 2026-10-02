@@ -574,3 +574,7 @@ Every default, deviation and judgment call made while building CAN. Each one can
   - **Default:** the canonical pack hash uses pack-relative paths, the form can_server computes. Source `manifest.json`, `release.json`, exported manifests and ratification records all carry that one hash, so the exporter no longer recomputes a different one. Fixed in can_policy `tools/pack-hash.mjs` by fix-pack-hash before 10-u40 pins the server fixture and before 10-u28.
   - **Why:** the server is the verifier at runtime; one hash per pack version keeps ratification records, the policy version string `<name>@<semver>+<12hex>` and server pins comparable.
   - **Reverse:** restore repo-relative hashing in `tools/pack-hash.mjs` and let the exporter recompute.
+- **D-84 · W16 · Stage `auto_start` defaults to true: the spec wins over the 10-u66 unit text (orchestrator default, for founder review).** Unit 10-u66 says `stage.auto_start_default` false; `docs/spec/01b-stages.md` (line 19, ST03) and can_server 12-u04 default `auto_start` to true.
+  - **Default:** true. can_policy `limits.yaml` `stage.auto_start_default` is set to true (provisional) and the 10-u66 unit text is stale.
+  - **Why:** the spec is binding over plan text; true matches the server already built and the stage table, where ST03 runs for the system when `auto_start` is true.
+  - **Reverse:** set the limit to false and change the spec row and the server default together.

@@ -15,7 +15,7 @@ needs: ["docker","db"]
 verify: ["npm run verify","npx vitest run --config ./vitest.config.e2e.ts test/moderation-run-recorder.e2e-spec.ts"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: doing
 attempts: 0
 commits: []
 actual_hours: null
