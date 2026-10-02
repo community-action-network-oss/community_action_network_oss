@@ -39,5 +39,16 @@
       "Bash(curl http://[!l]*)",
       "Bash(rm -rf /*)"
     ]
+  },
+  "enabledPlugins": {
+    "caveman@caveman": true
+  },
+  "extraKnownMarketplaces": {
+    "caveman": {
+      "source": {
+        "source": "github",
+        "repo": "JuliusBrussee/caveman"
+      }
+    }
   }
 }
