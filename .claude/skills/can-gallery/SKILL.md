@@ -5,7 +5,7 @@ description: Work on can_gallery, the read-only public gallery and explainer sit
 
 # can-gallery
 
-Weight: light. Next.js 16 static export. Built on gluestack-ui (D-50, ADR 0007): 06-u15 installs it, 16-u10 applies the gallery identity. Until 16-u10 lands, pages are plain CSS. JS budget 130 KB gzipped per page, no runtime third-party fetch. Phase 0A deliverable (`docs/spec/18-phases-gates.md`).
+Weight: light. Next.js 16 static export. Built on gluestack-ui 3.0.12 with NativeWind 4 (D-50, ADR 0007; NativeWind v5 does not support Next.js). `DESIGN.md` is the design contract. JS budget 130 KB gzipped per page, no runtime third-party fetch. The budget is currently exceeded by the Next/React runtime (~172 KB gz, `docs/gluestack.md`); never relax it to pass a unit, it is an open founder review item. Phase 0A deliverable (`docs/spec/18-phases-gates.md`).
 
 ## Settled before you start (D-80)
 - **Audience: anyone with any expertise** (nurse, cook, clerk, electrician, student, lawyer, engineer), not mainly developers. Plain words a non-specialist reads first time; jargon (repo, lifecycle, schema, moderation run, attestation, OQ ids) only inside unfolded detail or on the deep pages.
@@ -14,14 +14,16 @@ Weight: light. Next.js 16 static export. Built on gluestack-ui (D-50, ADR 0007):
 - **The vision to carry in copy:** a person tells CAN what they know, privately, on their own device, and is shown only the few public problems they can move. One person, maybe five problems, solved properly. Never call it a feed; no algorithm guesses. Mark it `Planned`.
 
 ## Routes
-`/`, `/how-it-works/`, `/contribute/`, `/open-questions/`, `/roadmap/`, `/principles/` (all under `src/app/`, trailing slash on), plus `/docs/` (Read everything), `/docs/<slug>/` for every public document (generated from the manifest) and `/docs/view/?path=<path>` for documents added after the build.
+`/`, `/how-it-works/`, `/where-you-fit/`, `/contribute/` (+ `tasks/`, `roles/`), `/open-questions/`, `/roadmap/`, `/principles/`, `/how-decisions-are-made/`, `/whats-new/`, `/community-policy/`, `/lawful-everywhere/`, `/re-resolution/`, `/proof/` (all under `src/app/`, trailing slash on). A new route must be added to `check:locale` ROUTES, the `check-out` must-exist list and `DEEPER_NAV` in `src/config/site.ts`, plus `/docs/` (Read everything), `/docs/<slug>/` for every public document (generated from the manifest) and `/docs/view/?path=<path>` for documents added after the build.
 
 ## Commands (run with `npm --prefix can_gallery`)
 - `run dev` (port 3000), `run build` (writes `out/`), `run lint`, `run typecheck`
-- `run sync:content` rewrites synced files; `run sync:check` fails on drift
+- `run sync:content` rewrites synced files and the derived pages (decisions, changelog, catalog, manifesto); `run sync:check` fails on drift. Derived pages change constantly, so they are shape-checked only (`check:decisions`, `check:changelog`): run `sync:content` right before verify
 - `run test` runs `scripts/whitelist.test.mjs` (whitelist rejects plans/, .claude/, `..`, absolute paths, URLs, non-md; fetch failure never yields text)
 - `run sync:docs` writes the docs index (`.generated/manifest.json`, gitignored); `dev` and `build` run it first
-- `run verify` = sync:check + test + lint + typecheck + build + check:out (no `<form`, no analytics, no external hosts in href/src, no em or en dashes in rendered HTML, all routes exist, docs page count equals the manifest, no document text anywhere in `out/`, only the allowed GitHub fetch hosts in built JS)
+- Import gluestack components as `ui/*/index.web`
+- Claims register in `docs/claims.md` and are checked by `check:claims`; `check:copy` checks copy rules
+- `run verify` = sync:check + check:catalog/roles/pitch/seeds/decisions/changelog + test + lint + typecheck + build + check:out + check:claims + check:copy + check:locale (check:out: no `<form`, no analytics, no external hosts in href/src, no em or en dashes in rendered HTML, all routes exist, docs page count equals the manifest, no document text anywhere in `out/`, only the allowed GitHub fetch hosts in built JS)
 
 ## Invariants
 - Phase 0A limits: no forms, cookies, analytics or fonts, and no third-party fetches EXCEPT the live document fetches of D-67/D-68 (see Docs below). No collection of personal data. The channel to get involved is the repository plus the open questions (`OQ-promo-interest-channel`, a stable id kept from before the rename).
