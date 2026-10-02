@@ -1,0 +1,12 @@
+# Placeholders only. Replace @OWNER with real handles, then push.
+# Nothing here is active until pushed and "Require review from Code Owners" is on.
+# High-risk paths (docs/spec/22-ai-contribution-policy.md):
+# /DECISIONS.md            @OWNER
+# /SECURITY.md             @OWNER
+# /.github/                @OWNER
+# /.claude/                @OWNER
+# /scripts/                @OWNER
+# /docs/spec/              @OWNER
+# /can_server/src/auth/    @OWNER
+# /can_server/drizzle/     @OWNER
+# /can_policy/             @OWNER

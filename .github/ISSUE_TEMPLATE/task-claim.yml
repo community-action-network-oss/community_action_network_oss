@@ -1,0 +1,40 @@
+name: Claim a unit
+description: Say you will work on one unit from plans/. New here? See docs/contributing/good-first-units.md.
+labels: ["task", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        One person per unit at a time. A maintainer confirms the claim. Read the unit file and its status first (see docs/contributing/README.md). Security problems: do not file here, follow SECURITY.md.
+  - type: input
+    id: unit
+    attributes:
+      label: Unit id
+      description: For example 13-u18.
+    validations:
+      required: true
+  - type: dropdown
+    id: repo
+    attributes:
+      label: Repo
+      options: [".", "can_server", "can_app", "can_gallery", "can_policy"]
+    validations:
+      required: true
+  - type: textarea
+    id: plan
+    attributes:
+      label: What I will do
+    validations:
+      required: true
+  - type: textarea
+    id: verify
+    attributes:
+      label: How I will verify it
+      description: The commands or checks from the unit file.
+    validations:
+      required: true
+  - type: textarea
+    id: ai
+    attributes:
+      label: AI tools I plan to use (optional)
+      description: Tool and model if known. Never paste secrets or personal data into hosted tools.

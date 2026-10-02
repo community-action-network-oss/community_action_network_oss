@@ -1,0 +1,19 @@
+# One label per line: - {name: x, color: rrggbb, description: "..."}
+# Not applied anywhere. See .github/README.md.
+- {name: bug, color: d73a4a, description: "Something does not work"}
+- {name: task, color: 0e8a16, description: "A unit from plans/"}
+- {name: docs, color: 0075ca, description: "Documentation"}
+- {name: question, color: d876e3, description: "Open question or proposal"}
+- {name: can-spec, color: 5319e7, description: "Area: specification"}
+- {name: can-root, color: 5319e7, description: "Area: superproject"}
+- {name: can-server, color: 5319e7, description: "Area: server"}
+- {name: can-app, color: 5319e7, description: "Area: app"}
+- {name: can-gallery, color: 5319e7, description: "Area: gallery"}
+- {name: low-risk, color: c2e0c6, description: "Normal review"}
+- {name: high-review-required, color: b60205, description: "Auth, privacy, moderation, identity, protocol, migrations, constitution"}
+- {name: needs-triage, color: ededed, description: "Not yet looked at"}
+- {name: blocked, color: 000000, description: "Waiting on something"}
+- {name: founder-decision, color: fbca04, description: "Needs the founder"}
+- {name: good-first, color: 7057ff, description: "Hour-sized, see docs/contributing/good-first-units.md"}
+- {name: needs-context, color: fef2c0, description: "Needs deeper project knowledge"}
+- {name: ai-assisted, color: bfdadc, description: "Disclosed AI assistance"}

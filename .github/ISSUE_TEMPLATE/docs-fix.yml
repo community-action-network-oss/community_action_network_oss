@@ -1,0 +1,21 @@
+name: Docs fix
+description: A typo, unclear passage or broken link.
+labels: ["docs", "needs-triage"]
+body:
+  - type: input
+    id: where
+    attributes:
+      label: File or page
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is wrong or unclear
+    validations:
+      required: true
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested wording (optional)
+      description: Plain language, no em or en dashes.

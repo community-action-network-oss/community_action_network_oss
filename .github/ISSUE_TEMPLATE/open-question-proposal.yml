@@ -1,0 +1,33 @@
+name: Propose an answer to an open question
+description: Offer an answer to a question in docs/open-questions/.
+labels: ["question", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: Read the OQ file first (docs/open-questions/README.md). Use fictional examples only, never real personal data.
+  - type: input
+    id: oq
+    attributes:
+      label: OQ id
+      description: For example OQ-draft-ttl.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Sources, experience, comparable projects. Say what you checked yourself.
+    validations:
+      required: true
+  - type: textarea
+    id: risks
+    attributes:
+      label: Risks and what you are unsure of
+    validations:
+      required: true
