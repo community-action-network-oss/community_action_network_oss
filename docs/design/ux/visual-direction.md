@@ -15,7 +15,7 @@ Tokens live in `tokens.json` (light and dark, all text pairs at 4.5:1 or better,
 - `urgent` (rust red) exists only for genuine safety or deadline conditions and validation errors that block saving. It always appears with an icon and text. Hints beside form fields (needs_revision) are not errors: they use the neutral note style with an icon and text, not `urgent`.
 - Dark mode is a first-class theme, not an inversion: lighter tints for text, desaturated deep backgrounds, same hue families.
 
-Token note: the policy badges use the existing token `status.interim` (parchment). Renaming it to `status.transitional` is a follow-up that must touch the token build and both consumers together.
+Token note: the policy badges use the token `status.transitional` (parchment).
 
 ## Typography
 System font stack only (`system-ui`, Segoe, Roboto, Noto Sans). Reasons: zero font downloads on low bandwidth, best script coverage for future languages, familiar rendering, respects user font settings. This holds on every surface, the gallery included. Scale (px): caption 13, body 16, label 14 semibold, h3 18, h2 22, h1 28; body line height 1.5. Sentence case everywhere, no all caps blocks. Line length capped near 70 characters via `contentMaxWidth` 720. Numbers use tabular figures in tables.

@@ -4,9 +4,9 @@ const lum=h=>{const c=[1,3,5].map(i=>parseInt(h.slice(i,i+2),16)/255).map(v=>v<=
 const cr=(a,b)=>{const [x,y]=[lum(a),lum(b)].sort((p,q)=>q-p);return +(((x+.05)/(y+.05)).toFixed(2))};
 const themes={
 light:{bg:'#FAFAF7',surface:'#FFFFFF',surfaceMuted:'#F1F1EC',text:'#1D2428',textMuted:'#48545A',border:'#D5D9DA',controlBorder:'#68757B',primary:'#1F5F6B',onPrimary:'#FFFFFF',focus:'#1F5F6B',link:'#1B5663',urgent:'#9B2C1F',onUrgent:'#FFFFFF',urgentSurface:'#FBE9E6',
- status:{pending:['#2F4A6B','#E3EBF5'],active:['#17594F','#DDF1EC'],paused:['#6B4A12','#F6EBD3'],stuck:['#4E3F78','#E9E4F5'],withdrawn:['#444D52','#E8EAEB'],solved:['#1E5A2C','#DDF0DF'],closed:['#3E4A50','#E1E5E7'],redirected:['#3B4A8A','#E6E9F7'],interim:['#5A4A1E','#F3EFD9']}},
+ status:{pending:['#2F4A6B','#E3EBF5'],active:['#17594F','#DDF1EC'],paused:['#6B4A12','#F6EBD3'],stuck:['#4E3F78','#E9E4F5'],withdrawn:['#444D52','#E8EAEB'],solved:['#1E5A2C','#DDF0DF'],closed:['#3E4A50','#E1E5E7'],redirected:['#3B4A8A','#E6E9F7'],transitional:['#5A4A1E','#F3EFD9']}},
 dark:{bg:'#12181B',surface:'#1A2226',surfaceMuted:'#222C31',text:'#E9EEF0',textMuted:'#A9B5BA',border:'#34424A',controlBorder:'#8A989F',primary:'#7CC5D3',onPrimary:'#0B1A1E',focus:'#7CC5D3',link:'#8FD0DD',urgent:'#FF9C8F',onUrgent:'#2A0B07',urgentSurface:'#3A1A16',
- status:{pending:['#B7CEF0','#1F2D42'],active:['#9BDCCF','#143A34'],paused:['#EBCB8B','#3B2D12'],stuck:['#CFC2F0','#2C2447'],withdrawn:['#C3CCD0','#2A3338'],solved:['#A5DDAE','#173A20'],closed:['#BDC8CD','#273136'],redirected:['#C2CAF2','#232B52'],interim:['#E6D8A0','#38300F']}}};
+ status:{pending:['#B7CEF0','#1F2D42'],active:['#9BDCCF','#143A34'],paused:['#EBCB8B','#3B2D12'],stuck:['#CFC2F0','#2C2447'],withdrawn:['#C3CCD0','#2A3338'],solved:['#A5DDAE','#173A20'],closed:['#BDC8CD','#273136'],redirected:['#C2CAF2','#232B52'],transitional:['#E6D8A0','#38300F']}}};
 const pairs=[],fails=[];
 for(const [t,v] of Object.entries(themes)){
  const chk=(n,f,b,min)=>{const r=cr(f,b);pairs.push({theme:t,pair:n,fg:f,bg:b,ratio:r,min});if(r<min)fails.push([t,n,r])};
