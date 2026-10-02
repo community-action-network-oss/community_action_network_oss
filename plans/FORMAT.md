@@ -52,6 +52,7 @@ Unit-level `depends_on` is the only enforced dependency constraint. Keep `depend
 | needs | subset of docker, db, mail | optional; skipped when the preflight shows it unavailable |
 | verify | [commands] | |
 | founder_gate | bool | true units are never selected |
+| tags | [kebab strings] | optional; inline JSON array of lowercase kebab-case strings (`["good-first", "docs"]`). Unknown tags allowed; malformed ones are lint errors. Surfaced by `catalog` |
 | defaults | string | reversible default to apply if blocked (optional) |
 | status | enum | todo, doing, done, blocked, skipped |
 | attempts | int | optional, default 0 |
@@ -76,7 +77,10 @@ node plans/tools/corpus.mjs lint  [--root DIR]
 node plans/tools/corpus.mjs next  --hours 6 [--root DIR] [--json]
 node plans/tools/corpus.mjs graph [--root DIR]
 node plans/tools/corpus.mjs set <unit-id> key=value ... [--root DIR]   # status, attempts, commits, actual_hours, blocked_reason
+node plans/tools/corpus.mjs catalog [--json|--markdown] [--include-gated] [--status todo,doing] [--area X] [--tag T] [--root DIR]
 node plans/tools/test/run.mjs
 ```
 
 `--root` is the superproject root (default: two levels above the tool).
+
+`catalog` prints a stable view of the corpus (default JSON array, sorted by plan id, priority, unit id; no timestamps; identical output on an unchanged tree). Fields: id, plan, plan_title, title, repo, area, est_hours, priority, status, founder_gate, needs, tags (empty array when absent), spec, depends_on, path (relative to the superproject), objective (first paragraph), acceptance (bullets). Founder-gated units are omitted unless `--include-gated`. Filters `--status`, `--area`, `--tag` are ANDed; `--status` takes a comma list. Like `next`, it refuses to run when `lint` fails.

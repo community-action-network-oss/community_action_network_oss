@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Plan-corpus tool: lint | next | graph | set. Node stdlib only. Format: plans/FORMAT.md
+// Plan-corpus tool: lint | next | graph | set | catalog. Node stdlib only. Format: plans/FORMAT.md
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -115,6 +115,7 @@ function lint(root) {
     if ('founder_gate' in d && typeof d.founder_gate !== 'boolean') err(f, 'founder_gate must be true|false');
     if ('priority' in d && !Number.isInteger(d.priority)) err(f, 'priority must be an integer');
     if ('est_hours' in d) { if (!isNum(d.est_hours) || d.est_hours <= 0) err(f, 'est_hours must be a positive number'); else if (d.est_hours > 1.5) err(f, `est_hours ${d.est_hours} > 1.5`); }
+    if ('tags' in d && (!isStrArr(d.tags) || d.tags.some((t) => !/^[a-z0-9]+(-[a-z0-9]+)*$/.test(t)))) err(f, 'tags must be an inline JSON array of lowercase kebab-case strings');
     for (const k of ['depends_on', 'writes', 'reads', 'spec', 'verify', 'commits']) if (k in d && !isStrArr(d[k])) err(f, `${k} must be an inline JSON array of strings`);
     const plan = plans.find((p) => p.dir === u.dir);
     if (d.plan !== undefined && plan && plan.data.id !== d.plan) err(f, `unit plan "${d.plan}" does not match folder plan id "${plan.data.id}"`);
@@ -264,6 +265,43 @@ function cmdSet(root, args) {
   return 0;
 }
 
+// ---- catalog ----
+const section = (body, name) => (body.match(new RegExp(`^## ${name}[ \\t]*\\r?\\n([\\s\\S]*?)(?=^## |(?![\\s\\S]))`, 'm')) || [, ''])[1];
+function catalog(root, args) {
+  const { errors, plans, units } = lint(root);
+  if (errors.length) throw new Error(`corpus does not lint (${errors.length} errors); run lint`);
+  const list = (n) => (flag(args, n) ?? '').split(',').filter(Boolean);
+  const st = list('--status'), area = flag(args, '--area'), tag = flag(args, '--tag');
+  const title = Object.fromEntries(plans.map((p) => [p.data.id, p.data.title]));
+  return units.filter((u) => {
+    const d = u.data;
+    return (args.includes('--include-gated') || !d.founder_gate) && (!st.length || st.includes(d.status)) && (!area || d.area === area) && (!tag || (d.tags || []).includes(tag));
+  }).map((u) => {
+    const d = u.data;
+    return {
+      id: d.id, plan: d.plan, plan_title: title[d.plan], title: d.title, repo: d.repo, area: d.area, est_hours: d.est_hours, priority: d.priority,
+      status: d.status, founder_gate: d.founder_gate, needs: d.needs || [], tags: d.tags || [], spec: d.spec, depends_on: d.depends_on,
+      path: path.relative(root, u.file).split(path.sep).join('/'),
+      objective: section(u.body, 'Objective').trim().split(/\r?\n\s*\r?\n/)[0].replace(/\s*\r?\n\s*/g, ' '),
+      acceptance: section(u.body, 'Acceptance').split(/\r?\n/).map((l) => l.match(/^\s*[-*]\s+(.*\S)\s*$/)).filter(Boolean).map((m) => m[1]),
+    };
+  }).sort((a, b) => a.plan.localeCompare(b.plan) || a.priority - b.priority || a.id.localeCompare(b.id));
+}
+function cmdCatalog(root, args) {
+  const rows = catalog(root, args);
+  if (!args.includes('--markdown')) { console.log(JSON.stringify(rows, null, 2)); return 0; }
+  const L = ['# Plan corpus catalog', ''];
+  let plan;
+  for (const r of rows) {
+    if (r.plan !== plan) { plan = r.plan; L.push(`## ${r.plan} ${r.plan_title}`, ''); }
+    L.push(`### ${r.id} ${r.title}`, '', `- status: ${r.status}, area: ${r.area}, ${r.est_hours}h, priority ${r.priority}`, `- path: ${r.path}`);
+    if (r.tags.length) L.push(`- tags: ${r.tags.join(', ')}`);
+    L.push('', r.objective, '', ...r.acceptance.map((a) => `- [ ] ${a}`), '');
+  }
+  console.log(L.join('\n').trimEnd());
+  return 0;
+}
+
 // ---- cli ----
 function flag(args, name) { const i = args.indexOf(name); return i < 0 ? undefined : args[i + 1]; }
 function main() {
@@ -272,8 +310,8 @@ function main() {
   const root = path.resolve(flag(args, '--root') ?? path.join(path.dirname(fileURLToPath(import.meta.url)), '..', '..'));
   const i = args.indexOf('--root');
   if (i >= 0) args.splice(i, 2);
-  const cmds = { lint: cmdLint, next: cmdNext, graph: cmdGraph, set: cmdSet };
-  if (!cmds[cmd]) { console.error('usage: corpus.mjs lint|next --hours N [--json]|graph|set <unit-id> k=v... [--root DIR]'); return 2; }
+  const cmds = { lint: cmdLint, next: cmdNext, graph: cmdGraph, set: cmdSet, catalog: cmdCatalog };
+  if (!cmds[cmd]) { console.error('usage: corpus.mjs lint|next --hours N [--json]|graph|set <unit-id> k=v...|catalog [--json|--markdown] [--include-gated] [--status a,b] [--area X] [--tag T] [--root DIR]'); return 2; }
   try { return cmds[cmd](root, args); } catch (e) { console.error(`error: ${e.message}`); return 1; }
 }
 process.exitCode = main();

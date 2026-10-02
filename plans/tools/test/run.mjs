@@ -135,3 +135,48 @@ test('can_policy unit lints and is scheduled in its own lane', () => {
   assert.deepEqual(j.lanes.can_policy.units.map((u) => u.id), ['01-u06']);
   assert.equal(run(mutant(sub('01-alpha/u06-policy-lane.md', 'area: can-policy', 'area: can-bogus')), 'lint').status, 1);
 });
+
+const cat = (root, ...a) => run(root, 'catalog', ...a);
+test('catalog: json shape, gated excluded, stable order, byte-identical', () => {
+  const a = cat(valid);
+  assert.equal(a.status, 0, a.stderr);
+  assert.equal(cat(valid).stdout, a.stdout);
+  const j = JSON.parse(a.stdout);
+  assert.ok(!j.some((u) => u.id === '01-u04'));
+  assert.deepEqual(j.map((u) => u.id), ['01-u01', '01-u02', '01-u03', '01-u05', '01-u06', '02-u01'].sort((x, y) => j.findIndex((u) => u.id === x) - j.findIndex((u) => u.id === y)));
+  for (let i = 1; i < j.length; i++) assert.ok(j[i - 1].plan < j[i].plan || (j[i - 1].plan === j[i].plan && j[i - 1].priority <= j[i].priority));
+  assert.deepEqual(j.find((u) => u.id === '01-u01').tags, []);
+  assert.equal(j.find((u) => u.id === '01-u01').objective, 'Do 01-u01.');
+  assert.deepEqual(j.find((u) => u.id === '01-u01').acceptance, ['y']);
+  assert.equal(j.find((u) => u.id === '01-u01').path, 'plans/01-alpha/u01-one.md');
+  assert.equal(j.find((u) => u.id === '01-u01').plan_title, 'Alpha');
+  assert.ok(JSON.parse(cat(valid, '--include-gated').stdout).some((u) => u.id === '01-u04'));
+});
+
+test('catalog: tags field lints and filters', () => {
+  const d = mutant(sub(U1, 'defaults: "none"', 'defaults: "none"\ntags: ["good-first", "docs"]'));
+  assert.equal(run(d, 'lint').status, 0);
+  const j = JSON.parse(cat(d, '--tag', 'docs').stdout);
+  assert.deepEqual(j.map((u) => u.id), ['01-u01']);
+  assert.deepEqual(j[0].tags, ['good-first', 'docs']);
+  for (const bad of ['["Bad"]', '["a_b"]', '"docs"', '[1]']) {
+    const r = run(mutant(sub(U1, 'defaults: "none"', `defaults: "none"\ntags: ${bad}`)), 'lint');
+    assert.equal(r.status, 1, bad);
+    assert.match(r.stderr, /tags must be/);
+  }
+});
+
+test('catalog: status and area filters', () => {
+  assert.deepEqual(JSON.parse(cat(valid, '--area', 'can-app').stdout).map((u) => u.area), JSON.parse(cat(valid, '--area', 'can-app').stdout).map(() => 'can-app'));
+  assert.ok(JSON.parse(cat(valid, '--status', 'done').stdout).length === 0);
+  assert.ok(JSON.parse(cat(valid, '--status', 'todo,doing').stdout).length > 0);
+});
+
+test('catalog: markdown output', () => {
+  const r = cat(valid, '--markdown');
+  assert.equal(r.status, 0, r.stderr);
+  assert.match(r.stdout, /^# Plan corpus catalog/);
+  assert.match(r.stdout, /### 01-u01 Unit 01-u01/);
+  assert.match(r.stdout, /- \[ \] y/);
+  assert.equal(cat(valid, '--markdown').stdout, r.stdout);
+});
