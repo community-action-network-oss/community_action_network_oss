@@ -14,9 +14,9 @@ spec: ["docs/design/ai/amendment-loop.md#1-proposal","docs/design/ai/policy-pack
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "If the GitHub Actions context is unavailable locally, test the scripts directly and validate the workflow with `node -e` YAML parsing; do not add an Actions linter dependency."
-status: todo
+status: done
 attempts: 0
-commits: []
+commits: ["6bb1e9b"]
 actual_hours: null
 ---
 ## Objective

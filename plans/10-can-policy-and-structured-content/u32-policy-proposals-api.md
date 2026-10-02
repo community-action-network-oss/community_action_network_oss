@@ -15,7 +15,7 @@ needs: ["docker","db"]
 verify: ["npm run lint","npm run build","npm test","npm run openapi","git add openapi/openapi.json","npm run verify"]
 founder_gate: false
 defaults: "Opening the real GitHub pull request is NOT part of this unit. The proposal is stored with a `pr_url` field the maintainers fill (or a later unit sets via a GitHub app). Reports are ingested from CI as JSON posted by a maintainer-only token endpoint; nothing here calls GitHub."
-status: todo
+status: doing
 attempts: 0
 commits: []
 actual_hours: null

@@ -14,9 +14,9 @@ spec: ["docs/design/ai/policy-pack.md#version-and-hash","docs/design/components/
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "The candidate version is 1.0.0 and the pack status stays `draft` until 10-u28 records ratification. If `npm run eval -- --strict` fails on a DP, fix the content (examples, thresholds only when stricter), do not exclude the DP."
-status: todo
+status: done
 attempts: 0
-commits: []
+commits: ["ed6cdc2"]
 actual_hours: null
 ---
 ## Objective

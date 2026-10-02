@@ -14,9 +14,9 @@ spec: ["docs/spec/24-archive-reuse.md","docs/design/ai/archive-reuse.md","docs/a
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
+commits: ["4ea292c"]
 actual_hours: null
 ---
 ## Objective

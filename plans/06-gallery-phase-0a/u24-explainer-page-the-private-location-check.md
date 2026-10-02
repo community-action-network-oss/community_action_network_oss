@@ -14,9 +14,9 @@ spec: ["docs/design/location/attestation.md","docs/adr/0016-private-location-att
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
+commits: ["63027ee"]
 actual_hours: null
 ---
 ## Objective
