@@ -100,5 +100,9 @@ Copy any existing file. Keep the same headings. Night or agent runs add question
 | [OQ-contribution-license](OQ-contribution-license.md) | Under what license is contributed content offered? |
 | [OQ-archive-retention](OQ-archive-retention.md) | How do withdrawal and account deletion interact with a permanent archive? |
 | [OQ-cross-language-reuse](OQ-cross-language-reuse.md) | How does reuse work across languages? |
+| [OQ-capability-taxonomy](OQ-capability-taxonomy.md) | Which plain-language groups describe what people know? |
+| [OQ-profile-multi-device](OQ-profile-multi-device.md) | How does a capability profile move between devices without a sync server? |
+| [OQ-match-notify-channel](OQ-match-notify-channel.md) | How does a person hear about matching problems without the server learning interests? |
+| [OQ-help-needed-tags](OQ-help-needed-tags.md) | How strictly is help_needed checked? |
 
 Related: [spec index](../spec/00-index.md), [constitution](../spec/constitution/README.md), [decision log](../../DECISIONS.md), [design](../design/), [ADRs](../adr/).
