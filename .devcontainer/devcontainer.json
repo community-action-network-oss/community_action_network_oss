@@ -1,0 +1,20 @@
+{
+  "name": "CAN",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:24",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {},
+    "ghcr.io/devcontainers/features/python:1": { "version": "3" }
+  },
+  // gallery 3000, app (Expo web) 8081, mail UI 8025, Postgres 5433
+  "forwardPorts": [3000, 8081, 8025, 5433],
+  "postCreateCommand": "bash scripts/bootstrap.sh",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "editorconfig.editorconfig"
+      ]
+    }
+  }
+}
