@@ -27,6 +27,9 @@ A language test score may support a bounded language-proficiency claim but does 
 
 Verified professionals do not accept private cases through the platform. Their credentials increase the evidentiary weight or eligibility of public contributions within a defined scope. Expertise never creates ownership, automatic correctness, private solicitation rights, or a confidential professional relationship inside the platform.
 
+See II.10: showing a person public problems that match what they know, on their own device, is neither private matching nor assignment. Nobody is contacted, and the expertise weight rules here are unchanged.
+
+
 #### Art 72: Expertise changes weight, not ownership
 
 A verified professional or demonstrated expert may contribute opinions, evidence, critiques, and recommendations. Expertise may increase the weight of a contribution within the verified scope, but it does not:
@@ -41,6 +44,8 @@ A verified professional or demonstrated expert may contribute opinions, evidence
 Expert contributions remain contestable, evidence-linked, conflict-checked, and subject to outcome calibration.
 
 Rules: none yet.
+
+See II.10: a device-side capability profile does not give anyone ownership or a role in a problem. It only shows a person problems they could help with, and taking part stays public.
 
 ### VII.2 COMPETENCE: Competence
 *Status: Drafted · Old: Art 34 · First phase: P5*

@@ -40,6 +40,10 @@ A public, open-source problem-resolution platform. People surface civic and stru
 
 The unit of work is the shared condition: an institutional failure, a recurring pattern, a geographic issue, a structural root cause. A single personal experience can reveal, evidence or corroborate it. It does not become a personal service request.
 
+## Come as you are
+
+Everyone already knows something a public problem needs. A nurse knows how a ward really runs. A bus driver knows the route that fails. CAN asks what you know and keeps the answer on your own phone, where nobody else can read it. Then it shows you the few problems you can actually move. A few problems solved properly beat a hundred touched.
+
 ## What this is not
 
 - Not an individual advice, therapy, medical, legal, consulting or personal matter-management service.

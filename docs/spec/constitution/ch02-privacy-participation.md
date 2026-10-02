@@ -141,3 +141,10 @@ Accepted non-identifying content may feed aggregate detection automatically, wit
 The platform may say "the platform received a pattern of reports meeting defined criteria". It may not claim that this proves prevalence, causation, guilt, or institutional responsibility without further evidence. Not in slice 1.
 
 Rules: none yet.
+
+### II.10 CAPABILITY-PROFILE-LOCAL: The private capability profile
+*Status: Decided (D-80) · Old: none · First phase: P2*
+
+A person may describe what they know, what they can give, the languages they use, the places they are connected to and what affects them, so the platform can show them the public problems they can help with. This capability profile is kept only on the person's own device. The platform never receives it, stores it, joins it with anything, or infers it from behaviour, and it holds no name, contact detail, exact location or identifier. Matching runs on the device against the public problem list. A profile kept this way is not a person profile in the sense of III and VII. Showing a person public problems on their own device is neither private matching (Art 59) nor assignment (Art 72): nobody is contacted, ranked or obliged, and taking part in a problem stays a public act under the ordinary rules. The person can view, edit, export and delete the whole profile at any time.
+
+Rules: PROFILE-LOCAL-1
