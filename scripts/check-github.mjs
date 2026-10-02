@@ -34,6 +34,9 @@ export function check(dir) {
       if (/pull_request_target/.test(t)) errs.push(`workflows/${f}: pull_request_target`);
       if (/secrets\./.test(t)) errs.push(`workflows/${f}: secrets. reference`);
       if (/curl[^\n|]*\|\s*(sudo\s+)?(ba|z)?sh\b/.test(t)) errs.push(`workflows/${f}: curl | sh`);
+      for (const m of t.matchAll(/(?:node|python3)\s+([\w./-]+\.(?:mjs|py))/g)) {
+        if (!fs.existsSync(path.join(dir, m[1]))) errs.push(`workflows/${f}: missing script ${m[1]}`);
+      }
     }
   }
   return errs;
@@ -52,6 +55,7 @@ function selfTest() {
     ['.github/labels.yml', 'junk\n'],
     ['.github/PULL_REQUEST_TEMPLATE.md', 'nothing\n'],
     ['.github/workflows/ci.yml', 'on: pull_request_target\n'],
+    ['.github/workflows/ci.yml', 'permissions:\n  - run: node nope/x.mjs\n'],
   ];
   for (const [p, s] of bad) {
     const old = fs.readFileSync(path.join(tmp, p), 'utf8');

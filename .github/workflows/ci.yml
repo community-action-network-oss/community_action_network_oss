@@ -1,0 +1,63 @@
+# Root CI. Mirrors the non-submodule checks of scripts/verify-all.sh.
+# This runs on GitHub once merged; nothing runs it before that.
+# Submodules are deliberately NOT checked out (default), so these jobs do not
+# depend on can_policy having a GitHub remote. Submodule CI is 08-u05 to 08-u07.
+name: ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  corpus:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: node plans/tools/corpus.mjs lint
+      - run: node plans/tools/test/run.mjs
+      - run: node scripts/sync-good-first.mjs --check
+      - run: node scripts/check-github.mjs
+      - run: node scripts/check-github.mjs --self-test
+  spec-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: node docs/spec/constitution/tools/check.mjs
+      - run: node docs/spec/constitution/tools/map-check.mjs
+      - name: Spec check (if present)
+        run: '[ ! -f docs/spec/tools/check-spec.mjs ] || node docs/spec/tools/check-spec.mjs'
+      - name: No em or en dashes in changed docs
+        env:
+          BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: |
+          case "$BASE" in ""|0000000000000000000000000000000000000000) BASE=HEAD~1 ;; esac
+          files=$(git diff --name-only --diff-filter=d "$BASE" HEAD -- docs README.md CONTRIBUTING.md || true)
+          [ -z "$files" ] && exit 0
+          # shellcheck disable=SC2086
+          if grep -nP '\x{2014}|\x{2013}' $files; then echo "em or en dash found"; exit 1; fi
+  design:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3"
+      - run: python3 docs/design/check.py
+      - run: node docs/design/ux/tokens.build.mjs
+      - name: Tokens in sync
+        run: git diff --exit-code -- docs/design/ux/tokens.json
