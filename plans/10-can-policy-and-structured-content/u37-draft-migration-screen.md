@@ -14,10 +14,10 @@ spec: ["docs/design/ux/wireframes/forms.md#WF-FORM-5","docs/design/flows/policy-
 verify: ["npm run gen:api","npm run verify"]
 founder_gate: false
 defaults: "Offer Move and Stay exactly as WF-FORM-5 shows; Stay is unavailable once `grace_ends_at` has passed."
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["420149a"]
+actual_hours: 0.1
 ---
 ## Objective
 Show the person that their draft is pinned to an older form version, what is new or changed, and let them move with per-field confirmation of the mapping, or stay until the grace window ends.

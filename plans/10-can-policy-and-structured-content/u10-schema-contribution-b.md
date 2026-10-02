@@ -14,10 +14,10 @@ spec: ["docs/design/ai/structured-content.md#1-content-types-and-their-schemas",
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "If a field's bounds are unclear, use the bounds from docs/design/ai/decision-points.md \"Policy-pack values\" and note the guess in the schema's `x-guidance.why`; never invent a required field the structured-content tables do not list."
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["9448b78"]
+actual_hours: 0.1
 ---
 ## Objective
 The other contribution types: constraint, stakeholder_perspective, proposed_solution, proposal_improvement, risk, implementation_offer, progress_update, verification_evidence, and a reserved moderation_feedback stub.

@@ -15,10 +15,10 @@ needs: []
 verify: ["bash -n scripts/verify-all.sh","bash scripts/verify-all.sh --docs-only"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["bb0a98e"]
+actual_hours: 0.1
 ---
 ## Objective
 scripts/verify-all.sh already exists (W1 P1: runs each submodule verify plus corpus lint, constitution and design checks). Extend it, do not rewrite it, so a contributor or agent can prove a change is green with one command, including a docs-only mode and the gates it lacks. No CI service is configured (founder-gated).

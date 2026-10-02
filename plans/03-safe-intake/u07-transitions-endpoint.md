@@ -15,10 +15,10 @@ needs: ["docker","db"]
 verify: ["npm run verify","npx vitest run --config ./vitest.config.e2e.ts test/transitions-endpoint.e2e-spec.ts"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["51c815f"]
+actual_hours: 0.1
 ---
 ## Objective
 Expose POST /v1/problems/{id}/transitions to the engine, and tell clients which transitions the viewer may attempt, so the app never hardcodes rights.

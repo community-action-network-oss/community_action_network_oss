@@ -15,10 +15,10 @@ needs: ["docker","db","mail"]
 verify: ["npm run verify","npx vitest run --config ./vitest.config.e2e.ts test/auth-usecases.e2e-spec.ts"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["e619ec5"]
+actual_hours: 0.1
 ---
 ## Objective
 Implement the account domain flows as use cases behind repository interfaces (domain stays ORM-free): redeem an invite, issue and verify 6-digit codes, create and resolve sessions. HTTP comes in the next unit.

@@ -14,10 +14,10 @@ spec: ["docs/design/ai/structured-content.md#3-the-problem-schema-field-by-field
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "If a field's bounds are unclear, use the bounds from docs/design/ai/decision-points.md \"Policy-pack values\" and note the guess in the schema's `x-guidance.why`; never invent a required field the structured-content tables do not list."
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["72d896f"]
+actual_hours: 0.1
 ---
 ## Objective
 The problem schema exactly as specified field by field in docs/design/ai/structured-content.md section 3, with plain-language labels, why-we-ask text, good and bad examples, message bundle and valid and invalid example submissions. This is the most important schema: it decides what every first post must cover.

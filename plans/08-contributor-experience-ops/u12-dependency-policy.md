@@ -13,10 +13,10 @@ spec: ["docs/spec/22-ai-contribution-policy.md","docs/spec/21-open-source-govern
 verify: ["node -e \"const s=require('fs').statSync('docs/policy/dependency-updates.md').size;if(s>25000)throw new Error(s)\"","node plans/tools/corpus.mjs lint"]
 founder_gate: false
 defaults: "Monthly routine updates, out-of-band for security advisories, no automated merge ever."
-status: "todo"
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["86a218b"]
+actual_hours: 0.1
 ---
 
 ## Objective

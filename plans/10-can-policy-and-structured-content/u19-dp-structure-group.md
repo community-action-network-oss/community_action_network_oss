@@ -14,10 +14,10 @@ spec: ["docs/design/ai/decision-points.md","docs/design/ai/policy-pack.md","docs
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "If the 1.5 hours run short, finish prompt, schema and examples for every DP in this unit first and the adversarial eval cases last; record the shortfall as a TODO line in that DP's eval/README.md. Never copy a real person, address or incident into an example."
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["bba1070"]
+actual_hours: 0.1
 ---
 ## Objective
 Author the policy content for DP-APPEAL, DP-ASSUMPTIONS, DP-COMPLETENESS, ASSIST-FILL: for each DP a prompt template, an output schema, labeled examples and a held-out eval set, so the eval runner (10-u23) can score it on recorded responses. Use the three guidance pairs recorded by 10-u08 (`guidance-index.json`) as eval cases with `source: "x-guidance:problem.<field>"`, and add `sub-wellmeaning-wrong`, `sub-vague` and `adv-assumption-smuggle` style cases (see docs/design/ai/simulation.md section 2). For ASSIST-FILL add leakage and invented-source regression cases; its output shape is not a moderation outcome, so its `schema.json` does not extend dp-output and the DP lint treats ASSIST-FILL as the one non-moderation DP (add that exception in tools/lint-dp.mjs with a test).

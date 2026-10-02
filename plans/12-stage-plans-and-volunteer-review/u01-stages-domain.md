@@ -15,10 +15,10 @@ needs: []
 verify: ["npm run lint", "npm run build", "npm test", "npx vitest run src/stages/domain"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["d9f44c7"]
+actual_hours: 0.1
 ---
 ## Objective
 Encode the stage level of lifecycle v2 (docs/spec/01b-stages.md, the single owner of ST01 to ST11, `STAGE-GATE-1` and the `classic-5` template) as pure TypeScript with table-driven tests. This is the executable form of the stage plan; persistence, HTTP and the transactional engine come in later units (12-u02, 12-u06). Framework-light: no `@nestjs/*`, no `drizzle-orm`, no node I/O in `src/stages/domain/`.

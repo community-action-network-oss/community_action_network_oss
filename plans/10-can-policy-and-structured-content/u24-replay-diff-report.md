@@ -14,10 +14,10 @@ spec: ["docs/design/ai/evaluation.md#replay-diff-method","docs/design/ai/amendme
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "The default flip limit for a minor version is 5% of the replay set per DP, as `replay_limits.minor_flip_pct` in `limits.yaml`; any unintended flip in the privacy, crisis or rights tier blocks regardless."
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["61c3059"]
+actual_hours: 0.1
 ---
 ## Objective
 Implement the replay diff the amendment loop gates on, working offline against fixture decisions and recorded responses, producing a report the PR and WF-POLICY-2 can show.

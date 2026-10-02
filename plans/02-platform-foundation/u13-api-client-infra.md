@@ -15,10 +15,10 @@ needs: []
 verify: ["npm run verify","npx jest --ci __tests__/api-client.test.ts"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["80636e7"]
+actual_hours: 0.1
 ---
 ## Objective
 Extend the typed openapi-fetch client with everything every screen needs: credentials, the CSRF header, the error envelope parsed to a typed ApiError, offline detection, and a session-expired event bus. This unit has no server dependency (the client is tested against a mocked fetch).

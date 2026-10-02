@@ -14,10 +14,10 @@ spec: ["docs/open-questions/OQ-amsterdam-overlay-review.md","docs/design/ai/simu
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "Structure and source list only. Do not state any legal rule as authoritative text; every rule body in this unit is `text: \"TODO legal review\"` with `status: proposed` and a `sources` list. The pack status is `draft` and `reviewer: none`; it may only be used on synthetic evidence."
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["0591549"]
+actual_hours: 0.1
 ---
 ## Objective
 The skeleton of the first real jurisdiction overlay (D-56): file layout, competence table headings, source checklist with effective dates to fill, and the unreviewed marking, ready for the founder-gated legal content unit (10-u22). No legal assertion is made here.

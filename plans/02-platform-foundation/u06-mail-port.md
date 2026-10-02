@@ -15,10 +15,10 @@ needs: ["docker","db","mail"]
 verify: ["npm run verify","npx vitest run --config ./vitest.config.e2e.ts test/mail.e2e-spec.ts"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["43264c5"]
+actual_hours: 0.1
 ---
 ## Objective
 All outbound email goes through a NotificationPort. In development it is SMTP to Mailpit. Provide the test helper every later e2e test uses to read mail.

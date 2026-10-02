@@ -15,10 +15,10 @@ needs: ["docker","db"]
 verify: ["npm run lint","npm run build","npm test","npm run openapi","git add openapi/openapi.json","npm run verify"]
 founder_gate: false
 defaults: "If a major bump has no migration map in the pack, refuse activation of that schema version for new drafts only after logging; in-flight drafts stay pinned (the pack CI blocks such a bump anyway, 10-u12)."
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["5a5b917"]
+actual_hours: 0.2
 ---
 ## Objective
 Implement the in-flight draft rules of docs/design/flows/policy-schema-change.md: a minor bump auto-migrates drafts; a major bump keeps drafts on the old version for a grace window (`grace.schema_major_draft_days`, default 30) and offers a field-mapping migration the poster confirms; after the window the draft must migrate before submit. Published content is never rewritten.

@@ -15,10 +15,10 @@ needs: []
 verify: ["npm run lint","npm run build","npm test","npx vitest run src/domain/lifecycle/vocabulary.spec.ts"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["6f9e9ac"]
+actual_hours: 0.1
 ---
 ## Objective
 Encode the per-state vocabulary of docs/spec/01a-lifecycle.md (lifecycle v2, D-72; section 4.1 state classes and the public labels of the T00 to T22 table) as data (state keys, state classes, public chip label, plain explanation, next action), so list and detail endpoints return labels the app never hardcodes. The transition table itself is 03-u01. Stage chips (Planned to Skipped) belong to the stages domain (12-u01), not here.

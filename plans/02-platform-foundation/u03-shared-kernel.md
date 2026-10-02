@@ -15,10 +15,10 @@ needs: ["docker","db"]
 verify: ["npm run verify","npx vitest run --config ./vitest.config.e2e.ts test/kernel.e2e-spec.ts"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["89d9fd4"]
+actual_hours: 0.1
 ---
 ## Objective
 Add the small shared pieces every module uses: the stable error envelope, an id generator and clock behind ports, cursor pagination helpers, an event builder, and the noindex header. Reuse src/domain/ids.ts (UUIDv7) and src/domain/event.ts; do not duplicate them.

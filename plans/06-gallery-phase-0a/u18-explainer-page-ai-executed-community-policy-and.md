@@ -13,10 +13,10 @@ spec: ["docs/design/ai/README.md", "docs/design/ai/structured-content.md", "docs
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["eb37850"]
+actual_hours: 0.1
 ---
 ## Objective
 A plain-language explainer, /community-policy/: people make every rule, the AI applies it to every post before, during and after publication, explains each decision and answers to appeal. Content is structured everywhere. This replaces the old claim that people make and answer for every decision.

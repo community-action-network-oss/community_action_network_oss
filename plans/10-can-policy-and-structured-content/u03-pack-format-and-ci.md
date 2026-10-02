@@ -14,10 +14,10 @@ spec: ["docs/design/ai/policy-pack.md","docs/design/components/can-policy.md","d
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "Dependencies are exactly `ajv` (JSON Schema 2020-12 via `ajv/dist/2020`) and `yaml`, pinned to exact versions, plus Node built-in test runner. If ajv cannot do 2020-12 strictly with the `x-` keywords, register them with `ajv.addKeyword`; do not add another validator."
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["f24106c"]
+actual_hours: 0.1
 ---
 ## Objective
 Define the on-disk pack format and make it checkable: JSON Schemas for `pack.yaml`, `manifest.json`, `release.json`, DP output and content schemas meta-validation, the single hash tool, a lint that enforces the layout, and CI with an eval runner stub and a replay-diff stub that run against fixtures. `npm run verify` is the gate every later can_policy unit uses.

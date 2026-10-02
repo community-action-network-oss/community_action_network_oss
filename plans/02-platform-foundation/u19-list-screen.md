@@ -15,10 +15,10 @@ needs: []
 verify: ["npm run verify","npx jest --ci __tests__/list-screen.test.tsx"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["5ecfef6"]
+actual_hours: 0.1
 ---
 ## Objective
 Replace the home placeholder with WF-LIST-1 and WF-LIST-2: published problems from GET /v1/problems with filters, a "Load more" button (no infinite scroll), and the honest ordering disclosure.

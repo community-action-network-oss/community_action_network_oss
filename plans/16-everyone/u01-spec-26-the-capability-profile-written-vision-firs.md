@@ -13,10 +13,10 @@ spec: ["DECISIONS.md", "docs/spec/constitution/ch02-privacy-participation.md", "
 verify: ["node plans/tools/corpus.mjs lint", "python3 docs/design/check.py"]
 founder_gate: false
 defaults: "D-80 is binding; if a step is blocked, take the most private and plainest option and report it for the morning review."
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["cee7d33"]
+actual_hours: 0.1
 ---
 ## Objective
 Write `docs/spec/26-capability-profile.md`, the spec for the private capability profile and on-device matching decided in D-80. Lead with the vision, not the feature: a person is a problem solver who is shown only the few public problems they can move. One person, maybe five problems, solved properly.

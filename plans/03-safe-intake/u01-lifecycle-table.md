@@ -15,10 +15,10 @@ needs: []
 verify: ["npm run lint","npm run build","npm test","npx vitest run src/domain/lifecycle"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["294a195"]
+actual_hours: 0.1
 ---
 ## Objective
 Encode the problem-level transition table of docs/spec/01a-lifecycle.md (lifecycle v2, D-72: T00 to T22, the single owner of the table) as typed data and a pure guard function. This is the single executable form of the table. Exhaustive table-driven tests make it impossible to drift from the spec. Decisions are made by moderation runs, not people: the table carries which decision points gate a transition, never a human confirmer. Stage transitions (ST01 to ST11) are a separate table owned by 12-u01.

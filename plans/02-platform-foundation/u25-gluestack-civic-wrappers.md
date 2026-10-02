@@ -15,10 +15,10 @@ needs: []
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "If a wrapper cannot be expressed on a gluestack primitive without changing its public props, keep the props and wrap a gluestack primitive anyway; never import react-native View or Text styling shortcuts as a fallback for that component without a comment naming why."
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["39fb3aa"]
+actual_hours: 0.1
 ---
 ## Objective
 Re-implement every civic wrapper in `src/components/civic/**` on the gluestack primitives installed by 02-u24, with public props unchanged, so feature code and tests do not change.

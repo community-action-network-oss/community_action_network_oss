@@ -12,10 +12,10 @@ writes: ["scripts/sync-changelog.mjs","scripts/check-changelog.mjs","src/content
 spec: ["docs/spec/21-open-source-governance.md","docs/spec/20-participation-nonmonetary.md"]
 verify: ["npm run sync:changelog","npm run check:changelog","npm run verify"]
 founder_gate: false
-status: "todo"
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["2b0d39e"]
+actual_hours: 0.1
 ---
 
 ## Objective

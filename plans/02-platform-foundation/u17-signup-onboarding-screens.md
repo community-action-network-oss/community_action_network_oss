@@ -15,10 +15,10 @@ needs: []
 verify: ["npm run verify","npx jest --ci __tests__/signup-screen.test.tsx __tests__/onboarding-screen.test.tsx"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["d3e8978"]
+actual_hours: 0.1
 ---
 ## Objective
 Build WF-SIGNUP-1 (redeem invite, email, 18+ attestation) and WF-ONBOARD-1 (your generated public name, one regenerate), wired to the generated client.

@@ -14,10 +14,10 @@ spec: ["docs/design/ai/decision-points.md#policy-pack-values-scarcity-and-minimu
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "Use exactly the defaults in the OQ-limits and decision-points tables; cooldown lengths are provisional (OQ-cooldown-lengths) and marked `provisional: true`."
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["7604ed4"]
+actual_hours: 0.1
 ---
 ## Objective
 All caps, field bounds and cooldowns as pack values, never code constants, with a schema and a lint that keeps them consistent with the content schemas.

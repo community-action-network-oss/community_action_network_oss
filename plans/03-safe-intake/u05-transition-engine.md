@@ -15,10 +15,10 @@ needs: ["docker","db"]
 verify: ["npm run verify","npx vitest run --config ./vitest.config.e2e.ts test/transition-engine.e2e-spec.ts"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["904db73"]
+actual_hours: 0.1
 ---
 ## Objective
 Run the lifecycle v2 guard against real rows. A transition updates the problem and appends a problem_event in one database transaction, or changes nothing. Transitions that the table assigns to a moderation run are accepted only with a recorded run id (applied by the outcome applier 09-u23); an initiator proposal (T13 to T17, T22) is recorded and waits for the run. There is no human confirm path. Modules plug side effects into the same transaction through a `TransitionEffects` port (stage instantiation at T04, archive record on terminal transitions, volunteer access ending), so this unit never imports them.

@@ -14,10 +14,10 @@ spec: ["docs/design/ai/archive-reuse.md#1-archive_record-schema","docs/design/ai
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["4f3d8c0"]
+actual_hours: 0.1
 ---
 ## Objective
 Machine schemas for the Archive (D-76), versioned like every schema (D-58): they are the contract between the server (plan 13), the eval data (13-u18) and the gallery. Archive records are system-built, so these schemas have no `x-ui` form widgets beyond read-only display hints.

@@ -15,10 +15,10 @@ needs: []
 verify: ["npm run verify","npx jest --ci __tests__/form-kit.test.tsx"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["7051721"]
+actual_hours: 0.1
 ---
 ## Objective
 Build the shared form components all later screens use, so every form meets the validation, label and focus rules once: labelled fields with inline errors (text plus icon), a character counter, live-region announcements, and mapping of server fieldErrors onto react-hook-form.

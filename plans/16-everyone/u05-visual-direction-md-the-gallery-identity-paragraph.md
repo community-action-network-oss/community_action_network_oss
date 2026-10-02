@@ -13,10 +13,10 @@ spec: ["DECISIONS.md", "docs/design/ux/visual-direction.md"]
 verify: ["python3 docs/design/check.py"]
 founder_gate: false
 defaults: "D-80 is binding; if a step is blocked, take the most private and plainest option and report it for the morning review."
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["7d44756"]
+actual_hours: 0.1
 ---
 ## Objective
 Bring the shared visual direction in line with D-80 for the gallery.

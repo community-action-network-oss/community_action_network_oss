@@ -15,10 +15,10 @@ needs: ["docker","db"]
 verify: ["npm run verify","npx vitest run --config ./vitest.config.e2e.ts test/problems-list.e2e-spec.ts"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["28c72f8"]
+actual_hours: 0.1
 ---
 ## Objective
 Create the problem and problem_event tables and the first read endpoints: GET /v1/jurisdictions and GET /v1/problems. Read only; writes arrive in plan 03.

@@ -14,10 +14,10 @@ needs: []
 verify: ["node docs/design/ux/tokens.build.mjs"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["0d935fd"]
+actual_hours: 0.1
 ---
 ## Objective
 Finish the vocabulary change of D-51 in the design tokens: the policy badge token status.interim becomes status.transitional (INTERIM-1 now means transitional founder stewardship). This is a docs change owned by can-spec; the two consumers follow in 07-u19 and 07-u20 and must land with it.

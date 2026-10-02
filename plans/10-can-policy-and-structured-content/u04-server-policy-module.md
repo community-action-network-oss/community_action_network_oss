@@ -15,10 +15,10 @@ needs: ["docker","db"]
 verify: ["npm run lint","npm run build","npm test","npm run openapi","git add openapi/openapi.json","npm run verify"]
 founder_gate: false
 defaults: "If 1.5 hours run short, land the cache as a tested pure module under src/policy/domain/cache.ts without wiring it into a request path, and say so in the commit message. Never drop the loader, the hash check or the endpoint."
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["260b0dd"]
+actual_hours: 0.1
 ---
 ## Objective
 A `policy` module in can_server that loads an immutable policy pack by version and hash, keeps a version registry with an active pointer per jurisdiction, serves content schemas by type and version, and has a PII-safe cache keyed by policy version. A complete fixture pack ships in the repo so server work never waits for can_policy. Exposes `GET /v1/content-schemas/{type}` and regenerates `openapi/openapi.json`.

@@ -14,10 +14,10 @@ spec: ["docs/design/ux/wireframes/forms.md#WF-FORM-1","docs/design/ux/wireframes
 verify: ["npm run gen:api","npm run verify"]
 founder_gate: false
 defaults: "If a civic wrapper for a widget does not exist, add the smallest wrapper on the matching gluestack primitive in src/components/civic; never import from src/components/ui in feature code. Copy for labels and help comes from the schema messages, not en.json."
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["d52036a"]
+actual_hours: 0.1
 ---
 ## Objective
 One renderer that builds any content form from a content schema version: sections, per-field guidance and synthetic examples, answer controls by field type, the basis question, an explicit "I do not know yet" answer, assumption prompts and the "Assisted" marker. Unknown field types fail safe. Nothing in the app names a problem field; later units replace each hard-coded form with this renderer.

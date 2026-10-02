@@ -15,10 +15,10 @@ needs: ["docker","db","mail"]
 verify: ["npm run verify","npx vitest run --config ./vitest.config.e2e.ts test/auth-http.e2e-spec.ts"]
 founder_gate: false
 defaults: "If the CSRF-exempt auth routes seem unsafe to the founder, require a GET /v1/csrf bootstrap instead; log it in docs/open-questions/ as OQ-csrf-bootstrap and keep the exemption."
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["e1d95f0"]
+actual_hours: 0.1
 ---
 ## Objective
 Expose the auth flow over HTTP with web-safe sessions: httpOnly cookie, CSRF double submit, a global auth guard, role decorators, and the first endpoints /v1/auth/*, /v1/me and handle regenerate.

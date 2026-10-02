@@ -14,10 +14,10 @@ spec: ["docs/design/ai/structured-content.md#1-content-types-and-their-schemas",
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["62c7321"]
+actual_hours: 0.1
 ---
 ## Objective
 The schema of a volunteer recommendation (D-72, REVIEW-1, RECO-1): private content, never public, never moderated for merit.

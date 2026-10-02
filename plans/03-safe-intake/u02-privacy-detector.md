@@ -15,10 +15,10 @@ needs: []
 verify: ["npm run lint","npm run build","npm test","npx vitest run src/problems/domain/privacy"]
 founder_gate: false
 defaults: "If a heuristic cannot meet a row, record that row as known_gap with a note instead of weakening other rows."
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["2d6ae94"]
+actual_hours: 0.1
 ---
 ## Objective
 A deterministic detector that flags personal data in free text with spans, plus a versioned fixture corpus where every row names the RULE-ID it tests. No AI, no network.

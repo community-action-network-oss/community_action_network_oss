@@ -15,10 +15,10 @@ needs: []
 verify: ["npm run verify","npx jest --ci __tests__/signin-screens.test.tsx"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["b749453"]
+actual_hours: 0.1
 ---
 ## Objective
 Build WF-SIGNIN-1 (email for returning members) and WF-SIGNIN-2 (enter the 6 digit code) reusing the code entry component from the sign-up unit.

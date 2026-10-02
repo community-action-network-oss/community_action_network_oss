@@ -13,10 +13,10 @@ spec: ["manifesto.md", "DECISIONS.md", "docs/adr/0008-ai-executed-community-poli
 verify: ["npm run sync:check", "npm run verify"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["a5fa6be"]
+actual_hours: 0.1
 ---
 ## Objective
 Remove every statement that people make and answer for every decision, or that moderation is human review with AI "planned", and re-sync the copy that derives from the manifesto so the site matches D-51, D-59, D-60 and D-61.

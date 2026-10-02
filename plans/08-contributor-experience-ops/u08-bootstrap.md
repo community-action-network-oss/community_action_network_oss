@@ -13,10 +13,10 @@ spec: ["CONTRIBUTING.md","docs/spec/21-open-source-governance.md","DECISIONS.md"
 verify: ["bash -n scripts/bootstrap.sh","bash scripts/bootstrap.sh --check"]
 founder_gate: false
 defaults: "Never use sudo and never install system packages; print the exact command a human should run instead."
-status: "todo"
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["f9ce0d3"]
+actual_hours: 0.1
 ---
 
 ## Objective

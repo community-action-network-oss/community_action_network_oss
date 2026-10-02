@@ -15,10 +15,10 @@ needs: ["docker","db"]
 verify: ["npm run lint","npm run build","npm test","npm run verify"]
 founder_gate: false
 defaults: "Plain TypeScript run by `node` (night runs) and launched by Vitest (CI), as decided in server.md. No new dependency except what can_server already has; if a YAML parser is needed use the one already present or the pinned `yaml` package, and say so."
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["e5024fe"]
+actual_hours: 0.1
 ---
 ## Objective
 The empty but working shell of the harness at `can_server/test/simulation`: a runner that takes a scenario set, seed, pack version and mode, talks to a running server only over HTTP, stores a run directory, and cannot import server code. The harness is HTTP-only (docs/design/components/server.md "Where the simulation harness lives"): it imports no server internals, only its own code and the generated API types.

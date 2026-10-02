@@ -13,10 +13,10 @@ spec: ["docs/design/ai/simulation.md", "docs/adr/0011-persona-simulation-proof.m
 verify: ["npm run check:seeds", "npm run verify"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["c1f834c"]
+actual_hours: 0.1
 ---
 ## Objective
 /proof/ explains how CAN proves its AI-executed policy before anyone real takes part (D-55, D-56): AI persona agents act as submitters, contributors, proposers, appellants and adversaries against the real pipeline, red-team the policy pack and feed the amendment loop; graduation criteria decide when public participation opens.

@@ -13,10 +13,10 @@ spec: ["docs/spec/20-participation-nonmonetary.md","docs/spec/21-open-source-gov
 verify: ["npm run sync:catalog","npm run check:catalog","npm run verify"]
 founder_gate: false
 defaults: "If 08-u01 tags are absent on units, group by area and est_hours only."
-status: "todo"
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["ac49e08"]
+actual_hours: 0.1
 ---
 
 ## Objective

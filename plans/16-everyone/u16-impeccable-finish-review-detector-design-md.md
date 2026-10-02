@@ -13,10 +13,10 @@ spec: ["DECISIONS.md", "docs/spec/18-phases-gates.md", "docs/design/ux/visual-di
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "D-80 is binding; if a step is blocked, take the most private and plainest option and report it for the morning review."
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["1549325"]
+actual_hours: 0.2
 ---
 ## Objective
 Close the build per the impeccable finish: one batched screenshot round, the detector, the finish reviewer, fixes, and the documenter.

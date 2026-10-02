@@ -15,10 +15,10 @@ needs: []
 verify: ["npm run verify","npx jest --ci __tests__/detail-screen.test.tsx"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["01361fb"]
+actual_hours: 0.1
 ---
 ## Objective
 Build WF-DETAIL-1 (problem workspace with status panel and timeline) and the WF-DETAIL-2 tombstone, from GET /v1/problems/{id} and /events. Tabs for later features appear only when their plan lands.

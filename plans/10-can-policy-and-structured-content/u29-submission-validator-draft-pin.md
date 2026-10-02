@@ -15,10 +15,10 @@ needs: ["docker","db"]
 verify: ["npm run lint","npm run build","npm test","npm run openapi","git add openapi/openapi.json","npm run verify"]
 founder_gate: false
 defaults: "Add `ajv` (exact version, `ajv/dist/2020`) as the only new dependency. If 03-u06 draft endpoints are not yet merged when this runs, create the validator as a standalone use case with tests and leave the endpoint change to a follow-up note in the commit message."
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["add32a5","ea3f41b"]
+actual_hours: 0.2
 ---
 ## Objective
 Every structured submission and draft carries `schema_id`, `schema_version` and `schema_hash`; the server validates the body against exactly that version, and rejects an unknown, retired, or hash-mismatched version with a prompt to reload (SCHEMA-1, STRUCT-ONLY-1). This replaces the hard-coded field validation of 03-u06 for the problem draft body.

@@ -13,10 +13,10 @@ spec: ["docs/design/ai/legal-stack.md", "docs/design/flows/legal-corpus-update.m
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["6a05575"]
+actual_hours: 0.1
 ---
 ## Objective
 Define how a legal corpus lives in can_policy so the legal stack (D-61) is versioned, hash-pinned and traceable to its official source. No legal text is added here, only the format and its lint.

@@ -13,10 +13,10 @@ spec: ["docs/spec/21-open-source-governance.md","docs/spec/22-ai-contribution-po
 verify: ["node scripts/check-doc-links.mjs docs/onboarding"]
 founder_gate: false
 defaults: "Do not promise review turnaround times; the project has no stated capacity."
-status: "todo"
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["e8d1280"]
+actual_hours: 0.1
 ---
 
 ## Objective

@@ -13,10 +13,10 @@ spec: ["DECISIONS.md", "manifesto.md", "docs/spec/21-open-source-governance.md",
 verify: ["npm run check:pitch", "npm run verify"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["d6d2bba"]
+actual_hours: 0.1
 ---
 ## Objective
 Make the gallery pitch for everyone (D-60). Every profession can contribute. The most urgent need today is engineers, designers and other technical people because the platform is being built. Lawyers, activists, policy and rights experts are needed now as well: they draft the platform rules and policy packs in can_policy. Each profession gets a concrete ask that links to an open question or a plan unit.

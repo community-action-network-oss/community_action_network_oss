@@ -15,10 +15,10 @@ needs: []
 verify: ["npm run lint","npm run build","npm test","npx vitest run src/problems/domain/eligibility"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["680108b"]
+actual_hours: 0.1
 ---
 ## Objective
 The remaining deterministic submit checks: structural versus individual-case statements, emergency language, out-of-scope classes, URL scheme and shape, secrets-in-text, length limits and script-based language detection. Corpora cite RULE-IDs.

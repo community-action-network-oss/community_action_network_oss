@@ -14,10 +14,10 @@ spec: ["docs/design/ux/wireframes/prepare.md#WF-PREP-1","docs/design/ux/wirefram
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["f64e931"]
+actual_hours: 0.2
 ---
 ## Objective
 Under lifecycle v2 the poster works in the preparation workspace of 12-u12 (WF-PREP-1). This unit is its facts section: the problem fields 1 to 14 plus the `context_profile` confirmation section, driven entirely by the `problem` schema through `SchemaForm`, as route screens the workspace links to, and the exact preview (WF-SUBMIT-4) shown before sending for volunteer review. It replaces the hard-coded submit steps 1 to 7 (03-u17 to 03-u19, skipped). Sources, final criteria, the stage plan and the area are other parts of the workspace (12-u12, 12-u13, 12-u14, 14-u01 clients) and are not written here. 12-u12 links to these routes without a dependency edge on this unit, and this unit must not depend on 12-u12.

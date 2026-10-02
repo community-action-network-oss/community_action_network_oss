@@ -14,10 +14,10 @@ spec: ["docs/design/ai/structured-content.md#1-content-types-and-their-schemas",
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["7adca17"]
+actual_hours: 0.1
 ---
 ## Objective
 The remaining resolution schemas under lifecycle v2: the decision record now records a `stage_choice`, tasks belong to a stage, and verification judges the final acceptance criteria.

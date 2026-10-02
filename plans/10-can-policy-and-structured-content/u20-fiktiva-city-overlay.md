@@ -14,10 +14,10 @@ spec: ["docs/design/ai/policy-pack.md#layers-and-precedence","docs/design/ai/eva
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "Everything is invented; no real statute, body or place appears. The overlay may only add or narrow rules."
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["756124f"]
+actual_hours: 0.1
 ---
 ## Objective
 A fully fictional jurisdiction overlay used by examples, eval sets, fixtures and parity tests, so no test depends on real law.

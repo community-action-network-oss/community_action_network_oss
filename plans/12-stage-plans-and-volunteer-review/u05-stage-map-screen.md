@@ -15,10 +15,10 @@ needs: []
 verify: ["npm run verify", "npx jest --ci __tests__/stagemap-screen.test.tsx"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["1788781"]
+actual_hours: 0.1
 ---
 ## Objective
 Build WF-STAGEMAP-1: the stage map on the problem page, replacing the single "Stage:" line of the status panel. A graph view and an equivalent list view from the same data (`GET /v1/problems/{id}/stages`). Acceptance: meets docs/design/ux/ui-unit-template.md (sections 1 to 6; mark items not applicable with a reason in the commit message).

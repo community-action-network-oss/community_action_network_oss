@@ -13,10 +13,10 @@ spec: ["DECISIONS.md", "docs/design/ux/ui-unit-template.md"]
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "D-80 is binding; if a step is blocked, take the most private and plainest option and report it for the morning review."
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["abbae08"]
+actual_hours: 0.1
 ---
 ## Objective
 Build WF-PROFILE-1 to WF-PROFILE-6: the structured, skippable registration stored only on the device, encrypted at rest. Acceptance follows docs/design/ux/ui-unit-template.md.

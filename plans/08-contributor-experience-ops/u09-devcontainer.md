@@ -13,10 +13,10 @@ spec: ["CONTRIBUTING.md","docs/spec/21-open-source-governance.md","docs/adr/0001
 verify: ["node -e \"JSON.parse(require('fs').readFileSync('.devcontainer/devcontainer.json','utf8').replace(/^\\s*\\/\\/.*$/gm,''))\"","bash -n scripts/bootstrap.sh"]
 founder_gate: false
 defaults: "Use the official Node 24 devcontainer image and the docker-outside-of-docker feature; add Python 3 through a feature."
-status: "todo"
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["054d8aa"]
+actual_hours: 0.1
 ---
 
 ## Objective

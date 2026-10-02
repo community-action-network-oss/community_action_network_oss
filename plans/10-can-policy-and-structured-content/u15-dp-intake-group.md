@@ -14,10 +14,10 @@ spec: ["docs/design/ai/decision-points.md","docs/design/ai/policy-pack.md","docs
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "If the 1.5 hours run short, finish prompt, schema and examples for every DP in this unit first and the adversarial eval cases last; record the shortfall as a TODO line in that DP's eval/README.md. Never copy a real person, address or incident into an example."
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["9808a28"]
+actual_hours: 0.1
 ---
 ## Objective
 Author the policy content for DP-ELIGIBILITY, DP-FRAMING, DP-DUPLICATE, DP-CONTRIB-RELEVANCE: for each DP a prompt template, an output schema, labeled examples and a held-out eval set, so the eval runner (10-u23) can score it on recorded responses. Seed-1 and seed-2 framings from D-56 appear verbatim as `publish` cases for DP-ELIGIBILITY and DP-FRAMING (they are real public framings, no individual named); a personal-case plea is the `reject` or `route_external` case.

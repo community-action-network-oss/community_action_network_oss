@@ -13,10 +13,10 @@ spec: ["docs/spec/21-open-source-governance.md","docs/spec/20-participation-nonm
 verify: ["node scripts/sync-good-first.mjs","node scripts/sync-good-first.mjs --check"]
 founder_gate: false
 defaults: "Default heuristic: status todo, founder_gate false, no needs, est_hours at most 1, and not tagged needs-context; the tag good-first forces inclusion."
-status: "todo"
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["43aeb41"]
+actual_hours: 0.1
 ---
 
 ## Objective

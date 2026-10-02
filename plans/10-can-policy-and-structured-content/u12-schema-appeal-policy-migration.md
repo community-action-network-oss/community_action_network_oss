@@ -14,10 +14,10 @@ spec: ["docs/design/ai/structured-content.md#8-how-schemas-change","docs/design/
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "If a field's bounds are unclear, use the bounds from docs/design/ai/decision-points.md \"Policy-pack values\" and note the guess in the schema's `x-guidance.why`; never invent a required field the structured-content tables do not list."
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["8bd3ce3"]
+actual_hours: 0.1
 ---
 ## Objective
 The last two content types and the machine format for major-version migration maps (so a major bump can carry in-flight drafts).

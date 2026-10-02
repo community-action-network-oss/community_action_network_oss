@@ -15,10 +15,10 @@ needs: []
 verify: ["npm run verify","npx jest --ci __tests__/draft-store.test.ts"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["59dbace"]
+actual_hours: 0.1
 ---
 ## Objective
 The preparation workspace (WF-PREP-1 to WF-PREP-3) must never lose text: a local draft store that autosaves every field, survives reload and session expiry, works signed out, and later uploads on the first authenticated save. No server dependency.

@@ -15,10 +15,10 @@ needs: ["docker","db"]
 verify: ["npm run verify","npx vitest run --config ./vitest.config.e2e.ts test/problem-detail.e2e-spec.ts"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["b60bfe4"]
+actual_hours: 0.1
 ---
 ## Objective
 Add GET /v1/problems/{id} and GET /v1/problems/{id}/events with the exact visibility rules: public after publish, private drafts only to the initiator (and the emergency/legal lane for its own case, via 09-u38), tombstone (never 404) for published items that were withdrawn.

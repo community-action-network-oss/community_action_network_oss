@@ -13,10 +13,10 @@ spec: ["DECISIONS.md", "docs/spec/10-data-model.md", "docs/spec/constitution/rul
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "D-80 is binding; if a step is blocked, take the most private and plainest option and report it for the morning review."
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["65d9e01"]
+actual_hours: 0.1
 ---
 ## Objective
 Publish a `help_needed` set on every public problem so devices can match locally (spec 26, D-80). No user data is involved.

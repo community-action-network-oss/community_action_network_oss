@@ -14,10 +14,10 @@ spec: ["docs/design/ai/amendment-loop.md#4-ratification","docs/open-questions/OQ
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "The panel method is OQ-ratification-method; the format records whichever method was used in a `method` field and stays method-agnostic. Slice 1 uses `method: founder_stewardship`."
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["87b1336"]
+actual_hours: 0.1
 ---
 ## Objective
 A machine-checkable ratification record that the server loader (10-u04) and CI both read: it binds a pack name, version and hash to an approver, an expiry, the checklist of the amendment loop and the rollback plan.

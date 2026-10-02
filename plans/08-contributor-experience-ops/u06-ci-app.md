@@ -12,10 +12,10 @@ writes: [".github/workflows/ci.yml"]
 spec: ["docs/spec/11-architecture.md","docs/adr/0005-web-first-verification.md"]
 verify: ["node ../scripts/check-github.mjs .","npm run typecheck"]
 founder_gate: false
-status: "todo"
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["a2e6cd3"]
+actual_hours: 0.1
 ---
 
 ## Objective

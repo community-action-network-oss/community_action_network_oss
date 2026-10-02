@@ -13,10 +13,10 @@ spec: ["DECISIONS.md", "docs/spec/18-phases-gates.md", "docs/design/ux/visual-di
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "D-80 is binding; if a step is blocked, take the most private and plainest option and report it for the morning review."
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["36866e1"]
+actual_hours: 0.1
 ---
 ## Objective
 Rewrite `/` so a nurse, a cook or a clerk understands CAN in one viewport, while every piece of today's information stays reachable.

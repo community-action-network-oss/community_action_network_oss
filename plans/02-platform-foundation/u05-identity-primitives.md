@@ -15,10 +15,10 @@ needs: []
 verify: ["npm run lint","npm run build","npm test","npx vitest run src/accounts/infra/crypto.spec.ts"]
 founder_gate: false
 defaults: "The wordlists are a reversible default for OQ-handle-word-lists; if blocked, ship the minimum 120 each and log the question."
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["c89ea08"]
+actual_hours: 0.1
 ---
 ## Objective
 The pure building blocks of accounts, tested alone: encrypt and blind-index an email, hash codes and tokens, generate curated handles. No database in this unit.

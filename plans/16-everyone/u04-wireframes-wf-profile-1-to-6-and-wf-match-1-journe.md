@@ -13,10 +13,10 @@ spec: ["DECISIONS.md", "docs/design/ux/wireframes/auth.md", "docs/design/ux/wire
 verify: ["python3 docs/design/check.py", "node plans/tools/corpus.mjs lint"]
 founder_gate: false
 defaults: "D-80 is binding; if a step is blocked, take the most private and plainest option and report it for the morning review."
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["e7131ee"]
+actual_hours: 0.1
 ---
 ## Objective
 Design the profile registration and the 'Problems you can move' view so app units can build them.

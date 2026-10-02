@@ -12,10 +12,10 @@ writes: ["plans/runs/TEMPLATE.md"]
 spec: ["docs/spec/02-agent-rules.md","plans/FORMAT.md","DECISIONS.md"]
 verify: ["node -e \"const t=require('fs').readFileSync('plans/runs/TEMPLATE.md','utf8');for(const h of ['## Selection','## Results','## Blocked','## Open questions filed','## Decisions to log','## Verification','## Calibration','## Morning checklist'])if(!t.includes(h))throw new Error(h)\"","node plans/tools/corpus.mjs lint"]
 founder_gate: false
-status: "todo"
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["27ff4ef"]
+actual_hours: 0.1
 ---
 
 ## Objective

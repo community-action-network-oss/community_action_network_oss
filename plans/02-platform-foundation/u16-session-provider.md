@@ -15,10 +15,10 @@ needs: []
 verify: ["npm run verify","npx jest --ci __tests__/session-provider.test.tsx"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["620e029"]
+actual_hours: 0.2
 ---
 ## Objective
 Give the app a real session: load GET /v1/me on boot, expose useSession, guard member-only routes, and show WF-SESSION-1 as a sheet over the current screen when any call returns session_expired, keeping unsaved input.

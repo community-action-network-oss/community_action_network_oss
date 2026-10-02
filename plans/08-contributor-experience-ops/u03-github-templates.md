@@ -13,10 +13,10 @@ spec: ["docs/spec/22-ai-contribution-policy.md","docs/spec/21-open-source-govern
 verify: ["node scripts/check-github.mjs"]
 founder_gate: false
 defaults: "No contact_links in config.yml until the founder enables private vulnerability reporting; CODEOWNERS contains commented placeholders only."
-status: "todo"
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["54354f1"]
+actual_hours: 0.1
 ---
 
 ## Objective

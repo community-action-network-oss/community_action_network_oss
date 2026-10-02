@@ -13,10 +13,10 @@ spec: ["plans/FORMAT.md","docs/spec/21-open-source-governance.md","DECISIONS.md"
 verify: ["node plans/tools/test/run.mjs","node plans/tools/corpus.mjs lint","node plans/tools/corpus.mjs catalog --json > /dev/null"]
 founder_gate: false
 defaults: "Output only fields already in the frontmatter plus tags; do not add a database or cache."
-status: "todo"
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["a5ccb2f","2ffad1d"]
+actual_hours: 0.1
 ---
 
 ## Objective

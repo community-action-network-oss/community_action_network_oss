@@ -14,10 +14,10 @@ spec: ["DECISIONS.md","docs/adr/0003-nextjs-static-gallery-site.md","docs/adr/00
 verify: ["npm run sync:content","npm run verify"]
 founder_gate: false
 defaults: "Version rule: newest stable gluestack-ui major that supports Next.js 16 and React 19.2 (and the same engine family as can_app where possible); if only an alpha or rc fits, pin that exact version and report it for DECISIONS.md. Never fall back to hand-written component CSS for new components."
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["12e6182","a0e74b7"]
+actual_hours: 0.2
 ---
 
 ## Objective

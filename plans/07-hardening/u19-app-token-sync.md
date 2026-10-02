@@ -14,10 +14,10 @@ needs: []
 verify: ["npm run sync:tokens", "npm run verify"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["949939e"]
+actual_hours: 0.1
 ---
 ## Objective
 Land the token rename in can_app together with 07-u18: refresh the synced tokens and change every code reference from interim to transitional (theme types, the generated gluestack theme from 02-u24, civic wrapper props, badge components, tests).

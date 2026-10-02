@@ -13,10 +13,10 @@ spec: ["DECISIONS.md", "docs/spec/constitution/README.md", "docs/spec/constituti
 verify: ["node plans/tools/corpus.mjs lint", "python3 docs/design/check.py"]
 founder_gate: false
 defaults: "D-80 is binding; if a step is blocked, take the most private and plainest option and report it for the morning review."
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["ad00335"]
+actual_hours: 0.1
 ---
 ## Objective
 Record the founder's constitutional amendment from D-80 (transitional steward, VIII.2) and say the vision in the manifesto.

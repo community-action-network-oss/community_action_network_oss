@@ -15,10 +15,10 @@ needs: ["docker","db"]
 verify: ["npm run verify","npx vitest run --config ./vitest.config.e2e.ts test/seed.e2e-spec.ts"]
 founder_gate: false
 defaults: "Use example.test addresses (reserved TLD). The fictional problems are a unit and UI-development fixture only, behind --fixture, never part of the default seed. Revert by editing src/seed/fixtures.ts."
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["d609286"]
+actual_hours: 0.1
 ---
 ## Objective
 Give developers, the app and Playwright a deterministic starting world, without inventing public content. Per D-56 the real seed problems (seeds 1 and 2, Amsterdam framings with synthetic evidence) enter only through the normal moderation pipeline via the seed bootstrap loader 11-u18, which this unit does not depend on (11-u18 depends on the pipeline built later). This unit seeds accounts, jurisdictions and invites, and keeps a tiny fictional fixture of already-decided problems for unit tests and UI development before the pipeline exists.

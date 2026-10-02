@@ -13,10 +13,10 @@ spec: ["DECISIONS.md", "docs/open-questions/README.md"]
 verify: ["node plans/tools/corpus.mjs lint", "npm --prefix can_gallery run sync:check || npm --prefix can_gallery run sync:content"]
 founder_gate: false
 defaults: "D-80 is binding; if a step is blocked, take the most private and plainest option and report it for the morning review."
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["c3babac"]
+actual_hours: 0.1
 ---
 ## Objective
 Log the four undecided parts of the capability profile as open questions with working defaults, so no unit blocks on them.

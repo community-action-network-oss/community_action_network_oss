@@ -13,10 +13,10 @@ spec: ["docs/spec/02-agent-rules.md","docs/spec/21-open-source-governance.md","d
 verify: ["node scripts/check-github.mjs","node plans/tools/corpus.mjs lint","node plans/tools/test/run.mjs","node scripts/sync-good-first.mjs --check"]
 founder_gate: false
 defaults: "Check out submodules recursively with a note about same-owner relative URLs; if they cannot resolve, the root jobs still run."
-status: "todo"
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["2ea1b59"]
+actual_hours: 0.1
 ---
 
 ## Objective

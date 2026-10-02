@@ -15,10 +15,10 @@ needs: ["docker","db"]
 verify: ["npm run verify","npx vitest run --config ./vitest.config.e2e.ts test/schema.e2e-spec.ts"]
 founder_gate: false
 defaults: "If the can_app_rw role cannot be created in the test database, keep the grants SQL, mark the role test with a skip reason, and note it in the commit message."
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["9f65d4e"]
+actual_hours: 0.1
 ---
 ## Objective
 Create the tables for identity and audit, plus a restricted database role so the event tables are insert-only by grant, not by convention (system-design section 4).

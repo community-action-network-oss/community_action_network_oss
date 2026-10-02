@@ -13,10 +13,10 @@ spec: ["docs/spec/21-open-source-governance.md","docs/spec/12-decentralization-r
 verify: ["node -e \"for(const f of ['docs/policy/releases.md','docs/policy/release-record-template.md'])if(require('fs').statSync(f).size>25000)throw new Error(f)\"","node plans/tools/corpus.mjs lint"]
 founder_gate: false
 defaults: "Pre-1.0 semantic versions per repo, calendar-named superproject status releases, nothing publishes to a registry."
-status: "todo"
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["a444cf7"]
+actual_hours: 0.1
 ---
 
 ## Objective

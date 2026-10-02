@@ -14,10 +14,10 @@ spec: ["docs/design/components/can-policy.md","docs/design/ai/policy-pack.md","d
 verify: ["git submodule status can_policy","bash -n scripts/verify-all.sh","npm --prefix can_policy run verify","node plans/tools/corpus.mjs lint"]
 founder_gate: false
 defaults: "If the GitHub remote is unreachable or unset, add only the `local` remote, record `origin` as a TODO in the commit message, and do not block."
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["57d1f77","cae502d"]
+actual_hours: 0.1
 ---
 ## Objective
 A cloneable `can_policy` repository with license, README and the planned layout, registered as the fifth submodule with a relative URL, wired into `scripts/verify-all.sh`, and covered by a new area skill so later can-policy units can be briefed from the unit file plus that skill.

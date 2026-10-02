@@ -13,10 +13,10 @@ spec: ["docs/spec/18-phases-gates.md","docs/spec/19-artifacts.md","docs/spec/03-
 verify: ["npm run check:claims","npm run check:copy","npm run verify"]
 founder_gate: false
 defaults: "If a claim has no source in docs, remove or soften the claim rather than inventing a source, and list it in the audit as removed."
-status: "todo"
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["1726c51"]
+actual_hours: 0.1
 ---
 
 ## Objective

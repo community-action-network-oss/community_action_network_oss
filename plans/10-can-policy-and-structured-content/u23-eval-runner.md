@@ -14,10 +14,10 @@ spec: ["docs/design/ai/evaluation.md","docs/design/ai/amendment-loop.md#2-automa
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "Confidence interval is the Wilson score interval at 95%. If a DP has fewer than 20 core cases the lower bound is reported but the gate uses the point estimate and prints a \"small sample\" warning."
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["0aeac73"]
+actual_hours: 0.1
 ---
 ## Objective
 Replace the 10-u03 eval stub: score each decision point's `core`, `adversarial`, `privacy` and `parity` sets against recorded model responses and compare to `eval/thresholds.yaml`, so a PR can be blocked on a failing gate.

@@ -13,10 +13,10 @@ spec: ["docs/adr/0003-nextjs-static-gallery-site.md","docs/spec/18-phases-gates.
 verify: ["node ../scripts/check-github.mjs .","npm run lint"]
 founder_gate: false
 defaults: "If package.json has no `verify` script, run `npm run lint && npm run build`."
-status: "todo"
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["dec1d34"]
+actual_hours: 0.1
 ---
 
 ## Objective

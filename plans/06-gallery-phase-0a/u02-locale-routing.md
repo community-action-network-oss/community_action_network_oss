@@ -13,10 +13,10 @@ spec: ["docs/spec/18-phases-gates.md","docs/spec/16-security-a11y-ops-testing.md
 verify: ["npm run check:locale","npm run verify"]
 founder_gate: false
 defaults: "Keep English at unprefixed root paths. Do not add a /en prefix and do not enable any second locale."
-status: "todo"
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["9ce79d5"]
+actual_hours: 0.1
 ---
 
 ## Objective

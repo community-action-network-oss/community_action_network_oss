@@ -13,10 +13,10 @@ spec: ["docs/design/flows/re-resolution.md", "docs/adr/0013-retroactive-re-resol
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["8e1c401"]
+actual_hours: 0.1
 ---
 ## Objective
 /re-resolution/ explains retroactive re-resolution (D-59): a rule or law change is replayed over past solved, closed, redirected and stuck problems, and a problem reopens only when the conclusion changes and reopening is feasible.

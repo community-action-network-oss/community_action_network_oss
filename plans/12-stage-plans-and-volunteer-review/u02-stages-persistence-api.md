@@ -15,10 +15,10 @@ needs: ["docker", "db"]
 verify: ["npm run verify", "npx vitest run --config ./vitest.config.e2e.ts test/stages-api.e2e-spec.ts"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["9055b8f"]
+actual_hours: 0.2
 ---
 ## Objective
 Persist the stage plan and the per-stage work records, and expose them: `stage`, `stage_edge`, `acceptance_criterion`, `stage_option`, `stage_choice`, `stage_evidence`, `stage_event` (append-only). Read endpoints for the stage map and workspace, and write endpoints for options, a choice and evidence. Stage state changes (start, resolve, block) and plan changes are later units (12-u06, 12-u07, 12-u09).

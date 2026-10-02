@@ -14,10 +14,10 @@ spec: ["docs/design/ai/structured-content.md#3-the-problem-schema-field-by-field
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["ce87899"]
+actual_hours: 0.1
 ---
 ## Objective
 Complete the problem schema with the three structured parts that sit beside the 16 core fields: field 15 `context_profile` (D-76), the optional `stage_plan` DAG (D-72), and `affected_area` (D-73).

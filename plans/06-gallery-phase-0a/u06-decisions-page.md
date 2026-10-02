@@ -13,10 +13,10 @@ spec: ["docs/spec/21-open-source-governance.md","docs/spec/22-ai-contribution-po
 verify: ["npm run sync:decisions","npm run check:decisions","npm run verify"]
 founder_gate: false
 defaults: "Show only each decision headline, never the Why or Reverse text, and do not show raw log wording that reads as internal chatter."
-status: "todo"
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["67e3069"]
+actual_hours: 0.1
 ---
 
 ## Objective

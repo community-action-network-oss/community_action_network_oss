@@ -14,10 +14,10 @@ spec: ["docs/design/ai/structured-content.md#1-content-types-and-their-schemas",
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "If a field's bounds are unclear, use the bounds from docs/design/ai/decision-points.md \"Policy-pack values\" and note the guess in the schema's `x-guidance.why`; never invent a required field the structured-content tables do not list."
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["41d3274"]
+actual_hours: 0.1
 ---
 ## Objective
 The shared contribution fields and the first seven contribution types: clarifying_question, observation, personal_experience, factual_claim, evidence, interpretation, root_cause.

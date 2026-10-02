@@ -15,10 +15,10 @@ needs: []
 verify: ["npm run sync:tokens","npm run verify","npx jest --ci __tests__/gluestack-theme.test.tsx"]
 founder_gate: false
 defaults: "Version rule: use the newest gluestack-ui major that supports Expo SDK 57, React 19.2 and react-native-web 0.21 and is published as stable. If only an alpha or rc supports this stack, pin that exact version and record it in DECISIONS.md (the orchestrator writes it; report it). Never fall back to React Native core. Styling engine (NativeWind or UniWind) is whatever that gluestack version's docs require."
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["9d4f798"]
+actual_hours: 0.1
 ---
 ## Objective
 Make gluestack-ui the design-system foundation of can_app: install it through the official gluestack CLI at an exact pinned version, wire its styling engine, and generate its theme from tokens so the civic wrappers can be rebuilt on it (next unit). D-33 recorded an earlier fallback to React Native core; D-50 and ADR 0007 reverse that.

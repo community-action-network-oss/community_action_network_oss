@@ -15,10 +15,10 @@ needs: ["docker","db"]
 verify: ["npm run verify","npx vitest run --config ./vitest.config.e2e.ts test/moderation-read.e2e-spec.ts"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["d89404e"]
+actual_hours: 0.1
 ---
 ## Objective
 Create the moderation_decision table with database constraints that enforce MOD-EXPLAIN-1 and publish the rule registry (GET /v1/rules). There is no moderator queue and no human decider: decisions are written by moderation runs (09-u22, 09-u23). 09-u03 migrates this table to the AI model (adds run_id, dp_id, confidence, model_id, prompt_hash, transitional) and 09-u24 owns the per-problem decisions read.

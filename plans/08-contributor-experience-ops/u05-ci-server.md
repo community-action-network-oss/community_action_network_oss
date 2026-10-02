@@ -13,10 +13,10 @@ spec: ["docs/spec/11-architecture.md","docs/adr/0002-server-owned-openapi.md","d
 verify: ["node ../scripts/check-github.mjs .","npm run lint"]
 founder_gate: false
 defaults: "Use `npm run verify` on a runner with Docker (compose provides Postgres 16 on port 5433, D-4)."
-status: "todo"
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["687bdc5"]
+actual_hours: 0.1
 ---
 
 ## Objective

@@ -14,10 +14,10 @@ spec: ["docs/spec/constitution/rules.md", "docs/design/ai/policy-pack.md", "docs
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "Rule text is copied verbatim from rules.md; if a rule is ambiguous about its DP mapping, set `applies_to: []` and add a `note`, never guess. Protected-core rules (constitution I.2 tier rights, crisis and safety) are flagged `protected_core: true` and listed in `packs/base/pack.yaml`."
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["8075ed2"]
+actual_hours: 0.1
 ---
 ## Objective
 Turn the rule registry in `docs/spec/constitution/rules.md` into the machine form of layers 1 and 2: `packs/base/rules.yaml` (platform rules) and `packs/constitution/rules.yaml` (constitution-derived), with tier, applicability to decision points, and a parity check so the two never drift while `rules.md` is the source.

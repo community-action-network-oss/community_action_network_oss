@@ -15,10 +15,10 @@ needs: ["docker","db"]
 verify: ["npm run verify","npx vitest run --config ./vitest.config.e2e.ts test/fingerprint.e2e-spec.ts"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["88b33d9"]
+actual_hours: 0.1
 ---
 ## Objective
 Detect reposts of rejected or withdrawn drafts without keeping text: a salted HMAC fingerprint of normalised text, kept 90 days, with no link to an account or problem.

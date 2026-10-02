@@ -12,10 +12,10 @@ writes: ["src/app/contribute/roles/**","src/content/roles/**","src/components/**
 spec: ["docs/spec/18-phases-gates.md","docs/spec/21-open-source-governance.md","docs/spec/20-participation-nonmonetary.md","docs/spec/04-roles-stewardship.md","docs/spec/16-security-a11y-ops-testing.md","docs/spec/17-ux.md"]
 verify: ["npm run check:roles","npm run verify"]
 founder_gate: false
-status: "todo"
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["774433d"]
+actual_hours: 0.1
 ---
 
 ## Objective

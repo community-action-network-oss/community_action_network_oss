@@ -15,10 +15,10 @@ needs: ["docker","db"]
 verify: ["npm run verify","npx vitest run src/config.spec.ts"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["7323d42"]
+actual_hours: 0.1
 ---
 ## Objective
 Make configuration typed, validated and fail-fast, add every secret name the slice needs, and add JSON logs with request ids and a tested redaction list. Nothing later should read process.env directly.

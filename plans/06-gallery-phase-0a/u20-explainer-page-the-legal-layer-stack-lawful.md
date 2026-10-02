@@ -13,10 +13,10 @@ spec: ["docs/design/ai/legal-stack.md", "docs/adr/0012-legal-layer-stack.md", "d
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["238fca2"]
+actual_hours: 0.1
 ---
 ## Objective
 /lawful-everywhere/ explains the cumulative legal stack (D-61): content and solutions must satisfy every layer from human rights down to the city, so CAN never asks for anything illegal anywhere.

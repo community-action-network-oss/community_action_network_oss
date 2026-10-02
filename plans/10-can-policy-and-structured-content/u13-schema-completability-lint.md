@@ -14,10 +14,10 @@ spec: ["docs/design/ai/policy-pack.md#content-schemas","docs/design/ai/structure
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "The widget list in tools/widgets.json is the contract with the renderer (10-u05); if the renderer supports a widget this file lacks, add it here, never the reverse."
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["8c6d6fb"]
+actual_hours: 0.1
 ---
 ## Objective
 The content-schema half of pack CI: a schema that cannot be completed, references a DP that does not exist, uses a missing message or ships a guidance example that is not in an eval set must fail the PR (docs/design/ai/policy-pack.md "Content schemas").

@@ -14,10 +14,10 @@ needs: []
 verify: ["npm run sync:content", "npm run verify"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["0a08b76"]
+actual_hours: 0.1
 ---
 ## Objective
 Land the token rename in can_gallery together with 07-u18: refresh the synced content (tokens.json) and change every reference to the status.interim token or its CSS variable to transitional.

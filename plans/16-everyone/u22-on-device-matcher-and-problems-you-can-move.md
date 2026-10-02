@@ -13,10 +13,10 @@ spec: ["DECISIONS.md", "docs/design/ux/ui-unit-template.md"]
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "D-80 is binding; if a step is blocked, take the most private and plainest option and report it for the morning review."
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["505120d"]
+actual_hours: 0.1
 ---
 ## Objective
 Build WF-MATCH-1: fetch the public problem list without signing in, match it deterministically against the local profile, and show a short list with why each matched. Acceptance follows docs/design/ux/ui-unit-template.md.

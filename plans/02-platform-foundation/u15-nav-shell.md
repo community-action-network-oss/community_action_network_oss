@@ -15,10 +15,10 @@ needs: []
 verify: ["npm run verify","npx jest --ci __tests__/nav-shell.test.tsx"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["fccd087"]
+actual_hours: 0.1
 ---
 ## Objective
 The persistent frame: a top bar on wide web and bottom tabs on narrow screens, with the four primary areas, a skip link, noindex meta, and the static emergency notice component that every form shows.

@@ -15,10 +15,10 @@ needs: ["docker","db"]
 verify: ["npm run verify","npx vitest run --config ./vitest.config.e2e.ts test/drafts.e2e-spec.ts"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["e98d15f"]
+actual_hours: 0.1
 ---
 ## Objective
 Let a member create and edit a private draft, discard it (T19), and list their own problems with deletion dates. Content text is stored partially and validated for length only here. Sources, final criteria and the stage plan are added by the preparation API (12-u04).

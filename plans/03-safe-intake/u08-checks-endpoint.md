@@ -15,10 +15,10 @@ needs: ["docker","db"]
 verify: ["npm run verify","npx vitest run --config ./vitest.config.e2e.ts test/checks.e2e-spec.ts"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["e003d20"]
+actual_hours: 0.2
 ---
 ## Objective
 Connect the deterministic checks to the API: POST /v1/problems/{id}/checks returns flags with spans, GET /v1/problems/{id}/preview returns the exact public rendering, and T01 and T03 run the checks synchronously (a hard failure keeps the draft in draft, or in needs_revision for T03, with field hints and creates no moderation run or decision). T01 also runs DP-PRIVACY so personal data is masked before any volunteer sees the problem (REVIEW-1); if that run cannot complete the problem goes to held (T08, fail closed). These are the deterministic first layer only: the publication decision (DP-PUBLISH) runs after volunteer review (12-u08), not at T01. Completeness against the pinned schema is validated by 10-u29, not here.

@@ -15,10 +15,10 @@ needs: ["docker","db","mail"]
 verify: ["npm run verify","npm run e2e"]
 founder_gate: false
 defaults: "If Chromium cannot be downloaded in the environment, commit the harness with the smoke spec and mark the unit blocked with that reason."
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["8bb5dc7"]
+actual_hours: 0.5
 ---
 ## Objective
 Add the Playwright web harness against the real server, Mailpit and seed data, with a smoke spec and helpers later journey units reuse (sign in through Mailpit, axe scan, viewport presets).

@@ -14,10 +14,10 @@ spec: ["docs/design/ai/policy-pack.md#per-decision-point-contents","docs/design/
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "If the runtime doc and policy-pack.md disagree about the prompt layout, policy-pack.md wins."
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["744e9ff"]
+actual_hours: 0.1
 ---
 ## Objective
 A single skeleton and a lint so the DP directories written by 10-u15 to 10-u19 and 10-u62 to 10-u65 (28 in total after lifecycle v2) are uniform and machine-checkable.

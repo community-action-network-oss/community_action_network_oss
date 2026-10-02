@@ -15,10 +15,10 @@ needs: []
 verify: ["npm run lint","npm run build","npx vitest run test/simulation"]
 founder_gate: false
 defaults: "Agents never fetch URLs (DP-EVIDENCE-TIER reads stored metadata). The host exists so a human opening a seed evidence link in the sim stack sees a clearly marked synthetic page; keep it a tiny static server."
-status: todo
+status: done
 attempts: 0
-commits: []
-actual_hours: null
+commits: ["07648c6"]
+actual_hours: 0.1
 ---
 ## Objective
 A tiny Node HTTP server (stdlib) that serves `https://evidence.sim.test/...` style paths as plain pages marked "Synthetic evidence, not real data" for every seed evidence item, and the metadata JSON the sim stack stores for those URLs.
