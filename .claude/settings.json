@@ -28,7 +28,6 @@
       "Write"
     ],
     "deny": [
-      "Bash(git push:*)",
       "Bash(git -C * push:*)",
       "Bash(npm publish:*)",
       "Bash(npx eas:*)",
