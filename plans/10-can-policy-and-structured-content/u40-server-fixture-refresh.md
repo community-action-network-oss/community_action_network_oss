@@ -15,9 +15,9 @@ needs: ["docker","db"]
 verify: ["npm run lint","npm run build","npm test","npm run verify"]
 founder_gate: false
 defaults: "If ../can_policy is absent, skip the sync with an explicit message and keep the existing fixture; the parity test then runs against the committed copy only."
-status: todo
+status: done
 attempts: 0
-commits: []
+commits: ["d77dcbf","2c5267e"]
 actual_hours: null
 ---
 ## Objective

@@ -14,9 +14,9 @@ spec: ["docs/design/ux/wireframes/policy.md#WF-POLICY-2","docs/design/ai/amendme
 verify: ["npm run gen:api","npm run verify"]
 founder_gate: false
 defaults: "Results are text plus icon (Passed, Did not pass), never colour alone and never red for a failed test of a proposal. Ratification actions for panel members are hidden entirely in this unit (no voting yet); show only status and the transitional badge."
-status: todo
+status: done
 attempts: 0
-commits: []
+commits: ["a6d5c99"]
 actual_hours: null
 ---
 ## Objective

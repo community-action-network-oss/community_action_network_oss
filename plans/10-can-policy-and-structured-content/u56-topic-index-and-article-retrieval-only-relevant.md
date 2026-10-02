@@ -13,7 +13,7 @@ spec: ["docs/design/ai/legal-stack.md#3-retrieval-never-whole-codes", "docs/spec
 verify: ["npm run verify", "npx vitest run test/policy-legal"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: doing
 attempts: 0
 commits: []
 actual_hours: null

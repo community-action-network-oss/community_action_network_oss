@@ -13,11 +13,11 @@ spec: ["docs/spec/16-security-a11y-ops-testing.md","docs/spec/17-ux.md","docs/sp
 verify: ["npm run build","npm run a11y","npm run verify"]
 founder_gate: false
 defaults: "If the Playwright Chromium download is unavailable, commit the scripts and report, set status blocked with the reason, and do not weaken the checks."
-status: doing
+status: done
 attempts: 1
-commits: ["217b5b3"]
+commits: ["b7a0a86","2d8134f"]
 actual_hours: null
-blocked_reason: wrap-up
+blocked_reason: null
 ---
 
 ## Objective

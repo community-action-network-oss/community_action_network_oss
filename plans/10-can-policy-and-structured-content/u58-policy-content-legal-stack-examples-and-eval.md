@@ -13,9 +13,9 @@ spec: ["docs/design/ai/legal-stack.md#4-how-dps-use-the-stack", "docs/spec/const
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
+commits: ["b68f305","3305163"]
 actual_hours: null
 ---
 ## Objective

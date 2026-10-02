@@ -13,9 +13,9 @@ spec: ["docs/spec/18-phases-gates.md","docs/design/ux/tokens.json","docs/design/
 verify: ["npm run gen:og","npm run check:og","npm run verify"]
 founder_gate: false
 defaults: "metadataBase uses the SITE_URL env var, falling back to http://localhost:3000, until OQ-domain is decided."
-status: "todo"
+status: done
 attempts: 0
-commits: []
+commits: ["cd77cd7"]
 actual_hours: null
 ---
 

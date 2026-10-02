@@ -13,9 +13,9 @@ spec: ["docs/spec/16-security-a11y-ops-testing.md","docs/spec/18-phases-gates.md
 verify: ["npm run build","npm run check:budget","npm run perf","npm run verify"]
 founder_gate: false
 defaults: "If a budget number fails on the first run, fix the page first; only relax a budget by editing docs/performance-budget.md with a written reason."
-status: "todo"
+status: done
 attempts: 0
-commits: []
+commits: ["1ccf58f"]
 actual_hours: null
 ---
 

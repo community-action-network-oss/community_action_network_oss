@@ -14,9 +14,9 @@ needs: ["docker", "db"]
 verify: ["npm run verify", "npx vitest run test/policy-legal"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
+commits: ["4b86ba6"]
 actual_hours: null
 ---
 ## Objective

@@ -14,9 +14,9 @@ spec: ["docs/design/ux/wireframes/policy.md#WF-POLICY-1","docs/design/ux/wirefra
 verify: ["npm run gen:api","npm run verify"]
 founder_gate: false
 defaults: "Route `/policy/new`; the form is the `policy_proposal` schema, nothing hard-coded. Show the protected-core refusal text returned by the server."
-status: todo
+status: done
 attempts: 0
-commits: []
+commits: ["edf64b8"]
 actual_hours: null
 ---
 ## Objective

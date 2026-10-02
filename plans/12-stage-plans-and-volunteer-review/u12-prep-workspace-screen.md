@@ -15,9 +15,9 @@ needs: []
 verify: ["npm run verify", "npx jest --ci __tests__/prep-workspace-screen.test.tsx"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
+commits: ["c14da7b"]
 actual_hours: null
 ---
 ## Objective

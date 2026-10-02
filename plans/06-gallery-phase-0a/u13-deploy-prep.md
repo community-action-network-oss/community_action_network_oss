@@ -12,9 +12,9 @@ writes: ["docs/deploy.md","deploy/headers.txt","scripts/check-deploy.mjs","next.
 spec: ["docs/adr/0003-nextjs-static-gallery-site.md","docs/spec/18-phases-gates.md","docs/open-questions/OQ-hosting-region.md","docs/open-questions/OQ-domain.md","docs/spec/16-security-a11y-ops-testing.md"]
 verify: ["npm run build","npm run check:deploy","npm run verify"]
 founder_gate: false
-status: "todo"
+status: done
 attempts: 0
-commits: []
+commits: ["d00d786"]
 actual_hours: null
 ---
 

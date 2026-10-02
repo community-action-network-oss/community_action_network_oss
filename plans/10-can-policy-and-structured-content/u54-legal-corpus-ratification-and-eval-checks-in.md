@@ -13,9 +13,9 @@ spec: ["docs/design/flows/legal-corpus-update.md#sequence", "docs/spec/constitut
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
+commits: ["c51ebc4"]
 actual_hours: null
 ---
 ## Objective
