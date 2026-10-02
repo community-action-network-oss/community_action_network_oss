@@ -8,9 +8,9 @@ description: Work on the CAN superproject wiring: submodules, .gitmodules, point
 Only the root owner writes `.gitmodules` and pointer bumps. Area agents commit inside their own submodule and never touch the gitlink.
 
 ## Layout
-- Submodules `can_server`, `can_app`, `can_gallery`, with relative URLs `../<name>.git` in `.gitmodules`.
+- Submodules `can_server`, `can_app`, `can_gallery`, `can_policy` (five repos with the superproject), with relative URLs `../<name>.git` in `.gitmodules`.
 - Each URL resolves to a bare repo that is a sibling of the superproject directory: `<parent>/<name>.git`.
-- Root files: `README.md`, `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md`, `scripts/verify-all.sh`, `.claude/settings.json` (+ README). LICENSE is MIT in all four repos (D-49). `settings.json` is active (founder approved, D-64): it denies `git push`, so pushing is a human step.
+- Root files: `README.md`, `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md`, `scripts/verify-all.sh`, `.claude/settings.json` (+ README). LICENSE is MIT in all repos (D-49). `settings.json` is active (founder approved, D-64): it denies `git push`, so pushing is a human step.
 
 ## Adding a submodule over an existing repo
 1. `git init --bare -b main <parent>/<name>.git`
@@ -36,7 +36,7 @@ The clone path works because submodule URLs are relative to the superproject URL
 `npm start` at the root runs `scripts/dev.mjs` (Node stdlib only): Docker DB, then server, gallery and app with prefixed logs.
 
 ## Verify
-`scripts/verify-all.sh` runs `npm run verify` in each submodule that has `node_modules`, plus the plans, spec, constitution and design checkers. Exit is non-zero on any failure.
+`scripts/verify-all.sh` runs `npm run verify` in each submodule that has `node_modules` (can_policy runs whenever it has a `package.json`, and needs `node_modules` only if it declares dependencies), plus the plans, spec, constitution and design checkers. Exit is non-zero on any failure.
 
 ## Rules
 - Do not edit `DECISIONS.md`, `docs/**`, `plans/**` from here.

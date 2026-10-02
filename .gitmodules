@@ -7,3 +7,6 @@
 [submodule "can_gallery"]
 	path = can_gallery
 	url = ../can_gallery.git
+[submodule "can_policy"]
+	path = can_policy
+	url = ../can_policy.git

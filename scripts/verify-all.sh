@@ -9,11 +9,11 @@ run() { # name, command...
   if "$@"; then pass+=("$name"); else fail+=("$name"); fi
 }
 
-for sub in can_server can_app can_gallery; do
+for sub in can_server can_app can_gallery can_policy; do
   dir="$ROOT/$sub"
   if [ ! -f "$dir/package.json" ]; then
     skip+=("$sub (missing, run: git submodule update --init)")
-  elif [ ! -d "$dir/node_modules" ]; then
+  elif [ ! -d "$dir/node_modules" ] && node -e 'const p=require(process.argv[1]);process.exit(Object.keys({...p.dependencies,...p.devDependencies}).length?0:1)' "$dir/package.json"; then
     skip+=("$sub (run: npm --prefix $sub install)")
   else
     run "$sub verify" npm --prefix "$dir" run verify
