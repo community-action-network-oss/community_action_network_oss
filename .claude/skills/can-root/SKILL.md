@@ -8,9 +8,9 @@ description: Work on the CAN superproject wiring: submodules, .gitmodules, point
 Only the root owner writes `.gitmodules` and pointer bumps. Area agents commit inside their own submodule and never touch the gitlink.
 
 ## Layout
-- Submodules `can_server`, `can_app`, `can_gallery`, `can_policy` (five repos with the superproject), with relative URLs `../<name>.git` in `.gitmodules`.
+- Four submodules, `can_server`, `can_app`, `can_gallery`, `can_policy` (five repos with the superproject), with relative URLs `../<name>.git` in `.gitmodules`.
 - Each URL resolves to a bare repo that is a sibling of the superproject directory: `<parent>/<name>.git`.
-- Root files: `README.md`, `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md`, `scripts/verify-all.sh`, `.claude/settings.json` (+ README). LICENSE is MIT in all repos (D-49). `settings.json` is active (founder approved, D-64): it denies `git push`, so pushing is a human step.
+- Root files: `README.md`, `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md`, `scripts/verify-all.sh`, `scripts/bootstrap.sh`, `.claude/settings.json` (+ README). LICENSE is MIT in all repos (D-49). `settings.json` is active (founder approved, D-64): it denies `git push`, so pushing is a human step.
 
 ## Adding a submodule over an existing repo
 1. `git init --bare -b main <parent>/<name>.git`
@@ -23,7 +23,7 @@ Only the root owner writes `.gitmodules` and pointer bumps. Area agents commit i
 git -C <root> add -- <submodule>
 git -C <root> commit -m "<prefix>: bump <submodule>" -- <submodule>
 ```
-Remotes: `origin` is GitHub (org `community-action-network-oss`); submodules also keep `local`, the old bare mirror. Push the submodule's main first (`git -C <root>/<submodule> push origin main`), then the superproject, so the pointer is resolvable by clones. Pushing main is a human or morning step; night runs never push.
+Remotes: `origin` is GitHub (org `community-action-network-oss`); submodules also keep `local`, the old bare mirror. `can_policy` has no GitHub `origin` yet (only `local`), so its pointer is not resolvable by remote clones until one is added. Push the submodule's main first (`git -C <root>/<submodule> push origin main`), then the superproject, so the pointer is resolvable by clones. Pushing main is a human or morning step; night runs never push.
 
 ## Fresh-clone check
 ```sh
@@ -35,8 +35,15 @@ The clone path works because submodule URLs are relative to the superproject URL
 ## Dev
 `npm start` at the root runs `scripts/dev.mjs` (Node stdlib only): Docker DB, then server, gallery and app with prefixed logs.
 
+## Setup
+`scripts/bootstrap.sh` is the one-command setup; `--check` only reports tool versions and what would run, changing nothing. Other flags: `--no-docker`, `--verify`.
+
 ## Verify
-`scripts/verify-all.sh` runs `npm run verify` in each submodule that has `node_modules` (can_policy runs whenever it has a `package.json`, and needs `node_modules` only if it declares dependencies), plus the plans, spec, constitution and design checkers. Exit is non-zero on any failure.
+`scripts/verify-all.sh` runs `npm run verify` in each submodule that has `node_modules` (can_policy runs whenever it has a `package.json`, and needs `node_modules` only if it declares dependencies), plus the plans, spec, constitution and design checkers. Flags: `--docs-only` (no docker or npm, doc and plan checks only), `--skip-server` (skip can_server and its docker), `--e2e`. Exit is non-zero on any failure.
+
+## Tips
+- `node plans/tools/corpus.mjs catalog` gives a machine-readable corpus view.
+- zsh does not word-split path variables: hold several paths in an array (`paths=(a b)`, `"${paths[@]}"`).
 
 ## Rules
 - Do not edit `DECISIONS.md`, `docs/**`, `plans/**` from here.
