@@ -21,5 +21,7 @@ Produce an entity-relationship model before implementation. At minimum evaluate 
 - Notification, preference, delivery attempt
 - Audit event, security event, retention action, deletion request
 
+The capability profile is device-side only and never a server entity (`26-capability-profile.md`). Public problems gain a `help_needed` set (skill groups, languages, coarse place, topic), proposed by the poster and checked in volunteer review.
+
 Classify fields by sensitivity. Define retention, deletion, export, anonymization, and access rules before storing production personal data.
 

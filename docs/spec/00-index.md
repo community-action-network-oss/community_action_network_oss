@@ -58,6 +58,7 @@ The Community Action Network (CAN) is an open-source platform where people turn 
 | `22-ai-contribution-policy.md` | AI-assisted contribution policy for external contributors |
 | `24-archive-reuse.md` | The Archive: archive record, context profile, path suggestions, `DP-ARCHIVE`, `DP-REUSE-FIT`, `DP-STAGE-DRAFT`, license, slice-1 scope |
 | `25-news-watch.md` | News watch: `NewsSourcePort`, the poll and assess jobs, `DP-NEWS-RELEVANCE`, filing news as contributions (never direct state changes), stored fields, attribution |
+| `26-capability-profile.md` | The private capability profile: structured registration, on-device matching, `help_needed` on problems, notices, control, limits (D-80) |
 | `23-open-decisions.md` | Map from the original open-question list to `docs/open-questions/` |
 | `constitution/` | The constitution (chapters I to XI), `map.tsv`, `rules.md`; start at `constitution/README.md` |
 | `split-map.tsv`, `tools/` | Provenance of the split and the check scripts |
