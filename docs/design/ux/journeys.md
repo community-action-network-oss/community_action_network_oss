@@ -129,3 +129,18 @@ Persona: "Tendai", a resident of a small, hot, dry town with a tiny budget and n
 | 7 | WF-ARCHIVE-1 | Months later the problem ends and is archived with its journey, including what failed in this town, for the next community. |
 
 Success: Tendai never applies something blindly, sees why the path differs, and the Dutch case is credited. If suggestions are unavailable, every step still works by hand.
+
+## J-PROFILE Someone with a skill finds a problem they can move (D-80)
+
+Persona: "Ewa", a Polish-speaking nurse who has never used a civic tool and does not think of herself as an expert in problems.
+
+| Step | Screen | What happens |
+|---|---|---|
+| 1 | WF-LIST-1, WF-PROFILE-1 | Opens Discover, sees the plain list and an invitation. Reads "You are already good at something" and "This stays on this phone". |
+| 2 | WF-PROFILE-2, WF-PROFILE-3 | Picks care and health, translation and a few hours a month. Skips nothing she wants to say, and could skip any step. |
+| 3 | WF-PROFILE-4, WF-PROFILE-5 | Adds Amsterdam as a place, Polish and Dutch as languages. Skips causes. |
+| 4 | WF-PROFILE-6 | Sees everything listed, stored on the phone. Saves a file as a backup. |
+| 5 | WF-MATCH-1 | Sees two problems under "Problems you can move", each saying why: she speaks Polish, she knows care and health. The list ends. |
+| 6 | WF-LIST-1 | Taps the link to the plain list to check nothing is hidden. Then opens one problem to take part, which is public like any contribution. |
+
+Success: Ewa finds one problem she can move without being tracked. Nothing from her profile was sent, and deleting it on WF-PROFILE-6 removes it all. If she skips every step she still sees the whole plain list.

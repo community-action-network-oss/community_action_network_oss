@@ -12,6 +12,9 @@ Every screen has a wireframe ID. "State" refers to lifecycle state keys in [`doc
 | WF-DETAIL-3 | same | anyone | Status variants (paused, stuck, withdrawn, closed, redirected) | n/a |
 | WF-DETAIL-4 | same | anyone | Reopened under policy vX (T20, T21): old conclusion, what changed, next step, appeal | n/a |
 | WF-ARCHIVE-1 | `/archive` | anyone | Archive browse and search with filters (type, region, resource band, outcome incl. failures) | loading, empty, error, offline |
+| WF-PROFILE-1 to WF-PROFILE-5 | `/profile/*` | anyone | Optional capability profile steps (welcome, what you know, what you can give, places, languages and causes), all skippable, stored on the device (D-80) | loading, offline |
+| WF-PROFILE-6 | `/profile` | anyone | Review, export, import, delete the on-device profile | empty, error |
+| WF-MATCH-1 | `/match` | anyone | Problems you can move: a short on-device match list with reasons and a link to the plain list | empty, no profile, offline |
 | WF-ARCHIVE-2 | `/archive/{id}` | anyone | Archived case: journey, stage map as executed, challenges, outcome, costs, credit and license | loading, error, offline, tombstone |
 | WF-SUGGEST-1 | panel in `/me/problems/{id}` | poster | Suggested paths, live while fields fill | loading, empty, too few fields, unavailable, offline |
 | WF-SUGGEST-2 | `/me/problems/{id}/suggestions/{suggestionId}` | poster | Suggestion detail: similarity, differences, legality per layer, resource fit, credit, use as starting point | loading, error, not-permitted |
@@ -126,4 +129,4 @@ Appeals attach to decisions, not to a state (D-15), and cover T02, T05, T16 and 
 
 ## Navigation
 
-Primary areas: Discover (WF-LIST-1), Archive (WF-ARCHIVE-1), Report (WF-PREP-1), My activity (WF-MYACT-1), Policy (WF-POLICY-2), and for auditors, labelers and volunteer reviewers Review (WF-AUDIT-1, WF-VREVIEW-1). The stage map (WF-STAGEMAP-1) and stage workspaces sit inside WF-DETAIL-1. Bottom tabs on mobile, a top bar on desktop. No badges with counts on nav items.
+Primary areas: Discover (WF-LIST-1, with WF-MATCH-1 as its personal part), Archive (WF-ARCHIVE-1), Report (WF-PREP-1), My activity (WF-MYACT-1), Policy (WF-POLICY-2), and for auditors, labelers and volunteer reviewers Review (WF-AUDIT-1, WF-VREVIEW-1). The stage map (WF-STAGEMAP-1) and stage workspaces sit inside WF-DETAIL-1. Bottom tabs on mobile, a top bar on desktop. No badges with counts on nav items.
