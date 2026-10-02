@@ -5,7 +5,7 @@ Every agent the orchestrator spawns reads this file before doing anything else.
 ## Paths and sources of truth
 
 - **Superproject:** `/Users/abhijeetchakraborty/Code/legacy_projects/community_action_network_oss`
-- **Submodules:** `can_server`, `can_app` and `can_gallery`. A fifth, `can_policy`, is planned.
+- **Submodules:** `can_server`, `can_app`, `can_gallery` and `can_policy`.
 - **Binding decisions:** `DECISIONS.md`. Do not reopen any decision in it.
 - **Specification:** `docs/spec/`, entered through `00-index.md`.
 - **Design:** `docs/design/`, covering `ai/`, `flows/`, `components/` and `ux/`.
