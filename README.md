@@ -6,6 +6,10 @@ CAN is an open-source platform where people surface a real public problem, bring
 
 Concept and scaffolding. The specification, the constitution, the design system and three repositories exist. Nothing handles real problems yet. The server has a health endpoint, an append-only event table and an OpenAPI contract. The app is a shell that shows whether the server is reachable. The gallery, a read-only public window into the project, is a static site. Everything else is a plan, and we label it as planned.
 
+## A note on how this is built
+
+CAN is a side project. Its founder and maintainer is building it almost entirely by vibe coding, with AI coding assistants, to reach a working proof of concept quickly. Some of the code is not optimal yet. If you can see the potential, the most valuable help right now is making the existing codebase solid (tests, structure, security, performance and readability) before new features are added. Thank you for understanding.
+
 ## Repositories
 
 All four repositories are public on GitHub under the organization `community-action-network-oss`.

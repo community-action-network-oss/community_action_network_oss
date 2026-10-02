@@ -2,9 +2,13 @@
 
 Thank you for helping. CAN is at the concept and scaffolding stage, so careful small contributions matter more than big ones.
 
+## A note on how this is built
+
+CAN is a side project. Its founder and maintainer is building it almost entirely by vibe coding, with AI coding assistants, to reach a working proof of concept quickly. Some of the code is not optimal yet. If you can see the potential, the most valuable help right now is making the existing codebase solid (tests, structure, security, performance and readability) before new features are added. Thank you for understanding.
+
 ## Ways to help
 
-- **Code:** server, app or gallery (the public read-only site) work units from `plans/`.
+- **Code:** server, app or gallery (the public read-only site) work units from `plans/`. Hardening the existing code (tests, structure, security, performance, readability) comes before new features.
 - **Design:** tokens, screens and accessibility under `docs/design/`.
 - **Docs:** fix unclear or wrong text in `docs/spec/`, READMEs and ADRs.
 - **Open questions:** answer or sharpen an `OQ-*.md` in `docs/open-questions/`. Add evidence, options and trade-offs.
