@@ -59,7 +59,7 @@ NestJS 12 (ESM, `.js` suffix on relative imports), Vitest (no swc needed; does n
 - Vitest include is `**/*.spec.ts` for unit and `**/*.e2e-spec.ts` for e2e; do not name e2e files `.spec.ts`.
 - zsh does not word-split unquoted variables, which bites when passing path lists to `git commit -- $VAR`.
 - Never run prettier (`npm run format`) on `src/` wholesale; format only the files you touched.
-- e2e specs share one Postgres DB: the seed spec cleans dev seed rows, so write specs that own their rows and do not assume an empty DB. Known parallel flakes (moderation-relay, retention, invites, policy-proposals, stages-api evidence read): rerun once. Retention jobs sweep whole tables, so anchor e2e clocks in the past.
+- e2e specs share one Postgres DB: the seed spec cleans dev seed rows, so write specs that own their rows and do not assume an empty DB. e2e files run sequentially (`fileParallelism: false` in vitest.config.e2e.ts) because specs scan global event and job tables; order event queries explicitly (`ORDER BY id`) and scope counts to the spec's own rows. Insert-only ledgers can never be cleaned: use a unique calendar block per run. Retention jobs sweep whole tables, so anchor e2e clocks in the past.
 - Auth rate limits are in memory per process (`src/platform/security/rate-limiter.ts`); tests must not expect them to persist.
 - Import Ajv as `import { Ajv2020 } from 'ajv/dist/2020.js'` (ESM path, named export).
 - Seed e2e teardown (`test/seed.e2e-spec.ts`) deletes stage children in FK-safe order and disables triggers (`alter table ... disable trigger user`) around the insert-only tables; keep that order when adding stage child tables.
