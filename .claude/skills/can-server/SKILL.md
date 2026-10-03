@@ -22,19 +22,22 @@ NestJS 12 (ESM, `.js` suffix on relative imports), Vitest (no swc needed; does n
 - Auth: non-GET routes need a session unless `@Public()`; GET routes are open unless decorated. A GET that reads `req.auth` needs `@Authenticated()`.
 - Roles: base roles via `@Roles`; additive `account_role` (auditor, labeler, lane_member, steward) via `@RequireRole`; steward is derived from moderator/admin; `GET /v1/me/roles`.
 - `/v1/problems*` is pinned to 3 public GETs (contract test PROFILE-LOCAL-1), never a PUT/PATCH there. Write and owner routes live under `/v1/drafts/:id/...`, `/v1/me/...`, `/v1/stages`, `/v1/rules`.
-- OWN-1: no owner or initiator field in any OpenAPI schema (asserted in `test/problems-list.e2e-spec.ts`).
+- OWN-1: no OpenAPI schema text may contain the substrings "owner" or "initiator" (case-insensitive regex over all schemas, `test/problems-list.e2e-spec.ts`); say `assignee`.
 - `test/schema.e2e-spec.ts` forbids column names containing "email" except `email_ciphertext`/`email_hmac`.
 - Health is `GET /health` (no `v1` prefix).
 - Every route has an explicit `operationId` via `@ApiOperation`, and DTO classes with `@ApiProperty` (no swagger CLI plugin). `ApiException(status, code, message, fieldErrors?, extra?)`.
 - `configureApp()` in `src/app.setup.ts` is the single place for pipes, CORS and shutdown hooks; main, e2e tests and the OpenAPI generator all call it. New e2e tests must call it too.
 - pg Pool is lazy, so `npm run openapi` needs no DB. Keep it that way (no connect-on-boot).
 - Never edit a committed migration; add a new one.
-- Locks: StageEngine locks the problem row, then stages by id; use `applyIn(tx, ...)`. Never call `TransitionEngine.apply` or a repo that opens its own tx inside an engine tx (deadlock). `ContributionPort.create` takes the caller's tx.
+- Locks: StageEngine locks the problem row, then stages by id; use `applyIn(tx, ...)`. Never call `TransitionEngine.apply` or a repo that opens its own tx inside an engine tx (deadlock). `ContributionPort.create` takes the caller's tx. `TaskPort` is `openRequired(tx, stageId)`, implemented by `DbTaskPort` (`src/tasks`); `TasksModule` is imported by `StagesModule`.
 - D-85 reply cap: `enforceReplyCap` (`src/contributions/app/reply-cap.ts`) runs inside the submit tx under an advisory lock. Every reply path (contribution POST, stage options, stage evidence) goes through `ContributionPort.create(..., tx)`. Over the cap: 429 `reply_limit_reached {limit, remaining, resetsAt}`. Allowance: `GET /v1/me/problems/{id}/reply-allowance`. Pack key `caps.replies_per_account_per_problem_per_day`.
-- AI: `src/ai-gateway` is the only door to a model (architecture test). Model-bound text only via `PrivacyGateway.prepare`; `mask()` is pure; the output gate (`src/ai-gateway/app/output-gate.ts`) runs before any model text reaches a person; reexpand only on the poster's own view. Contribution privacy checks exclude id-ref fields (UUIDs trip the phone pattern).
+- AI: `src/ai-gateway` is the only door to a model (architecture test). Model-bound text only via `PrivacyGateway.prepare`; `mask()` is pure; the output gate (`src/ai-gateway/app/output-gate.ts`) runs before any model text reaches a person; reexpand only on the poster's own view. Contribution privacy checks (`src/contributions/app/contribution-checks.ts`) exclude id-ref fields `improves`, `target`, `target_stage`, `task_ref` (UUIDs trip the phone pattern).
+- Detector text folds: every `normalise()` fold used by privacy, eligibility and secrets must keep text length (the index map depends on it). Email regexes need the local-part lookbehind (`BL` in `src/problems/domain/privacy/detect.ts`) to stay linear; any detector change must pass the adversarial performance guard (`src/problems/domain/privacy/adversarial.spec.ts`).
 - Prompt templates: exactly one `<<<DATA`, one slot line `(the labelled lines are inserted here by the server)`, one `DATA>>>`, one `{{RULES}}`, at most one `{{SHOTS}}`. Run prompt hash is `BuiltPrompt.promptHash`.
 - Legal (`src/policy/legal`): `registry.stackFor` fails closed with `LegalLayerMissing`; `LegalArticle.text` is never serialised; use `tryRetrieveLegal`, `renderLegalLines`, `neutraliseLegalForgery`. The choice gate (`LegalChoiceGate`) uses the `LEGAL_JUDGE` port, default `FailClosedLegalJudge`: a non-ban retrieved article is unjudged and the gate is held.
 - Queue: `src/platform/queue` (`QueuePort`, `QueueWorker`); periodic ticks only when `jobsEnabled`; payloads carry ids only. `EventRelay` and `RelayCursor` live in AppModule.
+- Providers (`src/ai-gateway/providers`: fake, replay, openrouter): `ProviderError` (`providers/errors.ts`) is separate from `GatewayError`, and the gateway maps every `ProviderError` to hold. openrouter is inert unless `AI_PROVIDER=openrouter` + `OPEN_ROUTER_KEY` + a register entry with a current `evalExpiry`.
+- `AssistModule` (`src/policy/assist`) is registered in `AppModule`, not `PolicyModule` (import cycle via PrivacyGatewayModule > ModerationModule > PolicyModule).
 - Content: ajv runs strict + strictTypes (can_policy also enforces strictRequired). `content_schema_version` rows are keyed (type, schema_hash); `pack_version` follows the newest activation.
 
 ## Single-owner paths
@@ -58,4 +61,5 @@ NestJS 12 (ESM, `.js` suffix on relative imports), Vitest (no swc needed; does n
 - Never run prettier (`npm run format`) on `src/` wholesale; format only the files you touched.
 - e2e specs share one Postgres DB: the seed spec cleans dev seed rows, so write specs that own their rows and do not assume an empty DB. Known parallel flakes (moderation-relay, retention, invites, policy-proposals, stages-api evidence read): rerun once. Retention jobs sweep whole tables, so anchor e2e clocks in the past.
 - Auth rate limits are in memory per process (`src/platform/security/rate-limiter.ts`); tests must not expect them to persist.
-- Import ajv as `ajv/dist/2020.js` (ESM path).
+- Import Ajv as `import { Ajv2020 } from 'ajv/dist/2020.js'` (ESM path, named export).
+- Seed e2e teardown (`test/seed.e2e-spec.ts`) deletes stage children in FK-safe order and disables triggers (`alter table ... disable trigger user`) around the insert-only tables; keep that order when adding stage child tables.
