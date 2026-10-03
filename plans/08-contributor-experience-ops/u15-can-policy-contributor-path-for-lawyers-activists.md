@@ -13,9 +13,9 @@ spec: ["docs/spec/21-open-source-governance.md", "docs/spec/22-ai-contribution-p
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
+commits: ["ffc7bc0"]
 actual_hours: null
 ---
 ## Objective

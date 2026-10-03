@@ -14,9 +14,9 @@ spec: ["docs/design/ux/wireframes/forms.md#WF-FORM-1","docs/design/ux/wireframes
 verify: ["npm run gen:api","npm run verify"]
 founder_gate: false
 defaults: "Keep tabs, lists and comparison views from 04-u08 and 04-u09; replace only the entry forms. The contribution type picker lists the types the server allows for the problem state (existing allowed-per-state endpoint), each opening `contribution.<type>` from the registry."
-status: doing
+status: done
 attempts: 0
-commits: []
+commits: ["cf2e428"]
 actual_hours: null
 ---
 ## Objective

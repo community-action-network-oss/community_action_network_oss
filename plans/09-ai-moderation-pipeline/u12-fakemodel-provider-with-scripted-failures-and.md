@@ -15,7 +15,7 @@ needs: []
 verify: ["npm run verify","npx vitest run src/ai-gateway/providers"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: doing
 attempts: 0
 commits: []
 actual_hours: null

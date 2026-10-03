@@ -15,9 +15,9 @@ needs: []
 verify: ["npm run lint","npm run build","npm test","npx vitest run src/problems/domain/privacy"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
+commits: ["722e289"]
 actual_hours: null
 ---
 ## Objective

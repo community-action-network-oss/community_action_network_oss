@@ -14,9 +14,9 @@ spec: ["docs/design/ai/simulation.md#2-personas","docs/design/flows/volunteer-re
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
+commits: ["6d6bdc2"]
 actual_hours: null
 ---
 ## Objective
