@@ -15,9 +15,9 @@ needs: []
 verify: ["npm run lint","npm run build","npx vitest run test/simulation"]
 founder_gate: false
 defaults: "Follow the 03-u02 pattern: read `../can_policy` when present, else use the committed copy under `test/simulation/fixtures/data/`; never fail a standalone checkout of can_server."
-status: todo
+status: done
 attempts: 0
-commits: []
+commits: ["d419d9f"]
 actual_hours: null
 ---
 ## Objective

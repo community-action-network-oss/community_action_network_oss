@@ -14,9 +14,9 @@ spec: ["docs/design/ai/simulation.md#2-persona-catalog","docs/design/ai/structur
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "Scripts target the fiktiva-city problems of 11-u02 until seed scripts supply Amsterdam content (11-u07, 11-u08); the harness binds `{{seed.problem_id}}` at run time."
-status: todo
+status: done
 attempts: 0
-commits: []
+commits: ["5ffcb19","23a9f83"]
 actual_hours: null
 ---
 ## Objective

@@ -14,9 +14,9 @@ spec: ["docs/design/ai/simulation.md#3-seed-scenarios-seeds-1-and-2","docs/desig
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "Evidence is synthetic: invented incident categories, invented counts and dates, marked on every item; the overlay it runs against may be the unreviewed skeleton (OQ-amsterdam-overlay-review), in which case the report states that."
-status: todo
+status: done
 attempts: 0
-commits: []
+commits: ["2317348"]
 actual_hours: null
 ---
 ## Objective

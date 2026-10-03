@@ -14,9 +14,9 @@ spec: ["docs/design/ai/simulation.md#2-persona-catalog","docs/design/ai/structur
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "If a persona needs a field value the v1 problem schema does not accept, fix the persona, never the schema. Scripts must be deterministic: no randomness inside script.json, only the persona `seed` for harness-level choices."
-status: todo
+status: done
 attempts: 0
-commits: []
+commits: ["a6b715f"]
 actual_hours: null
 ---
 ## Objective

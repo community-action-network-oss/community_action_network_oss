@@ -14,9 +14,9 @@ spec: ["docs/design/ai/simulation.md#2-persona-catalog","docs/design/ai/decision
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "Hate content is represented by clearly marked placeholder tokens plus structure (for example `[SLUR_1] about [GROUP_A]`) rather than real slurs, so the corpus is safe to publish and the model eval still exercises the DP; document this in each persona.yaml."
-status: todo
+status: done
 attempts: 0
-commits: []
+commits: ["ce6b13e"]
 actual_hours: null
 ---
 ## Objective

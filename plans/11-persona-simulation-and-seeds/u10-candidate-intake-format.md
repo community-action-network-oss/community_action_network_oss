@@ -14,9 +14,9 @@ spec: ["docs/design/ai/simulation.md#7-feeding-the-amendment-loop","docs/design/
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "Candidates are data only: nothing in this directory changes policy until a PR moves an auditor-confirmed case into an eval set or example."
-status: todo
+status: done
 attempts: 0
-commits: []
+commits: ["833837f"]
 actual_hours: null
 ---
 ## Objective

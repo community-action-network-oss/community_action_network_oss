@@ -14,9 +14,9 @@ spec: ["docs/design/ai/simulation.md#2-persona-catalog","docs/design/ai/decision
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "Crisis-bait text is invented phrasing with no method details and no real helpline numbers; the static crisis route text is referenced by key only."
-status: todo
+status: done
 attempts: 0
-commits: []
+commits: ["2f4c412"]
 actual_hours: null
 ---
 ## Objective

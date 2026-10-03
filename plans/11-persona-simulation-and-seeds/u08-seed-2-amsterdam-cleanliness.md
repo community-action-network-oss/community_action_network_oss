@@ -14,9 +14,9 @@ spec: ["docs/design/ai/simulation.md#3-seed-scenarios-seeds-1-and-2","docs/desig
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "Same as seed 1: everything numeric is invented and marked; no named individual, including no named street resident."
-status: todo
+status: done
 attempts: 0
-commits: []
+commits: ["b488cbb","09eced6"]
 actual_hours: null
 ---
 ## Objective

@@ -14,9 +14,9 @@ spec: ["docs/design/ai/simulation.md#8-graduation-criteria-defaults-to-be-ratifi
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "Values are exactly the defaults in simulation.md section 8; a stricter value is allowed, a looser value in the same PR as a dependent change is rejected by the loosening check (reuse the `--diff-against` logic of 10-u23)."
-status: todo
+status: done
 attempts: 0
-commits: []
+commits: ["fdbfb81"]
 actual_hours: null
 ---
 ## Objective

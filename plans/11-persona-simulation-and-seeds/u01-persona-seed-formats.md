@@ -14,9 +14,9 @@ spec: ["docs/design/ai/simulation.md#10-layout","docs/design/ai/simulation.md#2-
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "The script step language stays declarative (no code, no expressions beyond equality on listed state fields); anything cleverer belongs in the harness (plan 11 server units)."
-status: todo
+status: done
 attempts: 0
-commits: []
+commits: ["4afdecb"]
 actual_hours: null
 ---
 ## Objective

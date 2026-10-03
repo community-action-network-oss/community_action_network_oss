@@ -14,9 +14,9 @@ spec: ["docs/design/ai/simulation.md#2-persona-catalog","docs/design/ai/simulati
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "All attack material is invented: fictional names from a made-up wordlist, fictional streets and plates, no real person. Injection payloads are generic phrasings. Generated JSONL is committed and the test regenerates it and compares (no drift)."
-status: todo
+status: done
 attempts: 0
-commits: []
+commits: ["0d52c38"]
 actual_hours: null
 ---
 ## Objective
