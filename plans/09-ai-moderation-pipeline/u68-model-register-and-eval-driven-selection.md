@@ -15,9 +15,9 @@ needs: []
 verify: ["npm run verify","npx vitest run src/ai-gateway/register"]
 founder_gate: false
 defaults: "Free (:free) models first, then cheap; synthetic eval inputs only; live part runs under a small per-run budget (default 1 USD, flag --budget-usd) and stops at 95 percent of it. No candidate passing a DP leaves that DP with no live model: the router holds."
-status: todo
+status: done
 attempts: 0
-commits: []
+commits: ["7e56d36"]
 actual_hours: null
 ---
 ## Objective
