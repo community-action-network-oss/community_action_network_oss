@@ -42,7 +42,9 @@ The clone path works because submodule URLs are relative to the superproject URL
 `scripts/verify-all.sh` runs `npm run verify` in each submodule that has `node_modules` (can_policy runs whenever it has a `package.json`, and needs `node_modules` only if it declares dependencies), plus the plans, spec, constitution and design checkers. Flags: `--docs-only` (no docker or npm, doc and plan checks only), `--skip-server` (skip can_server and its docker), `--e2e`. Exit is non-zero on any failure.
 
 ## Tips
-- `node plans/tools/corpus.mjs catalog` gives a machine-readable corpus view.
+- `node plans/tools/corpus.mjs catalog` gives a machine-readable corpus view. `corpus.mjs set ... commits=` needs an inline JSON array: `commits=["sha"]`.
+- Night branches stack on the newest unmerged night branch.
+- The machine may be offline: add no npm deps (see the nodemailer DNS trap in the server skill).
 - zsh does not word-split path variables: hold several paths in an array (`paths=(a b)`, `"${paths[@]}"`).
 
 ## Rules
