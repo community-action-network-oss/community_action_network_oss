@@ -578,3 +578,13 @@ Every default, deviation and judgment call made while building CAN. Each one can
   - **Default:** true. can_policy `limits.yaml` `stage.auto_start_default` is set to true (provisional) and the 10-u66 unit text is stale.
   - **Why:** the spec is binding over plan text; true matches the server already built and the stage table, where ST03 runs for the system when `auto_start` is true.
   - **Reverse:** set the limit to false and change the spec row and the server default together.
+- **D-85 · W16 · Four replies per person per problem per day, so every reply counts (founder, 2026-10-03).** One of the platform's features: a person can reply to a problem at most 4 times a day. Fewer, better replies instead of a stream.
+  - **Founder decision:** the limit and its purpose ("make your reply really count").
+  - **Orchestrator defaults, for founder review:**
+    - A reply is any contribution a person submits on one problem, of any type, including contributions on its stages. Drafts and edits do not count. A submitted reply counts even if it is later withdrawn or removed.
+    - Window: rolling 24 hours, per account per problem. Replies on other problems are unaffected.
+    - System actors (for example news watch, D-79) are exempt; they keep their own limits.
+    - The value is a community policy value in can_policy `limits.yaml` (`caps.replies_per_account_per_problem_per_day`, count 4, days 1, provisional), so the community can change it through a policy proposal. The server falls back to 4 per day if the key is absent.
+    - Over the limit the server answers 429 `reply_limit_reached` with `limit`, `remaining` and `resetsAt`. The app shows how many replies are left and encourages the person to prepare each one.
+  - **Not covered (stays as is):** poster answers to volunteer recommendations, appeals, policy proposals and problem edits are not replies.
+  - **Reverse:** remove the cap key and the server check; nothing else depends on it.

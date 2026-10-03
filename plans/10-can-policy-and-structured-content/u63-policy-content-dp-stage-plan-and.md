@@ -14,9 +14,9 @@ spec: ["docs/design/ai/decision-points.md","docs/design/ai/policy-pack.md","docs
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "If the 1.5 hours run short, finish prompt, schema and examples for every DP in this unit first and the adversarial eval cases last; record the shortfall as a TODO line in that DP's eval/README.md."
-status: doing
+status: done
 attempts: 0
-commits: []
+commits: ["2d42252","870dfdc","747e793","8e90523"]
 actual_hours: null
 ---
 ## Objective

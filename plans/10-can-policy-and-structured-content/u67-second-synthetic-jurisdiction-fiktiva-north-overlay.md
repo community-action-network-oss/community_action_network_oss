@@ -14,9 +14,9 @@ spec: ["docs/design/ai/legal-stack.md","docs/design/ai/policy-pack.md#layers-and
 verify: ["npm run verify"]
 founder_gate: false
 defaults: "none needed; every choice in this unit is a reversible engineering default"
-status: todo
+status: done
 attempts: 0
-commits: []
+commits: ["c5f7f13"]
 actual_hours: null
 ---
 ## Objective
