@@ -23,7 +23,7 @@ Only the root owner writes `.gitmodules` and pointer bumps. Area agents commit i
 git -C <root> add -- <submodule>
 git -C <root> commit -m "<prefix>: bump <submodule>" -- <submodule>
 ```
-Remotes: `origin` is GitHub (org `community-action-network-oss`); submodules also keep `local`, the old bare mirror. `can_policy` has no GitHub `origin` yet (only `local`), so its pointer is not resolvable by remote clones until one is added. Push the submodule's main first (`git -C <root>/<submodule> push origin main`), then the superproject, so the pointer is resolvable by clones. Pushing main is a human or morning step; night runs never push.
+Remotes: `origin` is GitHub (org `community-action-network-oss`); submodules also keep `local`, the old bare mirror. Push the submodule's main first (`git -C <root>/<submodule> push origin main`), then the superproject, so the pointer is resolvable by clones. Pushing main is a human or morning step; night runs never push.
 
 ## Fresh-clone check
 ```sh
