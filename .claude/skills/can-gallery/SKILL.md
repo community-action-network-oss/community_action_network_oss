@@ -5,7 +5,7 @@ description: Work on can_gallery, the read-only public gallery and explainer sit
 
 # can-gallery
 
-Weight: light. Next.js 16 static export. Built on gluestack-ui 3.0.12 with NativeWind 4 (D-50, ADR 0007; NativeWind v5 does not support Next.js). `DESIGN.md` is the design contract. Budgets live in `scripts/budget.mjs` (gz per page): JS 135 KB (the Next/React runtime floor is ~130 KB; pending founder review, `docs/performance-budget.md`), HTML 30 KB, CSS 30 KB, image 100 KB. `HTML_EXCEPTIONS` is a ratchet: ceilings may only go down (`/docs/` 31.5 KB). Never relax a budget to pass a unit. No runtime third-party fetch beyond the docs fetches below. Phase 0A deliverable (`docs/spec/18-phases-gates.md`).
+Weight: light. Next.js 16 static export. Built on gluestack-ui 3.0.12 with NativeWind 4 (D-50, ADR 0007; NativeWind v5 does not support Next.js). `DESIGN.md` is the design contract. Budgets live in `scripts/budget.mjs` (gz per page): JS 135 KB (the Next/React runtime floor is ~130 KB; pending founder review, `docs/performance-budget.md`), HTML 30 KB, CSS 30 KB, image 100 KB. `HTML_EXCEPTIONS` is a ratchet: ceilings may only go down (remaining exceptions: `/contribute/tasks/` and `/open-questions/`; `/docs/` is no longer one). Never relax a budget to pass a unit. No runtime third-party fetch beyond the docs fetches below. Phase 0A deliverable (`docs/spec/18-phases-gates.md`).
 
 ## Settled before you start (D-80)
 - **Audience: anyone with any expertise** (nurse, cook, clerk, electrician, student, lawyer, engineer), not mainly developers. Plain words a non-specialist reads first time; jargon (repo, lifecycle, schema, moderation run, attestation, OQ ids) only inside unfolded detail or on the deep pages.
@@ -14,7 +14,7 @@ Weight: light. Next.js 16 static export. Built on gluestack-ui 3.0.12 with Nativ
 - **The vision to carry in copy:** a person tells CAN what they know, privately, on their own device, and is shown only the few public problems they can move. One person, maybe five problems, solved properly. Never call it a feed; no algorithm guesses. Mark it `Planned`.
 
 ## Routes
-`/`, `/how-it-works/`, `/where-you-fit/`, `/contribute/` (+ `tasks/`, `roles/` and its role pages), `/open-questions/`, `/roadmap/`, `/principles/`, `/how-decisions-are-made/`, `/whats-new/`, `/community-policy/`, `/lawful-everywhere/`, `/re-resolution/`, `/archive-and-reuse/`, `/private-location/`, `/proof/` (all under `src/app/`, trailing slash on), plus `/docs/`, `/docs/<slug>/` per public document and `/docs/view/?path=<path>` for documents added after the build.
+`/`, `/how-it-works/`, `/where-you-fit/`, `/contribute/` (+ `tasks/`, `roles/` and its role pages), `/open-questions/`, `/roadmap/`, `/principles/`, `/how-decisions-are-made/`, `/whats-new/`, `/community-policy/`, `/lawful-everywhere/`, `/re-resolution/`, `/archive-and-reuse/`, `/private-location/`, `/proof/` (all under `src/app/`, trailing slash on), plus `/docs/` (a short section index), `/docs/section/<id>/` per section (lists that section's documents; dynamic `[id]` route, so `check:locale` ROUTES cannot list it), `/docs/<slug>/` per public document and `/docs/view/?path=<path>` for documents added after the build.
 - A new route needs all of: `check:locale` ROUTES, the `check-out` must-exist list, `DEEPER_NAV` in `src/config/site.ts`, a literal `pageMetadata("/route/", ...)` call, and a `gen:og` card.
 
 ## Commands (run with `npm --prefix can_gallery`)
@@ -28,7 +28,7 @@ Weight: light. Next.js 16 static export. Built on gluestack-ui 3.0.12 with Nativ
   - `check:deploy`: `--release` (or a set `SITE_URL`) fails on localhost in built files.
   - `check:og`: every route has a `gen:og` 1200x630 PNG, at most 100 KB.
   - `a11y` (`scripts/a11y.mjs`, served by `serve-out.mjs`): axe in light and dark plus a real Tab walk.
-  - `check:out` ( no `<form`, no analytics, no external hosts in href/src, no em or en dashes in rendered HTML, all routes exist, docs page count equals the manifest, no document text anywhere in `out/`, only the allowed GitHub fetch hosts in built JS)
+  - `check:out` ( no `<form`, no analytics, no external hosts in href/src, no em or en dashes in rendered HTML, all routes exist, docs page count equals the manifest (`docs/section/` excluded from the count), no document text anywhere in `out/`, only the allowed GitHub fetch hosts in built JS)
 
 ## Invariants
 - Phase 0A limits: no forms, cookies, analytics or fonts, and no third-party fetches EXCEPT the live document fetches of D-67/D-68 (see Docs below). No collection of personal data. The channel to get involved is the repository plus the open questions (`OQ-promo-interest-channel`, a stable id kept from before the rename).
