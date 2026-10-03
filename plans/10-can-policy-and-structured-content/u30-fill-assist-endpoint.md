@@ -15,9 +15,9 @@ needs: ["docker","db"]
 verify: ["npm run lint","npm run build","npm test","npm run openapi","git add openapi/openapi.json","npm run verify"]
 founder_gate: false
 defaults: "Uses plan 09 units: AiGatewayPort and prompt builder (09-u08), privacy gateway (09-u09) and FakeModel (09-u12). If the AiGatewayPort does not exist when you start, STOP and report blocked; never write a gateway or call a provider directly. Use FakeModel only."
-status: todo
+status: done
 attempts: 0
-commits: []
+commits: ["1a41248"]
 actual_hours: null
 ---
 ## Objective

@@ -15,9 +15,9 @@ needs: []
 verify: ["npm run verify","npx vitest run src/ai-gateway/providers/openrouter"]
 founder_gate: false
 defaults: "Not founder-gated (D-65). Constructible only when AI_PROVIDER=openrouter, OPEN_ROUTER_KEY, a positive AI_SPEND_CAP_MONTHLY_USD and a register entry with a current eval all exist. The key is never read from a file other than the dev .env fallback, never committed and never logged. Tests mock HTTP."
-status: todo
+status: done
 attempts: 0
-commits: []
+commits: ["fedf5f1"]
 actual_hours: null
 ---
 ## Objective
