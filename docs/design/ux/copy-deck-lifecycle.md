@@ -211,3 +211,43 @@ Problem chips: Draft, In volunteer review, Active: stage {name}, Active: {n} sta
 | reply.limit.draft | Your draft is kept. |
 | reply.a11y.left | {left} of {limit} replies left today on this problem. |
 | reply.a11y.blocked | Posting is off until {time}. {limit} replies a day on each problem. |
+
+## Added ids: stagemap.* (copy-deck-sync)
+| id | English |
+|---|---|
+| stagemap.afterNothing | Starts after: nothing |
+| stagemap.finalAfter | after {names} |
+| stagemap.change.soon | Changing the plan is coming soon. |
+| stagemap.listTitle | Stages ({n, number}), list |
+| stagemap.loading | Loading the stage map |
+| stagemap.error | The stage map could not be loaded. Try again later. |
+| stagemap.empty | This problem has no stage plan yet. Only the final criteria apply. |
+
+## Added ids: lifecycle.* (copy-deck-sync)
+| id | English |
+|---|---|
+| lifecycle.chip.needsRevision | Needs changes |
+
+## Added ids: prep.* (copy-deck-sync)
+| id | English |
+|---|---|
+| prep.review.notLive | Volunteer review is not open yet. No person has looked at this. |
+| prep.needsEvidence | Needs evidence |
+| prep.noSource.label | I do not have a source yet |
+| prep.noSource.hint | Say why. It stays marked as needing evidence. |
+| prep.noSource.save | Save this note |
+| prep.open | Open |
+| prep.edit | Edit |
+| prep.check | Check my draft |
+| prep.send.confirm | Send now |
+| prep.send.refused | It could not be sent yet. See the parts above for what to fix. |
+| prep.notPermitted | You cannot open this problem here. |
+| prep.rateLimited | Too many tries. Please wait a moment and try again. |
+
+## Added ids: crit.* (copy-deck-sync)
+| id | English |
+|---|---|
+| crit.hint.title | A closer look may help |
+| crit.hint.item | Item {n, number}. |
+| crit.hint.fallback | Say what anyone could count or see. |
+| crit.saved | Saved. You can keep editing. |

@@ -81,3 +81,47 @@ Continuation of `copy-deck.md` (same rules: ICU MessageFormat, calm and plain, n
 | match.edit | Change my profile |
 | match.notify.off | Notices are off. Open this page when you like. |
 | match.notify.explain | A notice only says that new public problems were published. Your phone then checks them against your profile and tells you only if one fits. |
+
+## Added ids: profile.* (copy-deck-sync)
+| id | English |
+|---|---|
+| profile.places.search | Add a city or region |
+| profile.places.add | Add |
+| profile.places.remove | Remove {place} |
+| profile.review.importPaste | Paste the contents of your saved file here |
+| profile.review.importBad | That file is not a CAN profile. Nothing was changed. |
+| profile.review.imported | Your profile was loaded onto this phone. |
+| profile.review.delete.yes | Yes, delete it |
+| profile.review.delete.no | Keep it |
+| profile.review.saveError | Your profile could not be saved on this phone. |
+| profile.review.row.know | What you know |
+| profile.review.row.give | What you can give |
+| profile.review.row.places | Places |
+| profile.review.row.languages | Languages |
+| profile.review.row.affects | What affects you |
+| profile.review.row.causes | Causes |
+| profile.review.none | Nothing chosen |
+| profile.lang.en | English |
+| profile.lang.nl | Nederlands |
+| profile.lang.pl | Polski |
+| profile.lang.de | Deutsch |
+| profile.lang.fr | Francais |
+| profile.lang.es | Espanol |
+| profile.lang.tr | Turkce |
+| profile.lang.ar | Arabic |
+| profile.topic.housing | Housing |
+| profile.topic.air | Air quality |
+| profile.topic.waste | Waste |
+| profile.topic.water | Clean water |
+| profile.topic.streets | Safe streets |
+| profile.topic.noise | Noise |
+| profile.topic.health | Health care |
+| profile.topic.schools | Schools |
+
+## Added ids: match.* (copy-deck-sync)
+| id | English |
+|---|---|
+| match.plainList.hide | Back to problems you can move |
+| match.notForMe | Not for me |
+| match.loading | Loading public problems |
+| match.error | The public problems could not be loaded. Check your connection and try again. |
