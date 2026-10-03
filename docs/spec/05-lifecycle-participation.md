@@ -57,6 +57,19 @@ Avoid one undifferentiated comment stream. Every contribution has exactly one de
 
 Each contribution should support citations, scope, status, moderation outcome, and revision history. Slice 1 allows URL citations only, no file attachments. Use **targeted reflection delays** (for example after a rejected contribution or in a heated exchange), not a flat wait on every comment, and never delay urgent legitimate updates. Default lengths: `01-slice-1-brief.md`; the open question is `docs/open-questions/OQ-cooldown-lengths.md`.
 
+### Reply allowance (D-85)
+
+A person can reply to a problem at most 4 times in a rolling 24 hours, so every reply counts. The value is a community policy value (`caps.replies_per_account_per_problem_per_day`, count 4, days 1, provisional, in can_policy `limits.yaml`); the server falls back to 4 per day if the key is absent.
+
+- A reply is any contribution a person submits on one problem, of any type, including contributions on its stages (options, evidence, ahead-of-time items). Drafts and edits do not count. A submitted reply counts even if it is later withdrawn or removed.
+- The window is per account per problem. Replies on other problems are unaffected. System actors (for example news watch, D-79) are exempt and keep their own limits.
+- Not replies, so not counted: poster answers to volunteer recommendations, appeals, policy proposals and problem edits.
+- Over the limit the server answers 429 `reply_limit_reached` with `limit`, `remaining` and `resetsAt`. The owner can read the allowance before writing; it is an owner route outside `/v1/problems*` (route: `GET /v1/me/problems/{id}/reply-allowance`, plan unit 04-u02).
+- **With the cooldown:** the 2 minute and 10 minute cooldowns in `01-slice-1-brief.md` still apply. Both rules apply to every reply and the stricter one wins: a reply is refused if either the allowance is used up or a cooldown is running. The cooldown error stays `cooldown_active`; the allowance error is `reply_limit_reached`. A refused reply does not count. Cooldown exemptions (progress updates, verification evidence) do not exempt a reply from the allowance.
+- Whether the limit belongs in the constitution: `docs/open-questions/OQ-reply-limit.md`.
+
+UX: `docs/design/ux/copy-deck.md` (Reply allowance) and `docs/design/ux/wireframes/participate.md` (WF-CONTRIB-2).
+
 ### Ranking and visibility
 
 Do not optimize for engagement (canonical rules: `17-ux.md`, "Deliberate, not addictive"). Ranking should prioritize relevance, evidence quality, local applicability, safety, novelty, and contribution to the current stage. Keep core-participant, visitor, and expert signals distinguishable. Provide chronological or transparent alternative views where practical.

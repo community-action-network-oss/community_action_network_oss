@@ -29,6 +29,7 @@ Build WF-STAGE-1 at `/problems/{id}/stages/{stageId}` for stages in state ready,
 3. Everything the viewer may do comes from `allowedStageTransitions` and the stage response; contributions made ahead appear marked "Added ahead of time"; a steward sees `Attach to evidence` on kept contributions (12-u10).
 4. While `resolving` the screen shows `{stage.checking}`, the criteria are read only and the evidence is frozen; after a result the screen links to WF-STAGE-2 (12-u19). A blocked stage shows its constraint and next route.
 5. Slots for the Guest badge and the Impacted only filter on options, choice comments, evidence and steps (12-u22, 12-u23) are props.
+5a. Reply allowance (D-85): show the remaining-replies indicator from 04-u08 beside `{stage.option.add}` and `{stage.evidence.add}`; those actions open the add screen, which blocks submit at 0 with the reset time. Handle 429 `reply_limit_reached` from the option and evidence forms.
 6. States: loading, error, offline, session expired, not permitted, empty sections, tombstone for withdrawn items.
 
 ## Acceptance

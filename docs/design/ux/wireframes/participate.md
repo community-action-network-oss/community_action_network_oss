@@ -28,6 +28,8 @@ Renders WF-FORM-1 from the contribution schema for the chosen type. The type lis
 ```
 +--------------------------------------+
 | {contrib.add.title}                  |
+| {reply.left}  (2 of 4 replies left)  |
+| {reply.count}                        |
 | {contrib.add.type} What kind?        |
 | ( ) Question  ( ) Observation        |
 | ( ) Evidence  ( ) Root cause ...     |
@@ -48,6 +50,19 @@ Renders WF-FORM-1 from the contribution schema for the chosen type. The type lis
 +--------------------------------------+
 ```
 Post runs the moderation run (`pending.checking`); the contribution shows to others only on `publish`. A held contribution uses the WF-HOLD-1 copy.
+
+**Reply allowance (D-85).** The indicator sits above the type choice, loaded from the allowance route before the person writes anything (spec 05, "Reply allowance"). It is text, never colour alone. When replies are left it reads `{reply.left}`; with 1 left it also shows `{reply.next}` using `resetsAt`. The nudge `{reply.count}` is one calm sentence, always visible, not a warning. Only a submitted reply counts: saving a draft and editing do not.
+```
+Over the limit (0 left)
++--------------------------------------+
+| {reply.limit.title}                  |
+| {reply.limit.body}  (14:30)          |
+| {reply.limit.draft}                  |
+| Form stays readable and editable     |
+| [ Save draft ]   [ Post ] (disabled) |
++--------------------------------------+
+```
+Post is disabled at 0 with the reason in text beside it, not only a greyed button. The reset time is local time and does not tick. If the server still answers 429 `reply_limit_reached` (another device used the last reply), show the same state from `resetsAt` and keep the text. Accessibility: the indicator is a plain paragraph with the label `{reply.a11y.left}`; the blocked state uses `{reply.a11y.blocked}` as the disabled button's description; the state change after a post is announced once politely, with no ticking live region. Same indicator in the stage workspace and ahead screens (WF-STAGE-1, WF-STAGE-3) wherever a reply can be posted. The 2 minute cooldown message (`cooldown_active`) is separate; when both apply, show the later time.
 
 ## WF-PROPOSAL-1  Proposals and comparison
 **Retired (D-72):** replaced by Options in WF-STAGE-1. Comparison stays as a view inside it.

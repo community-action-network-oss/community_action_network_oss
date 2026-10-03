@@ -29,6 +29,7 @@ Build WF-STAGE-3 on the same route as the workspace when the stage is Planned (o
 3. A "Not available yet: choosing, steps, submitting evidence" block is shown in words; the sections of the workspace for those actions are not rendered.
 4. A Skipped stage shows its reason and keeps ahead contributions readable; when the stage starts, ahead items appear in WF-STAGE-1 marked "Added ahead of time".
 5. Slots for the Guest badge and the Impacted only filter (12-u22, 12-u23).
+5a. Reply allowance (D-85): ahead-of-time items are replies. Show the remaining-replies indicator from 04-u08 beside `{stage.ahead.add}`; at 0 left the add action says in words when it is possible again (`reply.next`).
 6. States: loading, error, offline, session expired, not permitted, empty ("No contributions yet. Add the first.").
 
 ## Acceptance

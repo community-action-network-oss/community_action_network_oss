@@ -199,3 +199,15 @@ Problem chips: Draft, In volunteer review, Active: stage {name}, Active: {n} sta
 | locperm.denied | Location is off. Your contribution will be labelled Guest. |
 | locperm.denied.settings | Turn it on in your device settings |
 | locperm.learn | How the check works |
+
+## Reply allowance (D-85, spec 05)
+| id | English |
+|---|---|
+| reply.left | {left, plural, =0 {No replies left today} one {# of {limit} replies left today} other {# of {limit} replies left today}} |
+| reply.next | Next reply possible at {time} |
+| reply.count | Make it count. You have {limit} replies a day on each problem, so say the one thing that helps most. |
+| reply.limit.title | You have used your replies for today |
+| reply.limit.body | You can reply again at {time}. Meanwhile you can read, save a draft and prepare your next reply. |
+| reply.limit.draft | Your draft is kept. |
+| reply.a11y.left | {left} of {limit} replies left today on this problem. |
+| reply.a11y.blocked | Posting is off until {time}. {limit} replies a day on each problem. |
